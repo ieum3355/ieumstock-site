@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ieumstock.site/sitemap.xml
