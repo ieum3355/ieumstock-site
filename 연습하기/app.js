@@ -547,7 +547,22 @@ function renderBlog() {
     const container = document.getElementById('blog-posts-container');
     if (!container || !CONTENT_DB.blog_posts) return;
 
-    const sortedPosts = [...CONTENT_DB.blog_posts].sort((a, b) => b.date.localeCompare(a.date));
+    // Get today's date in YYYY-MM-DD format (User's local time)
+    const today = new Date().toLocaleDateString('en-CA'); // 'en-CA' gives YYYY-MM-DD
+
+    // Filter posts: show if no publishDate (legacy) OR publishDate is today or past
+    const visiblePosts = CONTENT_DB.blog_posts.filter(post => {
+        if (!post.publishDate) return true;
+        return post.publishDate <= today;
+    });
+
+    const sortedPosts = [...visiblePosts].sort((a, b) => b.date.localeCompare(a.date));
+
+    if (sortedPosts.length === 0) {
+        container.innerHTML = '<p style="text-align:center; padding: 2rem; color: var(--text-secondary);">아직 등록된 게시글이 없습니다.</p>';
+        return;
+    }
+
     const latestPostId = sortedPosts[0].id;
 
     container.innerHTML = sortedPosts.map(post => {
@@ -572,4 +587,322 @@ function renderBlog() {
 }
 
 
+// ========================================
+// Trading Journal Feature
+// ========================================
 
+const JOURNAL_STORAGE_KEY = 'trading_journal_data';
+
+// Initialize Journal on page load
+document.addEventListener('DOMContentLoaded', () => {
+    initTradingJournal();
+});
+
+function initTradingJournal() {
+    const form = document.getElementById('journal-form');
+    if (!form) return;
+
+    // Set default date to today
+    const dateInput = document.getElementById('trade-date');
+    if (dateInput) {
+        dateInput.value = new Date().toLocaleDateString('en-CA');
+    }
+
+    // Form submit handler
+    form.addEventListener('submit', handleJournalSubmit);
+
+    // Load existing data
+    loadJournalData();
+}
+
+function handleJournalSubmit(e) {
+    e.preventDefault();
+
+    const date = document.getElementById('trade-date').value;
+    const stockName = document.getElementById('stock-name').value.trim();
+    const tradeType = document.getElementById('trade-type').value;
+    const quantity = parseInt(document.getElementById('trade-quantity').value);
+    const price = parseInt(document.getElementById('trade-price').value);
+    const memo = document.getElementById('trade-memo').value.trim();
+
+    if (!date || !stockName || !quantity || !price) {
+        alert('필수 항목을 모두 입력해주세요.');
+        return;
+    }
+
+    const trade = {
+        id: Date.now(),
+        date,
+        stockName,
+        tradeType,
+        quantity,
+        price,
+        total: quantity * price,
+        memo
+    };
+
+    // Save to localStorage
+    const trades = getJournalData();
+    trades.push(trade);
+    saveJournalData(trades);
+
+    // Reset form
+    document.getElementById('journal-form').reset();
+    document.getElementById('trade-date').value = new Date().toLocaleDateString('en-CA');
+
+    // Refresh display
+    loadJournalData();
+
+    // Show success feedback
+    showJournalFeedback('✅ 매매 기록이 추가되었습니다!');
+}
+
+function getJournalData() {
+    const data = localStorage.getItem(JOURNAL_STORAGE_KEY);
+    return data ? JSON.parse(data) : [];
+}
+
+function saveJournalData(trades) {
+    localStorage.setItem(JOURNAL_STORAGE_KEY, JSON.stringify(trades));
+}
+
+function loadJournalData() {
+    const trades = getJournalData();
+    renderJournalTable(trades);
+    updateJournalStats(trades);
+}
+
+function renderJournalTable(trades) {
+    const tbody = document.getElementById('journal-tbody');
+    if (!tbody) return;
+
+    if (trades.length === 0) {
+        tbody.innerHTML = `
+            <tr class="empty-row">
+                <td colspan="8">아직 기록된 매매 내역이 없습니다. 위에서 첫 기록을 추가해보세요!</td>
+            </tr>
+        `;
+        return;
+    }
+
+    // Sort by date (newest first)
+    const sortedTrades = [...trades].sort((a, b) => b.date.localeCompare(a.date));
+
+    tbody.innerHTML = sortedTrades.map(trade => `
+        <tr data-id="${trade.id}">
+            <td>${formatDate(trade.date)}</td>
+            <td><strong>${trade.stockName}</strong></td>
+            <td><span class="trade-type ${trade.tradeType}">${trade.tradeType === 'buy' ? '매수' : '매도'}</span></td>
+            <td>${trade.quantity.toLocaleString()}주</td>
+            <td>${trade.price.toLocaleString()}원</td>
+            <td><strong>${trade.total.toLocaleString()}원</strong></td>
+            <td style="color: var(--text-secondary); font-size: 0.9rem;">${trade.memo || '-'}</td>
+            <td><button class="delete-btn" onclick="deleteJournalEntry(${trade.id})">삭제</button></td>
+        </tr>
+    `).join('');
+}
+
+function formatDate(dateStr) {
+    const date = new Date(dateStr);
+    return `${date.getMonth() + 1}/${date.getDate()}`;
+}
+
+function updateJournalStats(trades) {
+    // Calculate stats
+    const totalTrades = trades.length;
+    
+    // Group by stock to calculate realized P&L
+    const stockGroups = {};
+    trades.forEach(trade => {
+        if (!stockGroups[trade.stockName]) {
+            stockGroups[trade.stockName] = { buys: [], sells: [] };
+        }
+        if (trade.tradeType === 'buy') {
+            stockGroups[trade.stockName].buys.push(trade);
+        } else {
+            stockGroups[trade.stockName].sells.push(trade);
+        }
+    });
+
+    let totalProfit = 0;
+    let winCount = 0;
+    let completedTrades = 0;
+
+    Object.keys(stockGroups).forEach(stock => {
+        const group = stockGroups[stock];
+        const totalBuyValue = group.buys.reduce((sum, t) => sum + t.total, 0);
+        const totalBuyQty = group.buys.reduce((sum, t) => sum + t.quantity, 0);
+        const avgBuyPrice = totalBuyQty > 0 ? totalBuyValue / totalBuyQty : 0;
+
+        group.sells.forEach(sell => {
+            const profit = (sell.price - avgBuyPrice) * sell.quantity;
+            totalProfit += profit;
+            if (profit > 0) winCount++;
+            completedTrades++;
+        });
+    });
+
+    const winRate = completedTrades > 0 ? Math.round((winCount / completedTrades) * 100) : 0;
+    const avgProfitRate = completedTrades > 0 ? (totalProfit / (trades.filter(t => t.tradeType === 'buy').reduce((sum, t) => sum + t.total, 0) || 1) * 100).toFixed(1) : 0;
+
+    // Update DOM
+    const profitEl = document.getElementById('stat-total-profit');
+    const winRateEl = document.getElementById('stat-win-rate');
+    const totalTradesEl = document.getElementById('stat-total-trades');
+    const avgProfitEl = document.getElementById('stat-avg-profit');
+
+    if (profitEl) {
+        profitEl.textContent = `${totalProfit >= 0 ? '+' : ''}${Math.round(totalProfit).toLocaleString()}원`;
+        profitEl.className = `stat-value ${totalProfit >= 0 ? 'positive' : 'negative'}`;
+    }
+    if (winRateEl) winRateEl.textContent = `${winRate}%`;
+    if (totalTradesEl) totalTradesEl.textContent = `${totalTrades}건`;
+    if (avgProfitEl) {
+        avgProfitEl.textContent = `${avgProfitRate}%`;
+        avgProfitEl.className = `stat-value ${parseFloat(avgProfitRate) >= 0 ? 'positive' : 'negative'}`;
+    }
+}
+
+function deleteJournalEntry(id) {
+    if (!confirm('이 매매 기록을 삭제하시겠습니까?')) return;
+
+    const trades = getJournalData().filter(t => t.id !== id);
+    saveJournalData(trades);
+    loadJournalData();
+    showJournalFeedback('🗑️ 기록이 삭제되었습니다.');
+}
+
+function clearAllJournalData() {
+    if (!confirm('⚠️ 모든 매매 기록을 삭제하시겠습니까?\n이 작업은 되돌릴 수 없습니다.')) return;
+
+    localStorage.removeItem(JOURNAL_STORAGE_KEY);
+    loadJournalData();
+    showJournalFeedback('🗑️ 모든 기록이 삭제되었습니다.');
+}
+
+function showJournalFeedback(message) {
+    // Simple alert for now, can be upgraded to toast notification
+    const btn = document.querySelector('.journal-submit-btn');
+    if (btn) {
+        const originalText = btn.innerHTML;
+        btn.innerHTML = message;
+        btn.style.background = 'linear-gradient(135deg, #4ade80 0%, #22c55e 100%)';
+        setTimeout(() => {
+            btn.innerHTML = originalText;
+            btn.style.background = '';
+        }, 2000);
+    }
+}
+
+// Download Functions
+function downloadJournalCSV() {
+    const trades = getJournalData();
+    if (trades.length === 0) {
+        alert('다운로드할 매매 기록이 없습니다.');
+        return;
+    }
+
+    const headers = ['거래일', '종목명', '유형', '수량', '단가', '총액', '메모'];
+    const rows = trades.map(t => [
+        t.date,
+        t.stockName,
+        t.tradeType === 'buy' ? '매수' : '매도',
+        t.quantity,
+        t.price,
+        t.total,
+        t.memo || ''
+    ]);
+
+    // Add BOM for Korean characters in Excel
+    const BOM = '\uFEFF';
+    const csvContent = BOM + [headers.join(','), ...rows.map(r => r.map(cell => `"${cell}"`).join(','))].join('\n');
+
+    downloadFile(csvContent, `주식매매일지_${new Date().toLocaleDateString('en-CA')}.csv`, 'text/csv;charset=utf-8');
+}
+
+function downloadJournalExcel() {
+    const trades = getJournalData();
+    if (trades.length === 0) {
+        alert('다운로드할 매매 기록이 없습니다.');
+        return;
+    }
+
+    // Create HTML table for Excel
+    const headers = ['거래일', '종목명', '유형', '수량', '단가', '총액', '메모'];
+    const rows = trades.map(t => [
+        t.date,
+        t.stockName,
+        t.tradeType === 'buy' ? '매수' : '매도',
+        t.quantity,
+        t.price,
+        t.total,
+        t.memo || ''
+    ]);
+
+    let html = `
+        <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel">
+        <head><meta charset="UTF-8">
+        <style>
+            table { border-collapse: collapse; }
+            th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+            th { background-color: #d4af37; color: white; font-weight: bold; }
+            .buy { background-color: #fee2e2; color: #dc2626; }
+            .sell { background-color: #dcfce7; color: #16a34a; }
+        </style>
+        </head>
+        <body>
+        <h2>📊 주식 매매일지</h2>
+        <p>생성일: ${new Date().toLocaleString('ko-KR')}</p>
+        <table>
+            <tr>${headers.map(h => `<th>${h}</th>`).join('')}</tr>
+            ${rows.map(r => `<tr>${r.map((cell, i) => {
+                if (i === 2) return `<td class="${cell === '매수' ? 'buy' : 'sell'}">${cell}</td>`;
+                return `<td>${cell}</td>`;
+            }).join('')}</tr>`).join('')}
+        </table>
+        </body></html>
+    `;
+
+    downloadFile(html, `주식매매일지_${new Date().toLocaleDateString('en-CA')}.xls`, 'application/vnd.ms-excel;charset=utf-8');
+}
+
+function downloadEmptyTemplate() {
+    const headers = ['거래일', '종목명', '유형(매수/매도)', '수량', '단가', '메모'];
+    const exampleRow = ['2026-01-10', '삼성전자', '매수', '10', '70000', '실적 발표 전 매수'];
+
+    let html = `
+        <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel">
+        <head><meta charset="UTF-8">
+        <style>
+            table { border-collapse: collapse; width: 100%; }
+            th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+            th { background-color: #8b5cf6; color: white; font-weight: bold; }
+            .example { background-color: #f3f4f6; color: #6b7280; font-style: italic; }
+        </style>
+        </head>
+        <body>
+        <h2>📔 주식 매매일지 템플릿</h2>
+        <p>아래 양식에 맞춰 매매 기록을 작성하세요.</p>
+        <table>
+            <tr>${headers.map(h => `<th>${h}</th>`).join('')}</tr>
+            <tr class="example">${exampleRow.map(cell => `<td>${cell}</td>`).join('')}</tr>
+            ${Array(20).fill('<tr>' + headers.map(() => '<td></td>').join('') + '</tr>').join('')}
+        </table>
+        <p style="margin-top: 20px; color: #666;">* 거래일 형식: YYYY-MM-DD (예: 2026-01-10)</p>
+        </body></html>
+    `;
+
+    downloadFile(html, `주식매매일지_빈템플릿.xls`, 'application/vnd.ms-excel;charset=utf-8');
+}
+
+function downloadFile(content, filename, mimeType) {
+    const blob = new Blob([content], { type: mimeType });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}

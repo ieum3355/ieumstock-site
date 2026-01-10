@@ -839,3 +839,351 @@ body {
         font-size: 1.5rem !important;
     }
 }
+
+/* ========================================
+   Trading Journal Styles
+   ======================================== */
+
+/* Journal Stats Grid */
+.journal-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, var(--bg-card) 0%, rgba(139, 92, 246, 0.08) 100%);
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent-color);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
+}
+
+.stat-icon {
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+}
+
+.stat-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+.stat-value.positive {
+    color: #4ade80;
+}
+
+.stat-value.negative {
+    color: #f87171;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+/* Journal Form Card */
+.journal-form-card {
+    background: var(--bg-card);
+    padding: 2rem;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+}
+
+.journal-form-card h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+}
+
+.form-icon {
+    font-size: 1.5rem;
+}
+
+.journal-form .form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.journal-form .input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.journal-form .input-group input,
+.journal-form .input-group select {
+    width: 100%;
+    padding: 0.9rem 1.2rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.journal-form .input-group input:focus,
+.journal-form .input-group select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.journal-form .input-group select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%238b949e' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+}
+
+.journal-submit-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, var(--accent-color) 0%, #b8992e 100%);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.journal-submit-btn:hover {
+    transform: scale(1.02);
+    box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
+}
+
+/* Journal Actions */
+.journal-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.action-btn:hover {
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+.download-btn {
+    background: linear-gradient(135deg, rgba(74, 222, 128, 0.1) 0%, rgba(34, 197, 94, 0.1) 100%);
+    border-color: rgba(74, 222, 128, 0.3);
+}
+
+.download-btn:hover {
+    background: linear-gradient(135deg, rgba(74, 222, 128, 0.2) 0%, rgba(34, 197, 94, 0.2) 100%);
+    border-color: #4ade80;
+}
+
+.excel-btn {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(22, 163, 74, 0.15) 100%);
+}
+
+.clear-btn {
+    background: linear-gradient(135deg, rgba(248, 113, 113, 0.1) 0%, rgba(239, 68, 68, 0.1) 100%);
+    border-color: rgba(248, 113, 113, 0.3);
+}
+
+.clear-btn:hover {
+    background: linear-gradient(135deg, rgba(248, 113, 113, 0.2) 0%, rgba(239, 68, 68, 0.2) 100%);
+    border-color: #f87171;
+}
+
+/* Journal Table */
+.journal-table-container {
+    overflow-x: auto;
+    background: var(--bg-card);
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+}
+
+.journal-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.journal-table thead {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+}
+
+.journal-table th {
+    padding: 1rem 1.2rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--accent-color);
+    border-bottom: 2px solid var(--border-color);
+    white-space: nowrap;
+}
+
+.journal-table td {
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+}
+
+.journal-table tbody tr {
+    transition: background 0.2s ease;
+}
+
+.journal-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.journal-table .empty-row td {
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.journal-table .trade-type {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.journal-table .trade-type.buy {
+    background: rgba(248, 113, 113, 0.15);
+    color: #f87171;
+}
+
+.journal-table .trade-type.sell {
+    background: rgba(74, 222, 128, 0.15);
+    color: #4ade80;
+}
+
+.journal-table .delete-btn {
+    background: transparent;
+    border: 1px solid rgba(248, 113, 113, 0.3);
+    color: #f87171;
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+}
+
+.journal-table .delete-btn:hover {
+    background: rgba(248, 113, 113, 0.2);
+    border-color: #f87171;
+}
+
+/* Template Download Card */
+.template-download-card {
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(139, 92, 246, 0.05) 100%);
+    padding: 1.5rem 2rem;
+    border-radius: 16px;
+    border: 1px dashed var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.template-info h4 {
+    margin-bottom: 0.3rem;
+    color: var(--text-primary);
+}
+
+.template-info p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.template-btn {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(168, 85, 247, 0.15) 100%);
+    border-color: rgba(139, 92, 246, 0.3);
+}
+
+.template-btn:hover {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.25) 0%, rgba(168, 85, 247, 0.25) 100%);
+    border-color: #8b5cf6;
+}
+
+/* Responsive for Journal */
+@media (max-width: 768px) {
+    .journal-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .journal-form .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .journal-actions {
+        flex-direction: column;
+    }
+
+    .action-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .template-download-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .journal-table th,
+    .journal-table td {
+        padding: 0.8rem;
+        font-size: 0.85rem;
+    }
+}
