@@ -688,18 +688,31 @@ function renderJournalTable(trades) {
     // Sort by date (newest first)
     const sortedTrades = [...trades].sort((a, b) => b.date.localeCompare(a.date));
 
-    tbody.innerHTML = sortedTrades.map(trade => `
-        <tr data-id="${trade.id}">
-            <td>${formatDate(trade.date)}</td>
-            <td><strong>${trade.stockName}</strong></td>
-            <td><span class="trade-type ${trade.tradeType}">${trade.tradeType === 'buy' ? '매수' : '매도'}</span></td>
-            <td>${trade.quantity.toLocaleString()}주</td>
-            <td>${trade.price.toLocaleString()}원</td>
-            <td><strong>${trade.total.toLocaleString()}원</strong></td>
-            <td style="color: var(--text-secondary); font-size: 0.9rem;">${trade.memo || '-'}</td>
-            <td><button class="delete-btn" onclick="deleteJournalEntry(${trade.id})">삭제</button></td>
-        </tr>
-    `).join('');
+    tbody.innerHTML = sortedTrades.map(trade => {
+        const isSell = trade.tradeType === 'sell';
+        const profitDisplay = (isSell && trade.realizedProfit !== undefined)
+            ? `<div class="trade-profit ${trade.realizedProfit >= 0 ? 'up' : 'down'}">
+                ${trade.realizedProfit >= 0 ? '+' : ''}${Math.round(trade.realizedProfit).toLocaleString()}원 
+                (${trade.realizedRate >= 0 ? '+' : ''}${trade.realizedRate.toFixed(1)}%)
+               </div>`
+            : '';
+
+        return `
+            <tr data-id="${trade.id}">
+                <td>${formatDate(trade.date)}</td>
+                <td><strong>${trade.stockName}</strong></td>
+                <td><span class="trade-type ${trade.tradeType}">${trade.tradeType === 'buy' ? '매수' : '매도'}</span></td>
+                <td>${trade.quantity.toLocaleString()}주</td>
+                <td>${trade.price.toLocaleString()}원</td>
+                <td>
+                    <strong>${trade.total.toLocaleString()}원</strong>
+                    ${profitDisplay}
+                </td>
+                <td style="color: var(--text-secondary); font-size: 0.9rem;">${trade.memo || '-'}</td>
+                <td><button class="delete-btn" onclick="deleteJournalEntry(${trade.id})">삭제</button></td>
+            </tr>
+        `;
+    }).join('');
 }
 
 function formatDate(dateStr) {
@@ -710,7 +723,7 @@ function formatDate(dateStr) {
 function updateJournalStats(trades) {
     // Calculate stats
     const totalTrades = trades.length;
-    
+
     // Group by stock to calculate realized P&L
     const stockGroups = {};
     trades.forEach(trade => {
@@ -730,15 +743,35 @@ function updateJournalStats(trades) {
 
     Object.keys(stockGroups).forEach(stock => {
         const group = stockGroups[stock];
-        const totalBuyValue = group.buys.reduce((sum, t) => sum + t.total, 0);
-        const totalBuyQty = group.buys.reduce((sum, t) => sum + t.quantity, 0);
-        const avgBuyPrice = totalBuyQty > 0 ? totalBuyValue / totalBuyQty : 0;
+        // Sort by date to process chronologically
+        const allEvents = [...group.buys, ...group.sells].sort((a, b) => a.date.localeCompare(b.date));
 
-        group.sells.forEach(sell => {
-            const profit = (sell.price - avgBuyPrice) * sell.quantity;
-            totalProfit += profit;
-            if (profit > 0) winCount++;
-            completedTrades++;
+        let inventoryQty = 0;
+        let inventoryCost = 0;
+
+        allEvents.forEach(event => {
+            if (event.tradeType === 'buy') {
+                inventoryQty += event.quantity;
+                inventoryCost += event.total;
+            } else {
+                if (inventoryQty > 0) {
+                    const avgBuyPrice = inventoryCost / inventoryQty;
+                    const profit = (event.price - avgBuyPrice) * event.quantity;
+                    const profitRate = ((event.price / avgBuyPrice) - 1) * 100;
+
+                    event.realizedProfit = profit;
+                    event.realizedRate = profitRate;
+
+                    totalProfit += profit;
+                    if (profit > 0) winCount++;
+                    completedTrades++;
+
+                    // Reduce inventory proportionally
+                    const ratio = event.quantity / inventoryQty;
+                    inventoryCost -= (inventoryCost * ratio);
+                    inventoryQty -= event.quantity;
+                }
+            }
         });
     });
 
@@ -856,9 +889,9 @@ function downloadJournalExcel() {
         <table>
             <tr>${headers.map(h => `<th>${h}</th>`).join('')}</tr>
             ${rows.map(r => `<tr>${r.map((cell, i) => {
-                if (i === 2) return `<td class="${cell === '매수' ? 'buy' : 'sell'}">${cell}</td>`;
-                return `<td>${cell}</td>`;
-            }).join('')}</tr>`).join('')}
+        if (i === 2) return `<td class="${cell === '매수' ? 'buy' : 'sell'}">${cell}</td>`;
+        return `<td>${cell}</td>`;
+    }).join('')}</tr>`).join('')}
         </table>
         </body></html>
     `;
@@ -874,25 +907,42 @@ function downloadEmptyTemplate() {
         <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel">
         <head><meta charset="UTF-8">
         <style>
-            table { border-collapse: collapse; width: 100%; }
-            th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
-            th { background-color: #8b5cf6; color: white; font-weight: bold; }
-            .example { background-color: #f3f4f6; color: #6b7280; font-style: italic; }
+            body { font-family: 'Malgun Gothic', sans-serif; }
+            table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+            th, td { border: 1px solid #e2e8f0; padding: 12px; text-align: left; }
+            th { background-color: #6366f1; color: white; font-weight: bold; font-size: 14px; }
+            .header-info { background: #f8fafc; padding: 20px; border-radius: 8px; border-bottom: 3px solid #6366f1; }
+            .title { color: #1e293b; font-size: 24px; font-weight: bold; margin: 0; }
+            .subtitle { color: #64748b; font-size: 14px; margin-top: 5px; }
+            .example { background-color: #f1f5f9; color: #475569; font-style: italic; }
+            .guide-box { margin-top: 30px; padding: 15px; background: #fffbeb; border-left: 4px solid #f59e0b; font-size: 13px; color: #92400e; }
         </style>
         </head>
         <body>
-        <h2>📔 주식 매매일지 템플릿</h2>
-        <p>아래 양식에 맞춰 매매 기록을 작성하세요.</p>
+        <div class="header-info">
+            <h1 class="title">📈 Smart Guide 주식 매매일지 템플릿</h1>
+            <p class="subtitle">체계적인 기록이 성공적인 투자의 시작입니다.</p>
+        </div>
         <table>
-            <tr>${headers.map(h => `<th>${h}</th>`).join('')}</tr>
-            <tr class="example">${exampleRow.map(cell => `<td>${cell}</td>`).join('')}</tr>
-            ${Array(20).fill('<tr>' + headers.map(() => '<td></td>').join('') + '</tr>').join('')}
+            <thead>
+                <tr>${headers.map(h => `<th>${h}</th>`).join('')}</tr>
+            </thead>
+            <tbody>
+                <tr class="example">${exampleRow.map(cell => `<td>${cell}</td>`).join('')}</tr>
+                ${Array(30).fill('<tr>' + headers.map(() => '<td></td>').join('') + '</tr>').join('')}
+            </tbody>
         </table>
-        <p style="margin-top: 20px; color: #666;">* 거래일 형식: YYYY-MM-DD (예: 2026-01-10)</p>
+        <div class="guide-box">
+            <strong>💡 작성 가이드</strong><br>
+            • 거래일: YYYY-MM-DD 형식으로 입력하세요 (예: 2026-01-13)<br>
+            • 유형: '매수' 또는 '매도'라고 정확히 입력하세요.<br>
+            • 단가: 숫자만 입력하세요 (콤마 제외).<br>
+            • 메모: 매매 이유나 당시 심리 상태를 적으면 복기에 큰 도움이 됩니다.
+        </div>
         </body></html>
     `;
 
-    downloadFile(html, `주식매매일지_빈템플릿.xls`, 'application/vnd.ms-excel;charset=utf-8');
+    downloadFile(html, `SmartGuide_매매일지_템플릿.xls`, 'application/vnd.ms-excel;charset=utf-8');
 }
 
 function downloadFile(content, filename, mimeType) {

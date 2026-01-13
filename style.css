@@ -1187,3 +1187,18 @@ body {
         font-size: 0.85rem;
     }
 }
+
+/* --- Added Profit display styles --- */
+.trade-profit {
+    font-size: 0.75rem;
+    margin-top: 4px;
+    font-weight: 500;
+}
+
+.trade-profit.up {
+    color: #f87171; /* Red for profit in KR market */
+}
+
+.trade-profit.down {
+    color: #60a5fa; /* Blue for loss */
+}
