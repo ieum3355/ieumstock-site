@@ -12,6 +12,7 @@
     --accent-glow: rgba(212, 175, 55, 0.15);
 
     --border-color: #30363d;
+    --ad-bg: rgba(255, 255, 255, 0.02);
 
     /* Spacing */
     --container-width: 1200px;
@@ -1297,4 +1298,29 @@ body {
     display: inline-block;
     border: 1px solid rgba(96, 165, 250, 0.2);
     box-shadow: 0 0 10px rgba(96, 165, 250, 0.1);
+}
+
+/* AdSense Unit Styling */
+.adsense-container {
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 3rem auto;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px dashed var(--border-color);
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ad-label {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    opacity: 0.5;
 }
