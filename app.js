@@ -1025,8 +1025,8 @@ function downloadEmptyTemplate() {
                         <td style="text-align: right; mso-number-format: '#,##0';"></td>
                         <td class="formula-cell" x:fmla="=E${row}*F${row}" style="text-align: right; mso-number-format: '#,##0'; background-color: #fcfcfc;">0</td>
                         <td style="text-align: right; mso-number-format: '#,##0'; color: #64748b;"></td>
-                        <td class="formula-cell" x:fmla="=IF(D${row}=""매도"",(F${row}-H${row})*E${row},0)" style="text-align: right; mso-number-format: '#,##0'; color: #ef4444;">0</td>
-                        <td class="formula-cell" x:fmla="=IF(AND(D${row}=""매도"",H${row}>0),(F${row}-H${row})/H${row},0)" style="text-align: right; mso-number-format: '0.00%'; color: #ef4444;">0.00%</td>
+                        <td class="formula-cell" x:fmla="=IF(D${row}=&quot;매도&quot;,(F${row}-H${row})*E${row},0)" style="text-align: right; mso-number-format: '#,##0'; color: #ef4444;">0</td>
+                        <td class="formula-cell" x:fmla="=IF(AND(D${row}=&quot;매도&quot;,H${row}&gt;0),(F${row}-H${row})/H${row},0)" style="text-align: right; mso-number-format: '0.00%'; color: #ef4444;">0.00%</td>
                         <td></td>
                     </tr>
                     `;
