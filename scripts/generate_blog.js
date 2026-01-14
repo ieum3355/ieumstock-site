@@ -79,18 +79,35 @@ async function generateBlogPost() {
     }
 
     try {
-        const availableModels = await listVisibleModels();
-        console.log(`[Debug] Models visible to this key: ${availableModels.join(', ')}`);
+        const allModels = await listVisibleModels();
+        // Filter out non-text generation models
+        const textModels = allModels.filter(m =>
+            (m.includes('gemini') || m.includes('gemma')) &&
+            !m.includes('embedding') &&
+            !m.includes('tts') &&
+            !m.includes('image') &&
+            !m.includes('veo') &&
+            !m.includes('aqa')
+        );
 
-        // Use the first available model that supports generation, preferred order
-        const preferred = ['gemini-1.5-flash', 'gemini-1.5-flash-latest', 'gemini-pro'];
-        const modelToUse = preferred.find(p => availableModels.includes(p)) || availableModels[0];
+        console.log(`[Debug] Valid Text Models: ${textModels.join(', ')}`);
+
+        // Preference order including latest 2.0 and 2.5 versions
+        const preferredOrder = [
+            'gemini-2.0-flash',
+            'gemini-2.0-flash-lite-preview',
+            'gemini-2.5-flash',
+            'gemini-1.5-flash',
+            'gemini-pro'
+        ];
+
+        const modelToUse = preferredOrder.find(p => textModels.includes(p)) || textModels[0];
 
         if (!modelToUse) {
-            throw new Error("No available models found for this API key.");
+            throw new Error("No suitable text generation models found for this API key.");
         }
 
-        console.log(`[Action] Using model: ${modelToUse}`);
+        console.log(`[Action] Selected Model: ${modelToUse}`);
         const textResult = await callGemini(modelToUse);
 
         const today = new Date();
@@ -100,7 +117,7 @@ async function generateBlogPost() {
         const nextId = Math.max(...ids, 0) + 1;
 
         const jsonMatch = textResult.match(/\{[\s\S]*\}/);
-        if (!jsonMatch) throw new Error("No JSON in response");
+        if (!jsonMatch) throw new Error("No JSON found in AI response");
         const postData = JSON.parse(jsonMatch[0]);
 
         const newPost = {
@@ -113,9 +130,9 @@ async function generateBlogPost() {
 
         const updatedDb = dbContent.replace(/"blog_posts":\s*\[/, `"blog_posts": [\n        ${JSON.stringify(newPost, null, 8).replace(/\n/g, '\n        ').trim()},`);
         fs.writeFileSync(DB_PATH, updatedDb, 'utf8');
-        console.log(`Success! Generated Post #${nextId}: ${postData.title}`);
+        console.log(`Success! Created Post #${nextId}: ${postData.title}`);
     } catch (e) {
-        console.error('--- Debugging Info ---');
+        console.error('--- Critical Error ---');
         console.error(e);
         process.exit(1);
     }
