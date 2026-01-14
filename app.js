@@ -1016,8 +1016,8 @@ function downloadEmptyTemplate() {
                 </tr>
 
                 <!-- Empty Rows with formulas -->
-                ${Array(50).fill(0).map((_, i) => {
-        const row = i + 6; // Adjust for header and example rows
+                ${Array(100).fill(0).map((_, i) => {
+        const row = i + 6; // Starts at row 6 in Excel
         return `
                     <tr height="22">
                         <td style="text-align: center; color: #94a3b8;">${i + 1}</td>
@@ -1028,8 +1028,8 @@ function downloadEmptyTemplate() {
                         <td style="text-align: right; mso-number-format: '#,##0';"></td>
                         <td class="formula-cell" x:fmla="=E${row}*F${row}" style="text-align: right; mso-number-format: '#,##0'; background-color: #fcfcfc;">0</td>
                         <td style="text-align: right; mso-number-format: '#,##0'; color: #64748b;"></td>
-                        <td class="formula-cell" x:fmla="=IF(D${row}='매도',(F${row}-H${row})*E${row},0)" style="text-align: right; mso-number-format: '#,##0'; color: #ef4444;">0</td>
-                        <td class="formula-cell" x:fmla="=IF(AND(D${row}='매도',H${row}&gt;0),(F${row}-H${row})/H${row},0)" style="text-align: right; mso-number-format: '0.00%'; color: #ef4444;">0.00%</td>
+                        <td class="formula-cell" x:fmla="=IF(D${row}=&quot;매도&quot;,(F${row}-H${row})*E${row},0)" style="text-align: right; mso-number-format: '#,##0'; color: #ef4444;">0</td>
+                        <td class="formula-cell" x:fmla="=IF(AND(D${row}=&quot;매도&quot;,H${row}&gt;0),(F${row}-H${row})/H${row},0)" style="text-align: right; mso-number-format: '0.00%'; color: #ef4444;">0.00%</td>
                         <td></td>
                     </tr>
                     `;
