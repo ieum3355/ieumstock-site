@@ -960,6 +960,7 @@ function downloadJournalExcel() {
         </body></html>
     `;
 
+    // Visual feedback
     const btn = document.querySelector('.excel-btn');
     if (btn) {
         const original = btn.innerHTML;
@@ -1024,8 +1025,8 @@ function downloadEmptyTemplate() {
                         <td style="text-align: right; mso-number-format: '#,##0';"></td>
                         <td class="formula-cell" x:fmla="=E${row}*F${row}" style="text-align: right; mso-number-format: '#,##0'; background-color: #fcfcfc;">0</td>
                         <td style="text-align: right; mso-number-format: '#,##0'; color: #64748b;"></td>
-                        <td class="formula-cell" x:fmla='=IF(D${row}="매도",(F${row}-H${row})*E${row},0)' style="text-align: right; mso-number-format: '#,##0'; color: #ef4444;">0</td>
-                        <td class="formula-cell" x:fmla='=IF(AND(D${row}="매도",H${row}>0),(F${row}-H${row})/H${row},0)' style="text-align: right; mso-number-format: '0.00%'; color: #ef4444;">0.00%</td>
+                        <td class="formula-cell" x:fmla="=IF(D${row}=""매도"",(F${row}-H${row})*E${row},0)" style="text-align: right; mso-number-format: '#,##0'; color: #ef4444;">0</td>
+                        <td class="formula-cell" x:fmla="=IF(AND(D${row}=""매도"",H${row}>0),(F${row}-H${row})/H${row},0)" style="text-align: right; mso-number-format: '0.00%'; color: #ef4444;">0.00%</td>
                         <td></td>
                     </tr>
                     `;
@@ -1044,6 +1045,7 @@ function downloadEmptyTemplate() {
         </body></html>
     `;
 
+    // Visual feedback
     const btn = document.querySelector('.template-btn');
     if (btn) {
         const original = btn.innerHTML;
@@ -1056,41 +1058,24 @@ function downloadEmptyTemplate() {
 
 function downloadFile(content, filename, mimeType) {
     try {
-        // Unicode character for UTF-8 with BOM
-        const blob = new Blob(['\uFEFF' + content], { type: mimeType + ';charset=utf-8' });
-
-        // Handle IE/Edge
-        if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-            window.navigator.msSaveOrOpenBlob(blob, filename);
-            return;
-        }
-
+        // Simple and proven method
+        const blob = new Blob(['\uFEFF', content], { type: mimeType + ';charset=utf-8' });
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
-        a.style.display = 'none';
         a.href = url;
         a.download = filename;
-
-        // Append anchor to body
         document.body.appendChild(a);
+        a.click();
 
-        // Multi-browser compatible click trigger
-        const clickEvent = new MouseEvent('click', {
-            view: window,
-            bubbles: true,
-            cancelable: true
-        });
-        a.dispatchEvent(clickEvent);
-
-        // Cleanup
+        // Final cleanup
         setTimeout(() => {
-            window.URL.revokeObjectURL(url);
             document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
         }, 100);
 
-        console.log(`Download triggered for: ${filename}`);
+        console.log(`다운로드 시작: ${filename}`);
     } catch (e) {
-        console.error('Download execution error:', e);
-        alert('다운로드를 시작할 수 없습니다. 브라우저 설정을 확인해주세요.');
+        console.error('Download failed:', e);
+        alert('다운로드 중 오류가 발생했습니다. 브라우저 설정을 확인해주세요.');
     }
 }
