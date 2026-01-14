@@ -962,10 +962,13 @@ function downloadJournalExcel() {
 
     // Visual feedback
     const btn = document.querySelector('.excel-btn');
-    if (btn) {
-        const original = btn.innerHTML;
+    if (btn && !btn.dataset.original) {
+        btn.dataset.original = btn.innerHTML;
         btn.innerHTML = '<span>⏳</span> 생성 중...';
-        setTimeout(() => btn.innerHTML = original, 2000);
+        setTimeout(() => {
+            btn.innerHTML = btn.dataset.original;
+            delete btn.dataset.original;
+        }, 1500);
     }
 
     downloadFile(html, `주식매매일지_${new Date().toLocaleDateString('en-CA')}.xls`, 'application/vnd.ms-excel');
@@ -1025,8 +1028,8 @@ function downloadEmptyTemplate() {
                         <td style="text-align: right; mso-number-format: '#,##0';"></td>
                         <td class="formula-cell" x:fmla="=E${row}*F${row}" style="text-align: right; mso-number-format: '#,##0'; background-color: #fcfcfc;">0</td>
                         <td style="text-align: right; mso-number-format: '#,##0'; color: #64748b;"></td>
-                        <td class="formula-cell" x:fmla="=IF(D${row}=&quot;매도&quot;,(F${row}-H${row})*E${row},0)" style="text-align: right; mso-number-format: '#,##0'; color: #ef4444;">0</td>
-                        <td class="formula-cell" x:fmla="=IF(AND(D${row}=&quot;매도&quot;,H${row}&gt;0),(F${row}-H${row})/H${row},0)" style="text-align: right; mso-number-format: '0.00%'; color: #ef4444;">0.00%</td>
+                        <td class="formula-cell" x:fmla="=IF(D${row}='매도',(F${row}-H${row})*E${row},0)" style="text-align: right; mso-number-format: '#,##0'; color: #ef4444;">0</td>
+                        <td class="formula-cell" x:fmla="=IF(AND(D${row}='매도',H${row}&gt;0),(F${row}-H${row})/H${row},0)" style="text-align: right; mso-number-format: '0.00%'; color: #ef4444;">0.00%</td>
                         <td></td>
                     </tr>
                     `;
@@ -1047,10 +1050,13 @@ function downloadEmptyTemplate() {
 
     // Visual feedback
     const btn = document.querySelector('.template-btn');
-    if (btn) {
-        const original = btn.innerHTML;
+    if (btn && !btn.dataset.original) {
+        btn.dataset.original = btn.innerHTML;
         btn.innerHTML = '<span>⏳</span> 다운로드 중...';
-        setTimeout(() => btn.innerHTML = original, 2000);
+        setTimeout(() => {
+            btn.innerHTML = btn.dataset.original;
+            delete btn.dataset.original;
+        }, 1500);
     }
 
     downloadFile(html, 'IEUMSTOCK_Smart_Template.xls', 'application/vnd.ms-excel');
