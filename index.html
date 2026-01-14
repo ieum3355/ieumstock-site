@@ -36,50 +36,33 @@
     <!-- Google AdSense (Auto-Ads) -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
         crossorigin="anonymous"></script>
+
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
 </head>
 
 <body>
-    <!-- Sticky Navigation -->
-    <nav class="top-nav">
-        <div class="nav-container">
-            <div class="nav-logo">📈 Smart Guide</div>
-        </div>
-    </nav>
 
     <div class="app-container">
         <header class="main-header">
             <h1 class="gradient-text">초보 투자자를 위한 핵심 가이드</h1>
             <p class="subtitle">현명한 투자를 위한 필수 용어와 피해야 할 실수들</p>
 
-            <!-- Quick Navigation Shortcuts (New/Requested) -->
-            <div class="nav-shortcuts">
-                <a href="#quiz-section" class="shortcut-item">
-                    <span class="icon">🧠</span>
-                    <span class="label">성향 퀴즈</span>
-                </a>
-                <a href="#checklist-section" class="shortcut-item">
-                    <span class="icon">✅</span>
-                    <span class="label">데일리 루틴</span>
-                </a>
+            <!-- Quick Navigation Shortcuts (Streamlined) -->
+            <div class="nav-shortcuts" style="max-width: 500px;">
                 <a href="#terms-section" class="shortcut-item">
                     <span class="icon">📌</span>
                     <span class="label">용어 검색</span>
                 </a>
-                <a href="#trading-journal-section" class="shortcut-item">
-                    <span class="icon">✍️</span>
-                    <span class="label">매매일지</span>
-                </a>
-                <a href="#calculators-section" class="shortcut-item">
-                    <span class="icon">🧮</span>
-                    <span class="label">투자 계산기</span>
-                </a>
-                <a href="#books-section" class="shortcut-item">
-                    <span class="icon">📚</span>
-                    <span class="label">추천 도서</span>
-                </a>
                 <a href="#newsletter-section" class="shortcut-item highlight">
                     <span class="icon">💡</span>
-                    <span class="label">투자 인사이트</span>
+                    <span class="label">투자 인사이트 (블로그)</span>
                 </a>
             </div>
         </header>
