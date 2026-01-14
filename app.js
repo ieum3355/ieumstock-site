@@ -912,8 +912,10 @@ function downloadJournalExcel() {
     ]);
 
     let html = `
-        <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel">
-        <head><meta charset="UTF-8">
+        <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
+        <head>
+        <!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>투자매매내역</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]-->
+        <meta charset="UTF-8">
         <style>
             .header-main { background-color: #1e293b; color: #ffffff; font-weight: bold; text-align: center; height: 50pt; font-size: 20pt; font-family: 'Malgun Gothic'; }
             .summary-bar { background-color: #f8fafc; border: 1pt solid #cbd5e1; height: 30pt; font-weight: bold; }
@@ -951,7 +953,6 @@ function downloadJournalExcel() {
             if (i === 3) styleClass = trade.tradeType === 'buy' ? 'buy' : 'sell';
             if (i === 7 || i === 8) styleClass = profitClass;
             const displayValue = (typeof cell === 'number' && i !== 0) ? cell.toLocaleString() : cell;
-            // Use single quotes for mso-number-format to avoid breaking the style attribute
             return `<td class="${styleClass}" style="${(i >= 4 && i <= 7) ? "text-align: right; mso-number-format: '#,##0';" : 'text-align: center;'}">${displayValue}${i === 5 || i === 6 || (i === 7 && cell !== '-') ? '원' : ''}</td>`;
         }).join('')}
                     </tr>`
@@ -962,13 +963,14 @@ function downloadJournalExcel() {
 
     // Visual feedback
     const btn = document.querySelector('.excel-btn');
-    if (btn && !btn.dataset.original) {
-        btn.dataset.original = btn.innerHTML;
+    if (btn && !btn.dataset.loading) {
+        btn.dataset.loading = 'true';
+        const originalContent = btn.innerHTML;
         btn.innerHTML = '<span>⏳</span> 생성 중...';
         setTimeout(() => {
-            btn.innerHTML = btn.dataset.original;
-            delete btn.dataset.original;
-        }, 1500);
+            btn.innerHTML = originalContent;
+            delete btn.dataset.loading;
+        }, 1200);
     }
 
     downloadFile(html, `주식매매일지_${new Date().toLocaleDateString('en-CA')}.xls`, 'application/vnd.ms-excel');
@@ -978,8 +980,10 @@ function downloadEmptyTemplate() {
     const headers = ['번호', '거래일', '종목명', '유형(매수/매도)', '수량', '거래단가', '거래금액(자동)', '매수평단가(매도시)', '참고수익금(자동)', '참고수익률(자동)', '메모'];
 
     let html = `
-        <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel">
-        <head><meta charset="UTF-8">
+        <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
+        <head>
+        <!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>Template</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]-->
+        <meta charset="UTF-8">
         <style>
             .header-main { background-color: #1e293b; color: #ffffff; font-weight: bold; text-align: center; height: 40pt; font-size: 18pt; font-family: 'Malgun Gothic'; }
             .info-bar { background-color: #f1f5f9; color: #475569; font-size: 10pt; height: 25pt; }
@@ -1008,16 +1012,16 @@ function downloadEmptyTemplate() {
                     <td>매도</td>
                     <td>10</td>
                     <td>80000</td>
-                    <td>800000</td>
+                    <td x:fmla="=E6*F6">800000</td>
                     <td>75000</td>
-                    <td>50000</td>
-                    <td>6.67%</td>
+                    <td x:fmla="=IF(D6=&quot;매도&quot;,(F6-H6)*E6,0)">50000</td>
+                    <td x:fmla="=IF(AND(D6=&quot;매도&quot;,H6>0),(F6-H6)/H6,0)">6.67%</td>
                     <td>전고점 돌파 확인 후 수익실현</td>
                 </tr>
 
                 <!-- Empty Rows with formulas -->
                 ${Array(100).fill(0).map((_, i) => {
-        const row = i + 6; // Starts at row 6 in Excel
+        const row = i + 7; // Header + 3 title rows + Header + Example = Row 6 is example, Row 7 is first empty
         return `
                     <tr height="22">
                         <td style="text-align: center; color: #94a3b8;">${i + 1}</td>
@@ -1050,13 +1054,14 @@ function downloadEmptyTemplate() {
 
     // Visual feedback
     const btn = document.querySelector('.template-btn');
-    if (btn && !btn.dataset.original) {
-        btn.dataset.original = btn.innerHTML;
+    if (btn && !btn.dataset.loading) {
+        btn.dataset.loading = 'true';
+        const originalContent = btn.innerHTML;
         btn.innerHTML = '<span>⏳</span> 다운로드 중...';
         setTimeout(() => {
-            btn.innerHTML = btn.dataset.original;
-            delete btn.dataset.original;
-        }, 1500);
+            btn.innerHTML = originalContent;
+            delete btn.dataset.loading;
+        }, 1200);
     }
 
     downloadFile(html, 'IEUMSTOCK_Smart_Template.xls', 'application/vnd.ms-excel');
