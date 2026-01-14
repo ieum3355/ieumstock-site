@@ -6,13 +6,13 @@ const API_KEY = process.env.GEMINI_API_KEY;
 const DB_PATH = path.join(__dirname, '../data/content_db.js');
 
 const PROMPT = `주식 투자 초보자를 위한 실전 투자 인사이트 블로그 글을 하나 작성해줘. 
+중복을 피하기 위해 기존에 다뤘던 주제들과는 다른 새로운 관점이나 테마를 선택해줘.
 반드시 아래 JSON 형식으로만 응답해. 다른 설명은 하지 마.
 형식: {"title": "제목", "content": "내용(HTML 태그 포함)"}
 내용에는 <p>, <h4>, <div class='highlight-box'> 태그를 적절히 섞어서 아주 전문적으로 작성해줘.
 언어는 한국어로 작성할 것.`;
 
 async function listVisibleModels() {
-    console.log(`[Debug] Attempting to list models with Key: ***${API_KEY ? API_KEY.slice(-4) : 'NONE'}`);
     const options = {
         hostname: 'generativelanguage.googleapis.com',
         path: `/v1beta/models?key=${API_KEY}`,
@@ -30,7 +30,7 @@ async function listVisibleModels() {
                     const models = (result.models || []).map(m => m.name.split('/').pop());
                     resolve(models);
                 } catch (e) {
-                    reject(new Error(`ListModels Parse Error: ${e.message} | Body: ${body}`));
+                    reject(new Error(`ListModels Parse Error: ${e.message}`));
                 }
             });
         });
@@ -39,9 +39,11 @@ async function listVisibleModels() {
     });
 }
 
-async function callGemini(modelName) {
+async function callGemini(modelName, existingTitles) {
+    const customizedPrompt = `${PROMPT}\n\n참고: 최근 게시글 제목들(중복 피할 것): ${existingTitles.join(', ')}`;
+
     const data = JSON.stringify({
-        contents: [{ parts: [{ text: PROMPT }] }]
+        contents: [{ parts: [{ text: customizedPrompt }] }]
     });
 
     const options = {
@@ -79,40 +81,24 @@ async function generateBlogPost() {
     }
 
     try {
+        const dbContent = fs.readFileSync(DB_PATH, 'utf8');
+        const existingTitles = Array.from(dbContent.matchAll(/"title":\s*"([^"]+)"/g)).map(m => m[1]);
+
         const allModels = await listVisibleModels();
-        // Filter out non-text generation models
         const textModels = allModels.filter(m =>
             (m.includes('gemini') || m.includes('gemma')) &&
-            !m.includes('embedding') &&
-            !m.includes('tts') &&
-            !m.includes('image') &&
-            !m.includes('veo') &&
-            !m.includes('aqa')
+            !m.includes('embedding') && !m.includes('tts') && !m.includes('image')
         );
 
-        console.log(`[Debug] Valid Text Models: ${textModels.join(', ')}`);
-
-        // Preference order including latest 2.0 and 2.5 versions
-        const preferredOrder = [
-            'gemini-2.0-flash',
-            'gemini-2.0-flash-lite-preview',
-            'gemini-2.5-flash',
-            'gemini-1.5-flash',
-            'gemini-pro'
-        ];
-
+        const preferredOrder = ['gemini-2.0-flash', 'gemini-2.0-flash-lite-preview', 'gemini-1.5-flash', 'gemini-pro'];
         const modelToUse = preferredOrder.find(p => textModels.includes(p)) || textModels[0];
 
-        if (!modelToUse) {
-            throw new Error("No suitable text generation models found for this API key.");
-        }
+        if (!modelToUse) throw new Error("No suitable models found.");
 
-        console.log(`[Action] Selected Model: ${modelToUse}`);
-        const textResult = await callGemini(modelToUse);
+        const textResult = await callGemini(modelToUse, existingTitles.slice(0, 5));
 
         const today = new Date();
         const publishDate = today.toISOString().split('T')[0];
-        const dbContent = fs.readFileSync(DB_PATH, 'utf8');
         const ids = Array.from(dbContent.matchAll(/"id":\s*(\d+)/g)).map(m => parseInt(m[1]));
         const nextId = Math.max(...ids, 0) + 1;
 
@@ -132,8 +118,7 @@ async function generateBlogPost() {
         fs.writeFileSync(DB_PATH, updatedDb, 'utf8');
         console.log(`Success! Created Post #${nextId}: ${postData.title}`);
     } catch (e) {
-        console.error('--- Critical Error ---');
-        console.error(e);
+        console.error('Error:', e);
         process.exit(1);
     }
 }

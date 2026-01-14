@@ -547,8 +547,17 @@ function renderBlog() {
     const container = document.getElementById('blog-posts-container');
     if (!container || !CONTENT_DB.blog_posts) return;
 
-    // Show all posts, sorted by ID descending (newest first)
-    const sortedPosts = [...CONTENT_DB.blog_posts].sort((a, b) => b.id - a.id);
+    // Get today's date in YYYY-MM-DD format (User's local time)
+    const today = new Date().toLocaleDateString('en-CA');
+
+    // Filter posts: show only if publishDate is today or past
+    const visiblePosts = CONTENT_DB.blog_posts.filter(post => {
+        if (!post.publishDate) return true;
+        return post.publishDate <= today;
+    });
+
+    // Sort by ID descending (newest first)
+    const sortedPosts = [...visiblePosts].sort((a, b) => b.id - a.id);
 
     if (sortedPosts.length === 0) {
         container.innerHTML = '<p style="text-align:center; padding: 2rem; color: var(--text-secondary);">아직 등록된 게시글이 없습니다.</p>';
