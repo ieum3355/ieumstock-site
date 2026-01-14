@@ -33,15 +33,17 @@ async function generateBlogPost() {
         contents: [{ parts: [{ text: prompt }] }]
     });
 
+    const modelName = 'gemini-1.5-flash';
     const options = {
         hostname: 'generativelanguage.googleapis.com',
-        path: `/v1/models/gemini-1.5-flash:generateContent?key=${API_KEY}`,
+        path: `/v1beta/models/${modelName}:generateContent?key=${API_KEY}`,
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
-            'Content-Length': Buffer.byteLength(data)
+            'Content-Type': 'application/json'
         }
     };
+
+    console.log(`Calling Gemini API: ${options.hostname}/v1beta/models/${modelName}:generateContent (Key: ***${API_KEY.slice(-4)})`);
 
     return new Promise((resolve, reject) => {
         const req = https.request(options, (res) => {
