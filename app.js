@@ -849,6 +849,7 @@ function showJournalFeedback(message) {
 }
 
 // Download Functions
+
 function downloadJournalExcel() {
     const trades = getJournalData();
     if (trades.length === 0) {
@@ -856,8 +857,45 @@ function downloadJournalExcel() {
         return;
     }
 
-    // Process trades to include P/L
-    updateJournalStats(trades);
+    // Process trades and get stats
+    const stockGroups = {};
+    trades.forEach(trade => {
+        const normalizedName = trade.stockName.trim().replace(/\s+/g, ' ');
+        if (!stockGroups[normalizedName]) stockGroups[normalizedName] = [];
+        stockGroups[normalizedName].push(trade);
+    });
+
+    let totalProfit = 0;
+    let winCount = 0;
+    let completedTrades = 0;
+    let totalInvestment = 0;
+
+    Object.values(stockGroups).forEach(events => {
+        events.sort((a, b) => a.date.localeCompare(b.date));
+        let inventoryQty = 0;
+        let inventoryCost = 0;
+        events.forEach(event => {
+            if (event.tradeType === 'buy') {
+                inventoryQty += event.quantity;
+                inventoryCost += event.total;
+                totalInvestment += event.total;
+            } else if (inventoryQty > 0) {
+                const avgBuyPrice = inventoryCost / inventoryQty;
+                const profit = (event.price - avgBuyPrice) * event.quantity;
+                event.realizedProfit = profit;
+                event.realizedRate = ((event.price / avgBuyPrice) - 1) * 100;
+                totalProfit += profit;
+                if (profit > 0) winCount++;
+                completedTrades++;
+                const sellRatio = Math.min(1, event.quantity / inventoryQty);
+                inventoryCost -= (inventoryCost * sellRatio);
+                inventoryQty -= event.quantity;
+            }
+        });
+    });
+
+    const winRate = completedTrades > 0 ? (winCount / completedTrades * 100).toFixed(1) : 0;
+    const avgProfitRate = totalInvestment > 0 ? (totalProfit / totalInvestment * 100).toFixed(1) : 0;
 
     const headers = ['번호', '거래일', '종목명', '유형', '수량', '단가', '거래금액', '실현수익', '수익률', '메모'];
     const rows = trades.map((t, i) => [
@@ -877,20 +915,30 @@ function downloadJournalExcel() {
         <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel">
         <head><meta charset="UTF-8">
         <style>
-            .header-main { background-color: #1e293b; color: #ffffff; font-weight: bold; text-align: center; height: 40pt; font-size: 16pt; }
-            .col-header { background-color: #d4af37; color: #ffffff; font-weight: bold; border: 0.5pt solid #000000; text-align: center; }
+            .header-main { background-color: #1e293b; color: #ffffff; font-weight: bold; text-align: center; height: 50pt; font-size: 20pt; font-family: 'Malgun Gothic'; }
+            .summary-bar { background-color: #f8fafc; border: 1pt solid #cbd5e1; height: 30pt; font-weight: bold; }
+            .summary-label { color: #64748b; font-size: 10pt; text-align: center; }
+            .summary-val { font-size: 12pt; text-align: center; }
+            .col-header { background-color: #d4af37; color: #ffffff; font-weight: bold; border: 0.5pt solid #000000; text-align: center; height: 25pt; }
             td { border: 0.5pt solid #cbd5e1; padding: 8px; font-family: 'Malgun Gothic'; }
             .buy { color: #ef4444; font-weight: bold; }
             .sell { color: #3b82f6; font-weight: bold; }
             .profit-up { color: #ef4444; background-color: #fef2f2; font-weight: bold; }
             .profit-down { color: #3b82f6; background-color: #eff6ff; font-weight: bold; }
+            .positive { color: #ef4444; }
+            .negative { color: #3b82f6; }
         </style>
         </head>
         <body>
             <table>
-                <tr><td colspan="10" class="header-main">📊 Smart Guide 투자 매매일지 (Export)</td></tr>
-                <tr><td colspan="10" style="text-align: right; color: #64748b;">출축 일시: ${new Date().toLocaleString('ko-KR')}</td></tr>
-                <tr><td colspan="10"></td></tr>
+                <tr><td colspan="10" class="header-main">📊 IEUMSTOCK 투자 성과 보고서</td></tr>
+                <tr class="summary-bar">
+                    <td colspan="2" class="summary-label">총 실현손익</td>
+                    <td colspan="3" class="summary-val ${totalProfit >= 0 ? 'positive' : 'negative'}">${Math.round(totalProfit).toLocaleString()}원</td>
+                    <td colspan="2" class="summary-label">평균 수익률 / 승률</td>
+                    <td colspan="3" class="summary-val">${avgProfitRate}% / ${winRate}%</td>
+                </tr>
+                <tr><td colspan="10" style="text-align: right; color: #64748b; font-size: 9pt;">출력 일시: ${new Date().toLocaleString('ko-KR')}</td></tr>
                 <tr height="25">
                     ${headers.map(h => `<td class="col-header">${h}</td>`).join('')}
                 </tr>
@@ -902,9 +950,8 @@ function downloadJournalExcel() {
             let styleClass = '';
             if (i === 3) styleClass = trade.tradeType === 'buy' ? 'buy' : 'sell';
             if (i === 7 || i === 8) styleClass = profitClass;
-
             const displayValue = (typeof cell === 'number' && i !== 0) ? cell.toLocaleString() : cell;
-            return `<td class="${styleClass}" style="${(i >= 4 && i <= 7) ? 'text-align: right; mso-number-format: \\"\\#,\\#\\#0\\";' : ''}">${displayValue}${i === 5 || i === 6 || (i === 7 && cell !== '-') ? '원' : ''}</td>`;
+            return `<td class="${styleClass}" style="${(i >= 4 && i <= 7) ? 'text-align: right; mso-number-format: \\"\\#,\\#\\#0\\";' : 'text-align: center;'}">${displayValue}${i === 5 || i === 6 || (i === 7 && cell !== '-') ? '원' : ''}</td>`;
         }).join('')}
                     </tr>`
     }).join('')}
@@ -912,75 +959,7 @@ function downloadJournalExcel() {
         </body></html>
     `;
 
-    downloadFile(html, `주식매매일지_내역_${new Date().toLocaleDateString('en-CA')}.xls`, 'application/vnd.ms-excel;charset=utf-8');
-}
-
-function downloadJournalExcel() {
-    const trades = getJournalData();
-    if (trades.length === 0) {
-        alert('다운로드할 매매 기록이 없습니다.');
-        return;
-    }
-
-    // Process trades to include P/L
-    updateJournalStats(trades);
-
-    const headers = ['번호', '거래일', '종목명', '유형', '수량', '단가', '거래금액', '실현수익', '수익률', '메모'];
-    const rows = trades.map((t, i) => [
-        i + 1,
-        t.date,
-        t.stockName,
-        t.tradeType === 'buy' ? '매수' : '매도',
-        t.quantity,
-        t.price,
-        t.total,
-        t.realizedProfit !== undefined ? Math.round(t.realizedProfit) : '-',
-        t.realizedRate !== undefined ? t.realizedRate.toFixed(2) + '%' : '-',
-        t.memo || ''
-    ]);
-
-    let html = `
-        <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel">
-        <head><meta charset="UTF-8">
-        <style>
-            .header-main { background-color: #1e293b; color: #ffffff; font-weight: bold; text-align: center; height: 40pt; font-size: 16pt; }
-            .col-header { background-color: #d4af37; color: #ffffff; font-weight: bold; border: 0.5pt solid #000000; text-align: center; }
-            td { border: 0.5pt solid #cbd5e1; padding: 8px; font-family: 'Malgun Gothic'; }
-            .buy { color: #ef4444; font-weight: bold; }
-            .sell { color: #3b82f6; font-weight: bold; }
-            .profit-up { color: #ef4444; background-color: #fef2f2; font-weight: bold; }
-            .profit-down { color: #3b82f6; background-color: #eff6ff; font-weight: bold; }
-            .summary-box { background-color: #f8fafc; border: 1pt solid #cbd5e1; font-weight: bold; }
-        </style>
-        </head>
-        <body>
-            <table>
-                <tr><td colspan="10" class="header-main">📊 Smart Guide 투자 매매일지 (Export)</td></tr>
-                <tr><td colspan="10" style="text-align: right; color: #64748b;">출축 일시: ${new Date().toLocaleString('ko-KR')}</td></tr>
-                <tr><td colspan="10"></td></tr>
-                <tr height="25">
-                    ${headers.map(h => `<td class="col-header">${h}</td>`).join('')}
-                </tr>
-                ${rows.map((r, rowIndex) => {
-        const trade = trades[rowIndex];
-        const profitClass = trade.realizedProfit > 0 ? 'profit-up' : (trade.realizedProfit < 0 ? 'profit-down' : '');
-        return `<tr height="20">
-                    ${r.map((cell, i) => {
-            let styleClass = '';
-            if (i === 3) styleClass = trade.tradeType === 'buy' ? 'buy' : 'sell';
-            if (i === 7 || i === 8) styleClass = profitClass;
-
-            // Format numbers with commas if they are numeric
-            const displayValue = (typeof cell === 'number' && i !== 0) ? cell.toLocaleString() : cell;
-            return `<td class="${styleClass}" style="${(i >= 4 && i <= 7) ? 'text-align: right; mso-number-format: \\"\\#,\\#\\#0\\";' : ''}">${displayValue}${i === 5 || i === 6 || (i === 7 && cell !== '-') ? '원' : ''}</td>`;
-        }).join('')}
-                    </tr>`
-    }).join('')}
-            </table>
-        </body></html>
-    `;
-
-    downloadFile(html, `주식매매일지_내역_${new Date().toLocaleDateString('en-CA')}.xls`, 'application/vnd.ms-excel;charset=utf-8');
+    downloadFile(html, `주식매매일지_${new Date().toLocaleDateString('en-CA')}.xls`, 'application/vnd.ms-excel;charset=utf-8');
 }
 
 function downloadEmptyTemplate() {
