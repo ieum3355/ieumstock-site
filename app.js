@@ -951,7 +951,8 @@ function downloadJournalExcel() {
             if (i === 3) styleClass = trade.tradeType === 'buy' ? 'buy' : 'sell';
             if (i === 7 || i === 8) styleClass = profitClass;
             const displayValue = (typeof cell === 'number' && i !== 0) ? cell.toLocaleString() : cell;
-            return `<td class="${styleClass}" style="${(i >= 4 && i <= 7) ? 'text-align: right; mso-number-format: \\"\\#,\\#\\#0\\";' : 'text-align: center;'}">${displayValue}${i === 5 || i === 6 || (i === 7 && cell !== '-') ? '원' : ''}</td>`;
+            // Use single quotes for mso-number-format to avoid breaking the style attribute
+            return `<td class="${styleClass}" style="${(i >= 4 && i <= 7) ? "text-align: right; mso-number-format: '#,##0';" : 'text-align: center;'}">${displayValue}${i === 5 || i === 6 || (i === 7 && cell !== '-') ? '원' : ''}</td>`;
         }).join('')}
                     </tr>`
     }).join('')}
@@ -1012,12 +1013,12 @@ function downloadEmptyTemplate() {
                         <td style="mso-number-format: 'yyyy-mm-dd';"></td>
                         <td></td>
                         <td style="text-align: center;"></td>
-                        <td style="text-align: right; mso-number-format: '\\#\\,\\#\\#0';"></td>
-                        <td style="text-align: right; mso-number-format: '\\#\\,\\#\\#0';"></td>
-                        <td class="formula-cell" x:fmla="=E${row}*F${row}" style="text-align: right; mso-number-format: '\\#\\,\\#\\#0'; background-color: #fcfcfc;">0</td>
-                        <td style="text-align: right; mso-number-format: '\\#\\,\\#\\#0'; color: #64748b;"></td>
-                        <td class="formula-cell" x:fmla="=IF(D${row}=\\"매도\\",(F${row}-H${row})*E${row},0)" style="text-align: right; mso-number-format: '\\#\\,\\#\\#0'; color: #ef4444;">0</td>
-                        <td class="formula-cell" x:fmla="=IF(AND(D${row}=\\"매도\\",H${row}>0),(F${row}-H${row})/H${row},0)" style="text-align: right; mso-number-format: '0.00%'; color: #ef4444;">0.00%</td>
+                        <td style="text-align: right; mso-number-format: '#,##0';"></td>
+                        <td style="text-align: right; mso-number-format: '#,##0';"></td>
+                        <td class="formula-cell" x:fmla="=E${row}*F${row}" style="text-align: right; mso-number-format: '#,##0'; background-color: #fcfcfc;">0</td>
+                        <td style="text-align: right; mso-number-format: '#,##0'; color: #64748b;"></td>
+                        <td class="formula-cell" x:fmla='=IF(D${row}="매도",(F${row}-H${row})*E${row},0)' style="text-align: right; mso-number-format: '#,##0'; color: #ef4444;">0</td>
+                        <td class="formula-cell" x:fmla='=IF(AND(D${row}="매도",H${row}>0),(F${row}-H${row})/H${row},0)' style="text-align: right; mso-number-format: '0.00%'; color: #ef4444;">0.00%</td>
                         <td></td>
                     </tr>
                     `;
