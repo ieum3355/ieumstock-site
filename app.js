@@ -914,8 +914,8 @@ function downloadJournalExcel() {
     let html = `
         <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
         <head>
-        <!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>투자매매내역</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]-->
         <meta charset="UTF-8">
+        <!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>투자매매내역</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]-->
         <style>
             .header-main { background-color: #1e293b; color: #ffffff; font-weight: bold; text-align: center; height: 50pt; font-size: 20pt; font-family: 'Malgun Gothic'; }
             .summary-bar { background-color: #f8fafc; border: 1pt solid #cbd5e1; height: 30pt; font-weight: bold; }
@@ -982,8 +982,8 @@ function downloadEmptyTemplate() {
     let html = `
         <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
         <head>
-        <!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>Template</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]-->
         <meta charset="UTF-8">
+        <!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>Template</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]-->
         <style>
             .header-main { background-color: #1e293b; color: #ffffff; font-weight: bold; text-align: center; height: 40pt; font-size: 18pt; font-family: 'Malgun Gothic'; }
             .info-bar { background-color: #f1f5f9; color: #475569; font-size: 10pt; height: 25pt; }
@@ -1021,7 +1021,7 @@ function downloadEmptyTemplate() {
 
                 <!-- Empty Rows with formulas (Starting Row 6) -->
                 ${Array(100).fill(0).map((_, i) => {
-        const row = i + 6; // Row 6 is the first empty data row
+        const row = i + 6;
         return `
                     <tr height="22">
                         <td style="text-align: center; color: #94a3b8;">${i + 1}</td>
@@ -1030,10 +1030,10 @@ function downloadEmptyTemplate() {
                         <td style="text-align: center;"></td>
                         <td style="text-align: right; mso-number-format: '#,##0';"></td>
                         <td style="text-align: right; mso-number-format: '#,##0';"></td>
-                        <td class="formula-cell" x:fmla="=E${row}*F${row}" style="text-align: right; mso-number-format: '#,##0'; background-color: #fcfcfc;">0</td>
+                        <td class="formula-cell" x:fmla="=E${row}*F${row}" style="text-align: right; mso-number-format: '#,##0'; background-color: #fcfcfc;"></td>
                         <td style="text-align: right; mso-number-format: '#,##0'; color: #64748b;"></td>
-                        <td class="formula-cell" x:fmla="=IF(D${row}=&quot;매도&quot;,(F${row}-H${row})*E${row},0)" style="text-align: right; mso-number-format: '#,##0'; color: #ef4444;">0</td>
-                        <td class="formula-cell" x:fmla="=IF(AND(D${row}=&quot;매도&quot;,H${row}&gt;0),(F${row}-H${row})/H${row},0)" style="text-align: right; mso-number-format: '0.00%'; color: #ef4444;">0.00%</td>
+                        <td class="formula-cell" x:fmla="=IF(D${row}=&quot;매도&quot;,(F${row}-H${row})*E${row},0)" style="text-align: right; mso-number-format: '#,##0'; color: #ef4444;"></td>
+                        <td class="formula-cell" x:fmla="=IF(AND(D${row}=&quot;매도&quot;,H${row}&gt;0),(F${row}-H${row})/H${row},0)" style="text-align: right; mso-number-format: '0.00%'; color: #ef4444;"></td>
                         <td></td>
                     </tr>
                     `;
@@ -1043,9 +1043,9 @@ function downloadEmptyTemplate() {
                 <tr>
                     <td colspan="11" class="guide-box">
                         <strong>💡 이용 가이드</strong><br>
-                        1. <strong>유형:</strong> '매수' 또는 '매도'를 입력하세요.<br>
-                        2. <strong>수익금/수익률 계산:</strong> '매도' 기록 시 '매수평단가'를 입력하면 자동으로 수익이 계산됩니다.<br>
-                        3. <strong>사이트 업로드:</strong> 작성하신 내용은 캡처하여 보관하시거나, IEUMSTOCK.SITE에 직접 입력하여 통계를 관리하세요.
+                        1. <strong>유형:</strong> '매수' 또는 '매도'를 직접 입력하세요.<br>
+                        2. <strong>자동 계산:</strong> '거래금액'은 실시간 계산됩니다.<br>
+                        3. <strong>수익률/평균단가:</strong> 복잡한 이동평균가 계산은 <strong>IEUMSTOCK.SITE 웹 서비스</strong>가 자동으로 수행합니다. 엑셀에서는 '매수평단가'를 직접 입력할 경우에만 간이 수익을 보여줍니다.
                     </td>
                 </tr>
             </table>
@@ -1069,7 +1069,7 @@ function downloadEmptyTemplate() {
 
 function downloadFile(content, filename, mimeType) {
     try {
-        // Simple and proven method
+        console.log(`[v23:40] Initiating download: \${filename}`);
         const blob = new Blob(['\uFEFF', content], { type: mimeType + ';charset=utf-8' });
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -1078,15 +1078,12 @@ function downloadFile(content, filename, mimeType) {
         document.body.appendChild(a);
         a.click();
 
-        // Final cleanup
         setTimeout(() => {
             document.body.removeChild(a);
             window.URL.revokeObjectURL(url);
-        }, 100);
-
-        console.log(`다운로드 시작: ${filename}`);
+        }, 200);
     } catch (e) {
-        console.error('Download failed:', e);
-        alert('다운로드 중 오류가 발생했습니다. 브라우저 설정을 확인해주세요.');
+        console.error('Download execution error:', e);
+        alert('다운로드 중 오류가 발생했습니다.');
     }
 }
