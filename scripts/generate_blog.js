@@ -24,11 +24,10 @@ async function generateBlogPost() {
     const nextId = Math.max(...ids, 0) + 1;
 
     const prompt = `주식 투자 초보자를 위한 실전 투자 인사이트 블로그 글을 하나 작성해줘. 
-    형식은 HTML 태그(<p>, <h4>, <div class='highlight-box'> 등)를 포함한 문자열이어야 해.
-    내용은 매우 전문적이면서도 초보자가 이해하기 쉬워야 하며, 심리학이나 실전 매매 기술 위주면 좋겠어.
-    제목과 내용을 포함한 JSON 데이터로 응답해줘. 
-    JSON 예시: {"title": "제목", "content": "내용"} 
-    반드시 한국어로 작성할 것.`;
+    반드시 아래 JSON 형식으로만 응답해. 다른 설명은 하지 마.
+    형식: {"title": "제목", "content": "내용(HTML 태그 포함)"}
+    내용에는 <p>, <h4>, <div class='highlight-box'> 태그를 적절히 섞어서 아주 전문적으로 작성해줘.
+    언어는 한국어로 작성할 것.`;
 
     const data = JSON.stringify({
         contents: [{ parts: [{ text: prompt }] }]
@@ -39,8 +38,7 @@ async function generateBlogPost() {
         path: `/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`,
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
-            'Content-Length': data.length
+            'Content-Type': 'application/json'
         }
     };
 
@@ -51,11 +49,16 @@ async function generateBlogPost() {
             res.on('end', () => {
                 try {
                     const result = JSON.parse(responseBody);
-                    // Extract text from Gemini response structure
+                    if (result.error) {
+                        throw new Error(`Gemini API Error: ${result.error.message}`);
+                    }
+
                     const text = result.candidates[0].content.parts[0].text;
-                    // Clean code blocks if present
-                    const cleanJson = text.replace(/```json|```/g, '').trim();
-                    const postData = JSON.parse(cleanJson);
+                    // Robust JSON extraction
+                    const jsonMatch = text.match(/\{[\s\S]*\}/);
+                    if (!jsonMatch) throw new Error("Could not find JSON in response");
+
+                    const postData = JSON.parse(jsonMatch[0]);
 
                     const newPost = {
                         id: nextId,
@@ -65,17 +68,19 @@ async function generateBlogPost() {
                         content: postData.content
                     };
 
-                    // Insert into DB (very basic string insertion)
+                    // Robust DB update
                     const updatedDb = dbContent.replace(
                         /"blog_posts":\s*\[/,
-                        `"blog_posts": [\n        ${JSON.stringify(newPost, null, 8)},`
+                        `"blog_posts": [\n        ${JSON.stringify(newPost, null, 8).replace(/\n/g, '\n        ').trim()},`
                     );
 
                     fs.writeFileSync(DB_PATH, updatedDb, 'utf8');
-                    console.log(`Successfully generated Post #${nextId}: ${postData.title}`);
+                    console.log(`Success! Post #${nextId}: ${postData.title}`);
                     resolve();
                 } catch (e) {
-                    console.error('Failed to parse Gemini response:', responseBody);
+                    console.error('--- Response Error Detail ---');
+                    console.error('Raw Body:', responseBody);
+                    console.error('Error:', e.message);
                     reject(e);
                 }
             });
