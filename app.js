@@ -931,14 +931,14 @@ function downloadJournalExcel() {
         </head>
         <body>
             <table>
-                <tr><td colspan="10" class="header-main">📊 IEUMSTOCK 투자 성과 보고서</td></tr>
+                <tr><td colspan="10" class="header-main">IEUMSTOCK Investment Report</td></tr>
                 <tr class="summary-bar">
-                    <td colspan="2" class="summary-label">총 실현손익</td>
-                    <td colspan="3" class="summary-val ${totalProfit >= 0 ? 'positive' : 'negative'}">${Math.round(totalProfit).toLocaleString()}원</td>
-                    <td colspan="2" class="summary-label">평균 수익률 / 승률</td>
+                    <td colspan="2" class="summary-label">Total Realized P&L</td>
+                    <td colspan="3" class="summary-val ${totalProfit >= 0 ? 'positive' : 'negative'}">${Math.round(totalProfit).toLocaleString()} KRW</td>
+                    <td colspan="2" class="summary-label">Avg Return / Win Rate</td>
                     <td colspan="3" class="summary-val">${avgProfitRate}% / ${winRate}%</td>
                 </tr>
-                <tr><td colspan="10" style="text-align: right; color: #64748b; font-size: 9pt;">출력 일시: ${new Date().toLocaleString('ko-KR')}</td></tr>
+                <tr><td colspan="10" style="text-align: right; color: #64748b; font-size: 9pt;">Export Date: ${new Date().toLocaleString('ko-KR')}</td></tr>
                 <tr height="25">
                     ${headers.map(h => `<td class="col-header">${h}</td>`).join('')}
                 </tr>
@@ -981,8 +981,8 @@ function downloadEmptyTemplate() {
         </head>
         <body>
             <table>
-                <tr><td colspan="11" class="header-main">📈 IEUMSTOCK 스마트 매매일지 템플릿</td></tr>
-                <tr><td colspan="11" class="info-bar">체계적인 기록이 성공적인 투자의 시작입니다. 본 템플릿은 ieumstock.site 서비스와 호환됩니다.</td></tr>
+                <tr><td colspan="11" class="header-main">IEUMSTOCK Smart Template</td></tr>
+                <tr><td colspan="11" class="info-bar">Consistent logging is the beginning of successful investment.</td></tr>
                 <tr><td colspan="11"></td></tr>
                 
                 <tr height="30">
@@ -1037,30 +1037,38 @@ function downloadEmptyTemplate() {
         </body></html>
     `;
 
-    downloadFile(html, 'IEUMSTOCK_Smart_Template.xls', 'application/vnd.ms-excel;charset=utf-8');
+    downloadFile(html, 'IEUMSTOCK_Smart_Template.xls', 'application/vnd.ms-excel');
 }
 
 function downloadFile(content, filename, mimeType) {
     try {
-        const blob = new Blob([content], { type: mimeType });
+        // Add UTF-8 BOM for better Excel recognition
+        const blob = new Blob(['\uFEFF', content], { type: mimeType });
+
+        if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+            window.navigator.msSaveOrOpenBlob(blob, filename);
+            return;
+        }
+
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.style.display = 'none';
         a.href = url;
         a.download = filename;
         document.body.appendChild(a);
+
+        // Trigger click
         a.click();
 
-        // Use a short delay before cleanup to ensure the browser handles the click
+        // Cleanup
         setTimeout(() => {
             document.body.removeChild(a);
             window.URL.revokeObjectURL(url);
-        }, 100);
+        }, 200);
 
         console.log(`Download initiated: ${filename}`);
     } catch (e) {
-        console.error('Download utilities failed', e);
-        // Fallback for older environments or specific restrictions
-        alert('다운로드 링크를 생성할 수 없습니다. 브라우저의 팝업 차단 설정을 확인해주세요.');
+        console.error('Download execution failed:', e);
+        alert('다운로드 중 오류가 발생했습니다.');
     }
 }
