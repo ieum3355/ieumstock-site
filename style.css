@@ -1108,6 +1108,10 @@ body {
     color: #4ade80;
 }
 
+.journal-table td:nth-child(6) {
+    min-width: 140px;
+}
+
 .journal-table .delete-btn {
     background: transparent;
     border: 1px solid rgba(248, 113, 113, 0.3);
@@ -1196,9 +1200,23 @@ body {
 }
 
 .trade-profit.up {
-    color: #f87171; /* Red for profit in KR market */
+    color: #f87171;
+    /* Red for profit */
+    background: rgba(248, 113, 113, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    display: inline-block;
+    border: 1px solid rgba(248, 113, 113, 0.2);
+    box-shadow: 0 0 10px rgba(248, 113, 113, 0.1);
 }
 
 .trade-profit.down {
-    color: #60a5fa; /* Blue for loss */
+    color: #60a5fa;
+    /* Blue for loss */
+    background: rgba(96, 165, 250, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    display: inline-block;
+    border: 1px solid rgba(96, 165, 250, 0.2);
+    box-shadow: 0 0 10px rgba(96, 165, 250, 0.1);
 }

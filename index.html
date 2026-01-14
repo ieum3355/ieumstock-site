@@ -271,11 +271,8 @@
 
                 <!-- Journal Action Buttons -->
                 <div class="journal-actions">
-                    <button class="action-btn download-btn" onclick="downloadJournalCSV()">
-                        <span>📥</span> CSV 다운로드
-                    </button>
                     <button class="action-btn download-btn excel-btn" onclick="downloadJournalExcel()">
-                        <span>📊</span> 엑셀 다운로드
+                        <span>📊</span> 매매 내역 엑셀 다운로드
                     </button>
                     <button class="action-btn clear-btn" onclick="clearAllJournalData()">
                         <span>🗑️</span> 전체 삭제
@@ -311,7 +308,7 @@
                         <h4>📋 빈 템플릿 다운로드</h4>
                         <p>오프라인에서 작성하고 싶다면 빈 엑셀 템플릿을 다운로드하세요.</p>
                     </div>
-                    <button class="action-btn template-btn" onclick="downloadEmptyTemplate()">
+                    <button type="button" class="action-btn template-btn" onclick="downloadEmptyTemplate()">
                         <span>📄</span> 빈 템플릿 받기
                     </button>
                 </div>
