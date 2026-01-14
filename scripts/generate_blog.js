@@ -11,6 +11,34 @@ const PROMPT = `주식 투자 초보자를 위한 실전 투자 인사이트 블
 내용에는 <p>, <h4>, <div class='highlight-box'> 태그를 적절히 섞어서 아주 전문적으로 작성해줘.
 언어는 한국어로 작성할 것.`;
 
+async function listVisibleModels() {
+    console.log(`[Debug] Attempting to list models with Key: ***${API_KEY ? API_KEY.slice(-4) : 'NONE'}`);
+    const options = {
+        hostname: 'generativelanguage.googleapis.com',
+        path: `/v1beta/models?key=${API_KEY}`,
+        method: 'GET'
+    };
+
+    return new Promise((resolve, reject) => {
+        const req = https.request(options, (res) => {
+            let body = '';
+            res.on('data', d => body += d);
+            res.on('end', () => {
+                try {
+                    const result = JSON.parse(body);
+                    if (result.error) return reject(result.error);
+                    const models = (result.models || []).map(m => m.name.split('/').pop());
+                    resolve(models);
+                } catch (e) {
+                    reject(new Error(`ListModels Parse Error: ${e.message} | Body: ${body}`));
+                }
+            });
+        });
+        req.on('error', reject);
+        req.end();
+    });
+}
+
 async function callGemini(modelName) {
     const data = JSON.stringify({
         contents: [{ parts: [{ text: PROMPT }] }]
@@ -20,34 +48,25 @@ async function callGemini(modelName) {
         hostname: 'generativelanguage.googleapis.com',
         path: `/v1beta/models/${modelName}:generateContent?key=${API_KEY}`,
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        }
+        headers: { 'Content-Type': 'application/json' }
     };
-
-    console.log(`[Attempt] Calling Gemini API with model: ${modelName} (Key: ***${API_KEY ? API_KEY.slice(-4) : 'NONE'})`);
 
     return new Promise((resolve, reject) => {
         const req = https.request(options, (res) => {
-            let responseBody = '';
-            res.on('data', (chunk) => responseBody += chunk);
+            let body = '';
+            res.on('data', d => body += d);
             res.on('end', () => {
                 try {
-                    const result = JSON.parse(responseBody);
-                    if (result.error) {
-                        return reject(result.error);
-                    }
-                    if (!result.candidates || !result.candidates[0]) {
-                        return reject(new Error("No candidates in response"));
-                    }
+                    const result = JSON.parse(body);
+                    if (result.error) return reject(result.error);
+                    if (!result.candidates || !result.candidates[0]) return reject(new Error("No candidates"));
                     resolve(result.candidates[0].content.parts[0].text);
                 } catch (e) {
-                    reject(new Error(`Parse Error: ${e.message} | Body: ${responseBody.slice(0, 100)}`));
+                    reject(new Error(`Request Error: ${body}`));
                 }
             });
         });
-
-        req.on('error', (e) => reject(e));
+        req.on('error', reject);
         req.write(data);
         req.end();
     });
@@ -59,35 +78,29 @@ async function generateBlogPost() {
         process.exit(1);
     }
 
-    const today = new Date();
-    const publishDate = today.toISOString().split('T')[0];
-    const dbContent = fs.readFileSync(DB_PATH, 'utf8');
-    const ids = Array.from(dbContent.matchAll(/"id":\s*(\d+)/g)).map(m => parseInt(m[1]));
-    const nextId = Math.max(...ids, 0) + 1;
-
-    const modelsToTry = ['gemini-pro', 'gemini-1.5-flash', 'gemini-1.5-flash-latest'];
-    let lastError = null;
-    let textResult = null;
-
-    for (const model of modelsToTry) {
-        try {
-            textResult = await callGemini(model);
-            if (textResult) break;
-        } catch (e) {
-            console.warn(`[Warning] Model ${model} failed: ${e.message || JSON.stringify(e)}`);
-            lastError = e;
-        }
-    }
-
-    if (!textResult) {
-        console.error('--- Final Error Detail ---');
-        console.error(lastError);
-        process.exit(1);
-    }
-
     try {
+        const availableModels = await listVisibleModels();
+        console.log(`[Debug] Models visible to this key: ${availableModels.join(', ')}`);
+
+        // Use the first available model that supports generation, preferred order
+        const preferred = ['gemini-1.5-flash', 'gemini-1.5-flash-latest', 'gemini-pro'];
+        const modelToUse = preferred.find(p => availableModels.includes(p)) || availableModels[0];
+
+        if (!modelToUse) {
+            throw new Error("No available models found for this API key.");
+        }
+
+        console.log(`[Action] Using model: ${modelToUse}`);
+        const textResult = await callGemini(modelToUse);
+
+        const today = new Date();
+        const publishDate = today.toISOString().split('T')[0];
+        const dbContent = fs.readFileSync(DB_PATH, 'utf8');
+        const ids = Array.from(dbContent.matchAll(/"id":\s*(\d+)/g)).map(m => parseInt(m[1]));
+        const nextId = Math.max(...ids, 0) + 1;
+
         const jsonMatch = textResult.match(/\{[\s\S]*\}/);
-        if (!jsonMatch) throw new Error("Could not find JSON in response");
+        if (!jsonMatch) throw new Error("No JSON in response");
         const postData = JSON.parse(jsonMatch[0]);
 
         const newPost = {
@@ -98,15 +111,12 @@ async function generateBlogPost() {
             content: postData.content
         };
 
-        const updatedDb = dbContent.replace(
-            /"blog_posts":\s*\[/,
-            `"blog_posts": [\n        ${JSON.stringify(newPost, null, 8).replace(/\n/g, '\n        ').trim()},`
-        );
-
+        const updatedDb = dbContent.replace(/"blog_posts":\s*\[/, `"blog_posts": [\n        ${JSON.stringify(newPost, null, 8).replace(/\n/g, '\n        ').trim()},`);
         fs.writeFileSync(DB_PATH, updatedDb, 'utf8');
-        console.log(`Success! Post #${nextId}: ${postData.title}`);
+        console.log(`Success! Generated Post #${nextId}: ${postData.title}`);
     } catch (e) {
-        console.error('Processing Error:', e.message);
+        console.error('--- Debugging Info ---');
+        console.error(e);
         process.exit(1);
     }
 }
