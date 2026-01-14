@@ -547,23 +547,15 @@ function renderBlog() {
     const container = document.getElementById('blog-posts-container');
     if (!container || !CONTENT_DB.blog_posts) return;
 
-    // Get today's date in YYYY-MM-DD format (User's local time)
-    const today = new Date().toLocaleDateString('en-CA'); // 'en-CA' gives YYYY-MM-DD
-
-    // Filter posts: show if no publishDate (legacy) OR publishDate is today or past
-    const visiblePosts = CONTENT_DB.blog_posts.filter(post => {
-        if (!post.publishDate) return true;
-        return post.publishDate <= today;
-    });
-
-    const sortedPosts = [...visiblePosts].sort((a, b) => b.date.localeCompare(a.date));
+    // Show all posts, sorted by ID descending (newest first)
+    const sortedPosts = [...CONTENT_DB.blog_posts].sort((a, b) => b.id - a.id);
 
     if (sortedPosts.length === 0) {
         container.innerHTML = '<p style="text-align:center; padding: 2rem; color: var(--text-secondary);">아직 등록된 게시글이 없습니다.</p>';
         return;
     }
 
-    const latestPostId = sortedPosts[0].id;
+    const latestPostId = Math.max(...sortedPosts.map(p => p.id));
 
     container.innerHTML = sortedPosts.map(post => {
         const isNew = post.id === latestPostId;
