@@ -1004,7 +1004,7 @@ function downloadEmptyTemplate() {
                     ${headers.map(h => `<td class="col-header">${h}</td>`).join('')}
                 </tr>
 
-                <!-- Example Row -->
+                <!-- Example Row (Row 5) -->
                 <tr class="example" height="22">
                     <td>예시</td>
                     <td>2026-01-13</td>
@@ -1012,16 +1012,16 @@ function downloadEmptyTemplate() {
                     <td>매도</td>
                     <td>10</td>
                     <td>80000</td>
-                    <td x:fmla="=E6*F6">800000</td>
+                    <td x:fmla="=E5*F5">800000</td>
                     <td>75000</td>
-                    <td x:fmla="=IF(D6=&quot;매도&quot;,(F6-H6)*E6,0)">50000</td>
-                    <td x:fmla="=IF(AND(D6=&quot;매도&quot;,H6>0),(F6-H6)/H6,0)">6.67%</td>
+                    <td x:fmla="=IF(D5=&quot;매도&quot;,(F5-H5)*E5,0)">50000</td>
+                    <td x:fmla="=IF(AND(D5=&quot;매도&quot;,H5>0),(F5-H5)/H5,0)">6.67%</td>
                     <td>전고점 돌파 확인 후 수익실현</td>
                 </tr>
 
-                <!-- Empty Rows with formulas -->
+                <!-- Empty Rows with formulas (Starting Row 6) -->
                 ${Array(100).fill(0).map((_, i) => {
-        const row = i + 7; // Header + 3 title rows + Header + Example = Row 6 is example, Row 7 is first empty
+        const row = i + 6; // Row 6 is the first empty data row
         return `
                     <tr height="22">
                         <td style="text-align: center; color: #94a3b8;">${i + 1}</td>
