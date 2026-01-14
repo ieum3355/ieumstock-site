@@ -596,6 +596,10 @@ const JOURNAL_STORAGE_KEY = 'trading_journal_data';
 // Initialize Journal on page load
 document.addEventListener('DOMContentLoaded', () => {
     initTradingJournal();
+    // Also render blog if on blog page
+    if (document.getElementById('blog-posts-container')) {
+        renderBlog();
+    }
 });
 
 function initTradingJournal() {
