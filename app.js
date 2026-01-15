@@ -18,7 +18,7 @@ async function initApp() {
     renderGuides(CONTENT_DB.guides || []);
     renderFAQs(CONTENT_DB.faqs || []);
     renderBooks(CONTENT_DB.books || []);
-    renderQuotes();
+    renderMarketBrief();
     loadChecklist();
     setupSearch();
     initiateNewsletter();
@@ -207,11 +207,12 @@ function renderTerms(terms, highlight = '') {
 
 // --- New Interactive Features ---
 
-function renderQuotes() {
-    const quotes = CONTENT_DB.quotes || [];
-    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-    const quoteEl = document.getElementById('today-quote');
-    if (quoteEl) quoteEl.textContent = `"${randomQuote}"`;
+function renderMarketBrief() {
+    const brief = CONTENT_DB.market_brief || "오늘도 차분한 마음으로 시장을 바라보며 원칙 투자를 이어가세요.";
+    const briefEl = document.getElementById('market-brief-text');
+    if (briefEl) {
+        briefEl.textContent = brief;
+    }
 }
 
 let currentQuestionIndex = 0;

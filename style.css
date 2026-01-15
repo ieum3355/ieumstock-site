@@ -154,6 +154,44 @@ body {
     border-left: 4px solid var(--accent-color);
 }
 
+/* Section Grouping (New) */
+.section-group {
+    margin-bottom: 6rem;
+    padding: 4rem 2rem;
+    background: rgba(255, 255, 255, 0.01);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.group-title {
+    font-size: 1.1rem;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 4rem;
+    text-align: center;
+    opacity: 0.8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.group-title::before, .group-title::after {
+    content: '';
+    height: 1px;
+    flex: 1;
+    background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.3), transparent);
+}
+
+.section-divider {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 6rem auto;
+    width: 60%;
+    opacity: 0.3;
+}
+
 /* Search Bar */
 .search-container {
     position: relative;
@@ -624,19 +662,21 @@ body {
 /* --- Added Interactive Features Styles --- */
 .quote-box {
     text-align: center;
-    padding: 1.5rem;
-    background: rgba(139, 92, 246, 0.1);
-    border-radius: 12px;
-    border: 1px dashed var(--accent-color);
-    margin-bottom: 3rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+    border-radius: 16px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    margin-bottom: 4rem;
     animation: fadeIn 1s ease-out;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
-#today-quote {
+#market-brief-text {
     font-size: 1.1rem;
     color: var(--text-primary);
-    font-style: italic;
-    font-weight: 500;
+    line-height: 1.7;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .quiz-card {
