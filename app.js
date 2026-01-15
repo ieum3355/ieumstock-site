@@ -429,16 +429,15 @@ function renderBooks(books) {
 // --- Calculators ---
 function switchTab(type) {
     const tabs = document.querySelectorAll('.tab-btn');
-    const cards = document.querySelectorAll('.calc-card');
+    const cards = document.querySelectorAll('.lab-card');
 
     // Remove active class from all tabs and hide all cards
     tabs.forEach(tab => tab.classList.remove('active'));
     cards.forEach(card => card.style.display = 'none');
 
     // Find the correct button and show corresponding card
-    // Use the onclick attribute to find the matching button for better reliability
     tabs.forEach(tab => {
-        if (tab.getAttribute('onclick').includes(`'${type}'`)) {
+        if (tab.getAttribute('onclick') && tab.getAttribute('onclick').includes(`'${type}'`)) {
             tab.classList.add('active');
         }
     });
@@ -496,52 +495,147 @@ function renderChart(labels, data) {
     });
 }
 
-function calculateDividend() {
-    const count = parseFloat(document.getElementById('stock-count').value) || 0;
-    const div = parseFloat(document.getElementById('div-per-share').value) || 0;
-    const taxRate = parseFloat(document.getElementById('tax-rate').value) || 0;
-    const tax = (count * div) * (taxRate / 100);
-    const final = (count * div) - tax;
+// --- AI Analysis Functions ---
 
-    const resultDiv = document.getElementById('dividend-result');
-    resultDiv.style.display = 'block';
-    resultDiv.querySelector('.result-text').innerHTML = `
-        <h4>세후 실수령액</h4>
-        <div class="amount">${Math.round(final).toLocaleString()}원</div>
-        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 5px;">세금 약 ${Math.round(tax).toLocaleString()}원이 공제되었습니다.</p>
-    `;
+function handleWaterfallAnalysis() {
+    const p1 = parseFloat(document.getElementById('current_avg').value);
+    const c1 = parseFloat(document.getElementById('current_qty').value);
+    const p2 = parseFloat(document.getElementById('buy_price').value);
+    const c2 = parseFloat(document.getElementById('buy_qty').value);
 
-    const tipEl = document.getElementById('dividend-tip');
-    if (tipEl) {
-        tipEl.textContent = final < 100000 ? "💡 전문가 조언: 적은 배당금이라도 재투자하면 훗날 큰 복리 효과를 불러옵니다." : "💡 전문가 조언: 정기적인 현금 흐름은 투자 심리를 안정시키는 좋은 무기가 됩니다.";
-        tipEl.style.display = 'block';
+    if (!p1 || !c1 || !p2 || !c2) {
+        alert("모든 값을 입력해주세요.");
+        return;
     }
-}
-
-function calculateWatering() {
-    const p1 = parseFloat(document.getElementById('current-price').value) || 0;
-    const c1 = parseFloat(document.getElementById('current-count').value) || 0;
-    const p2 = parseFloat(document.getElementById('new-price').value) || 0;
-    const c2 = parseFloat(document.getElementById('new-count').value) || 0;
 
     const totalCost = (p1 * c1) + (p2 * c2);
     const totalCount = c1 + c2;
-    const avg = totalCount > 0 ? totalCost / totalCount : 0;
+    const newAvg = totalCost / totalCount;
+    const weightIncrease = (c2 / totalCount) * 100;
 
-    const resultDiv = document.getElementById('water-result');
-    resultDiv.style.display = 'block';
-    resultDiv.querySelector('.result-text').innerHTML = `
-        <h4>최종 평단가</h4>
-        <div class="amount">${Math.round(avg).toLocaleString()}원</div>
-        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 5px;">총 ${totalCount.toLocaleString()}주 보유 (총 매수금액: ${Math.round(totalCost).toLocaleString()}원)</p>
+    const mathResult = document.getElementById('waterfall-math-result');
+    mathResult.innerHTML = `
+        <div class="math-summary">
+            <h3>📈 분석 결과: 평단가 ${Math.round(newAvg).toLocaleString()}원</h3>
+            <p>보유 비중이 <strong>${weightIncrease.toFixed(1)}%</strong> 증가하며, 기존 평단가 대비 <strong>${(((p1 - newAvg) / p1) * 100).toFixed(1)}%</strong> 낮아집니다.</p>
+        </div>
     `;
 
-    const tipEl = document.getElementById('water-tip');
-    if (tipEl) {
-        const dropRate = ((p1 - p2) / p1) * 100;
-        tipEl.textContent = dropRate > 10 ? "💡 전문가 조언: 하락폭이 큽니다. 기업의 펀더멘털에 문제가 없다면 평단가를 낮출 좋은 기회입니다." : "💡 전문가 조언: 하락폭이 크지 않을 때는 물타기 효과가 미미할 수 있으니 주의하세요.";
-        tipEl.style.display = 'block';
+    const resultBox = document.getElementById('water-fall-result');
+    const aiText = document.getElementById('ai-waterfall-text');
+
+    resultBox.style.display = 'block';
+    aiText.innerHTML = "이음스탁 AI 연구원이 리포트를 작성 중입니다. 잠시만 기다려주세요...";
+
+    setTimeout(() => {
+        const report = generateWaterfallReport(p1, newAvg, weightIncrease);
+        aiText.innerHTML = report;
+        saveSimulation('WATERFALL', { p1, c1, p2, c2 }, `평단가 ${Math.round(newAvg).toLocaleString()}원 (비중 ${weightIncrease.toFixed(1)}% 증가)`);
+    }, 1500);
+}
+
+function generateWaterfallReport(oldAvg, newAvg, weightInc) {
+    return `
+        <h3>🛡️ 수석 전략가의 물타기 조언</h3>
+        본 분석은 <strong>이음스탁 수석 투자 전략가</strong>의 관점에서 작성되었습니다. 현재 추가 매수를 통한 평단가는 ${Math.round(newAvg).toLocaleString()}원으로 산출되었습니다.
+
+        <h3>1. 비중 조절 및 심리 관리</h3>
+        평단가를 낮추는 것도 중요하지만, 이번 매수로 인해 전체 포트폴리오에서 해당 종목이 차지하는 <strong>비중이 ${weightInc.toFixed(1)}% 급증</strong>한다는 점에 주목해야 합니다. 하락장에서의 추가 매수는 심리적 압박을 가중시킬 수 있습니다. "평단가가 낮아졌으니 괜찮다"는 안도감보다는, 내가 감당할 수 있는 자산 배분 원칙을 지키고 있는지 냉정하게 검토해야 합니다.
+
+        <h3>2. 기술적 반등과 지지선 확인</h3>
+        현재 주가가 주요 <strong>지지선</strong>을 이탈하지 않았는지 확인하십시오. 지지선 근처에서의 <strong>분할 매수 원칙</strong>은 손실을 최소화하는 가장 강력한 무기입니다. 무지성 매수가 아닌, 거래량이 동반된 하락 멈춤 신호를 포착한 뒤 실행하는 것이 중요합니다. <strong>기술적 반등</strong>이 나올 때 비중을 다시 줄여 현금을 확보할 것인지, 아니면 장기 보유할 것인지 시나리오를 미리 세우십시오.
+
+        <h3>3. 체크리스트 및 요약</h3>
+        <ul>
+            <li>이번 매수 후 전체 자산 중 종목 비중이 30%를 넘지 않습니까?</li>
+            <li>추가 매수 자금은 최소 3개월 이내에 쓰지 않아도 되는 여유 자금입니까?</li>
+            <li>해당 기업의 실적 악화 등 펀더멘털 이슈가 아닌 시장 전체의 하락입니까?</li>
+        </ul>
+
+        <p class="expert-conclusion">이 전략과 함께 <strong><a href="guide-waterfall.html" style="color:var(--accent-color);">물타기 완벽 가이드</a></strong>도 반드시 확인하여 리스크를 관리하세요.</p>
+        <p style="font-size: 0.8rem; opacity: 0.7; margin-top:20px;">※ 본 리포트는 입력된 데이터를 기반으로 생성된 참고용이며, 투자의 최종 책임은 본인에게 있습니다.</p>
+    `;
+}
+
+function handleDividendAnalysis() {
+    const P = parseFloat(document.getElementById('invest_p').value);
+    const PMT = parseFloat(document.getElementById('monthly_p').value);
+    const yieldP = parseFloat(document.getElementById('yield_p').value) / 100;
+    const years = parseFloat(document.getElementById('years_p').value);
+
+    if (!P || isNaN(yieldP) || !years) {
+        alert("값을 입력해주세요 (초기 투자금, 배당률, 기간은 필수입니다).");
+        return;
     }
+
+    // Simplified Compound Dividend calculation
+    let totalValue = P;
+    const monthlyRate = 1 + (yieldP / 12);
+    for (let i = 0; i < years * 12; i++) {
+        totalValue = (totalValue + PMT) * monthlyRate;
+    }
+
+    const annualDiv = totalValue * yieldP;
+    const monthlyDiv = annualDiv / 12;
+
+    const mathResult = document.getElementById('dividend-math-result');
+    mathResult.innerHTML = `
+        <div class="math-summary">
+            <h3>📅 ${years}년 후 시나리오 결과</h3>
+            <p>예상 월 배당금: <strong>${Math.round(monthlyDiv).toLocaleString()}원</strong></p>
+            <p>예상 총 자산 가치: ${Math.round(totalValue).toLocaleString()}원</p>
+        </div>
+    `;
+
+    const resultBox = document.getElementById('dividend-result');
+    const aiText = document.getElementById('ai-dividend-text');
+
+    resultBox.style.display = 'block';
+    aiText.innerHTML = "당신의 경제적 자유 시나리오를 작성 중입니다. 복리의 마법을 계산하는 중...";
+
+    setTimeout(() => {
+        const report = generateDividendReport(years, monthlyDiv, yieldP);
+        aiText.innerHTML = report;
+        saveSimulation('DIVIDEND', { P, PMT, yieldP, years }, `월 배당 ${Math.round(monthlyDiv).toLocaleString()}원 달성 시나리오`);
+    }, 1500);
+}
+
+function generateDividendReport(years, monthlyDiv, yieldP) {
+    const utilityText = monthlyDiv > 1000000 ? "월세를 대체할 수 있는 수준" : (monthlyDiv > 300000 ? "통신비와 식비를 해결하고 남는 수준" : "매월 치킨 몇 마리를 무료로 즐기는 수준");
+
+    return `
+        <h3>🌟 수석 전략가의 경제적 자유 리포트</h3>
+        ${years}년 동안 꾸준히 투자했을 때, 당신은 매달 <strong>${Math.round(monthlyDiv).toLocaleString()}원</strong>의 현금 흐름을 확보하게 됩니다. 이는 실생활에서 <strong>${utilityText}</strong>입니다.
+
+        <h3>1. 복리의 마법과 배당 재투자(DRIP)</h3>
+        단순히 배당금을 받는 것에 그치지 않고, 이를 다시 주식에 투자하는 <strong>배당 재투자(DRIP)</strong> 전략을 실행할 경우 자산의 증가 속도는 기하급수적으로 빨라집니다. 시간은 배당 투자자의 가장 강력한 아군입니다. 초기에 적어 보이는 배당금이 눈덩이처럼 불어나는 과정을 믿으십시오.
+
+        <h3>2. 배당 귀족주와 배당 성향의 중요성</h3>
+        성공적인 배당 투자를 위해서는 단순히 배당률이 높은 종목보다는 25년 이상 배당을 늘려온 <strong>배당 귀족주</strong>에 주목해야 합니다. 또한 기업이 이익 중 얼마를 배당으로 주는지 나타내는 <strong>배당 성향</strong>이 지나치게 높지는 않은지 확인하여 배당 삭감 리스크를 관리해야 합니다.
+
+        <h3>3. 경제적 자유를 향한 전략</h3>
+        <ul>
+            <li>배당 성장률이 물가 상승률보다 높은 기업을 선별했습니까?</li>
+            <li> ISA/연금저축 등 절세 계좌를 최대한 활용하고 계십니까?</li>
+            <li>주가 하락 시기를 오히려 배당 수익률을 높이는 '세일 기간'으로 보고 계십니까?</li>
+        </ul>
+
+        <p class="expert-conclusion">이 전략과 함께 <strong><a href="guide-dividend.html" style="color:var(--accent-color);">배당주 투자 완벽 가이드</a></strong>를 읽고 당신만의 머니트리를 꾸준히 키워가세요.</p>
+        <p style="font-size: 0.8rem; opacity: 0.7; margin-top:20px;">※ 본 리포트는 입력된 데이터를 기반으로 생성된 시뮬레이션이며, 실제 투자 결과와 다를 수 있습니다.</p>
+    `;
+}
+
+function saveSimulation(type, input, summary) {
+    const history = JSON.parse(localStorage.getItem('ieum_simulation_history') || '[]');
+    history.unshift({
+        id: Date.now(),
+        type,
+        input,
+        summary,
+        date: new Date().toLocaleString()
+    });
+    // Keep last 5 only
+    localStorage.setItem('ieum_simulation_history', JSON.stringify(history.slice(0, 5)));
 }
 
 function renderBlog() {

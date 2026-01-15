@@ -179,33 +179,39 @@
                     </div>
                 </section>
 
-                <!-- Calculators Section -->
-                <section id="calculators-section" class="content-section">
-                    <h2 class="section-title">🧮 투자 주머니 (계산기)</h2>
+                <!-- AI Investment Lab Section -->
+                <section id="ai-lab-section" class="content-section">
+                    <h2 class="section-title"><span class="icon">🧪</span> 이음스탁 AI 투자 분석소</h2>
+                    <p class="section-subtitle" style="margin-bottom: 20px; color: var(--text-secondary);">데이터 기반의 정확한
+                        계산과 AI의 전략적 통찰을 결합했습니다.</p>
+
                     <div class="calculator-tabs">
-                        <button class="tab-btn active" onclick="switchTab('compound')">복리 계산기</button>
-                        <button class="tab-btn" onclick="switchTab('dividend')">배당금 계산기</button>
-                        <button class="tab-btn" onclick="switchTab('water')">물타기 계산기</button>
+                        <button class="tab-btn active" onclick="switchTab('compound')">복리 누적 시뮬레이션</button>
+                        <button class="tab-btn" onclick="switchTab('water-fall')">AI 전략적 물타기</button>
+                        <button class="tab-btn" onclick="switchTab('dividend-map')">AI 배당 자유 지도</button>
                     </div>
 
-                    <div id="compound-calc" class="calc-card">
-                        <div class="input-group">
-                            <label>초기 투자금 (원)</label>
-                            <input type="number" id="principal" placeholder="예: 1000000" value="1000000">
+                    <!-- 1. Compound Interest (Existing base) -->
+                    <div id="compound-calc" class="calc-card lab-card">
+                        <div class="input-grid">
+                            <div class="input-group">
+                                <label>초기 투자금 (원)</label>
+                                <input type="number" id="principal" placeholder="1000000" value="1000000">
+                            </div>
+                            <div class="input-group">
+                                <label>월 추가 적립금 (원)</label>
+                                <input type="number" id="monthly-add" placeholder="0" value="0">
+                            </div>
+                            <div class="input-group">
+                                <label>연 수익률 (%)</label>
+                                <input type="number" id="rate" placeholder="10" value="10">
+                            </div>
+                            <div class="input-group">
+                                <label>투자 기간 (년)</label>
+                                <input type="number" id="years" placeholder="10" value="10">
+                            </div>
                         </div>
-                        <div class="input-group">
-                            <label>월 추가 적립금 (원)</label>
-                            <input type="number" id="monthly-add" placeholder="예: 300000" value="0">
-                        </div>
-                        <div class="input-group">
-                            <label>연수익률 (%)</label>
-                            <input type="number" id="rate" placeholder="예: 10" value="10">
-                        </div>
-                        <div class="input-group">
-                            <label>투자 기간 (년)</label>
-                            <input type="number" id="years" placeholder="예: 10" value="10">
-                        </div>
-                        <button class="calc-btn" onclick="calculateCompound()">계산하기</button>
+                        <button class="calc-btn btn-primary" onclick="calculateCompound()">데이터 분석 시작</button>
                         <div id="compound-result" class="result-display">
                             <div class="result-text"></div>
                             <div class="expert-tip" id="compound-tip"></div>
@@ -216,48 +222,66 @@
                         </div>
                     </div>
 
-                    <div id="dividend-calc" class="calc-card" style="display: none;">
-                        <div class="input-group">
-                            <label>보유 주식 수 (주)</label>
-                            <input type="number" id="stock-count" placeholder="예: 100" value="100">
+                    <!-- 2. AI Strategic Waterfall -->
+                    <div id="water-fall-calc" class="calc-card lab-card" style="display: none;">
+                        <div class="card-header-badge">AI 전담 분석가 배정됨</div>
+                        <div class="input-grid">
+                            <div class="input-group">
+                                <label>현재 평단가 (원)</label>
+                                <input type="number" id="current_avg" placeholder="50000">
+                            </div>
+                            <div class="input-group">
+                                <label>현재 보유수량 (주)</label>
+                                <input type="number" id="current_qty" placeholder="10">
+                            </div>
+                            <div class="input-group">
+                                <label>추가 매수가 (원)</label>
+                                <input type="number" id="buy_price" placeholder="45000">
+                            </div>
+                            <div class="input-group">
+                                <label>추가 매수량 (주)</label>
+                                <input type="number" id="buy_qty" placeholder="10">
+                            </div>
                         </div>
-                        <div class="input-group">
-                            <label>주당 배당금 (원)</label>
-                            <input type="number" id="div-per-share" placeholder="예: 2000" value="2000">
+                        <button class="calc-btn btn-accent" onclick="handleWaterfallAnalysis()">AI 전략 리포트 생성</button>
+                        <div id="water-fall-result" class="result-display result-box" style="display: none;">
+                            <div id="waterfall-math-result"></div>
+                            <div id="ai-waterfall-text" class="ai-report-content">AI가 데이터를 분석 중입니다...</div>
                         </div>
-                        <div class="input-group">
-                            <label>배당소득세율 (%)</label>
-                            <input type="number" id="tax-rate" value="15.4">
-                        </div>
-                        <button class="calc-btn" onclick="calculateDividend()">계산하기</button>
-                        <div id="dividend-result" class="result-display">
-                            <div class="result-text"></div>
-                            <div class="expert-tip" id="dividend-tip"></div>
-                        </div>
+                        <a href="guide-waterfall.html" class="guide-banner-link">
+                            <span>📖 [가이드] 물타기 전 필수 체크! 평단가 관리의 모든 것</span>
+                        </a>
                     </div>
 
-                    <div id="water-calc" class="calc-card" style="display: none;">
-                        <div class="input-group">
-                            <label>현재 평단가 (원)</label>
-                            <input type="number" id="current-price" placeholder="예: 50000" value="50000">
+                    <!-- 3. AI Dividend Freedom Map -->
+                    <div id="dividend-map-calc" class="calc-card lab-card" style="display: none;">
+                        <div class="card-header-badge">경제적 자유 시뮬레이션</div>
+                        <div class="input-grid">
+                            <div class="input-group">
+                                <label>초기 투자금 (원)</label>
+                                <input type="number" id="invest_p" placeholder="10000000">
+                            </div>
+                            <div class="input-group">
+                                <label>월 추가 적립금 (원)</label>
+                                <input type="number" id="monthly_p" placeholder="500000">
+                            </div>
+                            <div class="input-group">
+                                <label>세전 배당률 (%)</label>
+                                <input type="number" id="yield_p" placeholder="5.5">
+                            </div>
+                            <div class="input-group">
+                                <label>투자 기간 (년)</label>
+                                <input type="number" id="years_p" placeholder="20">
+                            </div>
                         </div>
-                        <div class="input-group">
-                            <label>현재 보유 수량 (주)</label>
-                            <input type="number" id="current-count" placeholder="예: 10" value="10">
+                        <button class="calc-btn btn-success" onclick="handleDividendAnalysis()">미래 배당 리포트 생성</button>
+                        <div id="dividend-result" class="result-display result-box" style="display: none;">
+                            <div id="dividend-math-result"></div>
+                            <div id="ai-dividend-text" class="ai-report-content">당신의 경제적 자유 시나리오를 작성 중입니다...</div>
                         </div>
-                        <div class="input-group">
-                            <label>추가 매수가 (원)</label>
-                            <input type="number" id="new-price" placeholder="예: 45000" value="45000">
-                        </div>
-                        <div class="input-group">
-                            <label>추가 매수 수량 (주)</label>
-                            <input type="number" id="new-count" placeholder="예: 10" value="10">
-                        </div>
-                        <button class="calc-btn" onclick="calculateWatering()">계산하기</button>
-                        <div id="water-result" class="result-display">
-                            <div class="result-text"></div>
-                            <div class="expert-tip" id="water-tip"></div>
-                        </div>
+                        <a href="guide-dividend.html" class="guide-banner-link">
+                            <span>🚀 [가이드] 배당 귀족주로 만드는 연금 시스템 구축법</span>
+                        </a>
                     </div>
                 </section>
 

@@ -177,7 +177,8 @@ body {
     gap: 15px;
 }
 
-.group-title::before, .group-title::after {
+.group-title::before,
+.group-title::after {
     content: '';
     height: 1px;
     flex: 1;
@@ -642,6 +643,106 @@ body {
     font-size: 0.95rem;
     display: none;
     line-height: 1.6;
+}
+
+/* AI Investment Lab Styles */
+.lab-card {
+    position: relative;
+    overflow: hidden;
+    padding: 2rem !important;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.card-header-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--accent-color);
+    color: white;
+    padding: 5px 15px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    border-bottom-left-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.ai-report-content {
+    margin-top: 20px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    border: 1px dashed var(--accent-color);
+    color: var(--text-primary);
+    line-height: 1.8;
+    font-size: 1rem;
+    text-align: left;
+    white-space: pre-line;
+}
+
+.ai-report-content h2,
+.ai-report-content h3 {
+    color: var(--accent-color);
+    margin-top: 25px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 77, 77, 0.2);
+    padding-bottom: 5px;
+}
+
+.ai-report-content strong {
+    color: #fff;
+    background: rgba(255, 77, 77, 0.1);
+    padding: 0 4px;
+}
+
+.guide-banner-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.guide-banner-link:hover {
+    background: rgba(255, 77, 77, 0.1);
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+.btn-accent {
+    background-color: #f39c12 !important;
+    color: white !important;
+}
+
+.btn-success {
+    background-color: #27ae60 !important;
+    color: white !important;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.input-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 600px) {
+    .input-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Responsive */
