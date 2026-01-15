@@ -6,29 +6,28 @@ const API_KEY = process.env.GEMINI_API_KEY;
 const DB_PATH = path.join(__dirname, '../data/content_db.js');
 
 const PROMPT = `# Role: 전문 금융 칼럼니스트 및 주식 분석가 (이음스탁 브랜드 페르소나)
-# Task: 주식 초보자를 위한 실전 기술적/기본적 분석 포스팅 작성 (공백 제외 1000자 이상의 상세한 분량)
+# Task: 주식 초보자를 위한 심층 투자 인사이트 포스팅 작성 (공백 제외 1000자 이상의 상세 분량)
 
-## 콘텐츠 구성 가이드라인 (반드시 포함할 것):
-1. [도입부]: 해당 주제가 실전 투자에서 왜 중요한지 시의성을 반영하여 서술.
-2. [본론 1 - 핵심 이론]: 단순 정의가 아닌 실전에서 쓰이는 핵심 로직 설명. (예: 이동평균선의 정배열/역배열, 캔들 패턴의 의미 등)
-3. [본론 2 - 실전 차트/데이터 분석]: 
-   - 구체적인 용어 사용 (예: RSI 과매수, 골든크로스, 데드크로스, 지지원과 저항선 등).
-   - "예를 들어, 최근 OO 기업의 차트에서 볼 수 있듯이~"와 같은 가상의 예시 상황을 넣어 생동감 있게 설명.
-4. [본론 3 - 초보자 실천 가이드]: 독자가 바로 자신의 HTS/MTS에서 확인해 볼 수 있는 3가지 체크리스트 (ul/li 태그 활용).
+## 필수 포함 사항 (융합 분석 스타일):
+1. **기본적 분석(Fundamental)**: 해당 주제의 산업적 배경, 기업의 실적 로직, 경제 지표(금리, 환율 등)의 연관성을 40% 비중으로 설명.
+2. **기술적 분석(Technical/Chart)**: 캔들 패턴, 이동평균선(정배열/역배열), 거래량, 보조지표(RSI, MACD, 스토캐스틱 등)를 활용한 타점 분석을 40% 비중으로 설명.
+3. **실전 적용**: 위 두 분석을 결합하여 초보자가 지금 당장 차트와 재무제표에서 확인해야 할 핵심 포인트 제시.
+
+## 콘텐츠 구성 가이드라인:
+1. [도입부]: 해당 주제가 현재 시장에서 왜 뜨거운 화두인지 시의성을 반영하여 서술 (이음스탁 시그니처 톤).
+2. [본론 1 - 시장의 맥락]: 산업의 변화나 거세 흐름을 분석 (기본적 분석 중심).
+3. [본론 2 - 차트의 시그널]: 구체적인 보조지표 수치나 패턴을 예시로 들어 설명 (기술적 분석 중심).
+4. [본론 3 - 전략 리포트]: "이런 시그널이 나오면 매수/매도 고려"와 같은 시나리오성 가이드 (ul/li 활용).
 5. [결론 및 면책조항]: "이 정보는 투자 참고용이며, 최종 결정은 본인에게 있습니다" 문구 포함.
 
-## 기술적 요구사항 (HTML 구조화):
-- 제목(title) 외에 본문 내의 소제목은 <h3> 태그를 사용하여 구조화할 것.
-- 중요한 키워드는 <strong> 태그로 강조할 것.
-- 문단은 <p> 태그로 명확히 구분.
-- **공백 제외 1000자 이상의 충분한 정보를 담은 고품질 콘텐츠로 작성할 것.** 내용이 짧으면 승인이 어렵습니다.
-- 반드시 아래 JSON 형식으로만 응답해.
+## 기술적 요구사항:
+- 소제목은 <h3> 태그 사용.
+- 핵심 키워드는 <strong> 태그.
+- 문단은 <p> 태그.
+- **공백 제외 1000자 이상**의 풍부한 데이터와 논리를 담을 것.
 - 형식: {"title": "제목", "content": "내용(HTML 태그 포함)"}
 
-## 말투 및 톤앤매너:
-- 격조 있는 전문 필진의 느낌을 주되, 초보자가 이해하기 쉽게 비유를 섞어서 작성.
-- '필자의 사견'이나 '실전 경험담' 같은 뉘앙스를 풍기는 표현 사용.
-- 언어는 한국어로 작성할 것.`;
+## 말투: 전문성과 친절함이 공존하는 백화점 매니저 같은 세련된 말투 (~입니다).`;
 
 async function listVisibleModels() {
     const options = {
@@ -101,18 +100,11 @@ async function generateBlogPost() {
 
     try {
         const dbContent = fs.readFileSync(DB_PATH, 'utf8');
-        // Simple extraction of blog_posts array
-        const blogPostsMatch = dbContent.match(/"blog_posts":\s*(\[[\s\S]*?\])/);
         let existingPosts = [];
-        if (blogPostsMatch) {
-            try {
-                // We need to be careful with JSON.parse if the content is JS code
-                // Since it's const CONTENT_DB = { ... }, it's not strictly JSON.
-                // But for now, let's use a simpler regex or a cleaner way.
-                existingPosts = Array.from(dbContent.matchAll(/"id":\s*(\d+),\s*"title":\s*"([^"]+)"/g)).map(m => ({ id: m[1], title: m[2] }));
-            } catch (e) {
-                console.warn("Could not parse existing posts for internal linking.");
-            }
+        try {
+            existingPosts = Array.from(dbContent.matchAll(/"id":\s*(\d+),\s*"title":\s*"([^"]+)"/g)).map(m => ({ id: m[1], title: m[2] }));
+        } catch (e) {
+            console.warn("Could not parse existing posts for internal linking.");
         }
 
         const allModels = await listVisibleModels();
@@ -129,10 +121,13 @@ async function generateBlogPost() {
         // 1. Generate Blog Post
         const textResult = await callGemini(modelToUse, existingPosts.slice(0, 10));
 
-        // 2. Generate Daily Market Brief (New)
-        const marketBriefPrompt = `금일 주식 시장의 일반적인 상황(예: 금리 추이, 거래 대금 변화 등)에 대해 
-금융 전문가 '이음스탁'으로서 초보자에게 전하는 짧은 브리핑(3~4문장)을 작성해줘.
-JSON 형식으로만 응답해: {"brief": "내용"}`;
+        // 2. Generate Daily Market Brief (Enhanced)
+        const marketBriefPrompt = `금융 수석 전략가 '이음스탁'으로서 초보자에게 전하는 오늘의 시장 브리핑을 작성해줘.
+조건:
+1. 오늘 시장의 핵심 요인(예: 미국 국채 금리, CPI 지표, 외인 매수세, 환율 등)을 포함하여 6~8문장으로 상세히 작성할 것.
+2. 단순히 현상을 나열하는 게 아니라 '왜' 그런 일이 벌어졌고 초보자가 무엇을 주의해야 하는지 분석적으로 서술할 것.
+3. 말투는 세련된 전문가 톤.
+4. JSON 형식으로만 응답해: {"brief": "내용"}`;
 
         const marketBriefRaw = await new Promise((resolve, reject) => {
             const data = JSON.stringify({ contents: [{ parts: [{ text: marketBriefPrompt }] }] });
@@ -169,7 +164,7 @@ JSON 형식으로만 응답해: {"brief": "내용"}`;
         const marketBriefJsonMatch = marketBriefRaw.match(/\{[\s\S]*\}/);
         const marketBriefText = marketBriefJsonMatch ? JSON.parse(marketBriefJsonMatch[0]).brief : "오늘도 성투하세요!";
 
-        // Internal Link Logic: Add 1-2 random internal links
+        // Internal Link Logic
         let contentWithLinks = postData.content;
         if (existingPosts.length > 0) {
             const randomPosts = existingPosts.sort(() => 0.5 - Math.random()).slice(0, 2);
@@ -190,14 +185,13 @@ JSON 형식으로만 응답해: {"brief": "내용"}`;
             content: contentWithLinks
         };
 
-        // Update DB with both new post and market brief
+        // Update DB
         let updatedDb = dbContent.replace(/"blog_posts":\s*\[/, `"blog_posts": [\n        ${JSON.stringify(newPost, null, 8).replace(/\n/g, '\n        ').trim()},`);
 
-        // Add or update market_brief in DB
         if (updatedDb.includes('"market_brief":')) {
-            updatedDb = updatedDb.replace(/"market_brief":\s*"[^"]*"/, `"market_brief": "${marketBriefText}"`);
+            updatedDb = updatedDb.replace(/"market_brief":\s*"[^"]*"/, `"market_brief": "${marketBriefText.replace(/"/g, '\\"')}"`);
         } else {
-            updatedDb = updatedDb.replace('const CONTENT_DB = {', `const CONTENT_DB = {\n    "market_brief": "${marketBriefText}",`);
+            updatedDb = updatedDb.replace('const CONTENT_DB = {', `const CONTENT_DB = {\n    "market_brief": "${marketBriefText.replace(/"/g, '\\"')}",`);
         }
 
         fs.writeFileSync(DB_PATH, updatedDb, 'utf8');
