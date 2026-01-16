@@ -201,7 +201,14 @@ function renderTerms(terms, highlight = '') {
             });
         }
         const badge = term.isExternal ? '<span class="wiki-badge">위키백과</span>' : '';
-        return `<article class="term-card"><h3>${keyword}${badge}</h3><p>${desc}</p></article>`;
+        const detailBtn = term.detail_link ? `<a href="${term.detail_link}" class="detail-link-btn">심화 분석 읽어보기 →</a>` : '';
+        return `
+            <article class="term-card">
+                <h3>${keyword}${badge}</h3>
+                <p>${desc}</p>
+                ${detailBtn}
+            </article>
+        `;
     }).join('');
 }
 
@@ -374,11 +381,18 @@ function renderMistakes(mistakes) {
     container.innerHTML = mistakes.map((m, i) => `
         <article class="mistake-item">
             <div class="mistake-header" id="mistake-header-${i}" onclick="toggleMistake(${i})">
-                <h3>${m.title}</h3><span class="toggle-icon">+</span>
+                <div class="mistake-title-group">
+                    <span class="error-badge">CAUTION</span>
+                    <h3>${m.title}</h3>
+                </div>
+                <span class="toggle-icon">+</span>
             </div>
             <div class="mistake-body" id="mistake-${i}">
-                <p><strong>Problem:</strong> ${m.problem}</p>
-                <p><strong>Solution:</strong> ${m.solution}</p>
+                <div class="mistake-inner">
+                    <p class="mistake-prob"><strong>❌ 문제 상황:</strong> ${m.problem}</p>
+                    <p class="mistake-sol"><strong>✅ 선배의 조언:</strong> ${m.solution}</p>
+                    ${m.detail_link ? `<a href="${m.detail_link}" class="hub-link-text">관련 실전 사례 보기 →</a>` : ''}
+                </div>
             </div>
         </article>
     `).join('');
@@ -396,8 +410,12 @@ function renderGuides(guides) {
     if (!container) return;
     container.innerHTML = guides.map(g => `
         <article class="roadmap-step">
-            <span class="step-number">${g.step}</span>
-            <h3>${g.title}</h3><p>${g.content}</p>
+            <div class="step-label">STEP ${g.step}</div>
+            <div class="roadmap-content">
+                <h3>${g.title}</h3>
+                <p>${g.content}</p>
+                ${g.detail_link ? `<a href="${g.detail_link}" class="hub-link-text">상세 가이드 보기 →</a>` : ''}
+            </div>
         </article>
     `).join('');
 }
@@ -423,7 +441,15 @@ function toggleFAQ(i) {
 function renderBooks(books) {
     const grid = document.getElementById('books-grid');
     if (!grid) return;
-    grid.innerHTML = books.map(b => `<article class="book-card"><span>${b.author}</span><h3>${b.title}</h3><p>${b.desc}</p></article>`).join('');
+    grid.innerHTML = books.map(b => `
+        <article class="book-card">
+            <div class="book-tag">MUST READ</div>
+            <span class="book-author">${b.author}</span>
+            <h3>${b.title}</h3>
+            <p>${b.desc}</p>
+            <div class="book-footer">주린이 필독서  추천 ⭐⭐⭐⭐⭐</div>
+        </article>
+    `).join('');
 }
 
 // --- Calculators ---
