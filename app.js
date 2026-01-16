@@ -668,34 +668,51 @@ function renderBlog() {
     const container = document.getElementById('blog-posts-container');
     if (!container || !CONTENT_DB.blog_posts) return;
 
-    // Get today's date in YYYY-MM-DD format (User's local time)
-    const today = new Date().toLocaleDateString('en-CA');
+    // 1. Get URL ID if exists
+    const urlParams = new URLSearchParams(window.location.search);
+    const targetId = parseInt(urlParams.get('id'));
 
-    // Filter posts: show only if publishDate is today or past
+    // 2. Filter by date (today or past)
+    const today = new Date().toLocaleDateString('en-CA');
     const visiblePosts = CONTENT_DB.blog_posts.filter(post => {
         if (!post.publishDate) return true;
         return post.publishDate <= today;
     });
 
-    // Sort by ID descending (newest first)
-    const sortedPosts = [...visiblePosts].sort((a, b) => b.id - a.id);
+    // 3. Find target post if ID is provided
+    let postsToRender = [];
+    if (targetId) {
+        const found = visiblePosts.find(p => p.id === targetId);
+        if (found) {
+            postsToRender = [found];
+            // Update Title for SEO/UI
+            document.title = `${found.title} | 이음스탁 인사이트`;
+        } else {
+            // If target post not found or not published yet
+            container.innerHTML = `<div style="text-align:center; padding: 4rem;"><h3>죄송합니다. 찾으시는 글이 아직 공개되지 않았거나 없는 페이지입니다.</h3><br><a href="blog.html" class="calc-btn">전체 글 보기</a></div>`;
+            return;
+        }
+    } else {
+        // Sort descending: newest ID first
+        postsToRender = [...visiblePosts].sort((a, b) => b.id - a.id);
+    }
 
-    if (sortedPosts.length === 0) {
-        container.innerHTML = '<p style="text-align:center; padding: 2rem; color: var(--text-secondary);">아직 등록된 게시글이 없습니다.</p>';
+    if (postsToRender.length === 0) {
+        container.innerHTML = '<p style="text-align:center; padding: 2rem; color: var(--text-secondary);">아직 등록된 게시글이 없습니다. 곧 찾아옵니다!</p>';
         return;
     }
 
-    const latestPostId = Math.max(...sortedPosts.map(p => p.id));
+    const maxIdInDb = Math.max(...visiblePosts.map(p => p.id));
 
-    container.innerHTML = sortedPosts.map(post => {
-        const isNew = post.id === latestPostId;
-        const newBadge = isNew ? '<span class="new-badge">NEW</span>' : '';
+    container.innerHTML = postsToRender.map(post => {
+        const isLatest = post.id === maxIdInDb;
+        const newBadge = isLatest ? '<span class="new-badge">NEW</span>' : '';
 
         return `
         <article class="post-card">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
                 <div>
-                    <span class="tag">Secret TIP #${post.id}</span>
+                    <span class="tag">Insight #${post.id}</span>
                     ${newBadge}
                 </div>
                 <span class="blog-meta">${post.date}</span>
@@ -704,8 +721,15 @@ function renderBlog() {
             <div class="post-content">
                 ${post.content}
             </div>
+            ${targetId ? `<div style="margin-top: 3rem; text-align: center; border-top: 1px solid var(--border-color); padding-top: 2rem;">
+                <a href="blog.html" class="calc-btn" style="display: inline-block; width: auto; padding: 0.8rem 2rem;">다른 글 더 읽어보기</a>
+            </div>` : ''}
         </article>
     `}).join('');
+
+    if (targetId) {
+        window.scrollTo(0, 0);
+    }
 }
 
 
