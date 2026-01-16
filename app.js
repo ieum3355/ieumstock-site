@@ -257,16 +257,25 @@ function showQuizResult() {
     const typeEl = document.getElementById('quiz-result-type');
     const descEl = document.getElementById('quiz-result-desc');
 
-    const avgScore = quizScore / CONTENT_DB.quiz.length;
-    if (avgScore <= 1.3) {
+    // 6문항 x 1~3점 = 총점 6~18점
+    if (quizScore <= 8) {
         typeEl.textContent = "신중한 거북이 🐢";
-        descEl.textContent = "원금 보장을 최우선으로 생각하시네요! 안전한 자산 위주로 시작하세요.";
-    } else if (avgScore <= 2.3) {
-        typeEl.textContent = "꾸준한 일벌 🐝";
-        descEl.textContent = "위험과 수익의 균형을 아는 투자자입니다! ETF와 배당주가 제격입니다.";
-    } else {
+        descEl.textContent = "안전 제일! 원금 보장을 최우선으로 생각하시네요. 예금, 채권, 배당주로 시작해보세요.";
+    } else if (quizScore <= 10) {
+        typeEl.textContent = "꼼꼼한 다람쥐 🐿️";
+        descEl.textContent = "차근차근 모으는 스타일! 적립식 ETF 투자로 복리의 마법을 경험해보세요.";
+    } else if (quizScore <= 12) {
+        typeEl.textContent = "균형잡힌 팬더 🐼";
+        descEl.textContent = "리스크와 수익의 밸런스를 아는 투자자! 우량주 + ETF 조합이 제격입니다.";
+    } else if (quizScore <= 14) {
+        typeEl.textContent = "기회주의 여우 🦊";
+        descEl.textContent = "트렌드에 민감하고 타이밍을 노려요. 단, 손절 라인은 반드시 지키세요!";
+    } else if (quizScore <= 16) {
         typeEl.textContent = "용감한 사자 🦁";
-        descEl.textContent = "공격적인 투자가 체질이시군요! 하지만 리스크 관리도 잊지 마세요.";
+        descEl.textContent = "공격적인 투자가 체질! 성장주에 집중하되, 분산투자로 리스크를 관리하세요.";
+    } else {
+        typeEl.textContent = "무모한 불나방 🔥";
+        descEl.textContent = "위험을 즐기시네요! 하지만 주식은 도박이 아닙니다. 원칙 없는 매매는 파멸의 지름길입니다.";
     }
 }
 
