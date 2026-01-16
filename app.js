@@ -693,8 +693,12 @@ function renderBlog() {
             return;
         }
     } else {
-        // Sort descending: newest ID first
-        postsToRender = [...visiblePosts].sort((a, b) => b.id - a.id);
+        // Sort descending: newest date first, then newest ID
+        postsToRender = [...visiblePosts].sort((a, b) => {
+            const dateCompare = b.publishDate.localeCompare(a.publishDate);
+            if (dateCompare !== 0) return dateCompare;
+            return b.id - a.id;
+        });
     }
 
     if (postsToRender.length === 0) {
