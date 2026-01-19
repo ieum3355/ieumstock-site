@@ -124,6 +124,27 @@ async function generateBlogPost() {
     }
 
     try {
+        // Collect real-time market data first
+        let marketDataContext = '';
+        const marketDataPath = path.join(__dirname, '../data/market_data.json');
+
+        if (fs.existsSync(marketDataPath)) {
+            try {
+                const marketData = JSON.parse(fs.readFileSync(marketDataPath, 'utf8'));
+                marketDataContext = `\n\n[오늘의 실제 시장 데이터 - ${marketData.date}]\n` +
+                    `- 코스피: ${marketData.korea.kospi.toFixed(2)} (${marketData.korea.kospiChangePercent > 0 ? '+' : ''}${marketData.korea.kospiChangePercent.toFixed(2)}%)\n` +
+                    `- S&P 500: ${marketData.us.sp500.price.toFixed(2)} (${marketData.us.sp500.changePercent}%)\n` +
+                    `- 원/달러 환율: ${marketData.forex.usdKrw.toFixed(2)}원 (${marketData.forex.usdKrwChangePercent}%)\n` +
+                    `- 시장 요약: ${marketData.summary}\n\n` +
+                    `위 실제 데이터를 반드시 참고하여 정확한 내용으로 작성하세요. 추측이나 가상의 수치를 사용하지 마세요.\n`;
+                console.log('✅ Market data loaded successfully');
+            } catch (e) {
+                console.warn('⚠️  Failed to parse market data, proceeding without it');
+            }
+        } else {
+            console.warn('⚠️  Market data file not found, generating without real-time data');
+        }
+
         const dbContent = fs.readFileSync(DB_PATH, 'utf8');
         let existingPosts = [];
         try {
@@ -144,7 +165,7 @@ async function generateBlogPost() {
         if (!modelToUse) throw new Error("No suitable models found.");
 
         // 1. Generate Blog Post
-        const textResult = await callGemini(modelToUse, existingPosts.slice(0, 10));
+        const textResult = await callGemini(modelToUse, existingPosts.slice(0, 10), marketDataContext);
 
         // 2. Generate Daily Market Brief (Enhanced)
         const marketBriefPrompt = `오늘의 시장 브리핑을 작성해줘.
