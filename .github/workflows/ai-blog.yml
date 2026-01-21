@@ -4,6 +4,9 @@ on:
   schedule:
     - cron: '0 7 * * *' # Every day at 4PM KST (7AM UTC) - after market close
   workflow_dispatch: # Allow manual trigger
+  push:
+    branches:
+      - master
 
 jobs:
   build:
