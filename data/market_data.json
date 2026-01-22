@@ -1,28 +1,28 @@
 {
-  "timestamp": "2026-01-21T14:11:54.092Z",
-  "date": "2026-01-21",
+  "timestamp": "2026-01-22T07:27:37.853Z",
+  "date": "2026-01-22",
   "korea": {
-    "kospi": 4909.93,
-    "kospiChange": 24.18,
-    "kospiChangePercent": 0.49,
+    "kospi": 4952.53,
+    "kospiChange": 42.6,
+    "kospiChangePercent": 0.87,
     "note": "Data collected successfully"
   },
   "us": {
     "sp500": {
-      "price": 6796.86,
-      "change": -143.15000000000055,
-      "changePercent": "-2.06"
+      "price": 6875.62,
+      "change": 78.76000000000022,
+      "changePercent": "1.16"
     },
     "nasdaq": {
-      "price": 22954.322,
-      "change": -561.0649999999987,
-      "changePercent": "-2.39"
+      "price": 23224.824,
+      "change": 270.5020000000004,
+      "changePercent": "1.18"
     }
   },
   "forex": {
-    "usdKrw": 1465.45,
-    "usdKrwChange": -13.430000000000064,
-    "usdKrwChangePercent": "-0.91"
+    "usdKrw": 1468.81,
+    "usdKrwChange": 2.589999999999918,
+    "usdKrwChangePercent": "0.18"
   },
-  "summary": "오늘 코스피는 4909.93로 전일 대비 0.49% 상승했습니다. 미국 S&P 500은 6796.86 (하락), 원/달러 환율은 1465.45원 (하락)을 기록했습니다."
+  "summary": "오늘 코스피는 4952.53로 전일 대비 0.87% 상승했습니다. 미국 S&P 500은 6875.62 (상승), 원/달러 환율은 1468.81원 (상승)을 기록했습니다."
 }
