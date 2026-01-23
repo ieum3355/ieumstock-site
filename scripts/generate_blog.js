@@ -81,9 +81,9 @@ async function listVisibleModels() {
     });
 }
 
-async function callGemini(modelName, existingPosts) {
+async function callGemini(modelName, existingPosts, marketDataContext = '') {
     const titles = existingPosts.map(p => p.title);
-    const customizedPrompt = `${PROMPT}\n\n참고: 최근 게시글 제목들(중복 피할 것): ${titles.join(', ')}`;
+    const customizedPrompt = `${PROMPT}${marketDataContext}\n\n참고: 최근 게시글 제목들(중복 피할 것): ${titles.join(', ')}`;
 
     const data = JSON.stringify({
         contents: [{ parts: [{ text: customizedPrompt }] }]

@@ -232,14 +232,14 @@ function generateMarketSummary(data) {
 function validateMarketData(data) {
     const errors = [];
 
-    // 코스피 범위 체크 (1500~3500)
-    if (data.korea.kospi < 1500 || data.korea.kospi > 3500) {
-        errors.push(`⚠️  KOSPI value out of range: ${data.korea.kospi}`);
+    // 코스피 범위 체크 (2000~6000) - 2026년 현실 반영
+    if (data.korea.kospi < 2000 || data.korea.kospi > 6000) {
+        errors.push(`⚠️  KOSPI value out of range: ${data.korea.kospi} (expected: 2000-6000)`);
     }
 
-    // 환율 범위 체크 (1000~1600)
-    if (data.forex.usdKrw < 1000 || data.forex.usdKrw > 1600) {
-        errors.push(`⚠️  USD/KRW value out of range: ${data.forex.usdKrw}`);
+    // 환율 범위 체크 (1000~1800) - 변동성 고려
+    if (data.forex.usdKrw < 1000 || data.forex.usdKrw > 1800) {
+        errors.push(`⚠️  USD/KRW value out of range: ${data.forex.usdKrw} (expected: 1000-1800)`);
     }
 
     // 날짜 체크
@@ -249,8 +249,10 @@ function validateMarketData(data) {
     }
 
     if (errors.length > 0) {
-        console.log('\n⚠️  Validation warnings:');
+        console.log('\n❌ VALIDATION FAILED:');
         errors.forEach(err => console.log(`   ${err}`));
+        console.log('\n💥 Market data validation failed. Please check data sources.');
+        process.exit(1); // 검증 실패 시 프로세스 중단
     } else {
         console.log('\n✅ Data validation passed');
     }
