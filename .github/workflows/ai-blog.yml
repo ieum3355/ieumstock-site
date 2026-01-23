@@ -31,10 +31,10 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: node scripts/generate_blog.js
 
-      - name: Verify Content Quality
+      - name: AI Verify and Auto-Fix Content
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: node scripts/verify_content.js
+        run: node scripts/verify_and_fix_content.js
 
       - name: Commit and Push changes
         run: |
