@@ -206,9 +206,22 @@ async function verifyAndFixContent() {
             }
 
             if (attempt >= MAX_RETRIES) {
-                console.log('\n⚠️  Max retries reached. Proceeding with current content.');
-                console.log('   Manual review recommended.');
-                break;
+                console.log('\n❌ Max retries reached. Content quality not acceptable.');
+                console.log('   Rolling back changes to prevent bad content upload.');
+
+                // 원본으로 롤백
+                fs.writeFileSync(DB_PATH, dbContent, 'utf8');
+                console.log('   💾 Database rolled back to original');
+
+                console.log('\n' + '='.repeat(60));
+                console.log('📊 FINAL RESULT');
+                console.log('='.repeat(60));
+                console.log('Status: ❌ FAILED - Quality standards not met');
+                console.log(`Attempts: ${attempt}/${MAX_RETRIES}`);
+                console.log('Action: Changes rolled back, previous content preserved');
+                console.log('='.repeat(60) + '\n');
+
+                process.exit(1); // 검증 실패 시 배포 차단
             }
 
             // Fixer: 수정
@@ -242,16 +255,18 @@ async function verifyAndFixContent() {
         console.log('\n' + '='.repeat(60));
         console.log('📊 FINAL RESULT');
         console.log('='.repeat(60));
-        console.log(`Status: ${passed ? '✅ PASSED' : '⚠️  PASSED WITH WARNINGS'}`);
+        console.log(`Status: ✅ PASSED - Content verified and ready for deployment`);
         console.log(`Attempts: ${attempt}/${MAX_RETRIES}`);
+        console.log(`Final Score: ${passed ? '80+' : 'N/A'}/100`);
         console.log('='.repeat(60) + '\n');
 
-        process.exit(0);
+        process.exit(0); // 검증 통과 시에만 배포 진행
 
     } catch (error) {
         console.error('\n💥 CRITICAL ERROR:', error.message);
-        console.error('Proceeding without verification to avoid blocking deployment.');
-        process.exit(0); // 오류 발생 시에도 통과 (배포 차단 방지)
+        console.error('❌ Verification failed due to system error.');
+        console.error('   Deployment blocked to prevent potential issues.');
+        process.exit(1); // 오류 발생 시 배포 차단
     }
 }
 
