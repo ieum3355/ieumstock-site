@@ -2,7 +2,7 @@ name: AI Blog Auto Generator
 
 on:
   schedule:
-    - cron: '30 23 * * *' # Every day at 8:30 AM KST (11:30 PM UTC previous day) - before market open
+    - cron: '30 7 * * *' # Every day at 4:30 PM KST (7:30 AM UTC) - after market close
   workflow_dispatch: # Allow manual trigger
   push:
     branches:
