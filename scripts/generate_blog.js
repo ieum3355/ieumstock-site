@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const https = require('https');
+require('dotenv').config();
 
 const API_KEY = process.env.GEMINI_API_KEY;
 const DB_PATH = path.join(__dirname, '../data/content_db.js');
@@ -167,18 +168,28 @@ async function generateBlogPost() {
         // 1. Generate Blog Post
         const textResult = await callGemini(modelToUse, existingPosts.slice(0, 10), marketDataContext);
 
-        // 2. Generate Daily Market Brief (Enhanced)
+        // 2. Generate Daily Market Brief (Objective Facts Only)
         const marketBriefPrompt = `오늘의 시장 브리핑을 작성해줘.
 
 조건:
-1. 오늘 시장의 핵심 요인(미 국채, CPI, 외인 수급, 환율 등)을 날카롭게 짚어줄 것.
-2. 단순 현상 나열 금지! "이래서 위험하다", "이걸 기회로 봐야 한다", "정신 차려야 한다" 같은 강렬한 통찰과 경고를 담을 것.
-3. 6~8문장 분량으로 작성.
-4. 톤: 자연스럽고 생동감 있게! 딱딱한 백과사전식 표현 금지.
-   - OK 표현: "심상찮습니다", "녹록지 않습니다", "한순간에 훅 갑니다", "정신 바짝 차려야 합니다"
-   - 구어체 적절히 사용: "~하는 겁니다", "~할 뿐입니다", "~하지 않나요?"
-5. 1인칭 표현 절대 금지: "저", "제가", "나", "선배" 등 사용하지 말 것.
-6. JSON 형식으로만 응답: {"brief": "내용"}`;
+1. **객관적 사실만 기재**: 오늘 시장의 핵심 지표(코스피, 미국 지수, 환율, 거래량, 외국인/기관 수급 등)를 사실 그대로 전달할 것.
+2. **주관적 의견/예측/경고 절대 금지**: "위험하다", "기회다", "심상찮다", "정신 차려야 한다", "녹록지 않다" 등 모든 주관적 표현 사용 금지.
+3. **허용되는 표현**: "상승했습니다", "하락했습니다", "기록했습니다", "나타났습니다", "집계되었습니다" 등 사실 전달 표현만 사용.
+4. 4~6문장 분량으로 간결하게 작성.
+5. 톤: 뉴스 앵커처럼 중립적이고 객관적으로.
+6. 1인칭 표현 절대 금지: "저", "제가", "나", "선배" 등 사용하지 말 것.
+7. JSON 형식으로만 응답: {"brief": "내용"}
+
+예시 (좋은 표현):
+- "코스피는 전일 대비 0.76% 상승한 4990.07로 마감했습니다."
+- "외국인은 500억원 순매수를 기록했습니다."
+- "원/달러 환율은 1445원대로 하락했습니다."
+
+예시 (나쁜 표현 - 절대 사용 금지):
+- "심상찮은 상황입니다"
+- "정신 차려야 합니다"
+- "위험 신호입니다"
+- "기회로 봐야 합니다"`;
 
         const marketBriefRaw = await new Promise((resolve, reject) => {
             const data = JSON.stringify({ contents: [{ parts: [{ text: marketBriefPrompt }] }] });
