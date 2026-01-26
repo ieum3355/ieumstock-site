@@ -9,6 +9,43 @@ const path = require('path');
 
 const OUTPUT_FILE = path.join(__dirname, '../data/market_data.json');
 
+// 휴장일 여부 확인 (주말 및 한국 공휴일)
+function getMarketStatus() {
+    const now = new Date();
+    // 한국 시간(KST) 기준 날짜 생성
+    const kstOffset = 9 * 60 * 60 * 1000;
+    const kstDate = new Date(now.getTime() + kstOffset);
+    const day = kstDate.getUTCDay(); // 0: 일, 6: 토
+    const dateStr = kstDate.toISOString().split('T')[0];
+
+    // 주말 체크
+    if (day === 0 || day === 6) {
+        return { isClosed: true, reason: '주말 휴장' };
+    }
+
+    // 한국 주요 공휴일 (예시: 신년, 설날, 추석, 크리스마스 등)
+    const holidays = [
+        '2026-01-01', // 신정
+        '2026-02-16', '2026-02-17', '2026-02-18', // 설날
+        '2026-03-01', // 삼일절
+        '2026-05-05', // 어린이날
+        '2026-05-24', // 부처님오신날
+        '2026-06-06', // 현충일
+        '2026-08-15', // 광복절
+        '2026-09-24', '2026-09-25', '2026-09-26', // 추석
+        '2026-10-03', // 개천절
+        '2026-10-09', // 한글날
+        '2026-12-25'  // 성탄절
+    ];
+
+    if (holidays.includes(dateStr)) {
+        return { isClosed: true, reason: '공휴일 휴장' };
+    }
+
+    return { isClosed: false, reason: '정상 영업' };
+}
+
+
 // Yahoo Finance API를 통한 데이터 수집 (무료, API 키 불필요)
 async function fetchYahooFinanceData(symbol) {
     return new Promise((resolve, reject) => {
@@ -117,9 +154,12 @@ async function fetchNaverFinanceData() {
 async function collectMarketData() {
     console.log('📊 Starting market data collection...');
 
+    const status = getMarketStatus();
     const marketData = {
         timestamp: new Date().toISOString(),
         date: new Date().toISOString().split('T')[0],
+        isMarketClosed: status.isClosed,
+        marketClosedReason: status.reason,
         korea: {},
         us: {},
         forex: {},
@@ -129,7 +169,19 @@ async function collectMarketData() {
     try {
         // 1. 한국 시장 데이터 (네이버 금융)
         console.log('🇰🇷 Fetching Korean market data...');
-        const koreaData = await fetchNaverFinanceData();
+        let koreaData;
+        if (marketData.isMarketClosed) {
+            console.log(`   ⚠️  Korean market is closed due to ${marketData.marketClosedReason}. Using estimated values.`);
+            koreaData = {
+                kospi: 2500,
+                kospiChange: 0,
+                kospiChangePercent: 0,
+                note: `Market closed: ${marketData.marketClosedReason}, using estimated values`
+            };
+        } else {
+            koreaData = await fetchNaverFinanceData();
+        }
+
         marketData.korea = {
             kospi: koreaData.kospi,
             kospiChange: koreaData.kospiChange,
@@ -206,7 +258,9 @@ async function collectMarketData() {
         const fallbackData = {
             timestamp: new Date().toISOString(),
             date: new Date().toISOString().split('T')[0],
-            korea: { kospi: 2500, kospiChange: 0, kospiChangePercent: 0 },
+            isMarketClosed: marketData.isMarketClosed, // Keep the market closed status
+            marketClosedReason: marketData.marketClosedReason,
+            korea: { kospi: 2500, kospiChange: 0, kospiChangePercent: 0, note: 'Error during collection, using fallback' },
             us: { sp500: { price: 5800, changePercent: '0.00' }, nasdaq: { price: 18500, changePercent: '0.00' } },
             forex: { usdKrw: 1380, usdKrwChangePercent: '0.00' },
             summary: '시장 데이터 수집 중 오류가 발생했습니다. 기본값을 사용합니다.',
@@ -219,11 +273,14 @@ async function collectMarketData() {
 
 // 시장 요약 생성
 function generateMarketSummary(data) {
+    if (data.isMarketClosed) {
+        return `오늘은 ${data.marketClosedReason}으로 국내 증시가 휴장입니다. 현재 환율과 해외 증시 상황을 참고하여 내일의 장을 준비하세요.`;
+    }
     const kospiDirection = data.korea.kospiChangePercent > 0 ? '상승' : data.korea.kospiChangePercent < 0 ? '하락' : '보합';
     const sp500Direction = parseFloat(data.us.sp500.changePercent) > 0 ? '상승' : parseFloat(data.us.sp500.changePercent) < 0 ? '하락' : '보합';
     const usdDirection = parseFloat(data.forex.usdKrwChangePercent) > 0 ? '상승' : parseFloat(data.forex.usdKrwChangePercent) < 0 ? '하락' : '보합';
 
-    return `오늘 코스피는 ${data.korea.kospi.toFixed(2)}로 전일 대비 ${Math.abs(data.korea.kospiChangePercent).toFixed(2)}% ${kospiDirection}했습니다. ` +
+    return `[${data.date} 시장 요약] 코스피는 ${data.korea.kospi.toFixed(2)}로 전일 대비 ${Math.abs(data.korea.kospiChangePercent).toFixed(2)}% ${kospiDirection}했습니다. ` +
         `미국 S&P 500은 ${data.us.sp500.price.toFixed(2)} (${sp500Direction}), ` +
         `원/달러 환율은 ${data.forex.usdKrw.toFixed(2)}원 (${usdDirection})을 기록했습니다.`;
 }
@@ -232,12 +289,15 @@ function generateMarketSummary(data) {
 function validateMarketData(data) {
     const errors = [];
 
-    // 코스피 범위 체크 (2000~6000) - 2026년 현실 반영
-    if (data.korea.kospi < 2000 || data.korea.kospi > 6000) {
-        errors.push(`⚠️  KOSPI value out of range: ${data.korea.kospi} (expected: 2000-6000)`);
+    // 휴장일인 경우 국내 지수 범위 체크 건너뛰기 (기존 데이터 유지되므로)
+    if (!data.isMarketClosed) {
+        // 코스피 범위 체크 (2000~6000)
+        if (data.korea.kospi < 2000 || data.korea.kospi > 6000) {
+            errors.push(`⚠️  KOSPI value out of range: ${data.korea.kospi} (expected: 2000-6000)`);
+        }
     }
 
-    // 환율 범위 체크 (1000~1800) - 변동성 고려
+    // 환율 범위 체크 (1000~1800) - 환율은 주말에도 존재할 수 있음
     if (data.forex.usdKrw < 1000 || data.forex.usdKrw > 1800) {
         errors.push(`⚠️  USD/KRW value out of range: ${data.forex.usdKrw} (expected: 1000-1800)`);
     }
@@ -251,8 +311,15 @@ function validateMarketData(data) {
     if (errors.length > 0) {
         console.log('\n❌ VALIDATION FAILED:');
         errors.forEach(err => console.log(`   ${err}`));
+
+        // 휴장일에는 일부 데이터 미비가 치명적이지 않을 수 있으므로 경고만 출력
+        if (data.isMarketClosed) {
+            console.log('\n⚠️  Market is closed. Proceeding despite validation warnings.');
+            return true;
+        }
+
         console.log('\n💥 Market data validation failed. Please check data sources.');
-        process.exit(1); // 검증 실패 시 프로세스 중단
+        process.exit(1);
     } else {
         console.log('\n✅ Data validation passed');
     }

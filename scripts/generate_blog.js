@@ -132,12 +132,18 @@ async function generateBlogPost() {
         if (fs.existsSync(marketDataPath)) {
             try {
                 const marketData = JSON.parse(fs.readFileSync(marketDataPath, 'utf8'));
-                marketDataContext = `\n\n[오늘의 실제 시장 데이터 - ${marketData.date}]\n` +
-                    `- 코스피: ${marketData.korea.kospi.toFixed(2)} (${marketData.korea.kospiChangePercent > 0 ? '+' : ''}${marketData.korea.kospiChangePercent.toFixed(2)}%)\n` +
+                let statusHeader = `\n\n[오늘의 실제 시장 데이터 - ${marketData.date}]\n`;
+                if (marketData.isMarketClosed) {
+                    statusHeader += `⚠️ 오늘은 ${marketData.marketClosedReason}으로 국내 증시가 열리지 않았습니다.\n`;
+                }
+
+                marketDataContext = statusHeader +
+                    `- 코스피: ${marketData.korea.kospi.toFixed(2)} (${marketData.korea.kospiChangePercent > 0 ? '+' : ''}${marketData.korea.kospiChangePercent.toFixed(2)}% ${marketData.isMarketClosed ? '(휴장)' : ''})\n` +
                     `- S&P 500: ${marketData.us.sp500.price.toFixed(2)} (${marketData.us.sp500.changePercent}%)\n` +
                     `- 원/달러 환율: ${marketData.forex.usdKrw.toFixed(2)}원 (${marketData.forex.usdKrwChangePercent}%)\n` +
                     `- 시장 요약: ${marketData.summary}\n\n` +
-                    `위 실제 데이터를 반드시 참고하여 정확한 내용으로 작성하세요. 추측이나 가상의 수치를 사용하지 마세요.\n`;
+                    `위 실제 데이터를 반드시 참고하여 정확한 내용으로 작성하세요. ` +
+                    (marketData.isMarketClosed ? `특히 오늘은 휴장일이므로, 시장의 정중동(靜中動) 상황을 짚어주고 투자 원칙을 되새기는 방향으로 작성하세요.` : `추측이나 가상의 수치를 사용하지 마세요.`) + `\n`;
                 console.log('✅ Market data loaded successfully');
             } catch (e) {
                 console.warn('⚠️  Failed to parse market data, proceeding without it');
