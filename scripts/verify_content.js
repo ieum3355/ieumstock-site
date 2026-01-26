@@ -78,7 +78,10 @@ async function verifyContent() {
             console.log(`   ✅ Market data date is current: ${today}`);
         }
 
-        // 4. 시장 브리핑 추출
+        // 4. 금지 표현 목록 정의
+        const forbiddenWords = ['저', '제가', '나', '주식 선배', '선배로서'];
+
+        // 5. 시장 브리핑 추출
         const marketBriefMatch = dbContent.match(/"market_brief":\s*"([^"]+)"/);
         if (!marketBriefMatch) {
             errors.push('❌ Market brief not found in content_db.js');
@@ -87,8 +90,7 @@ async function verifyContent() {
             console.log('\n📰 Verifying market brief...');
             console.log(`   Brief: "${marketBrief.substring(0, 100)}..."`);
 
-            // 5. 금지 표현 검사
-            const forbiddenWords = ['저', '제가', '나', '주식 선배', '선배로서'];
+            // 6. 금지 표현 검사
             const foundForbidden = forbiddenWords.filter(word => marketBrief.includes(word));
 
             if (foundForbidden.length > 0) {
@@ -130,12 +132,34 @@ async function verifyContent() {
                     console.log(`   ✅ Post is recent (${daysDiff} days old)`);
                 }
 
-                // 금지 표현 검사 (샘플)
-                const contentSample = postsContent.substring(0, 2000);
-                const forbiddenInPost = forbiddenWords.filter(word => contentSample.includes(word));
+                // 금지 표현 검사 (샘플) - 금융 용어 제외
+                const contentSample = postsContent.substring(0, 5000);
 
-                if (forbiddenInPost.length > 0) {
-                    errors.push(`❌ Forbidden words found in blog post: ${forbiddenInPost.join(', ')}`);
+                // Check for actual first-person expressions, not financial terms
+                const actualForbidden = [];
+
+                // Check for "저는" (avoid 저평가, 저PBR etc)
+                if (/(?:^|\s)저는[\s\.\?!]/.test(contentSample)) {
+                    actualForbidden.push('저는');
+                }
+
+                // Check for "제가" (avoid 제2의, 제일 etc)
+                if (/(?:^|\s)제가[\s\.\?!]/.test(contentSample)) {
+                    actualForbidden.push('제가');
+                }
+
+                // Check for "나는", "나만" (avoid 나타나는, 일어나는 etc)
+                if (/(?:^|\s)나(?:는|만)[\s\.\?!]/.test(contentSample)) {
+                    actualForbidden.push('나');
+                }
+
+                // Check for "주식 선배", "선배로서"
+                if (/주식\s*선배/.test(contentSample) || /(?:^|\s)선배로서/.test(contentSample)) {
+                    actualForbidden.push('선배');
+                }
+
+                if (actualForbidden.length > 0) {
+                    errors.push(`❌ Forbidden words found in blog post: ${actualForbidden.join(', ')}`);
                 } else {
                     console.log('   ✅ No forbidden expressions in post sample');
                 }
