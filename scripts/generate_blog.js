@@ -10,54 +10,45 @@ const PROMPT = `## 역할:
 - 주린이(초보 투자자)들을 위한 실전 투자 인사이트를 제공하는 콘텐츠를 작성합니다.
 - **중요**: 너무 AI스럽고 딱딱한 백과사전식 글은 절대 금지! 생동감 있고 날카로운 톤을 유지하세요.
 
+## 주제 선정 가이드 (매일 다양하게):
+다음 [주제 카테고리] 중 하나를 선택하여 작성하되, **최근 3일간 다룬 주제와 겹치지 않도록 하세요.**
+1. **산업/섹터 분석**: 반도체, 2차전지, 바이오, 자동차, 방산, 조선 등 특정 산업의 현황과 리스크.
+2. **거시 경제(Macro)**: 금리, 환율, 유가, 인플레이션이 내 계좌에 미치는 영향.
+3. **기술적 분석(Chart)**: 캔들 패턴, 이평선, 거래량, 보조지표(RSI, MACD, 볼린저밴드) 심층 해설.
+4. **투자 마인드셋**: 공포/탐욕 관리, 손절매 원칙, 계좌 관리, 멘탈 케어.
+5. **재무제표/용어**: PER, PBR, ROE, 영업이익률 등 필수 용어의 실전 해석법.
+
 ## 어조 선택 (주제에 따라 하나를 선택):
-// 1. **따끔한 질책 톤** (물타기, 확증편향, 무계획 매매 등)
-//    - "정신 차려야 합니다", "이건 자살 행위입니다", "계좌 녹아내리는 소리 들리지 않나요?"
-//    - 투자자들의 잘못된 습관을 직설적으로 지적
-//
-// **[절대 금지 주제]**: 
-// - **'코스피 5000 시대', '코스피 5000 돌파' 관련 내용은 절대 작성하지 마세요.** (이미 너무 많이 다뤘음)
-// - 1인칭 ("저", "제가", "나", "선배") 사용 금지.
-//
-// ## 어조 선택 (주제에 따라 하나를 선택):
-   - 예시: "떨어지는 칼날을 맨손으로 잡으면서 평단가 낮췄다고 좋아하는 분들, 제발 정신 좀 차리세요!"
+1. **따끔한 질책 톤** (물타기, 확증편향, 무계획 매매 등)
+   - "정신 차려야 합니다", "이건 자살 행위입니다", "계좌 녹아내립니다"
 
 2. **공포 유발 톤** (고점 매수, FOMO, 과열장 등)
-   - "파멸의 시작입니다", "고점에서 물리면 구조대는 오지 않습니다", "한순간에 훅 갑니다"
-   - 위험성을 강하게 경고하며 긴장감 조성
-   - 예시: "빨간 기둥 보고 흥분해서 뛰어드는 순간, 당신은 세력들의 화려한 탈출 파티에 초대된 겁니다."
+   - "파멸의 시작입니다", "구조대는 오지 않습니다", "폭탄 돌리기입니다"
 
-3. **현실 충고 톤** (자산 관리, 시드 확보, 분산투자 등)
-   - "현명한 선택입니다", "탄탄한 기본기가 필요합니다", "인내심이 승부를 가릅니다"
-   - 차분하지만 단호하게 현실적인 조언 제공
-   - 예시: "시장은 매일 열립니다. 조급해하지 마세요. 준비된 투자자만이 기회를 잡을 수 있습니다."
+3. **현실 충고 톤** (자산 관리, 시드 확보, 산업 분석)
+   - "냉정해져야 합니다", "숫자는 거짓말하지 않습니다", "기본으로 돌아가세요"
 
 ## 필수 포함 사항 (융합 분석 스타일):
-1. **기본적 분석(Fundamental)**: 산업의 이면, 기업의 생존 로직을 40% 비중으로 설명. 
-2. **기술적 분석(Technical/Chart)**: "이 자리는 개미지옥이다" 혹은 "이건 세력의 흔적이다"와 같은 날카로운 차트 해석을 40% 비중으로 설명.
-3. **실전 적용 & 조언**: 초보자가 당장 고쳐야 할 나쁜 습관과 차트에서 확인해야 할 핵심 포인트 제시 (20%).
+1. **선택한 주제의 심층 분석**: 겉핥기 식이 아닌, 구체적인 예시와 숫자를 들어 설명 (40%).
+2. **시장/차트와의 연계**: 해당 주제가 현재 시장 상황이나 차트에서 어떻게 나타나는지 설명 (40%).
+3. **실전 적용 & 조언**: 초보자가 당장 실천할 수 있는 구체적인 행동 지침 (20%).
 
 ## 콘텐츠 구성 가이드라인:
-1. [도입부]: 선택한 어조에 맞는 강렬한 화두 던지기 (질책/공포/충고 톤 반영)
-2. [본론 1 - 시장의 냉혹한 현실]: 해당 산업/종목이 처한 진짜 상황 분석
-3. [본론 2 - 차트는 거짓말 안 합니다]: 세력의 의도나 수급의 흐름을 날카롭게 분석
-4. [본론 3 - 실전 솔루션]: 구체적인 대응 전략 (ul/li 활용)
+1. [도입부]: 선택한 어조에 맞는 강렬한 화두 던지기
+2. [본론 1]: 주제에 대한 깊이 있는 분석 (산업/경제/차트 등)
+3. [본론 2]: 구체적인 사례나 데이터, 차트 패턴 설명
+4. [본론 3 - 실전 솔루션]: 대응 전략 (ul/li 활용)
 5. [결론 및 면책조항]: "이 정보는 투자 참고용이며, 최종 결정은 본인에게 있습니다" 문구 포함
 
 ## 기술적 요구사항:
 - 소제목은 <h3> 태그 사용
 - 핵심 키워드는 <strong> 태그
 - 문단은 <p> 태그
-- **공백 제외 최소 1000자 이상**의 압도적인 분량과 논리를 담을 것
-- 형식: {"title": "제목", "content": "내용(HTML 태그 포함)"}
-- **스토리텔링**: "많은 투자자들이 이 자리에서 손실을 경험했습니다", "시장에서 흔히 보이는 실수입니다" 같은 일반적인 투자자 경험 사례 활용
-- **1인칭 표현 금지**: "저", "제가", "나", "선배" 등의 주어는 절대 사용하지 마세요
-
-## 주의사항: 
-- **AI스러운 중립적 톤 금지**: 백과사전처럼 쓰지 말고, 선택한 어조(질책/공포/충고)를 살려서 생동감 있게 작성하세요
-- 반드시 '반대 의견'이나 '주의할 점'을 강하게 언급해서 객관성을 유지하되, 톤은 날카롭고 주관적으로 가져가세요
-- "정신 차리세요", "파멸입니다", "녹아내립니다" 같은 강한 표현은 OK! 단, "저", "제가", "선배" 같은 1인칭은 절대 NO!
-- 구어체 적절히 사용 가능: "~하는 겁니다", "~할 뿐입니다", "~하지 않나요?" (단, "아시겠나요", "말이죠"는 피할 것)`;
+- **공백 제외 최소 1000자 이상**의 압도적인 분량
+- **1인칭 표현 금지**: "저", "제가", "나" 절대 사용 금지
+- **중복 금지**: 최근 게시글 제목들과 비슷한 내용을 절대 피하고, 새로운 관점을 제시하세요.
+- **JSON 형식 필수**: 반드시 JSON 포맷(title, content)으로 응답하세요.
+- **줄바꿈 처리**: content 내부의 줄바꿈은 반드시 역슬래시 n (\\n)으로 이스케이프해야 합니다.`;
 
 async function listVisibleModels() {
     const options = {
@@ -109,9 +100,10 @@ async function callGemini(modelName, existingPosts, marketDataContext = '', retr
                 try {
                     const result = JSON.parse(body);
                     if (result.error) {
-                        if (result.error.code === 429 && retryCount < 3) {
-                            console.log(`⚠️ Rate limit hit (429). Retrying in ${(retryCount + 1) * 2} seconds...`);
-                            await new Promise(r => setTimeout(r, (retryCount + 1) * 2000));
+                        if (result.error.code === 429 && retryCount < 5) { // Increased retries to 5
+                            const waitTime = (retryCount + 1) * 5000; // Increased base wait to 5 seconds
+                            console.log(`⚠️ Rate limit hit (429). Retrying in ${waitTime / 1000} seconds...`);
+                            await new Promise(r => setTimeout(r, waitTime));
                             return resolve(callGemini(modelName, existingPosts, marketDataContext, retryCount + 1));
                         }
                         return reject(result.error);
@@ -119,6 +111,7 @@ async function callGemini(modelName, existingPosts, marketDataContext = '', retr
                     if (!result.candidates || !result.candidates[0]) return reject(new Error("No candidates"));
                     resolve(result.candidates[0].content.parts[0].text);
                 } catch (e) {
+                    console.error("JSON Parse Error. Body received:", body); // Debugging
                     reject(new Error(`Request Error: ${body}`));
                 }
             });
@@ -226,9 +219,40 @@ ${marketDataContext}
         const ids = existingPosts.map(p => parseInt(p.id));
         const nextId = Math.max(...ids, 0) + 1;
 
-        const jsonMatch = textResult.match(/\{[\s\S]*\}/);
-        if (!jsonMatch) throw new Error("No JSON found in AI response");
-        const postData = JSON.parse(jsonMatch[0]);
+        let jsonMatch = textResult.match(/\{[\s\S]*\}/);
+        if (!jsonMatch) {
+            console.error("❌ No JSON found. Raw AI Response:\n", textResult);
+            // Attempt to clean markdown
+            const cleanText = textResult.replace(/```json/g, '').replace(/```/g, '');
+            jsonMatch = cleanText.match(/\{[\s\S]*\}/);
+            if (!jsonMatch) throw new Error("No JSON found in AI response");
+        }
+
+        // Sanitize: Replace actual newlines with escaped newlines to fix "multiline string" invalid JSON
+        let postData;
+        try {
+            const sanitizedJson = jsonMatch[0].replace(/\n/g, "\\n").replace(/\r/g, "");
+            postData = JSON.parse(sanitizedJson);
+        } catch (e) {
+            console.warn("⚠️ JSON Parse failed. Using Regex fallback...");
+            const titleMatch = textResult.match(/"title"\s*:\s*"([^"]*?)"/);
+            // Match content: "content": "..." -> Look for the last quote before the closing brace
+            const contentMatch = textResult.match(/"content"\s*:\s*"([\s\S]*?)"\s*\}/);
+
+            if (titleMatch && contentMatch) {
+                // Manually handle escaped newlines if likely present in raw text
+                let rawContent = contentMatch[1];
+                // Should we unescape? If textResult had actual newlines, we keep them (HTML is fine with newlines).
+                // But we might need to unescape \" to "
+                postData = {
+                    title: titleMatch[1],
+                    content: rawContent.replace(/\\"/g, '"').replace(/\\n/g, '\n')
+                };
+            } else {
+                console.error("Fallback failed. Raw text:", textResult);
+                throw e; // Throw original error
+            }
+        }
 
         const marketBriefJsonMatch = marketBriefRaw.match(/\{[\s\S]*\}/);
         const marketBriefText = marketBriefJsonMatch ? JSON.parse(marketBriefJsonMatch[0]).brief : "오늘도 성투하세요!";
