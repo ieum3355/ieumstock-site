@@ -82,7 +82,7 @@ async function listVisibleModels() {
     });
 }
 
-async function callGemini(modelName, existingPosts, marketDataContext = '') {
+async function callGemini(modelName, existingPosts, marketDataContext = '', retryCount = 0) {
     const titles = existingPosts.map(p => p.title);
     const customizedPrompt = `${PROMPT}${marketDataContext}\n\n참고: 최근 게시글 제목들(중복 피할 것): ${titles.join(', ')}`;
 
@@ -101,10 +101,17 @@ async function callGemini(modelName, existingPosts, marketDataContext = '') {
         const req = https.request(options, (res) => {
             let body = '';
             res.on('data', d => body += d);
-            res.on('end', () => {
+            res.on('end', async () => {
                 try {
                     const result = JSON.parse(body);
-                    if (result.error) return reject(result.error);
+                    if (result.error) {
+                        if (result.error.code === 429 && retryCount < 3) {
+                            console.log(`⚠️ Rate limit hit (429). Retrying in ${(retryCount + 1) * 2} seconds...`);
+                            await new Promise(r => setTimeout(r, (retryCount + 1) * 2000));
+                            return resolve(callGemini(modelName, existingPosts, marketDataContext, retryCount + 1));
+                        }
+                        return reject(result.error);
+                    }
                     if (!result.candidates || !result.candidates[0]) return reject(new Error("No candidates"));
                     resolve(result.candidates[0].content.parts[0].text);
                 } catch (e) {
