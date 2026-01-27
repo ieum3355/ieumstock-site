@@ -59,9 +59,10 @@ async function listVisibleModels() {
 
     return new Promise((resolve, reject) => {
         const req = https.request(options, (res) => {
-            let body = '';
-            res.on('data', d => body += d);
+            const chunks = [];
+            res.on('data', d => chunks.push(d));
             res.on('end', () => {
+                const body = Buffer.concat(chunks).toString('utf8');
                 try {
                     const result = JSON.parse(body);
                     if (result.error) return reject(result.error);
@@ -94,9 +95,10 @@ async function callGemini(modelName, existingPosts, marketDataContext = '', retr
 
     return new Promise((resolve, reject) => {
         const req = https.request(options, (res) => {
-            let body = '';
-            res.on('data', d => body += d);
+            const chunks = [];
+            res.on('data', d => chunks.push(d));
             res.on('end', async () => {
+                const body = Buffer.concat(chunks).toString('utf8');
                 try {
                     const result = JSON.parse(body);
                     if (result.error) {
@@ -200,9 +202,10 @@ ${marketDataContext}
                 headers: { 'Content-Type': 'application/json' }
             };
             const req = https.request(options, (res) => {
-                let body = '';
-                res.on('data', d => body += d);
+                const chunks = [];
+                res.on('data', d => chunks.push(d));
                 res.on('end', () => {
+                    const body = Buffer.concat(chunks).toString('utf8');
                     try {
                         const result = JSON.parse(body);
                         resolve(result.candidates[0].content.parts[0].text);
