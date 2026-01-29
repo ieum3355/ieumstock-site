@@ -125,6 +125,7 @@ async function callGemini(modelName, existingPosts, marketDataContext = '', retr
 }
 
 async function generateBlogPost() {
+    console.log('🚀 Starting Blog Generation Script...');
     if (!API_KEY) {
         console.error('Error: GEMINI_API_KEY is not set.');
         process.exit(1);
@@ -187,9 +188,11 @@ async function generateBlogPost() {
         if (!modelToUse) throw new Error("No suitable models found.");
 
         // 1. Generate Blog Post
+        console.log(`🤖 Generatring blog post using ${modelToUse}...`);
         const textResult = await callGemini(modelToUse, existingPosts.slice(0, 10), marketDataContext);
 
         // 2. Generate Daily Market Brief (Objective Facts Only)
+        console.log(`📊 Generating market brief...`);
         const marketBriefPrompt = `오늘의 시장 브리핑을 작성해줘. 다음 데이터를 바탕으로 작성할 것:
 ${marketDataContext}
 
