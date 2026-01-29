@@ -150,8 +150,10 @@ async function fetchNaverFinanceData() {
     });
 }
 
-// 메인 데이터 수집 함수
-async function collectMarketData() {
+const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+// 단일 데이터 수집 (저장 및 검증 로직 제외)
+async function fetchRawData() {
     console.log('📊 Starting market data collection...');
 
     const status = getMarketStatus();
@@ -241,33 +243,53 @@ async function collectMarketData() {
         // 4. 시장 요약 생성
         marketData.summary = generateMarketSummary(marketData);
 
-        // 5. 데이터 검증
-        validateMarketData(marketData);
-
-        // 6. 파일 저장
-        fs.writeFileSync(OUTPUT_FILE, JSON.stringify(marketData, null, 2), 'utf8');
-        console.log(`\n✅ Market data saved to: ${OUTPUT_FILE}`);
-        console.log('\n📋 Summary:');
-        console.log(marketData.summary);
-
         return marketData;
 
+
+
     } catch (error) {
-        console.error('❌ Error collecting market data:', error.message);
-        // 에러 발생 시에도 기본 데이터 반환
-        const fallbackData = {
-            timestamp: new Date().toISOString(),
-            date: new Date().toISOString().split('T')[0],
-            isMarketClosed: marketData.isMarketClosed, // Keep the market closed status
-            marketClosedReason: marketData.marketClosedReason,
-            korea: { kospi: 2500, kospiChange: 0, kospiChangePercent: 0, note: 'Error during collection, using fallback' },
-            us: { sp500: { price: 5800, changePercent: '0.00' }, nasdaq: { price: 18500, changePercent: '0.00' } },
-            forex: { usdKrw: 1380, usdKrwChangePercent: '0.00' },
-            summary: '시장 데이터 수집 중 오류가 발생했습니다. 기본값을 사용합니다.',
-            error: error.message
-        };
-        fs.writeFileSync(OUTPUT_FILE, JSON.stringify(fallbackData, null, 2), 'utf8');
-        return fallbackData;
+        throw error; // 에러를 상위 함수(Retry Loop)로 전파
+    }
+}
+
+// 메인 실행 함수 (Retry 및 검증 로직 포함)
+async function collectMarketData() {
+    console.log('📊 Starting market data collection with Retry Logic...');
+    const MAX_RETRIES = 5;
+
+    for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+        try {
+            console.log(`\n🔄 Attempt ${attempt}/${MAX_RETRIES}`);
+
+            // 1. 데이터 수집 시도
+            const data = await fetchRawData();
+
+            // 2. 데이터 검증
+            const isValid = validateMarketData(data);
+
+            if (isValid) {
+                // 성공 시 저장 및 종료
+                fs.writeFileSync(OUTPUT_FILE, JSON.stringify(data, null, 2), 'utf8');
+                console.log(`\n✅ Market data saved to: ${OUTPUT_FILE}`);
+                console.log('\n📋 Summary:');
+                console.log(data.summary);
+                return data;
+            } else {
+                throw new Error('Validation failed');
+            }
+
+        } catch (error) {
+            console.warn(`⚠️  Attempt ${attempt} failed: ${error.message}`);
+            if (attempt < MAX_RETRIES) {
+                console.log('⏳ Waiting 5 seconds before retrying...');
+                await sleep(5000);
+            } else {
+                console.error('\n❌ All retries failed. Exiting with error.');
+                // 로컬 테스트나 디버깅을 위해 에러 로그를 남기지만, 
+                // 워크플로우를 실패처리하여 잘못된 데이터가 올라가는 것을 방지함.
+                throw error;
+            }
+        }
     }
 }
 
@@ -312,20 +334,19 @@ function validateMarketData(data) {
         console.log('\n❌ VALIDATION FAILED:');
         errors.forEach(err => console.log(`   ${err}`));
 
-        // 휴장일에는 일부 데이터 미비가 치명적이지 않을 수 있으므로 경고만 출력
+        // 휴장일에는 일부 데이터 미비가 치명적이지 않을 수 있으므로 경고만 출력하고 통과
         if (data.isMarketClosed) {
             console.log('\n⚠️  Market is closed. Proceeding despite validation warnings.');
             return true;
         }
 
-        console.warn('\n⚠️ Market data validation failed, but proceeding with collected data.');
-        // process.exit(1); // Do not exit, allow workflow to continue
-        return true;
+        // 평일에는 엄격하게 차단 (Retry 유도)
+        return false;
     } else {
         console.log('\n✅ Data validation passed');
     }
 
-    return errors.length === 0;
+    return true;
 }
 
 // 스크립트 직접 실행 시
