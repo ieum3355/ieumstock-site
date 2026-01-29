@@ -300,7 +300,50 @@ ${marketDataContext}
         };
 
         // Update DB
-        let updatedDb = dbContent.replace(/"blog_posts":\s*\[/, `"blog_posts": [\n        ${JSON.stringify(newPost, null, 8).replace(/\n/g, '\n        ').trim()},`);
+        // Update DB Logic with Duplicate Prevention
+        let updatedDb = dbContent;
+
+        const formattedDate = publishDate.replace(/-/g, '.');
+        // Regex to find an existing post block with the same publishDate
+        const dateRegex = new RegExp(`"date":\\s*"${formattedDate}"`);
+
+        if (dateRegex.test(dbContent)) {
+            console.log(`ℹ️ Post for date ${formattedDate} already exists. Attempting to update...`);
+
+            const blogPostsMatch = dbContent.match(/"blog_posts":\s*(\[\s*\{[\s\S]*\}\s*\])/);
+            if (blogPostsMatch) {
+                try {
+                    const postsArrayStr = blogPostsMatch[1];
+                    const postsArray = JSON.parse(postsArrayStr);
+
+                    const targetIndex = postsArray.findIndex(p => p.date === formattedDate);
+
+                    if (targetIndex !== -1) {
+                        // Update existing
+                        postsArray[targetIndex].title = newPost.title;
+                        postsArray[targetIndex].content = newPost.content;
+                        newPost.id = postsArray[targetIndex].id; // Sync ID
+                        console.log(`   Updated Post ID: ${newPost.id}`);
+                    } else {
+                        // Fallback logic incase regex matched but array find failed
+                        postsArray.unshift(newPost);
+                        console.log(`   Created New Post ID: ${newPost.id}`);
+                    }
+
+                    // Re-serialize the array
+                    const newPostsJson = JSON.stringify(postsArray, null, 8).replace(/\n/g, '\n    ');
+                    updatedDb = updatedDb.replace(blogPostsMatch[1], newPostsJson);
+
+                } catch (e) {
+                    console.warn("⚠️ Failed to parse blog_posts array safely. Appending as fallback.");
+                    updatedDb = dbContent.replace(/"blog_posts":\s*\[/, `"blog_posts": [\n        ${JSON.stringify(newPost, null, 8).replace(/\n/g, '\n        ').trim()},`);
+                }
+            }
+        } else {
+            // No existing post for today, insert new.
+            updatedDb = dbContent.replace(/"blog_posts":\s*\[/, `"blog_posts": [\n        ${JSON.stringify(newPost, null, 8).replace(/\n/g, '\n        ').trim()},`);
+            console.log(`   Created New Post ID: ${newPost.id}`);
+        }
 
         if (updatedDb.includes('"market_brief":')) {
             updatedDb = updatedDb.replace(/"market_brief":\s*"[^"]*"/, `"market_brief": "${marketBriefText.replace(/"/g, '\\"')}"`);
@@ -309,7 +352,7 @@ ${marketDataContext}
         }
 
         fs.writeFileSync(DB_PATH, updatedDb, 'utf8');
-        console.log(`Success! Created Post #${nextId} and updated Market Brief.`);
+        console.log(`Success! Operation completed for ${formattedDate}.`);
     } catch (e) {
         console.error('Error:', e);
         process.exit(1);
