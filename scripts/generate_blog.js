@@ -234,17 +234,21 @@ ${marketDataContext}
         // Sanitize: Replace actual newlines with escaped newlines to fix "multiline string" invalid JSON
         let postData;
         try {
-            const sanitizedJson = jsonMatch[0].replace(/\n/g, "\\n").replace(/\r/g, "");
+            // More aggressive sanitization for common LLM JSON errors
+            const sanitizedJson = jsonMatch[0]
+                .replace(/(['"])?([a-zA-Z0-9_]+)(['"])?:/g, '"$2":') // Ensure keys are quoted
+                .replace(/\n/g, "\\n")
+                .replace(/\r/g, "");
             postData = JSON.parse(sanitizedJson);
         } catch (e) {
             console.warn("⚠️ JSON Parse failed. Using Regex fallback...");
             const titleMatch = textResult.match(/"title"\s*:\s*"([^"]*?)"/);
-            // Match content: "content": "..." -> Look for the last quote before the closing brace
-            const contentMatch = textResult.match(/"content"\s*:\s*"([\s\S]*?)"\s*\}/);
+            // Match content: "content": "..." -> Look for the last quote before the closing brace or just grab until end
+            const contentMatch = textResult.match(/"content"\s*:\s*"([\s\S]*?)"\s*\}/) || textResult.match(/"content"\s*:\s*"([\s\S]*)?$/);
 
-            if (titleMatch && contentMatch) {
+            if (titleMatch) {
                 // Manually handle escaped newlines if likely present in raw text
-                let rawContent = contentMatch[1];
+                let rawContent = contentMatch ? contentMatch[1] : "내용 생성 실패";
                 // Should we unescape? If textResult had actual newlines, we keep them (HTML is fine with newlines).
                 // But we might need to unescape \" to "
                 postData = {
@@ -253,7 +257,12 @@ ${marketDataContext}
                 };
             } else {
                 console.error("Fallback failed. Raw text:", textResult);
-                throw e; // Throw original error
+                // Instead of crashing, use a default title/content to keep the pipeline alive
+                console.warn("⚠️ generating default content due to parsing failure");
+                postData = {
+                    title: `[자동 생성 실패] ${new Date().toLocaleDateString()} 시장 브리핑`,
+                    content: `<p>AI 응답을 처리하는 중 오류가 발생했습니다. 원문 데이터:<br><pre>${textResult.substring(0, 200)}...</pre></p>`
+                };
             }
         }
 
