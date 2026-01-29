@@ -140,16 +140,25 @@ async function generateBlogPost() {
                 const marketData = JSON.parse(fs.readFileSync(marketDataPath, 'utf8'));
                 let statusHeader = `\n\n[오늘의 실제 시장 데이터 - ${marketData.date}]\n`;
                 if (marketData.isMarketClosed) {
-                    statusHeader += `⚠️ 오늘은 ${marketData.marketClosedReason}으로 국내 증시가 열리지 않았습니다.\n`;
+                    statusHeader += `⚠️ 오늘은 ${marketData.marketClosedReason}으로 국내 증시가 열리지 않았습니다. (휴장일)\n`;
+                    // 휴장일에는 KOSPI 수치를 아예 전달하지 않거나, 명확히 휴장임을 표시
+                    marketDataContext = statusHeader +
+                        `- 코스피: [휴장] (데이터 없음)\n` +
+                        `- S&P 500: ${marketData.us.sp500.price.toFixed(2)} (${marketData.us.sp500.changePercent}%)\n` +
+                        `- 원/달러 환율: ${marketData.forex.usdKrw.toFixed(2)}원 (${marketData.forex.usdKrwChangePercent}%)\n` +
+                        `- 시장 요약: ${marketData.summary}\n\n` +
+                        `**작성 지침 (중요):**\n` +
+                        `1. 오늘은 국내 증시 휴장일입니다. 따라서 '오늘 코스피가 상승/하락했다'는 등락 언급을 절대 하지 마세요.\n` +
+                        `2. 대신, 해외 증시(S&P 500) 동향이나 환율 변화가 한국 경제에 미칠 영향을 분석하거나,\n` +
+                        `3. 변동성이 없는 날 읽기 좋은 '투자 마인드', '재무제표 공부', '장기 투자 철학' 등의 교육적인 내용을 주제로 선정하세요.\n`;
+                } else {
+                    marketDataContext = statusHeader +
+                        `- 코스피: ${marketData.korea.kospi.toFixed(2)} (${marketData.korea.kospiChangePercent > 0 ? '+' : ''}${marketData.korea.kospiChangePercent.toFixed(2)}%)\n` +
+                        `- S&P 500: ${marketData.us.sp500.price.toFixed(2)} (${marketData.us.sp500.changePercent}%)\n` +
+                        `- 원/달러 환율: ${marketData.forex.usdKrw.toFixed(2)}원 (${marketData.forex.usdKrwChangePercent}%)\n` +
+                        `- 시장 요약: ${marketData.summary}\n\n` +
+                        `위 실제 데이터를 반드시 참고하여 정확한 내용으로 작성하세요. 추측이나 가상의 수치를 사용하지 마세요.\n`;
                 }
-
-                marketDataContext = statusHeader +
-                    `- 코스피: ${marketData.korea.kospi.toFixed(2)} (${marketData.korea.kospiChangePercent > 0 ? '+' : ''}${marketData.korea.kospiChangePercent.toFixed(2)}% ${marketData.isMarketClosed ? '(휴장)' : ''})\n` +
-                    `- S&P 500: ${marketData.us.sp500.price.toFixed(2)} (${marketData.us.sp500.changePercent}%)\n` +
-                    `- 원/달러 환율: ${marketData.forex.usdKrw.toFixed(2)}원 (${marketData.forex.usdKrwChangePercent}%)\n` +
-                    `- 시장 요약: ${marketData.summary}\n\n` +
-                    `위 실제 데이터를 반드시 참고하여 정확한 내용으로 작성하세요. ` +
-                    (marketData.isMarketClosed ? `특히 오늘은 휴장일이므로, 시장의 정중동(靜中動) 상황을 짚어주고 투자 원칙을 되새기는 방향으로 작성하세요.` : `추측이나 가상의 수치를 사용하지 마세요.`) + `\n`;
                 console.log('✅ Market data loaded successfully');
             } catch (e) {
                 console.warn('⚠️  Failed to parse market data, proceeding without it');
