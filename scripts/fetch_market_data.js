@@ -284,10 +284,35 @@ async function collectMarketData() {
                 console.log('⏳ Waiting 5 seconds before retrying...');
                 await sleep(5000);
             } else {
-                console.error('\n❌ All retries failed. Exiting with error.');
-                // 로컬 테스트나 디버깅을 위해 에러 로그를 남기지만, 
-                // 워크플로우를 실패처리하여 잘못된 데이터가 올라가는 것을 방지함.
-                throw error;
+                console.error('\n❌ All retries failed. Switched to Fallback Mode.');
+
+                // 5회 실패 시, 워크플로우 중단을 막기 위해 비상용(Fallback) 데이터를 생성하여 반환
+                const fallbackData = {
+                    timestamp: new Date().toISOString(),
+                    date: new Date().toISOString().split('T')[0],
+                    isMarketClosed: false,
+                    isFallback: true, // 식별 플래그 추가
+                    marketClosedReason: '데이터 수집 실패 (비상 모드)',
+                    korea: {
+                        kospi: 0,
+                        kospiChange: 0,
+                        kospiChangePercent: 0,
+                        note: 'Data collection failed after 5 retries'
+                    },
+                    us: {
+                        sp500: { price: 0, changePercent: '0.00' },
+                        nasdaq: { price: 0, changePercent: '0.00' }
+                    },
+                    forex: {
+                        usdKrw: 0,
+                        usdKrwChangePercent: '0.00'
+                    },
+                    summary: '[시스템 경고] 현재 시장 데이터를 불러올 수 없습니다. 오늘 블로그 포스트는 시장 이슈보다 투자 원칙이나 일반적인 경제 상식에 초점을 맞춰 작성됩니다.'
+                };
+
+                fs.writeFileSync(OUTPUT_FILE, JSON.stringify(fallbackData, null, 2), 'utf8');
+                console.log(`\n⚠️ Fallback data saved to: ${OUTPUT_FILE}`);
+                return fallbackData; // 에러를 던지지 않고 비상 데이터를 반환하여 프로세스 진행
             }
         }
     }
