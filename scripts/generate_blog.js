@@ -331,11 +331,12 @@ ${marketDataContext}
                     const targetIndex = postsArray.findIndex(p => p.date === formattedDate);
 
                     if (targetIndex !== -1) {
-                        // Update existing
-                        postsArray[targetIndex].title = newPost.title;
-                        postsArray[targetIndex].content = newPost.content;
-                        newPost.id = postsArray[targetIndex].id; // Sync ID
-                        console.log(`   Updated Post ID: ${newPost.id}`);
+                        // Skip existing to prevent overwriting manual content
+                        console.log(`ℹ️ Post for ${formattedDate} already exists. Skipping generation to preserve existing content.`);
+                        // Do not update title/content
+                        // newPost.id = postsArray[targetIndex].id; 
+                        // console.log(`   Skipped Update for ID: ${newPost.id}`);
+                        return; // Exit function, do not write to file
                     } else {
                         // Fallback logic incase regex matched but array find failed
                         postsArray.unshift(newPost);
