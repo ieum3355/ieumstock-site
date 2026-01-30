@@ -152,6 +152,15 @@ async function generateBlogPost() {
                         `1. 오늘은 국내 증시 휴장일입니다. 따라서 '오늘 코스피가 상승/하락했다'는 등락 언급을 절대 하지 마세요.\n` +
                         `2. 대신, 해외 증시(S&P 500) 동향이나 환율 변화가 한국 경제에 미칠 영향을 분석하거나,\n` +
                         `3. 변동성이 없는 날 읽기 좋은 '투자 마인드', '재무제표 공부', '장기 투자 철학' 등의 교육적인 내용을 주제로 선정하세요.\n`;
+                } else if (marketData.isFallback) {
+                    marketDataContext = statusHeader +
+                        `⚠️ [시스템 경고] 실시간 시장 데이터 수집에 실패하여 비상 모드로 동작 중입니다. (Fallback Mode)\n` +
+                        `- 코스피/S&P500/환율: 정확한 데이터 없음 (일시적 오류)\n` +
+                        `- 시장 요약: ${marketData.summary}\n\n` +
+                        `**작성 지침 (중요):**\n` +
+                        `1. 현재 시장 데이터를 정확히 알 수 없는 상황입니다.\n` +
+                        `2. 따라서 구체적인 지수 등락이나 수치를 언급하는 것을 **절대 금지**합니다.\n` +
+                        `3. 대신, 시황과 무관하게 언제 읽어도 도움이 되는 **'불변의 투자 원칙', '멘탈 관리', '산업 분석(일반론)'** 등을 주제로 선정하세요.\n`;
                 } else {
                     marketDataContext = statusHeader +
                         `- 코스피: ${marketData.korea.kospi.toFixed(2)} (${marketData.korea.kospiChangePercent > 0 ? '+' : ''}${marketData.korea.kospiChangePercent.toFixed(2)}%)\n` +
