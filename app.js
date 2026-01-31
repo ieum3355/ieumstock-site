@@ -6,7 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function initApp() {
+    let hasContent = false;
     if (typeof CONTENT_DB !== 'undefined') {
+        hasContent = true;
         allTerms = CONTENT_DB.terms || [];
         allMistakes = CONTENT_DB.mistakes || [];
     } else {
@@ -16,15 +18,22 @@ async function initApp() {
     // Safe render calls
     renderTerms(allTerms);
     renderMistakes(allMistakes);
-    if (CONTENT_DB.guides) renderGuides(CONTENT_DB.guides);
-    if (CONTENT_DB.faqs) renderFAQs(CONTENT_DB.faqs);
-    if (CONTENT_DB.books) renderBooks(CONTENT_DB.books);
 
-    renderMarketBrief();
+    if (hasContent) {
+        if (CONTENT_DB.guides) renderGuides(CONTENT_DB.guides);
+        if (CONTENT_DB.faqs) renderFAQs(CONTENT_DB.faqs);
+        if (CONTENT_DB.books) renderBooks(CONTENT_DB.books);
+        renderMarketBrief();
+        renderBlog();
+    } else {
+        // Fallback for empty/missing content to prevent crashes
+        console.warn("CONTENT_DB missing, skipping content dependent renders");
+    }
+
+    // Independent functions
     loadChecklist();
     setupSearch();
     initiateNewsletter();
-    renderBlog();
 }
 
 // Helper for safe DOM manipulation
@@ -270,25 +279,25 @@ function showQuizResult() {
     const typeEl = document.getElementById('quiz-result-type');
     const descEl = document.getElementById('quiz-result-desc');
 
-    // 6문항 x 1~3점 = 총점 6~18점
-    if (quizScore <= 8) {
+    // 7문항 x 1~3점 = 총점 7~21점
+    if (quizScore <= 9) {
         typeEl.textContent = "신중한 거북이 🐢";
-        descEl.textContent = "안전 제일! 원금 보장을 최우선으로 생각하시네요. 예금, 채권, 배당주로 시작해보세요.";
-    } else if (quizScore <= 10) {
+        descEl.textContent = "안전 제일! 원금 보장을 최우선으로 생각하시네요. 예금, 채권, 배당주 위주의 포트폴리오가 적합합니다.";
+    } else if (quizScore <= 12) {
         typeEl.textContent = "꼼꼼한 다람쥐 🐿️";
         descEl.textContent = "차근차근 모으는 스타일! 적립식 ETF 투자로 복리의 마법을 경험해보세요.";
-    } else if (quizScore <= 12) {
-        typeEl.textContent = "균형잡힌 팬더 🐼";
-        descEl.textContent = "리스크와 수익의 밸런스를 아는 투자자! 우량주 + ETF 조합이 제격입니다.";
     } else if (quizScore <= 14) {
+        typeEl.textContent = "균형잡힌 팬더 🐼";
+        descEl.textContent = "리스크와 수익의 밸런스를 아는 투자자! 우량주 + 성장주를 6:4 비율로 섞어보세요.";
+    } else if (quizScore <= 17) {
         typeEl.textContent = "기회주의 여우 🦊";
-        descEl.textContent = "트렌드에 민감하고 타이밍을 노려요. 단, 손절 라인은 반드시 지키세요!";
-    } else if (quizScore <= 16) {
+        descEl.textContent = "트렌드에 민감하고 타이밍을 노려요. 단, 손절 라인은 칼같이 지켜야 살아남습니다.";
+    } else if (quizScore <= 19) {
         typeEl.textContent = "용감한 사자 🦁";
-        descEl.textContent = "공격적인 투자가 체질! 성장주에 집중하되, 분산투자로 리스크를 관리하세요.";
+        descEl.textContent = "공격적인 투자가 체질! 주도주와 성장주에 집중하되, 분산투자로 리스크를 꼭 관리하세요.";
     } else {
         typeEl.textContent = "무모한 불나방 🔥";
-        descEl.textContent = "위험을 즐기시네요! 하지만 주식은 도박이 아닙니다. 원칙 없는 매매는 파멸의 지름길입니다.";
+        descEl.textContent = "위험을 너무 즐기시네요! 대박 아니면 쪽박? 투자는 도박이 아닙니다. 원칙을 다시 세우세요.";
     }
 }
 
