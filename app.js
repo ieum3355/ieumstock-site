@@ -7,22 +7,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function initApp() {
     if (typeof CONTENT_DB !== 'undefined') {
-        allTerms = CONTENT_DB.terms;
-        allMistakes = CONTENT_DB.mistakes;
+        allTerms = CONTENT_DB.terms || [];
+        allMistakes = CONTENT_DB.mistakes || [];
     } else {
         console.error('CONTENT_DB not found.');
     }
 
+    // Safe render calls
     renderTerms(allTerms);
     renderMistakes(allMistakes);
-    renderGuides(CONTENT_DB.guides || []);
-    renderFAQs(CONTENT_DB.faqs || []);
-    renderBooks(CONTENT_DB.books || []);
+    if (CONTENT_DB.guides) renderGuides(CONTENT_DB.guides);
+    if (CONTENT_DB.faqs) renderFAQs(CONTENT_DB.faqs);
+    if (CONTENT_DB.books) renderBooks(CONTENT_DB.books);
+
     renderMarketBrief();
     loadChecklist();
     setupSearch();
     initiateNewsletter();
     renderBlog();
+}
+
+// Helper for safe DOM manipulation
+function safeSetDisplay(id, display) {
+    const el = document.getElementById(id);
+    if (el) el.style.display = display;
+}
+
+function safeSetText(id, text) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = text;
 }
 
 
