@@ -359,7 +359,7 @@ ${marketDataContext}
         }
 
         if (updatedDb.includes('"market_brief":')) {
-            updatedDb = updatedDb.replace(/"market_brief":\s*"[^"]*"/, `"market_brief": "${marketBriefText.replace(/"/g, '\\"')}"`);
+            updatedDb = updatedDb.replace(/"market_brief":\s*(?:`[\s\S]*?`|"(?:[^"\\]|\\.)*")/, `"market_brief": "${marketBriefText.replace(/"/g, '\\"')}"`);
         } else {
             updatedDb = updatedDb.replace('const CONTENT_DB = {', `const CONTENT_DB = {\n    "market_brief": "${marketBriefText.replace(/"/g, '\\"')}",`);
         }
