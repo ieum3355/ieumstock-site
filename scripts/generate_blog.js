@@ -333,10 +333,14 @@ ${marketDataContext}
                     if (targetIndex !== -1) {
                         // Skip existing to prevent overwriting manual content
                         console.log(`ℹ️ Post for ${formattedDate} already exists. Skipping generation to preserve existing content.`);
-                        // Do not update title/content
-                        // newPost.id = postsArray[targetIndex].id; 
-                        // console.log(`   Skipped Update for ID: ${newPost.id}`);
-                        return; // Exit function, do not write to file
+
+                        // BUT still update the market brief if we have a new one generated!
+                        if (updatedDb.includes('"market_brief":')) {
+                            updatedDb = updatedDb.replace(/"market_brief":\s*(?:`[\s\S]*?`|"(?:[^"\\]|\\.)*")/, `"market_brief": "${marketBriefText.replace(/"/g, '\\"')}"`);
+                        }
+                        fs.writeFileSync(DB_PATH, updatedDb, 'utf8');
+                        console.log(`   Updated Market Brief only for ${formattedDate}.`);
+                        return; // Exit function
                     } else {
                         // Fallback logic incase regex matched but array find failed
                         postsArray.unshift(newPost);
