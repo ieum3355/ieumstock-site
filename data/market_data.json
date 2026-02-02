@@ -1,13 +1,13 @@
 {
-  "timestamp": "2026-02-01T08:09:44.779Z",
-  "date": "2026-02-01",
-  "isMarketClosed": true,
-  "marketClosedReason": "주말 휴장",
+  "timestamp": "2026-02-02T11:22:53.097Z",
+  "date": "2026-02-02",
+  "isMarketClosed": false,
+  "marketClosedReason": "정상 영업",
   "korea": {
-    "kospi": 2500,
-    "kospiChange": 0,
-    "kospiChangePercent": 0,
-    "note": "Market closed: 주말 휴장, using estimated values"
+    "kospi": 4949.67,
+    "kospiChange": -274.69,
+    "kospiChangePercent": -5.26,
+    "note": "Data collected successfully"
   },
   "us": {
     "sp500": {
@@ -17,14 +17,14 @@
     },
     "nasdaq": {
       "price": 23461.816,
-      "change": -223.3050000000003,
+      "change": -223.28399999999965,
       "changePercent": "-0.94"
     }
   },
   "forex": {
-    "usdKrw": 1445.17,
-    "usdKrwChange": 15.450000000000045,
-    "usdKrwChangePercent": "1.08"
+    "usdKrw": 1449.78,
+    "usdKrwChange": -0.5099999999999909,
+    "usdKrwChangePercent": "-0.04"
   },
-  "summary": "오늘은 주말 휴장으로 국내 증시가 휴장입니다. 현재 환율과 해외 증시 상황을 참고하여 내일의 장을 준비하세요."
+  "summary": "[2026-02-02 시장 요약] 코스피는 4949.67로 전일 대비 5.26% 하락했습니다. 미국 S&P 500은 6939.03 (하락), 원/달러 환율은 1449.78원 (하락)을 기록했습니다."
 }

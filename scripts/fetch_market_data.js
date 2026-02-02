@@ -108,23 +108,36 @@ async function fetchNaverFinanceData() {
             res.on('data', chunk => body += chunk);
             res.on('end', () => {
                 try {
-                    // 개선된 정규식으로 코스피 지수 추출
                     const kospiMatch = body.match(/id="now_value"[^>]*>([0-9,\.]+)</);
-                    const changeMatch = body.match(/id="change_value_and_rate"[^>]*>.*?([+-]?[0-9,\.]+).*?([+-]?[0-9,\.]+)%/s);
+                    const changeBlockMatch = body.match(/id="change_value_and_rate"[^>]*>([\s\S]*?)<\/em>/);
 
                     if (kospiMatch) {
                         let kospi = parseFloat(kospiMatch[1].replace(/,/g, ''));
-                        let change = changeMatch ? parseFloat(changeMatch[1].replace(/,/g, '')) : 0;
-                        let changePercent = changeMatch ? parseFloat(changeMatch[2].replace(/,/g, '')) : 0;
+                        let change = 0;
+                        let changePercent = 0;
 
-                        // 부호 보정 로직 (상승인데 하락으로 나오는 경우 방지)
-                        // 네이버 금융은 상승 시 '상승' 텍스트나 빨간색 클래스를 사용하지만, 
-                        // 여기서는 단순 수치 파싱이므로 change와 changePercent의 부호(양수/음수)를 강제로 일치시킴.
-                        if ((change > 0 && changePercent < 0) || (change < 0 && changePercent > 0)) {
-                            console.warn(`🚧 Data Mismatch Detected: Change(${change}) vs Percent(${changePercent}). Syncing sign.`);
-                            // changePercent의 부호를 change에 맞춤
-                            if (change > 0) changePercent = Math.abs(changePercent);
-                            else changePercent = -Math.abs(changePercent);
+                        if (changeBlockMatch) {
+                            const blockContent = changeBlockMatch[1];
+                            const isFall = blockContent.includes('하락') || blockContent.includes('dn');
+
+                            // 숫자 추출 (절대값)
+                            // "상승" 또는 "하락" 텍스트 뒤에 오는 숫자들을 찾음
+                            const numbers = blockContent.match(/[0-9,\.]+/g);
+
+                            if (numbers && numbers.length >= 2) {
+                                // 보통 첫 번째 숫자가 변동폭, 두 번째가 등락률(%)
+                                // 안전하게 파싱
+                                let rawChange = parseFloat(numbers[0].replace(/,/g, ''));
+                                let rawPercent = parseFloat(numbers[1].replace(/,/g, ''));
+
+                                if (isFall) {
+                                    change = -Math.abs(rawChange);
+                                    changePercent = -Math.abs(rawPercent);
+                                } else {
+                                    change = Math.abs(rawChange);
+                                    changePercent = Math.abs(rawPercent);
+                                }
+                            }
                         }
 
                         resolve({
