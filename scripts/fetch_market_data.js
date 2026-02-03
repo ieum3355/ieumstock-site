@@ -91,7 +91,7 @@ async function fetchYahooFinanceData(symbol) {
     });
 }
 
-// 네이버 금융에서 코스피/코스닥 데이터 수집 (웹 스크래핑)
+// 네이버 금융에서 코스피/코스닥 데이터 수집 (웹 스크래핑 - Robust Parsing)
 async function fetchNaverFinanceData() {
     return new Promise((resolve, reject) => {
         const options = {
@@ -108,53 +108,60 @@ async function fetchNaverFinanceData() {
             res.on('data', chunk => body += chunk);
             res.on('end', () => {
                 try {
+                    // 1. KOSPI 현재가 확인
                     const kospiMatch = body.match(/id="now_value"[^>]*>([0-9,\.]+)</);
-                    const changeBlockMatch = body.match(/id="change_value_and_rate"[^>]*>([\s\S]*?)<\/em>/);
-
+                    let kospi = 2500;
                     if (kospiMatch) {
-                        let kospi = parseFloat(kospiMatch[1].replace(/,/g, ''));
-                        let change = 0;
-                        let changePercent = 0;
+                        kospi = parseFloat(kospiMatch[1].replace(/,/g, ''));
+                    }
 
-                        if (changeBlockMatch) {
-                            const blockContent = changeBlockMatch[1];
-                            const isFall = blockContent.includes('하락') || blockContent.includes('dn');
+                    // 2. 변동폭 및 등락률 파싱 (Robust Method using CSS Classes)
+                    let change = 0;
+                    let changePercent = 0;
 
-                            // 숫자 추출 (절대값)
-                            // "상승" 또는 "하락" 텍스트 뒤에 오는 숫자들을 찾음
-                            const numbers = blockContent.match(/[0-9,\.]+/g);
+                    // 방향 확인 (CSS 클래스 활용)
+                    // <div class="quotient up" id ="quotient"> -> 상승
+                    // <div class="quotient dn" id ="quotient"> -> 하락
+                    const isRising = body.includes('class="quotient up"');
+                    const isFalling = body.includes('class="quotient dn"');
 
-                            if (numbers && numbers.length >= 2) {
-                                // 보통 첫 번째 숫자가 변동폭, 두 번째가 등락률(%)
-                                // 안전하게 파싱
-                                let rawChange = parseFloat(numbers[0].replace(/,/g, ''));
-                                let rawPercent = parseFloat(numbers[1].replace(/,/g, ''));
+                    // "change_value_and_rate" ID가 있는 위치를 찾음
+                    const targetId = 'id="change_value_and_rate"';
+                    const startIndex = body.indexOf(targetId);
 
-                                if (isFall) {
-                                    change = -Math.abs(rawChange);
-                                    changePercent = -Math.abs(rawPercent);
-                                } else {
-                                    change = Math.abs(rawChange);
-                                    changePercent = Math.abs(rawPercent);
-                                }
+                    if (startIndex !== -1) {
+                        // 해당 ID로부터 약 300자 정도의 텍스트만 잘라내서 숫자 추출
+                        const searchBlock = body.substring(startIndex, startIndex + 300);
+                        const numberMatches = searchBlock.match(/[0-9,\.]+/g);
+
+                        // 숫자 파싱
+                        if (numberMatches && numberMatches.length >= 2) {
+                            let rawChange = parseFloat(numberMatches[0].replace(/,/g, ''));
+                            let rawPercent = parseFloat(numberMatches[1].replace(/,/g, ''));
+
+                            if (isFalling) {
+                                change = -Math.abs(rawChange);
+                                changePercent = -Math.abs(rawPercent);
+                            } else if (isRising) {
+                                change = Math.abs(rawChange);
+                                changePercent = Math.abs(rawPercent);
+                            } else {
+                                // 보합이거나 클래스를 못 찾은 경우 (숫자는 있지만 방향 불명 -> 일단 양수로 처리 또는 0)
+                                // 보통 보합이면 0일 것임.
+                                change = 0;
+                                changePercent = 0;
                             }
                         }
-
-                        resolve({
-                            kospi: kospi,
-                            kospiChange: change,
-                            kospiChangePercent: changePercent
-                        });
-                    } else {
-                        // 파싱 실패 시 기본값 반환
-                        resolve({
-                            kospi: 2500,
-                            kospiChange: 0,
-                            kospiChangePercent: 0,
-                            note: 'Failed to parse, using default values'
-                        });
                     }
+
+                    resolve({
+                        kospi: kospi,
+                        kospiChange: change,
+                        kospiChangePercent: changePercent
+                    });
+
                 } catch (e) {
+                    console.error("Parsing Error:", e);
                     resolve({
                         kospi: 2500,
                         kospiChange: 0,
