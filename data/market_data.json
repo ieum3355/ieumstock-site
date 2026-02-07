@@ -1,30 +1,30 @@
 {
-  "timestamp": "2026-02-06T08:02:50.488Z",
-  "date": "2026-02-06",
-  "isMarketClosed": false,
-  "marketClosedReason": "정상 영업",
+  "timestamp": "2026-02-07T07:52:50.708Z",
+  "date": "2026-02-07",
+  "isMarketClosed": true,
+  "marketClosedReason": "주말 휴장",
   "korea": {
-    "kospi": 5089.14,
-    "kospiChange": -74.43,
-    "kospiChangePercent": -1.44,
-    "note": "Data collected successfully"
+    "kospi": 2500,
+    "kospiChange": 0,
+    "kospiChangePercent": 0,
+    "note": "Market closed: 주말 휴장, using estimated values"
   },
   "us": {
     "sp500": {
-      "price": 6798.4,
-      "change": -84.32000000000062,
-      "changePercent": "-1.23"
+      "price": 6932.3,
+      "change": 133.90000000000055,
+      "changePercent": "1.97"
     },
     "nasdaq": {
-      "price": 22540.586,
-      "change": -363.9940000000024,
-      "changePercent": "-1.59"
+      "price": 23031.213,
+      "change": 490.6270000000004,
+      "changePercent": "2.18"
     }
   },
   "forex": {
-    "usdKrw": 1470.12,
-    "usdKrwChange": -1.5600000000001728,
-    "usdKrwChangePercent": "-0.11"
+    "usdKrw": 1463.33,
+    "usdKrwChange": -8.350000000000136,
+    "usdKrwChangePercent": "-0.57"
   },
-  "summary": "[2026-02-06 시장 요약] 코스피는 5089.14로 전일 대비 1.44% 하락했습니다. 미국 S&P 500은 6798.40 (하락), 원/달러 환율은 1470.12원 (하락)을 기록했습니다."
+  "summary": "오늘은 주말 휴장으로 국내 증시가 휴장입니다. 현재 환율과 해외 증시 상황을 참고하여 내일의 장을 준비하세요."
 }
