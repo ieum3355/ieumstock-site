@@ -1,30 +1,30 @@
 {
-  "timestamp": "2026-02-12T08:04:07.870Z",
-  "date": "2026-02-12",
+  "timestamp": "2026-02-13T08:04:42.225Z",
+  "date": "2026-02-13",
   "isMarketClosed": false,
   "marketClosedReason": "정상 영업",
   "korea": {
-    "kospi": 5522.27,
-    "kospiChange": 167.78,
-    "kospiChangePercent": 3.13,
+    "kospi": 5507.01,
+    "kospiChange": -15.26,
+    "kospiChangePercent": -0.28,
     "note": "Data collected successfully"
   },
   "us": {
     "sp500": {
-      "price": 6941.47,
-      "change": -0.3400000000001455,
-      "changePercent": "-0.00"
+      "price": 6832.76,
+      "change": -108.71000000000004,
+      "changePercent": "-1.57"
     },
     "nasdaq": {
-      "price": 23066.467,
-      "change": -36.03299999999945,
-      "changePercent": "-0.16"
+      "price": 22597.148,
+      "change": -469.3189999999995,
+      "changePercent": "-2.03"
     }
   },
   "forex": {
-    "usdKrw": 1440.06,
-    "usdKrwChange": -5.400000000000091,
-    "usdKrwChangePercent": "-0.37"
+    "usdKrw": 1445.88,
+    "usdKrwChange": 4.370000000000118,
+    "usdKrwChangePercent": "0.30"
   },
-  "summary": "[2026-02-12 시장 요약] 코스피는 5522.27로 전일 대비 3.13% 상승했습니다. 미국 S&P 500은 6941.47 (보합), 원/달러 환율은 1440.06원 (하락)을 기록했습니다."
+  "summary": "[2026-02-13 시장 요약] 코스피는 5507.01로 전일 대비 0.28% 하락했습니다. 미국 S&P 500은 6832.76 (하락), 원/달러 환율은 1445.88원 (상승)을 기록했습니다."
 }
