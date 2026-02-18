@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-02-17T08:05:58.544Z",
-  "date": "2026-02-17",
+  "timestamp": "2026-02-18T08:04:47.960Z",
+  "date": "2026-02-18",
   "isMarketClosed": true,
   "marketClosedReason": "공휴일 휴장",
   "korea": {
@@ -11,20 +11,20 @@
   },
   "us": {
     "sp500": {
-      "price": 6836.17,
-      "change": 3.4099999999998545,
-      "changePercent": "0.05"
+      "price": 6843.22,
+      "change": 7.050000000000182,
+      "changePercent": "0.10"
     },
     "nasdaq": {
-      "price": 22546.67,
-      "change": -50.43000000000029,
-      "changePercent": "-0.22"
+      "price": 22578.385,
+      "change": 31.715000000000146,
+      "changePercent": "0.14"
     }
   },
   "forex": {
-    "usdKrw": 1443.69,
-    "usdKrwChange": 2.2000000000000455,
-    "usdKrwChangePercent": "0.15"
+    "usdKrw": 1444.3,
+    "usdKrwChange": 3.5399999999999636,
+    "usdKrwChangePercent": "0.25"
   },
   "summary": "오늘은 공휴일 휴장으로 국내 증시가 휴장입니다. 현재 환율과 해외 증시 상황을 참고하여 내일의 장을 준비하세요."
 }
