@@ -60,7 +60,7 @@ const PROMPT = `## 역할:
 - **1인칭 표현 금지**: "저", "제가", "나" 절대 사용 금지
 - **중복 금지**: 최근 게시글 제목들과 비슷한 내용을 절대 피하고, 새로운 관점을 제시하세요.
 - **JSON 형식 필수**: 반드시 JSON 포맷(title, content)으로 응답하세요.
-- **줄바꿈 처리**: content 내부의 줄바꿈은 반드시 역슬래시 n (\\\\n)으로 이스케이프해야 합니다.`;
+- **줄바꿈 처리**: content 내부의 줄바꿈은 자연스럽게 <p> 또는 <br> 태그를 사용하여 HTML 구조를 유지하세요. 별도의 역슬래시 이스케이프는 필요하지 않습니다.`;
 
 async function listVisibleModels() {
     const options = {
@@ -375,9 +375,9 @@ ${marketDataContext}
         }
 
         if (updatedDb.includes('"market_brief":')) {
-            updatedDb = updatedDb.replace(/"market_brief":\s*(?:`[\s\S]*?`|"(?:[^"\\]|\\.)*")/, `"market_brief": "${marketBriefText.replace(/"/g, '\\"')}"`);
+            updatedDb = updatedDb.replace(/"market_brief":\s*(?:`[\s\S]*?`|"(?:[^"\\]|\\.)*")/, `"market_brief": ${JSON.stringify(marketBriefText)}`);
         } else {
-            updatedDb = updatedDb.replace('const CONTENT_DB = {', `const CONTENT_DB = {\n    "market_brief": "${marketBriefText.replace(/"/g, '\\"')}",`);
+            updatedDb = updatedDb.replace('const CONTENT_DB = {', `const CONTENT_DB = {\n    "market_brief": ${JSON.stringify(marketBriefText)},`);
         }
 
         fs.writeFileSync(DB_PATH, updatedDb, 'utf8');

@@ -97,7 +97,8 @@ async function backfill() {
                 content: postData.content
             };
 
-            updatedDb = updatedDb.replace(/"blog_posts":\s*\[/, `"blog_posts": [\n        ${JSON.stringify(newPost, null, 8).replace(/\n/g, '\n        ').trim()},`);
+            const newPostStr = JSON.stringify(newPost, null, 8).replace(/\n/g, '\n        ').trim();
+            updatedDb = updatedDb.replace(/"blog_posts":\s*\[/, `"blog_posts": [\n        ${newPostStr},`);
 
             // Avoid rate limits
             await new Promise(r => setTimeout(r, 2000));
