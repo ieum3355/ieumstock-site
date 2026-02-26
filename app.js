@@ -696,6 +696,7 @@ function saveSimulation(type, input, summary) {
 }
 
 function renderBlog() {
+    if (window.IS_STATIC_POST) return;
     const container = document.getElementById('blog-posts-container');
     if (!container || !CONTENT_DB.blog_posts) return;
 

@@ -33,14 +33,16 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: node scripts/verify_and_fix_content.js
 
-      - name: Build Static Blog Pages
-        run: node scripts/build_static.js
-
+      - name: Build Static Blog Pages & SEO
+        run: |
+          node scripts/build_static_blogs.js
+          node scripts/generate_sitemap.js
+          node scripts/inject_seo_links.js
 
       - name: Commit and Push changes
         run: |
           git config --global user.name "IEUMSTOCK Bot"
           git config --global user.email "bot@ieumstock.site"
-          git add data/content_db.js data/market_data.json posts/ sitemap.xml
+          git add data/content_db.js data/market_data.json posts/ sitemap.xml index.html robots.txt
           git commit -m "Auto: New AI-generated content with real market data" || echo "No changes to commit"
           git push
