@@ -1,28 +1,30 @@
 {
-  "timestamp": "2026-02-27T08:03:59.982Z",
-  "date": "2026-02-27",
-  "isMarketClosed": false,
-  "isFallback": true,
-  "marketClosedReason": "데이터 수집 실패 (비상 모드)",
+  "timestamp": "2026-02-28T07:48:16.114Z",
+  "date": "2026-02-28",
+  "isMarketClosed": true,
+  "marketClosedReason": "주말 휴장",
   "korea": {
-    "kospi": 0,
+    "kospi": 2500,
     "kospiChange": 0,
     "kospiChangePercent": 0,
-    "note": "Data collection failed after 5 retries"
+    "note": "Market closed: 주말 휴장, using estimated values"
   },
   "us": {
     "sp500": {
-      "price": 0,
-      "changePercent": "0.00"
+      "price": 6878.88,
+      "change": -29.979999999999563,
+      "changePercent": "-0.43"
     },
     "nasdaq": {
-      "price": 0,
-      "changePercent": "0.00"
+      "price": 22668.21,
+      "change": -210.1730000000025,
+      "changePercent": "-0.92"
     }
   },
   "forex": {
-    "usdKrw": 0,
-    "usdKrwChangePercent": "0.00"
+    "usdKrw": 1439.23,
+    "usdKrwChange": 5.8900000000001,
+    "usdKrwChangePercent": "0.41"
   },
-  "summary": "[시스템 경고] 현재 시장 데이터를 불러올 수 없습니다. 오늘 블로그 포스트는 시장 이슈보다 투자 원칙이나 일반적인 경제 상식에 초점을 맞춰 작성됩니다."
+  "summary": "오늘은 주말 휴장으로 국내 증시가 휴장입니다. 현재 환율과 해외 증시 상황을 참고하여 내일의 장을 준비하세요."
 }
