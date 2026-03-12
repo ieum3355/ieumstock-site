@@ -753,6 +753,11 @@ function renderBlog() {
                 </div>
                 <span class="blog-meta">${post.date}</span>
             </div>
+            <div class="breadcrumb" style="margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--text-secondary);">
+                <a href="index.html" style="color: var(--text-secondary); text-decoration: none;">Home</a> &gt; 
+                <a href="blog.html" style="color: var(--text-secondary); text-decoration: none;">Blog</a> &gt; 
+                <span style="color: var(--accent-color);">${post.title}</span>
+            </div>
             <h2 class="post-title">${post.title}</h2>
             <div class="post-content">
                 ${post.content}

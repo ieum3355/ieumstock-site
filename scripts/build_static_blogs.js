@@ -56,6 +56,9 @@ CONTENT_DB.blog_posts.forEach(post => {
     postHtml = postHtml.replace(/src="app\.js/g, 'src="../app.js');
     postHtml = postHtml.replace(/href="index\.html"/g, 'href="../index.html"');
     postHtml = postHtml.replace(/href="blog\.html"/g, 'href="../blog.html"');
+    postHtml = postHtml.replace(/href="about\.html"/g, 'href="../about.html"');
+    postHtml = postHtml.replace(/href="privacy\.html"/g, 'href="../privacy.html"');
+    postHtml = postHtml.replace(/href="terms\.html"/g, 'href="../terms.html"');
     postHtml = postHtml.replace(/href="\/about\.html"/g, 'href="../about.html"');
     postHtml = postHtml.replace(/href="\/privacy\.html"/g, 'href="../privacy.html"');
     postHtml = postHtml.replace(/href="\/terms\.html"/g, 'href="../terms.html"');
@@ -66,6 +69,11 @@ CONTENT_DB.blog_posts.forEach(post => {
 
     // The post HTML structure to inject
     const postContainerHtml = `
+        <div class="breadcrumb" style="margin-bottom: 20px; font-size: 0.9rem; color: var(--text-secondary);">
+            <a href="../index.html" style="color: var(--text-secondary); text-decoration: none;">Home</a> &gt; 
+            <a href="../blog.html" style="color: var(--text-secondary); text-decoration: none;">Blog</a> &gt; 
+            <span style="color: var(--accent-color);">${post.title}</span>
+        </div>
         <article class="post-card">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
                 <div>

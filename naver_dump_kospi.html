@@ -308,8 +308,8 @@ var gnb_naverme_layer_close_callback = function(){
 			<div class="right_area">
 				<div class="search_area">
 					<form name="search" action="/search/search.naver"  method="get" onsubmit="return delayed_submit(this)" style="margin:0; padding:0;">
-					<label for="stock_items" class="blind">���� ������������� �˻�</label>
-					<input type="text" id="stock_items" name="query" title="������������� �˻�" class="search_input" placeholder="�����&middot;������ �Է�" accesskey="s" autocomplete="off">
+					<label for="stock_items" class="blind">���� �������������?�˻�</label>
+					<input type="text" id="stock_items" name="query" title="�������������?�˻�" class="search_input" placeholder="�����?middot;������ �Է�" accesskey="s" autocomplete="off">
 					<input type="hidden" id="_endUrl" name="endUrl" value="" />
 					
 						
@@ -342,28 +342,28 @@ var gnb_naverme_layer_close_callback = function(){
 										</ul>
 										<div class="search_notice">
 											<p class="text">
-												�����ֿ� �ؿ� ������ ����� �������� �̵��մϴ�.
+												�����ֿ� �ؿ� ������ �����?�������� �̵��մϴ�.
 											</p>
 										</div>
 									</div>
 								</div>
-								<!-- ���� �ڵ��ϼ� ����� ����ϰ� ��ʴϴ� -->
+								<!-- ���� �ڵ��ϼ� �����?����ϰ�?��ʴϴ�?-->
 								<div class="wrap" id="atcmpIng" style="display:none;">
 									<div class="wrap_in">
 										<div class="words">
 											<p class="msg">
-												���� �ڵ��ϼ� ����� ����ϰ� ��ʴϴ�.
+												���� �ڵ��ϼ� �����?����ϰ�?��ʴϴ�?
 											</p>
 										</div>
 									</div>
 								</div>
-								<!--// ���� �ڵ��ϼ� ����� ����ϰ� ��ʴϴ� -->
-								<!-- �ڵ��ϼ� ����� Ȱ��ȭ -->
+								<!--// ���� �ڵ��ϼ� �����?����ϰ�?��ʴϴ�?-->
+								<!-- �ڵ��ϼ� �����?Ȱ��ȭ -->
 								<div class="wrap" id="atcmpStart" style="display:none;">
 									<div class="wrap_in">
 										<div class="words">
 											<p class="msg">
-												�ڵ��ϼ� ����� Ȱ��ȭ�Ǿ����ϴ�.
+												�ڵ��ϼ� �����?Ȱ��ȭ�Ǿ����ϴ�.
 											</p>
 										</div>
 									</div>
@@ -475,7 +475,7 @@ var gnb_naverme_layer_close_callback = function(){
 	        });
 
 		/* ���հ˻�  start ----->  */
-		var sSearchHintText = '���������������ȯ������������� �Է�';
+		var sSearchHintText = '����������������?�������������� �Է�';
 		function itegrationSearch() {
 			var query = jindo.$('stock_items').value;
 
@@ -583,23 +583,23 @@ var gnb_naverme_layer_close_callback = function(){
 <div class="snb snb2">
 	<h2 class="h_sise"><a href="/sise/"><span class="blind">��������</span></a></h2>
 	<ul class="nav1">
-	<li class="frst"><strong class="lst_krx"><span class="blind">KRX �ֿ�ü�</span></strong>
+	<li class="frst"><strong class="lst_krx"><span class="blind">KRX �ֿ�ü�?/span></strong>
 		<ul class="sub">
 		 <li class="type1 lst1_1"><a href="/sise/sise_index.naver?code=KOSPI" onClick="clickcr(this,'siu.1','','',event);" class="on"><span class="blind">�ڽ���</span></a></li>
 		 <li class="type1 lst1_2"><a href="/sise/sise_index.naver?code=KOSDAQ" onClick="clickcr(this,'siu.2','','',event);" class="off"><span class="blind">�ڽ���</span></a></li>
 		 <li class="type1 lst1_3"><a href="/sise/sise_index.naver?code=FUT" onClick="clickcr(this,'siu.3','','',event);" class="off"><span class="blind">����</span></a></li>
 		 <li class="type1 lst1_35"><a href="/sise/sise_index.naver?code=KPI100" onClick="clickcr(this,'siu.35','','',event);" class="off"><span class="blind">�ڽ���100</span></a></li>
 		 <li class="type1 lst1_26"><a href="/sise/sise_index.naver?code=KPI200" onClick="clickcr(this,'siu.26','','',event);" class="off"><span class="blind">�ڽ���200</span></a></li>
-		 <li class="type1 lst1_36"><a href="/sise/sise_index.naver?code=KVALUE" onClick="clickcr(this,'siu.36','','',event);" class="off"><span class="blind">�ڸ��ƹ����</span></a></li>
+		 <li class="type1 lst1_36"><a href="/sise/sise_index.naver?code=KVALUE" onClick="clickcr(this,'siu.36','','',event);" class="off"><span class="blind">�ڸ��ƹ����?/span></a></li>
 		 <li class="type1 lst1_31"><a href="/sise/konex.naver" onClick="clickcr(this,'siu.konex','','',event);" class="off"><span class="blind">�ڳؽ�</span></a></li>
 		 <li class="type1 lst1_16"><a href="/sise/sise_market_sum.naver" onClick="clickcr(this,'siu.16','','',event);" class="off"><span class="blind">�ð��Ѿ�</span></a></li>
-		 <li class="type1 lst1_32" ><a href="/sise/dividend_list.naver" onClick="clickcr(this,'siu.dividend','','',event);" class="off"><span class="blind">���</span></a></li>
+		 <li class="type1 lst1_32" ><a href="/sise/dividend_list.naver" onClick="clickcr(this,'siu.dividend','','',event);" class="off"><span class="blind">���?/span></a></li>
 		 <li class="type1 lst1_4"><a href="/sise/sise_group.naver?type=upjong" onClick="clickcr(this,'siu.4','','',event);" class="off"><span class="blind">����</span></a></li>
 		 <li class="type1 lst1_5"><a href="/sise/theme.naver" onClick="clickcr(this,'siu.5','','',event);" class="off"><span class="blind">�׸�</span></a></li>
-		 <li class="type1 lst1_30"><a href="/sise/sise_group.naver?type=group"  onClick="clickcr(this,'siu.30','','',event);"  class="off"><span class="blind">�׷��</span></a></li>
+		 <li class="type1 lst1_30"><a href="/sise/sise_group.naver?type=group"  onClick="clickcr(this,'siu.30','','',event);"  class="off"><span class="blind">�׷��?/span></a></li>
 		 <li class="type1 lst1_27"><a href="/sise/etf.naver" onClick="clickcr(this,'siu.27','','',event);" class="off"><span class="blind">ETF</span></a></li>
 		 <li class="type1 lst1_34"><a href="/sise/etn.naver" onClick="clickcr(this,'siu.34','','',event);" class="off"><span class="blind">ETN</span></a></li>
-		 <li class="type1 lst1_8"><a href="/sise/sise_rise.naver" onClick="clickcr(this,'siu.8','','',event);" class="off"><span class="blind">���</span></a></li>
+		 <li class="type1 lst1_8"><a href="/sise/sise_rise.naver" onClick="clickcr(this,'siu.8','','',event);" class="off"><span class="blind">���?/span></a></li>
 		 <li class="type1 lst1_9"><a href="/sise/sise_steady.naver" onClick="clickcr(this,'siu.9','','',event);" class="off"><span class="blind">����</span></a></li>
 		 <li class="type1 lst1_10"><a href="/sise/sise_fall.naver" onClick="clickcr(this,'siu.10','','',event);" class="off"><span class="blind">�϶�</span></a></li>
 		 <li class="type1 lst1_6"><a href="/sise/sise_upper.naver" onClick="clickcr(this,'siu.6','','',event);" class="off"><span class="blind">���Ѱ�</span></a></li>
@@ -611,20 +611,20 @@ var gnb_naverme_layer_close_callback = function(){
 		 <li class="type1 lst1_13"><a href="/sise/sise_quant_low.naver" onClick="clickcr(this,'siu.13','','',event);" class="off"><span class="blind">�ް�</span></a></li>
 		 <li class="lst1_23"><a href="/sise/sise_trans_style.naver" onClick="clickcr(this,'siu.23','','',event);" class="off"><span class="blind">�����ں��Ÿŵ���</span></a></li>
 		 <li class="type1 lst1_17"><a href="/sise/sise_deal_rank.naver" onClick="clickcr(this,'siu.17','','',event);" class="off"><span class="blind">�ܱ��θŸ�</span></a></li>
-		 <li class="type1 lst1_18"><a href="/sise/sise_deal_rank.naver?investor_gubun=1000" onClick="clickcr(this,'siu.18','','',event);" class="off"><span class="blind">����Ÿ�</span></a></li>
+		 <li class="type1 lst1_18"><a href="/sise/sise_deal_rank.naver?investor_gubun=1000" onClick="clickcr(this,'siu.18','','',event);" class="off"><span class="blind">����Ÿ�?/span></a></li>
 		 <li class="lst1_19"><a href="/sise/sise_program.naver" onClick="clickcr(this,'siu.19','','',event);" class="off"><span class="blind">���α׷��Ÿŵ���</span></a></li>
 		 <li class="lst1_22"><a href="/sise/sise_deposit.naver" onClick="clickcr(this,'siu.22','','',event);" class="off"><span class="blind">�����ڱݵ���</span></a></li>
 		 <li class="lst1_21"><a href="/sise/sise_new_stock.naver" onClick="clickcr(this,'siu.21','','',event);" class="off"><span class="blind">�űԻ���</span></a></li>
 		 <li class="lst1_24"><a href="/sise/sise_foreign_hold.naver" onClick="clickcr(this,'siu.24','','',event);" class="off"><span class="blind">�ܱ��κ���</span></a></li>
-		 <li class="lst1_25"><a href="/sise/market3news_list.naver" onClick="clickcr(this,'siu.25','','',event);" class="off"><span class="blind">��ܽü�</span></a></li>
+		 <li class="lst1_25"><a href="/sise/market3news_list.naver" onClick="clickcr(this,'siu.25','','',event);" class="off"><span class="blind">��ܽü�?/span></a></li>
 		 <li class="lst1_33"><a href="/sise/ipo.naver" onClick="clickcr(this,'siu.33','','',event);" class="off"><span class="blind">IPO</span></a></li>
 		</ul>
 	</li>
-	<li><strong class="lst_nxt"><span class="blind">NXT �ֿ�ü�</span></strong>
+	<li><strong class="lst_nxt"><span class="blind">NXT �ֿ�ü�?/span></strong>
 		<ul class="sub">
 			<li class="type1 lst1_16"><a href="/sise/nxt_sise_market_sum.naver" onClick="clickcr(this, 'major.cap_nxt', '', '', event);" class="off"><span class="blind">�ð��Ѿ�</span></a></li>
 			<li class="type1 lst1_11"><a href="/sise/nxt_sise_quant.naver" onClick="clickcr(this, 'major.toplist_nxt', '', '', event);" class="off"><span class="blind">�ŷ�����</span></a></li>
-			<li class="type1 lst1_8"><a href="/sise/nxt_sise_rise.naver" onClick="clickcr(this, 'major.rise_nxt', '', '', event);" class="off"><span class="blind">���</span></a></li>
+			<li class="type1 lst1_8"><a href="/sise/nxt_sise_rise.naver" onClick="clickcr(this, 'major.rise_nxt', '', '', event);" class="off"><span class="blind">���?/span></a></li>
 			<li class="type1 lst1_10"><a href="/sise/nxt_sise_fall.naver" onClick="clickcr(this, 'major.fall_nxt', '', '', event);" class="off"><span class="blind">�϶�</span></a></li>
 		</ul>
 	</li>
@@ -632,19 +632,19 @@ var gnb_naverme_layer_close_callback = function(){
 		<ul class="sub">
 		 <li class="lst1_20"><a href="/sise/management.naver" onClick="clickcr(this,'siu.20','','',event);" class="off"><span class="blind">��������</span></a></li>
 		 <li class="lst1_29"><a href="/sise/trading_halt.naver" onClick="clickcr(this,'siu.29','','',event);" class="off"><span class="blind">�ŷ���������</span></a></li>
-		 <li class="lst1_28"><a href="/sise/investment_alert.naver?type=caution" onClick="clickcr(this,'siu.28','','',event);" class="off"><span class="blind">����溸����</span></a></li>
+		 <li class="lst1_28"><a href="/sise/investment_alert.naver?type=caution" onClick="clickcr(this,'siu.28','','',event);" class="off"><span class="blind">����溸����?/span></a></li>
 		</ul>
 	</li>
 	<li><strong class="lst_search"><span class="blind">�������ǰ˻�</span></strong>
 		<ul class="sub">
-		 <li class="type1 lst2_2"><a href="/sise/item_gold.naver" onClick="clickcr(this,'sih.2','','',event);" class="off"><span class="blind">���ũ�ν�</span></a></li>
-		 <li class="type1 lst2_1"><a href="/sise/item_gap.naver" onClick="clickcr(this,'sih.1','','',event);" class="off"><span class="blind">�����</span></a></li>
+		 <li class="type1 lst2_2"><a href="/sise/item_gold.naver" onClick="clickcr(this,'sih.2','','',event);" class="off"><span class="blind">���ũ�ν�?/span></a></li>
+		 <li class="type1 lst2_1"><a href="/sise/item_gap.naver" onClick="clickcr(this,'sih.1','','',event);" class="off"><span class="blind">�����?/span></a></li>
 		 <li class="type1 lst2_3"><a href="/sise/item_igyuk.naver" onClick="clickcr(this,'sih.3','','',event);" class="off"><span class="blind">�̰ݵ�����</span></a></li>
 		 <li class="type1 lst2_4"><a href="/sise/item_overheating_1.naver" onClick="clickcr(this,'sih.4','','',event);" class="off"><span class="blind">���ɰ���</span></a></li>
-		 <li class="lst2_5"><a href="/sise/item_overheating_2.naver" onClick="clickcr(this,'sih.5','','',event);" class="off"><span class="blind">��밭������</span></a></li>
+		 <li class="lst2_5"><a href="/sise/item_overheating_2.naver" onClick="clickcr(this,'sih.5','','',event);" class="off"><span class="blind">���?�������?/span></a></li>
 		</ul>
 	</li>
-	<li><a href="/sise/report.naver"><strong class="lst_report"><span class="blind">��� ���ڰ���</span></strong></a></li>
+	<li><a href="/sise/report.naver"><strong class="lst_report"><span class="blind">���?���ڰ���</span></strong></a></li>
 	<li class="last"><a href="/sise/short_trade.naver"><strong class="lst_short"><span class="blind">���ŵ� ���� ��Ȳ</span></strong></a></li>
 	</ul>
 
@@ -658,7 +658,7 @@ var gnb_naverme_layer_close_callback = function(){
 				<!-- �������� -->
 				<form name='sise_index' method='GET' action='/sise/sise_index.naver'>
 					<div class="sub_location tlt_bottom_line">
-						<a href="/">����Ȩ</a> &gt; <a href="/sise/">��������</a> &gt; <a href="#">KRX �ֿ�ü�</a> &gt;
+						<a href="/">����Ȩ</a> &gt; <a href="/sise/">��������</a> &gt; <a href="#">KRX �ֿ�ü�?/a> &gt;
 
 						<select name="code" onchange='javascript:mainSiseMove(value);'>
 						<option value='KOSPI' selected>�ڽ���</option>
@@ -666,7 +666,7 @@ var gnb_naverme_layer_close_callback = function(){
 						<option value='FUT' >����</option>
 						<option value='KPI100' >�ڽ���100</option>
 						<option value='KPI200' >�ڽ���200</option>
-						<option value='KVALUE' >�ڸ��ƹ����</option>
+						<option value='KVALUE' >�ڸ��ƹ����?/option>
 						<option value='ETF' >ETF</option>
 						<option value='ETN' >ETN</option>
 						<option value='KONEX' >�ڳؽ�</option>
@@ -718,25 +718,25 @@ function select_chart(pst)
 							</ul>
 						</div>
 		<div class="subtop_sise_detail">
-	        <!-- [D] ������϶� up, �϶����϶� dn Ŭ���� �߰� (���ս� �߰� ����) -->
+	        <!-- [D] ������϶�?up, �϶����϶� dn Ŭ���� �߰� (���ս� �߰� ����) -->
 	        <div class="quotient up" id ="quotient">
 	                <em id="now_value">5,288.08</em>
 					
 					
-	                <span class="fluc" id="change_value_and_rate"><span>338.41</span> +6.84%<span class="blind">���</span></span>
+	                <span class="fluc" id="change_value_and_rate"><span>338.41</span> +6.84%<span class="blind">���?/span></span>
 	        </div>
 
 	
 		
-			<table summary="�ڽ��� �ֿ�ü� ������ ���� ǥ�Դϴ�." cellspacing="0" cellpadding="0" class="table_kos_index">
-	        <caption>�ڽ��� �ֿ�ü�</caption>
+			<table summary="�ڽ��� �ֿ�ü�?������ ���� ǥ�Դϴ�." cellspacing="0" cellpadding="0" class="table_kos_index">
+	        <caption>�ڽ��� �ֿ�ü�?/caption>
 		
 		
 	
 	        	<tr>
 					<th class="th"><span class="blind">�ŷ���(õ��)</span></th>
                     <td class="td" id="quant">672,610</td>
-                    <th class="th2"><span class="blind">�ŷ����(�鸸)</span></th>
+                    <th class="th2"><span class="blind">�ŷ����?�鸸)</span></th>
                     <td class="td2" id="amount">30,015,962</td>
                 </tr>
                 <tr>
@@ -752,14 +752,14 @@ function select_chart(pst)
                     <td class="td2">2,284.72</td>
                 </tr>
                 <tr>
-	                <th class="th"><span class="blind">���/����</span></th>
+	                <th class="th"><span class="blind">���?����</span></th>
 	                <td colspan="3" class="td3">
 	                        <ul>
-	                        <li class="lst"><span class="blind">���������</span><a href="/sise/sise_upper.naver"><span>1</span></a></li>
+	                        <li class="lst"><span class="blind">���������?/span><a href="/sise/sise_upper.naver"><span>1</span></a></li>
 	                        <li class="lst2"><span class="blind">��������</span><a href="/sise/sise_rise.naver"><span>827</span></a></li>
-	                        <li class="lst3"><span class="blind">���������</span><a href="/sise/sise_steady.naver"><span>23</span></a></li>
-	                        <li class="lst4"><span class="blind">�϶������</span><a href="/sise/sise_fall.naver"><span>76</span></a></li>
-	                        <li class="lst5"><span class="blind">���������</span><a href="/sise/sise_lower.naver"><span>0</span></a></li>
+	                        <li class="lst3"><span class="blind">���������?/span><a href="/sise/sise_steady.naver"><span>23</span></a></li>
+	                        <li class="lst4"><span class="blind">�϶������?/span><a href="/sise/sise_fall.naver"><span>76</span></a></li>
+	                        <li class="lst5"><span class="blind">���������?/span><a href="/sise/sise_lower.naver"><span>0</span></a></li>
 	                        </ul>
 	                </td>
                 </tr>
@@ -778,7 +778,7 @@ function select_chart(pst)
 	    <dt><span class="blind">�����ں� �Ÿŵ���</span></dt>
 	    <dd class="dd">����<br><span class="dn">-29,423<span>��</span></span></dd>
 	    <dd class="dd">�ܱ���<br><span class="up">+7,038<span>��</span></span></dd>
-	    <dd class="dd">���<br><span class="up">+21,708<span>��</span></span></dd>
+	    <dd class="dd">���?br><span class="up">+21,708<span>��</span></span></dd>
 	    <dt class="last"><span class="blind">���α׷� �Ÿŵ���</span></dt>
 	    <dd class="dd">����<br><span class="up">+25<span>��</span></span></dd>
 	    <dd class="dd">������<br><span class="up">+6,599<span>��</span></span></dd>
@@ -807,12 +807,12 @@ function select_chart(pst)
 							</li>
 						
 							<li>
-								<span class="tit"><a href="/news/news_read.naver?article_id=0005631825&office_id=009&mode=LSS3D&type=0&section_id=101&section_id2=258&section_id3=401&page=1">���� ������ �� ����ڽ���, 6.84% ������ ��� �ְ�ġ</a></span>
+								<span class="tit"><a href="/news/news_read.naver?article_id=0005631825&office_id=009&mode=LSS3D&type=0&section_id=101&section_id2=258&section_id3=401&page=1">���� ������ �� ����ڽ���, 6.84% ������ ���?�ְ�ġ</a></span>
 								<p class="info"><span class="paper">���ϰ���</span> <span class="date">2026-02-03 18:46</span></p>
 							</li>
 						
 							<li>
-								<span class="tit"><a href="/news/news_read.naver?article_id=0015883155&office_id=001&mode=LSS3D&type=0&section_id=101&section_id2=258&section_id3=401&page=1">�ڽ��� ����� �޵ ���� ���� �ð��Ѿ� ù 5õ�� ����</a></span>
+								<span class="tit"><a href="/news/news_read.naver?article_id=0015883155&office_id=001&mode=LSS3D&type=0&section_id=101&section_id2=258&section_id3=401&page=1">�ڽ��� �����?�޵ ���� ���� �ð��Ѿ� ù 5õ�� ����</a></span>
 								<p class="info"><span class="paper">���մ���</span> <span class="date">2026-02-03 18:43</span></p>
 							</li>
 						
@@ -887,11 +887,11 @@ function select_chart(pst)
 	
 
 
-			<!-- �α�˻��� -->
+			<!-- �α�˻���?-->
 <div class="box_type_r"><div class="box_type_r_top">
-	<h2 class="r_subtlt tlt_bottom_line"><img src="https://ssl.pstatic.net/imgstock/images5/rtlt_best_keyword.gif" alt="�α�˻���" width="51" height="11"><span class="tlt_more"><a href="/sise/lastsearch2.naver" onClick="clickcr(this, 'rpk.keyword', '', '', event);">������</a></span></h2>
-	<table summary="�α�˻��� ����Ʈ" cellpadding="0" cellspacing="0" class="type_r1">
-	<caption>�α�˻���</caption>
+	<h2 class="r_subtlt tlt_bottom_line"><img src="https://ssl.pstatic.net/imgstock/images5/rtlt_best_keyword.gif" alt="�α�˻���? width="51" height="11"><span class="tlt_more"><a href="/sise/lastsearch2.naver" onClick="clickcr(this, 'rpk.keyword', '', '', event);">������</a></span></h2>
+	<table summary="�α�˻���?����Ʈ" cellpadding="0" cellspacing="0" class="type_r1">
+	<caption>�α�˻���?/caption>
 	<col width="11%"><col width="*"><col width="30%"><col width="13%">
 
 	<tr>
@@ -941,7 +941,7 @@ function select_chart(pst)
 
 	</table>
 </div></div>
-<!-- //�α�˻��� -->
+<!-- //�α�˻���?-->
 
 			<!-- ���� ���� �� ���� -->
 	<div class="box_type_r _replaceNewsLink"><div class="box_type_r_top">
@@ -954,17 +954,17 @@ function select_chart(pst)
 
 		
 
-			<li><a href="/news/news_read.naver?article_id=0005246407&office_id=015&mode=RANK" title="'�ڰ� �Ͼ�� �� ����'&hellip;�ݵ�ü ���̵鵵 ��¦ ����� [����+]" onClick="clickcr(this, 'rnw.list', '0005246407', '2', event)">'�ڰ� �Ͼ�� �� ����'���ݵ�ü ���̵鵵 ��¦ ����� [����+]</a></li>
+			<li><a href="/news/news_read.naver?article_id=0005246407&office_id=015&mode=RANK" title="'�ڰ� �Ͼ�� �� ����'&hellip;�ݵ�ü ���̵鵵 ��¦ �����?[����+]" onClick="clickcr(this, 'rnw.list', '0005246407', '2', event)">'�ڰ� �Ͼ�� �� ����'���ݵ�ü ���̵鵵 ��¦ �����?[����+]</a></li>
 			
 
 		
 
-			<li><a href="/news/news_read.naver?article_id=0005313524&office_id=008&mode=RANK" title="&quot;������ �缭 �� ������&quot; ���ڴ� ����...�ڽ��� 7% �޵� '�����'" onClick="clickcr(this, 'rnw.list', '0005313524', '3', event)">"������ �缭 �� ������" ���ڴ� ����...�ڽ��� 7% �޵� '�����'</a></li>
+			<li><a href="/news/news_read.naver?article_id=0005313524&office_id=008&mode=RANK" title="&quot;������ �缭 �� ������&quot; ���ڴ� ����...�ڽ��� 7% �޵� '�����?" onClick="clickcr(this, 'rnw.list', '0005313524', '3', event)">"������ �缭 �� ������" ���ڴ� ����...�ڽ��� 7% �޵� '�����?</a></li>
 			
 
 		
 
-			<li><a href="/news/news_read.naver?article_id=0001002614&office_id=031&mode=RANK" title="&quot;���� ��� �е� ���ϵ����&quot;&hellip;����~õ�� ���� �ڽ���" onClick="clickcr(this, 'rnw.list', '0001002614', '4', event)">"���� ��� �е� ���ϵ����"������~õ�� ���� �ڽ���</a></li>
+			<li><a href="/news/news_read.naver?article_id=0001002614&office_id=031&mode=RANK" title="&quot;���� ���?�е� ���ϵ����?quot;&hellip;����~õ�� ���� �ڽ���" onClick="clickcr(this, 'rnw.list', '0001002614', '4', event)">"���� ���?�е� ���ϵ����?������~õ�� ���� �ڽ���</a></li>
 			
 
 		
@@ -1104,7 +1104,7 @@ function changeValAndRate(changeValue, changeRate) {
 	result += " ";
 
 	if (changeRate > 0) {
-		result += "+" + changeNumberFormat(changeRate.toFixed(2)) + '%<span class="blind>���</span>"';
+		result += "+" + changeNumberFormat(changeRate.toFixed(2)) + '%<span class="blind>���?/span>"';
 	} else if (changeRate < 0) {
 		result += changeNumberFormat(changeRate.toFixed(2)) + '%<span class="blind>�϶�</span>"';
 	} else {
@@ -1159,7 +1159,7 @@ function refreshQuote(res) {
 				var change_value = itemData.cv / 100;
 				var change_rate = itemData.cr;
 
-				// ���� , ���ϴ��, ����� ���� div Ŭ���� �Ӽ�(up, dn) ����
+				// ���� , ���ϴ��? �����?���� div Ŭ���� �Ӽ�(up, dn) ����
 				var divEl = jindo.$Element(jindo.$$.getSingle("#quotient"));
 
 				if (change_value > 0) {
@@ -1176,10 +1176,10 @@ function refreshQuote(res) {
 				var low_val = itemData.lv / 100;
 				// �ŷ���
 				var quant = itemData.aq;
-				// �ŷ����
+				// �ŷ����?
 				var amount = itemData.aa;
 
-				// ���������� ��� 0���� �ʱ�ȭ�Ѵ�. ���������δ� ������ �� ���� ��ġ�Դϴ�. (������ ���� ���� ����)
+				// ���������� ���?0���� �ʱ�ȭ�Ѵ�. ���������δ� ������ �� ���� ��ġ�Դϴ�. (������ ���� ���� ����)
 				if (ms == 'PREOPEN') {
 					high_val = 0;
 					low_val = 0;
@@ -1189,7 +1189,7 @@ function refreshQuote(res) {
 
 				// ����
 				document.getElementById('now_value').innerHTML = changeNumberFormat(now_value.toFixed(2));
-				// ���ϴ��, �����
+				// ���ϴ��? �����?
 				document.getElementById('change_value_and_rate').innerHTML = changeValAndRate(change_value, change_rate);
 
 				document.getElementById('high_value').innerHTML = changeNumberFormat(high_val.toFixed(2));
@@ -1230,7 +1230,7 @@ if (true) {
 		</ul>
 		<p class="desc">
 			���̹����̳���(��)�� �����ϴ� ���� ������ <a href="javascript:;" onclick="togglePanelFooter('footerPanel0');" class="desc_help">������ ������ü</a>�κ��� �޴� ���� ���������̸�, ������ �߻��ϰų� ������ �� �ֽ��ϴ�.<br/>
-			���̹����̳���(��)�� ������ ������ü�� ������ ������ ���� ���� ����� ������ å���� ���� �ʽ��ϴ�. �Խõ� ������ �������� ������ �� �����ϴ�.
+			���̹����̳���(��)�� ������ ������ü�� ������ ������ ���� ���� �����?������ å���� ���� �ʽ��ϴ�. �Խõ� ������ �������� ������ �� �����ϴ�.
 		</p>
 		<p class="info">���� ���� �⺻ �����ʹ� �ѱ��ŷ���(KRX)���� �����մϴ�.</p>
 		<address>
@@ -1239,7 +1239,7 @@ if (true) {
 		<div id="footerPanel0" class="provider_layer" style="display:none" tabindex="0" onblur="hidePannel('footerPanel0')">
 			<strong class="provider_layer__tit">���̹����̳��ȿ� ������ ����</strong>
 			<div class="provider_layer__txt">
-				<strong>�����ذ��̵�</strong> ��� �� �繫����<br>
+				<strong>�����ذ��̵�</strong> ���?�� �繫����<br>
 				<strong>KG������</strong> �ؿ� �ü�, ������ǥ ����<br>
 				<strong>�ѱ���Ź������</strong> ������ȸ��, ������ǥ ����<br>
 				<strong>������Ź</strong> ���� �׸� ����

@@ -21,14 +21,16 @@ const dbContent = fs.readFileSync(CONTENT_DB_PATH, 'utf8');
 // We used a regex to safely extract the array, similar to the generation script
 let blogPosts = [];
 try {
-    const match = dbContent.match(/"blog_posts":\s*(\[\s*\{[\s\S]*\}\s*\])/);
-    if (match) {
-        blogPosts = JSON.parse(match[1]);
+    // Clear cache to ensure we get the latest data if this is run multiple times
+    delete require.cache[require.resolve('../data/content_db.js')];
+    const db = require('../data/content_db.js');
+    if (db && db.blog_posts) {
+        blogPosts = db.blog_posts;
     } else {
-        throw new Error("Could not find blog_posts array in content_db.js");
+        throw new Error("Could not find blog_posts in CONTENT_DB");
     }
 } catch (e) {
-    console.error("❌ Error parsing content_db.js:", e.message);
+    console.error("❌ Error loading content_db.js:", e.message);
     process.exit(1);
 }
 
@@ -68,11 +70,16 @@ blogPosts.forEach(post => {
     const contentWithStaticLinks = post.content.replace(/blog\.html\?id=(\d+)/g, 'post-$1.html');
 
     const postContentHtml = `
+        <div class="breadcrumb" style="margin-bottom: 20px; font-size: 0.9rem; color: var(--text-secondary);">
+            <a href="../index.html" style="color: var(--text-secondary); text-decoration: none;">Home</a> &gt; 
+            <a href="../blog.html" style="color: var(--text-secondary); text-decoration: none;">Blog</a> &gt; 
+            <span style="color: var(--accent-color);">${post.title}</span>
+        </div>
         <article class="post-card">
             <div class="tag">투자 인사이트</div>
             <h1 class="post-title">${post.title}</h1>
             <div class="blog-meta" style="margin-bottom:20px;">
-                <span>📅 ${post.date}</span> | <span>✍️ 이음스탁 AI 리서치팀</span>
+                <span>📅 ${post.date}</span> | <span>✍️ 이음스탁 리서치팀</span>
             </div>
             <hr style="border:0; border-top:1px solid var(--border-color); margin-bottom:30px;">
             <div class="post-content">
@@ -104,6 +111,9 @@ blogPosts.forEach(post => {
     html = html.replace(/href="about.html"/g, 'href="../about.html"');
     html = html.replace(/href="privacy.html"/g, 'href="../privacy.html"');
     html = html.replace(/href="terms.html"/g, 'href="../terms.html"');
+    html = html.replace(/href="\/about.html"/g, 'href="../about.html"');
+    html = html.replace(/href="\/privacy.html"/g, 'href="../privacy.html"');
+    html = html.replace(/href="\/terms.html"/g, 'href="../terms.html"');
     html = html.replace(/href="guide-waterfall.html"/g, 'href="../guide-waterfall.html"');
     html = html.replace(/href="guide-dividend.html"/g, 'href="../guide-dividend.html"');
 
