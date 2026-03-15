@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-03-14T07:56:13.701Z",
-  "date": "2026-03-14",
+  "timestamp": "2026-03-15T07:59:35.849Z",
+  "date": "2026-03-15",
   "isMarketClosed": true,
   "marketClosedReason": "주말 휴장",
   "korea": {
@@ -22,9 +22,9 @@
     }
   },
   "forex": {
-    "usdKrw": 1497.53,
-    "usdKrwChange": 8.75,
-    "usdKrwChangePercent": "0.59"
+    "usdKrw": 1494.4,
+    "usdKrwChange": 5.620000000000118,
+    "usdKrwChangePercent": "0.38"
   },
   "summary": "오늘은 주말 휴장으로 국내 증시가 휴장입니다. 현재 환율과 해외 증시 상황을 참고하여 내일의 장을 준비하세요."
 }
