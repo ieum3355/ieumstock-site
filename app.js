@@ -83,7 +83,7 @@ function subscribeNewsletter() {
     // Mock API Call UX
     const btn = document.querySelector('button[onclick="subscribeNewsletter()"]');
     const originalText = btn.textContent;
-    btn.textContent = "잠금 해제 중...";
+    btn.textContent = "소식 신청 중...";
     btn.disabled = true;
 
     setTimeout(() => {
@@ -91,7 +91,7 @@ function subscribeNewsletter() {
         localStorage.setItem('newsletter_email', email);
 
         // Update UI
-        alert(`🔓 잠금 해제 성공!\n'${email}'님을 위한 시크릿 링크가 생성되었습니다.`);
+        alert(`✅ 신청 완료!\n'${email}'님께 최신 투자 소식을 전해드리겠습니다.`);
         initiateNewsletter(); // Refresh UI State
 
         btn.textContent = originalText;
@@ -421,7 +421,7 @@ function renderMistakes(mistakes) {
             <div class="mistake-body" id="mistake-${i}">
                 <div class="mistake-inner">
                     <p class="mistake-prob"><strong>❌ 문제 상황:</strong> ${m.problem}</p>
-                    <p class="mistake-sol"><strong>✅ 선배의 조언:</strong> ${m.solution}</p>
+                    <p class="mistake-sol"><strong>✅ 전문가의 조언:</strong> ${m.solution}</p>
                     ${m.detail_link ? `<a href="${m.detail_link}" class="hub-link-text">관련 실전 사례 보기 →</a>` : ''}
                 </div>
             </div>

@@ -50,6 +50,13 @@ CONTENT_DB.blog_posts.forEach(post => {
         `<meta name="description" content="${plainTextContent}">`
     );
 
+    // Add Canonical Link (CRITICAL for AdSense)
+    const postUrl = `https://ieumstock.site/posts/post-${post.id}.html`;
+    postHtml = postHtml.replace(
+        /<\/head>/,
+        `<link rel="canonical" href="${postUrl}" />\n</head>`
+    );
+
     // Adjust paths for CSS, JS, etc. since we are now in /posts/
     postHtml = postHtml.replace(/href="style\.css"/g, 'href="../style.css"');
     postHtml = postHtml.replace(/src="data\/content_db\.js/g, 'src="../data/content_db.js');
