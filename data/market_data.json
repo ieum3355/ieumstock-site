@@ -1,30 +1,30 @@
 {
-  "timestamp": "2026-03-20T08:02:00.761Z",
-  "date": "2026-03-20",
-  "isMarketClosed": false,
-  "marketClosedReason": "정상 영업",
+  "timestamp": "2026-03-21T07:53:43.744Z",
+  "date": "2026-03-21",
+  "isMarketClosed": true,
+  "marketClosedReason": "주말 휴장",
   "korea": {
-    "kospi": 5781.2,
-    "kospiChange": 17.98,
-    "kospiChangePercent": 0.31,
-    "note": "Data collected successfully"
+    "kospi": 2500,
+    "kospiChange": 0,
+    "kospiChangePercent": 0,
+    "note": "Market closed: 주말 휴장, using estimated values"
   },
   "us": {
     "sp500": {
-      "price": 6606.49,
-      "change": -18.210000000000036,
-      "changePercent": "-0.27"
+      "price": 6506.48,
+      "change": -100.01000000000022,
+      "changePercent": "-1.51"
     },
     "nasdaq": {
-      "price": 22090.691,
-      "change": -61.72899999999936,
-      "changePercent": "-0.28"
+      "price": 21647.611,
+      "change": -443.0799999999981,
+      "changePercent": "-2.01"
     }
   },
   "forex": {
-    "usdKrw": 1495.77,
-    "usdKrwChange": 1.3599999999999,
-    "usdKrwChangePercent": "0.09"
+    "usdKrw": 1504.83,
+    "usdKrwChange": 10.419999999999845,
+    "usdKrwChangePercent": "0.70"
   },
-  "summary": "[2026-03-20 시장 요약] 코스피는 5781.20로 전일 대비 0.31% 상승했습니다. 미국 S&P 500은 6606.49 (하락), 원/달러 환율은 1495.77원 (상승)을 기록했습니다."
+  "summary": "오늘은 주말 휴장으로 국내 증시가 휴장입니다. 현재 환율과 해외 증시 상황을 참고하여 내일의 장을 준비하세요."
 }
