@@ -51,10 +51,13 @@ CONTENT_DB.blog_posts.forEach(post => {
     );
 
     // Add Canonical Link (CRITICAL for AdSense)
+    // First, remove any existing canonical tag from the template to avoid duplicates
+    postHtml = postHtml.replace(/<link rel="canonical" [^>]*>/g, '');
+    
     const postUrl = `https://ieumstock.site/posts/post-${post.id}.html`;
     postHtml = postHtml.replace(
         /<\/head>/,
-        `<link rel="canonical" href="${postUrl}" />\n</head>`
+        `<link rel="canonical" href="${postUrl}" />\n    <!-- Google Analytics (GA4) -->\n    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YWG53SSXKW"></script>\n    <script>\n        window.dataLayer = window.dataLayer || [];\n        function gtag() { dataLayer.push(arguments); }\n        gtag('js', new Date());\n        gtag('config', 'G-YWG53SSXKW');\n    </script>\n</head>`
     );
 
     // Adjust paths for CSS, JS, etc. since we are now in /posts/
