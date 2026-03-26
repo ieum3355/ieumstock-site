@@ -25,6 +25,7 @@ async function initApp() {
         if (CONTENT_DB.books) renderBooks(CONTENT_DB.books);
         renderMarketBrief();
         renderBlog();
+        renderLatestInsightOnHome(); // Added for one-click house page consumption
     } else {
         // Fallback for empty/missing content to prevent crashes
         console.warn("CONTENT_DB missing, skipping content dependent renders");
@@ -34,6 +35,57 @@ async function initApp() {
     loadChecklist();
     setupSearch();
     initiateNewsletter();
+}
+
+/**
+ * Renders the absolute latest insight directly on the index.html landing page.
+ * This fulfills the "one-click" requirement where users can read without page navigation.
+ */
+function renderLatestInsightOnHome() {
+    const displayContainer = document.getElementById('latest-insight-display');
+    if (!displayContainer || !CONTENT_DB.blog_posts) return;
+
+    // Filter by publish date (avoiding future posts)
+    const today = new Date().toLocaleDateString('en-CA');
+    const visiblePosts = CONTENT_DB.blog_posts.filter(p => !p.publishDate || p.publishDate <= today);
+
+    if (visiblePosts.length === 0) return;
+
+    // Get the latest one (Highest ID/Date)
+    const latest = [...visiblePosts].sort((a, b) => {
+        const dateCompare = b.publishDate.localeCompare(a.publishDate);
+        if (dateCompare !== 0) return dateCompare;
+        return b.id - a.id;
+    })[0];
+
+    // Mark as latest visual badge
+    displayContainer.innerHTML = `
+        <div style="margin-bottom: 2rem; border-bottom: 2px solid var(--accent-color); padding-bottom: 1rem; display: flex; justify-content: space-between; align-items: flex-end;">
+            <div>
+                <span class="new-badge" style="margin-bottom: 0.5rem; display: inline-block;">NEW REPORT</span>
+                <h2 style="font-size: 1.8rem; color: var(--text-primary); margin: 0;">${latest.title}</h2>
+            </div>
+            <span style="color: var(--text-secondary); font-size: 0.9rem;">${latest.date}</span>
+        </div>
+        <div class="post-content" style="line-height: 1.8;">
+            ${latest.content}
+        </div>
+        <div style="margin-top: 3rem; text-align: center; border-top: 1px solid var(--border-color); padding-top: 2rem;">
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">더 많은 인사이트와 투자 기법을 확인하시겠습니까?</p>
+            <a href="blog.html" class="calc-btn" style="display: inline-block; width: auto; padding: 0.8rem 2.5rem;">전체 리포트 보러가기</a>
+        </div>
+    `;
+    
+    displayContainer.style.display = 'block';
+
+    // Hook Hero button to smooth scroll
+    const heroBtn = document.getElementById('hero-read-btn');
+    if (heroBtn) {
+        heroBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            displayContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    }
 }
 
 // Helper for safe DOM manipulation
