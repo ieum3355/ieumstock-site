@@ -758,12 +758,9 @@ function renderBlog() {
                 <a href="blog.html" style="color: var(--text-secondary); text-decoration: none;">Blog</a> &gt; 
                 <span style="color: var(--accent-color);">${post.title}</span>
             </div>
-            <h2 class="post-title"><a href="posts/post-${post.id}.html" style="text-decoration:none; color:inherit; display:block;">${post.title}</a></h2>
+            <h2 class="post-title">${post.title}</h2>
             <div class="post-content">
-                ${post.content.split('</p>')[0]}</p>
-            </div>
-            <div style="margin-top: 1.5rem;">
-                <a href="posts/post-${post.id}.html" class="calc-btn" style="display: inline-block; width: auto; padding: 0.6rem 1.5rem; font-size:0.9rem;">전문 읽어보기 →</a>
+                ${post.content}
             </div>
             ${targetId ? `<div style="margin-top: 3rem; text-align: center; border-top: 1px solid var(--border-color); padding-top: 2rem;">
                 <a href="blog.html" class="calc-btn" style="display: inline-block; width: auto; padding: 0.8rem 2rem;">다른 글 더 읽어보기</a>
