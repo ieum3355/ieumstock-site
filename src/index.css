@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900;
+  }
+}
+
+.premium-card {
+  @apply relative overflow-hidden rounded-2xl bg-white p-6 shadow-sm border border-slate-100 transition-all hover:shadow-md hover:border-slate-200;
+}
+
+.premium-lock-overlay {
+  @apply absolute inset-0 bg-slate-900/5 backdrop-blur-[2px] flex items-center justify-center z-10 rounded-2xl;
+}
