@@ -23,7 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 
+
 # Data
-public/dashboard_data.json
-candidates.json
-live_stock_data.json
+# public/dashboard_data.json is now tracked for automated updates
