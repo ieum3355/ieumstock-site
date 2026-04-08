@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Newspaper, TrendingUp, AlertCircle, CheckCircle2, ArrowUpRight, ArrowDownRight } from 'lucide-react';
+import { Newspaper, TrendingUp, AlertCircle, CheckCircle2, ArrowUpRight, ArrowDownRight, Quote, BookOpen, ChevronRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { CONTENT_DB } from '../data/content_db';
 
 interface MarketData {
   name: string;
@@ -20,6 +22,14 @@ const Home = () => {
   const [data, setData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  // Get daily quote based on date
+  const today = new Date();
+  const quoteIndex = today.getDate() % CONTENT_DB.quotes.length;
+  const dailyQuote = CONTENT_DB.quotes[quoteIndex];
+
+  // Get most recent insight
+  const recentInsight = CONTENT_DB.blog_posts[0];
 
   useEffect(() => {
     const loadData = async () => {
@@ -44,46 +54,71 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="space-y-8 animate-in fade-in duration-500">
-      {/* Header Section */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-        <div>
-          <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">오늘의 시장 인사이트</h1>
-          <p className="text-slate-500 mt-2">전문가 수준의 데이터 분석과 실시간 시장 지표를 확인하세요.</p>
+    <div className="space-y-12 animate-in fade-in duration-700">
+      {/* Hero Section */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
+        <div className="space-y-2">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-xs font-black tracking-widest uppercase mb-2">
+            Market Dashboard
+          </div>
+          <h1 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight">오늘의 시장 인사이트</h1>
+          <p className="text-slate-500 text-lg font-medium">데이터 무결성 기반의 정밀 분석 결과를 확인하세요.</p>
         </div>
-        <div className="flex items-center gap-2 px-3 py-1 bg-green-50 text-green-700 rounded-full text-sm font-semibold border border-green-100">
-          <CheckCircle2 className="w-4 h-4" />
-          {data ? `검증됨: ${data.system.date}` : '검증 중...'}
+        <div className="flex items-center gap-3 px-6 py-4 bg-white shadow-xl shadow-slate-100 rounded-[2rem] border border-slate-50">
+          <div className={`p-2 rounded-full ${data ? 'bg-green-100 text-green-600' : 'bg-slate-100 text-slate-400'}`}>
+            <CheckCircle2 className="w-5 h-5" />
+          </div>
+          <div>
+            <p className="text-xs font-black text-slate-400 uppercase tracking-widest leading-none mb-1">System Status</p>
+            <p className="text-sm font-bold text-slate-900">{data ? `Verified: ${data.system.date}` : 'Verification Pending'}</p>
+          </div>
         </div>
       </div>
 
-      {/* Market Indices */}
+      {/* Market Indices Card Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {loading ? (
-          [1, 2].map((i) => (
-            <div key={i} className="premium-card animate-pulse h-32 bg-slate-100"></div>
+          [1, 2, 3].map((i) => (
+            <div key={i} className="premium-card animate-pulse h-40 bg-slate-50"></div>
           ))
         ) : error ? (
-          <div className="col-span-full premium-card border-red-200 bg-red-50 text-red-700 flex items-center gap-3">
-            <AlertCircle className="w-5 h-5" /> {error}
+          <div className="col-span-full premium-card border-red-100 bg-red-50 text-red-700 flex items-center gap-4 p-8">
+            <AlertCircle className="w-8 h-8 opacity-50" /> 
+            <div>
+              <p className="font-black text-lg">데이터 연결 오류</p>
+              <p className="font-medium opacity-80">{error}</p>
+            </div>
           </div>
         ) : (
           data?.market.map((item, idx) => {
             const isUp = !item.rate.startsWith('-');
             return (
-              <div key={idx} className="premium-card group">
-                <div className="flex justify-between items-start">
+              <div key={idx} className="premium-card bg-white hover:border-primary-100 transition-all group overflow-hidden relative">
+                {/* Decorative background element */}
+                <div className={`absolute -right-4 -bottom-4 w-24 h-24 rounded-full opacity-[0.03] transition-transform group-hover:scale-150 ${isUp ? 'bg-rose-500' : 'bg-blue-500'}`}></div>
+                
+                <div className="flex justify-between items-start relative z-10">
                   <div>
-                    <span className="text-sm font-bold text-slate-500 tracking-wider uppercase">{item.name}</span>
-                    <div className="text-3xl font-black mt-2 text-slate-900">{item.value}</div>
+                    <span className="text-xs font-black text-slate-400 tracking-widest uppercase">{item.name}</span>
+                    <div className="text-3xl font-black mt-2 text-slate-900 tracking-tight group-hover:text-primary-600 transition-colors">{item.value}</div>
                   </div>
-                  <div className={`flex items-center gap-1 font-bold ${isUp ? 'text-rose-500' : 'text-blue-500'}`}>
+                  <div className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl font-black text-sm ${isUp ? 'bg-rose-50 text-rose-500' : 'bg-blue-50 text-blue-500'}`}>
                     {isUp ? <ArrowUpRight className="w-4 h-4" /> : <ArrowDownRight className="w-4 h-4" />}
                     {item.rate}%
                   </div>
                 </div>
-                <div className="mt-4 w-full bg-slate-100 h-1 rounded-full overflow-hidden">
-                  <div className={`h-full transition-all duration-1000 ${isUp ? 'bg-rose-400 w-2/3' : 'bg-blue-400 w-1/3'}`}></div>
+                
+                <div className="mt-8 space-y-2 relative z-10">
+                  <div className="flex justify-between text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                    <span>Bearish</span>
+                    <span>Bullish</span>
+                  </div>
+                  <div className="w-full bg-slate-50 h-2 rounded-full overflow-hidden border border-slate-100">
+                    <div 
+                      className={`h-full transition-all duration-1000 ease-out shadow-sm ${isUp ? 'bg-rose-400' : 'bg-blue-400'}`}
+                      style={{ width: isUp ? '65%' : '35%' }}
+                    ></div>
+                  </div>
                 </div>
               </div>
             )
@@ -91,26 +126,74 @@ const Home = () => {
         )}
       </div>
 
-      {/* Featured Insights */}
-      <div className="premium-card border-l-4 border-l-primary-600 bg-white">
-        <div className="flex items-center gap-2 mb-6">
-          <Newspaper className="w-6 h-6 text-primary-600" />
-          <h2 className="text-xl font-bold">주요 마켓 브리핑</h2>
-        </div>
-        <div className="space-y-6">
-          <div className="group cursor-pointer">
-            <div className="text-lg font-bold group-hover:text-primary-600 transition-colors">
-              [분석] 현재 지수 5,000대 진입을 위한 기술적 조건과 거시경제적 전망
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* Daily Quote Section */}
+        <div className="premium-card bg-slate-900 text-white p-10 flex flex-col justify-center relative overflow-hidden group">
+          <Quote className="absolute top-8 left-8 w-20 h-20 text-white/5 -rotate-12 group-hover:rotate-0 transition-transform duration-700" />
+          <div className="relative z-10 space-y-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 rounded-full text-[10px] font-black tracking-[0.2em] uppercase text-primary-400 border border-white/10">
+              Daily Wisdom
             </div>
-            <p className="text-slate-600 mt-2 leading-relaxed">
-              최근 지수 변동성이 확대됨에 따라 데이터 무결성에 기반한 정밀한 분석이 요구되고 있습니다. 
-              이음스탁 Pro의 엔진은 실시간 시세와 전일 대비 괴리율을 분석하여 최적의 진입 시점을 도출합니다...
+            <p className="text-2xl md:text-3xl font-black leading-tight tracking-tight">
+              "{dailyQuote.split(' - ')[0]}"
             </p>
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-px bg-primary-500"></div>
+              <p className="text-lg font-bold text-slate-400">{dailyQuote.split(' - ')[1]}</p>
+            </div>
           </div>
         </div>
+
+        {/* Recent Insight Section */}
+        <Link to="/insights" className="premium-card bg-white p-10 border-l-4 border-l-primary-600 hover:shadow-2xl hover:shadow-primary-100 transition-all group">
+          <div className="space-y-6 h-full flex flex-col">
+            <div className="flex justify-between items-start">
+              <div className="bg-primary-50 p-4 rounded-[1.5rem] group-hover:bg-primary-600 transition-colors">
+                <BookOpen className="w-8 h-8 text-primary-600 group-hover:text-white transition-colors" />
+              </div>
+              <div className="flex items-center gap-2 text-slate-300 group-hover:text-primary-600 transition-all font-black text-sm uppercase tracking-widest">
+                Latest Insight <ChevronRight className="w-5 h-5" />
+              </div>
+            </div>
+            <div className="space-y-3">
+              <h3 className="text-2xl font-black text-slate-900 leading-snug group-hover:text-primary-700 transition-colors">
+                {recentInsight.title}
+              </h3>
+              <p className="text-slate-500 font-medium leading-relaxed line-clamp-3">
+                {recentInsight.content.replace(/<[^>]*>/g, '')}
+              </p>
+            </div>
+            <div className="mt-auto pt-6 flex items-center gap-4 text-xs font-black text-slate-400 tracking-widest uppercase">
+              <span>{recentInsight.date}</span>
+              <span className="w-1 h-1 bg-slate-200 rounded-full"></span>
+              <span className="text-primary-500">Must Read</span>
+            </div>
+          </div>
+        </Link>
+      </div>
+
+      {/* Featured Menu Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-4">
+        {[
+          { name: '용어 사전', desc: '필수 투자 상식', path: '/dictionary', color: 'bg-indigo-50 text-indigo-600' },
+          { name: '투자 도구', desc: '수익률/복리 계산', path: '/tools', color: 'bg-amber-50 text-amber-600' },
+          { name: 'Brain-Off', desc: 'AI 종목 후보군', path: '/brain-off', color: 'bg-emerald-50 text-emerald-600' },
+          { name: '비밀 노트', desc: '고수의 투자 전략', path: '/insights', color: 'bg-rose-50 text-rose-600' }
+        ].map((item, idx) => (
+          <Link key={idx} to={item.path} className="group p-8 rounded-[2rem] bg-white border border-slate-100 hover:border-primary-100 shadow-xl shadow-slate-100/50 hover:shadow-2xl hover:shadow-primary-100/20 transition-all text-center space-y-4">
+            <div className={`inline-flex p-4 rounded-2xl ${item.color} group-hover:scale-110 transition-transform`}>
+              <TrendingUp className="w-6 h-6" />
+            </div>
+            <div>
+              <h4 className="text-lg font-black text-slate-900 group-hover:text-primary-600 transition-colors">{item.name}</h4>
+              <p className="text-sm font-medium text-slate-400">{item.desc}</p>
+            </div>
+          </Link>
+        ))}
       </div>
     </div>
   );
 };
 
 export default Home;
+
