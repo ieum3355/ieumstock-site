@@ -1,18 +1,18 @@
 {
   "system": {
     "status": "Verified",
-    "date": "2026-04-07 16:36"
+    "date": "2026-04-08 21:27"
   },
   "market": [
     {
       "name": "KOSPI",
-      "value": "5,494.78",
-      "rate": "+0.82"
+      "value": "5,872.34",
+      "rate": "+6.87"
     },
     {
       "name": "KOSDAQ",
-      "value": "1,036.73",
-      "rate": "-1.02"
+      "value": "1,089.85",
+      "rate": "+5.12"
     }
   ],
   "stocks": []
