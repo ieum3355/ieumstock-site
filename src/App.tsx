@@ -137,13 +137,6 @@ function App() {
                     <li><Link to="/terms" className="hover:text-primary-600 transition-colors">이용약관</Link></li>
                   </ul>
                 </div>
-                <div className="space-y-4">
-                  <h4 className="font-black text-slate-900 text-sm uppercase tracking-widest">Connect</h4>
-                  <ul className="space-y-2 text-slate-500 font-medium">
-                    <li><a href="#" className="hover:text-primary-600 transition-colors">GitHub</a></li>
-                    <li><a href="#" className="hover:text-primary-600 transition-colors">Contact</a></li>
-                  </ul>
-                </div>
               </div>
             </div>
 
