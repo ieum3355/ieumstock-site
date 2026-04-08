@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { CONTENT_DB } from '../data/content_db';
 import { BookOpen, Calendar, Clock, ChevronRight, Lock } from 'lucide-react';
 
@@ -41,40 +42,42 @@ const Insights = () => {
       {/* Posts Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {allPosts.map((post) => (
-          <article 
+          <Link 
             key={post.id} 
-            className="premium-card bg-white group hover:border-primary-200 transition-all cursor-pointer flex flex-col h-full"
+            to={`/insights/${post.id}`}
+            className="premium-card bg-white group hover:border-primary-200 transition-all cursor-pointer flex flex-col h-full overflow-hidden"
           >
-            <div className="flex justify-between items-start mb-6">
-              <div className="flex flex-col gap-1">
-                <span className="text-xs font-black text-primary-600 tracking-widest uppercase">Secret TIP #{post.id}</span>
-                <div className="flex items-center gap-3 text-slate-400 text-xs font-medium">
-                  <span className="flex items-center gap-1"><Calendar className="w-3 h-3" /> {post.date}</span>
-                  <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> 5 min read</span>
+            <article className="p-0 flex flex-col h-full"> {/* Remove internal padding if premium-card handled it */}
+              <div className="flex justify-between items-start mb-6">
+                <div className="flex flex-col gap-1">
+                  <span className="text-xs font-black text-primary-600 tracking-widest uppercase">Secret TIP #{post.id}</span>
+                  <div className="flex items-center gap-3 text-slate-400 text-xs font-medium">
+                    <span className="flex items-center gap-1"><Calendar className="w-3 h-3" /> {post.date}</span>
+                    <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> 5 min read</span>
+                  </div>
+                </div>
+                <div className="bg-slate-50 p-2 rounded-xl group-hover:bg-primary-50 transition-colors">
+                  <ChevronRight className="w-5 h-5 text-slate-400 group-hover:text-primary-600 transition-all" />
                 </div>
               </div>
-              <div className="bg-slate-50 p-2 rounded-xl group-hover:bg-primary-50 transition-colors">
-                <ChevronRight className="w-5 h-5 text-slate-400 group-hover:text-primary-600 transition-all" />
+
+              <h2 className="text-2xl font-black text-slate-900 mb-4 group-hover:text-primary-700 transition-colors">
+                {post.title}
+              </h2>
+              
+              <div 
+                className="text-slate-600 leading-relaxed mb-6 line-clamp-3 prose prose-slate prose-sm max-w-none"
+                dangerouslySetInnerHTML={{ __html: post.content }}
+              />
+
+              <div className="mt-auto pt-6 border-t border-slate-100 flex items-center justify-between">
+                <span className="text-sm font-bold text-slate-400">#투자심리 #실전전략</span>
+                <span className="text-primary-600 font-black text-sm flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                  자세히 읽기 <ChevronRight className="w-4 h-4" />
+                </span>
               </div>
-            </div>
-
-            <h2 className="text-2xl font-black text-slate-900 mb-4 group-hover:text-primary-700 transition-colors">
-              {post.title}
-            </h2>
-            
-            <div 
-              className="text-slate-600 leading-relaxed mb-6 line-clamp-3 prose prose-slate prose-sm max-w-none"
-              dangerouslySetInnerHTML={{ __html: post.content }}
-            />
-
-            <div className="mt-auto pt-6 border-t border-slate-100 flex items-center justify-between">
-              <span className="text-sm font-bold text-slate-400">#투자심리 #실전전략</span>
-              <button className="text-primary-600 font-black text-sm flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                자세히 읽기 <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
-
-          </article>
+            </article>
+          </Link>
         ))}
       </div>
 

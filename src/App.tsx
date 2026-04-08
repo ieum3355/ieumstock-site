@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Dictionary from './pages/Dictionary';
 import BrainOff from './pages/BrainOff';
 import Insights from './pages/Insights';
+import PostDetail from './pages/PostDetail';
 import Tools from './pages/Tools';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
@@ -97,6 +98,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/insights" element={<Insights />} />
+            <Route path="/insights/:id" element={<PostDetail />} />
             <Route path="/dictionary" element={<Dictionary />} />
             <Route path="/dictionary/:term" element={<Dictionary />} />
             <Route path="/tools" element={<Tools />} />

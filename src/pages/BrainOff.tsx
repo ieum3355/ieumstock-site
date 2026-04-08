@@ -157,13 +157,25 @@ const BrainOff = () => {
                 </form>
               </div>
             </div>
+          ) : !data || !data.stocks || data.stocks.length === 0 ? (
+            <div className="bg-white border border-slate-100 rounded-[2rem] py-20 text-center space-y-4 shadow-xl shadow-slate-100/50">
+              <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto text-slate-400">
+                <Info className="w-8 h-8" />
+              </div>
+              <div>
+                <p className="text-slate-900 font-black text-lg">현재 분석 중인 종목이 없습니다.</p>
+                <p className="text-slate-400 font-bold uppercase tracking-widest text-xs">장 시간(09:00 - 15:30)에 실시간 데이터가 업데이트됩니다.</p>
+              </div>
+            </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-in zoom-in-95 duration-500">
-              {PREMIUM_STOCKS.map((stock) => (
+              {data.stocks.map((stock: any) => (
                 <div key={stock.id} className="premium-card group relative p-8 bg-white overflow-hidden border-2 border-primary-50">
                   <div className="flex justify-between items-start mb-6">
                     <div className="space-y-1">
-                      <span className="text-[10px] font-black text-primary-600 tracking-widest uppercase bg-primary-50 px-2 py-0.5 rounded">High Probability</span>
+                      <span className="text-[10px] font-black text-primary-600 tracking-widest uppercase bg-primary-50 px-2 py-0.5 rounded">
+                        {stock.reason || 'AI Optimized'}
+                      </span>
                       <h4 className="text-2xl font-black text-slate-900 tracking-tight">{stock.name}</h4>
                     </div>
                     <div className="bg-primary-600 p-2 rounded-xl text-white shadow-lg shadow-primary-100">
@@ -173,16 +185,18 @@ const BrainOff = () => {
 
                   <div className="space-y-5">
                     <div className="flex justify-between items-center text-sm border-b border-slate-50 pb-3">
-                      <span className="text-slate-400 font-bold uppercase tracking-widest">Entry Price</span>
+                      <span className="text-slate-400 font-bold uppercase tracking-widest">실시간 현재가</span>
                       <span className="text-slate-900 font-black">{stock.price}원</span>
                     </div>
                     <div className="flex justify-between items-center text-sm border-b border-slate-50 pb-3">
-                      <span className="text-slate-400 font-bold uppercase tracking-widest">Target Price</span>
+                      <span className="text-slate-400 font-bold uppercase tracking-widest">AI 목표가</span>
                       <span className="text-emerald-600 font-black">{stock.target}원</span>
                     </div>
                     <div className="flex justify-between items-center text-sm">
-                      <span className="text-slate-400 font-bold uppercase tracking-widest">Pot. Yield</span>
-                      <span className="text-primary-600 font-black text-lg">+15.4%</span>
+                      <span className="text-slate-400 font-bold uppercase tracking-widest">오늘의 변동성</span>
+                      <span className={`${stock.rate.startsWith('-') ? 'text-rose-500' : 'text-primary-600'} font-black text-lg`}>
+                        {stock.rate}%
+                      </span>
                     </div>
                   </div>
 
