@@ -27,6 +27,9 @@ const Home = () => {
   const today = new Date();
   const quoteIndex = today.getDate() % CONTENT_DB.quotes.length;
   const dailyQuote = CONTENT_DB.quotes[quoteIndex];
+  const [quoteText, quoteAuthor] = dailyQuote.includes(' - ') 
+    ? dailyQuote.split(' - ') 
+    : [dailyQuote, '익명'];
 
   // Get most recent insight
   const recentInsight = CONTENT_DB.blog_posts[0];
@@ -135,11 +138,11 @@ const Home = () => {
               Daily Wisdom
             </div>
             <p className="text-2xl md:text-3xl font-black leading-tight tracking-tight">
-              "{dailyQuote.split(' - ')[0]}"
+              "{quoteText}"
             </p>
             <div className="flex items-center gap-3">
               <div className="w-8 h-px bg-primary-500"></div>
-              <p className="text-lg font-bold text-slate-400">{dailyQuote.split(' - ')[1]}</p>
+              <p className="text-lg font-bold text-slate-400">{quoteAuthor}</p>
             </div>
           </div>
         </div>

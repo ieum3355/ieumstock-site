@@ -6,24 +6,25 @@ on:
   push:
     branches: ["main", "master"]
 
+  # Runs daily at 00:00 UTC (9:00 AM KST)
+  schedule:
+    - cron: '0 0 * * *'
+
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages and content commit
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+# Allow only one concurrent deployment
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying; no build step needed for simple static sites
-  # But for Vite, we NEED a build step.
   deploy:
     environment:
       name: github-pages
@@ -32,30 +33,49 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm'
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
+
       - name: Install Python dependencies
-        run: pip install -r requirements.txt
-      - name: Run Data Engine
-        run: python brain_off_engine.py
+        run: pip install -r requirements.txt || echo "No requirements.txt found or failed to install"
+
+      - name: Run Data Engines
+        run: |
+          python brain_off_engine.py
+          python generate_daily_insight.py
+
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/dashboard_data.json public/daily_insights.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "auto: update daily market data and insights" && git push)
+
       - name: Install Node dependencies
         run: npm install
+
       - name: Build
         run: npm run build
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
           path: './dist'
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

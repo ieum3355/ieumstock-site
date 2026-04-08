@@ -1,9 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { CONTENT_DB } from '../data/content_db';
 import { BookOpen, Calendar, Clock, ChevronRight, Lock } from 'lucide-react';
 
 const Insights = () => {
-  const posts = [...CONTENT_DB.blog_posts].sort((a, b) => b.id - a.id);
+  const [dynamicPosts, setDynamicPosts] = useState<any[]>([]);
+  
+  useEffect(() => {
+    const fetchDynamic = async () => {
+      try {
+        const res = await fetch('/daily_insights.json');
+        if (res.ok) {
+          const data = await res.json();
+          setDynamicPosts(data);
+        }
+      } catch (e) {
+        console.error("Failed to load daily insights");
+      }
+    };
+    fetchDynamic();
+  }, []);
+
+  const allPosts = [...dynamicPosts, ...CONTENT_DB.blog_posts].sort((a, b) => {
+    // Basic ID/Date sorting (assuming newest first)
+    return b.id - a.id;
+  });
 
   return (
     <div className="space-y-12 animate-in fade-in duration-700">
@@ -20,7 +40,7 @@ const Insights = () => {
 
       {/* Posts Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {posts.map((post) => (
+        {allPosts.map((post) => (
           <article 
             key={post.id} 
             className="premium-card bg-white group hover:border-primary-200 transition-all cursor-pointer flex flex-col h-full"
@@ -54,15 +74,6 @@ const Insights = () => {
               </button>
             </div>
 
-            {/* Lock Overlay for some posts (Visual effect) */}
-            {post.id > 15 && (
-              <div className="absolute inset-0 bg-slate-900/5 backdrop-blur-[2px] rounded-3xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                <div className="bg-white px-4 py-2 rounded-full shadow-xl flex items-center gap-2">
-                  <Lock className="w-4 h-4 text-primary-600" />
-                  <span className="text-sm font-bold">프리미엄 전용</span>
-                </div>
-              </div>
-            )}
           </article>
         ))}
       </div>
