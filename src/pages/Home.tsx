@@ -24,7 +24,7 @@ const Home = () => {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const response = await fetch('./dashboard_data.json');
+        const response = await fetch('/dashboard_data.json');
         if (!response.ok) throw new Error('Data not found');
         const result = await response.json();
         

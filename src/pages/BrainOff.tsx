@@ -13,7 +13,7 @@ const BrainOff = () => {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const response = await fetch('./dashboard_data.json');
+        const response = await fetch('/dashboard_data.json');
         const result = await response.json();
         if (result.system.status === "Verified") setData(result);
       } catch (e) {

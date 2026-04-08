@@ -6,6 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>이음스탁 Pro - 프리미엄 금융 통찰력</title>
     <meta name="description" content="KOSPI, KOSDAQ 지수 정보 및 프리미엄 주식 인사이트를 제공합니다." />
+    <!-- Start Single Page Apps for GitHub Pages -->
+    <script type="text/javascript">
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).filter(function(s) {
+            return s.slice(0, 2) === 'p='
+          })[0];
+          if (decoded) {
+            window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded.slice(2) +
+              (l.search.slice(1).split('&').filter(function(s) {
+                return s.slice(0, 2) === 'q='
+              })[0] || '').slice(2).replace(/~and~/g, '&') +
+              l.hash
+            );
+          }
+        }
+      }(window.location))
+    </script>
+    <!-- End Single Page Apps for GitHub Pages -->
   </head>
   <body>
     <div id="root"></div>
