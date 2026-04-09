@@ -10,12 +10,13 @@ interface MarketData {
 }
 
 interface DashboardData {
-  system: {
-    status: string;
-    date: string;
+  generation_info: {
+    engine: string;
+    timestamp: string;
+    market_condition: string;
   };
-  market: MarketData[];
-  stocks: any[];
+  market_summary: MarketData[];
+  recommendations: any[];
 }
 
 const Home = () => {
@@ -41,10 +42,11 @@ const Home = () => {
         if (!response.ok) throw new Error('Data not found');
         const result = await response.json();
         
-        if (result.system.status === "Verified") {
+        // Match Hybrid 2.1 Schema
+        if (result.generation_info) {
           setData(result);
         } else {
-          setError('데이터 무결성 검증 실패');
+          setError('데이터 구조가 올바르지 않습니다.');
         }
       } catch (err) {
         setError('데이터를 불러오는 중 오류가 발생했습니다.');
@@ -73,7 +75,7 @@ const Home = () => {
           </div>
           <div>
             <p className="text-xs font-black text-slate-400 uppercase tracking-widest leading-none mb-1">System Status</p>
-            <p className="text-sm font-bold text-slate-900">{data ? `Verified: ${data.system.date}` : 'Verification Pending'}</p>
+            <p className="text-sm font-bold text-slate-900">{data ? `Verified: ${data.generation_info.timestamp}` : 'Verification Pending'}</p>
           </div>
         </div>
       </div>
@@ -93,7 +95,7 @@ const Home = () => {
             </div>
           </div>
         ) : (
-          data?.market.map((item, idx) => {
+          data?.market_summary.map((item, idx) => {
             const isUp = !item.rate.startsWith('-');
             return (
               <div key={idx} className="premium-card bg-white hover:border-primary-100 transition-all group overflow-hidden relative">
