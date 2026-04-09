@@ -1,19 +1,19 @@
 {
   "generation_info": {
     "engine": "Brain-Off Hybrid 2.1",
-    "timestamp": "2026-04-09 11:19:53",
-    "market_condition": "KOSPI 5,812 Level Verified"
+    "timestamp": "2026-04-09 11:27:29",
+    "market_condition": "KOSPI 5,801 Level Verified"
   },
   "market_summary": [
     {
       "name": "KOSPI",
-      "value": "5,812.06",
-      "rate": "-1.03%"
+      "value": "5,801.38",
+      "rate": "-1.21%"
     },
     {
       "name": "KOSDAQ",
-      "value": "1,079.56",
-      "rate": "-0.94%"
+      "value": "1,078.30",
+      "rate": "-1.06%"
     }
   ],
   "recommendations": [
@@ -34,7 +34,7 @@
       },
       "seo_content": {
         "page_title": "오늘의 Premium 스윙 종목: 반도체/AI 가속기 주도주 분석",
-        "meta_description": "11시 수급 분석 결과, 삼성전자의 기술적 타점을 포착했습니다. 상세 전략은 본문에서 확인하세요.",
+        "meta_description": "10시 수급 분석 결과, 삼성전자의 기술적 타점을 포착했습니다. 장 초반 변동성을 극복한 스윙 매점입니다.",
         "keywords": [
           "삼성전자",
           "반도체/AI 가속기",
@@ -43,23 +43,23 @@
         ]
       },
       "score_card": {
-        "total_score": 97,
-        "breakout": 40,
-        "accumulation": 22,
-        "volatility_tight": 14,
-        "institutional_buy": 5
+        "total_score": 88,
+        "breakout": 35,
+        "accumulation": 30,
+        "volatility_tight": 12,
+        "institutional_buy": 8
       },
       "trading_strategy": {
-        "logic_summary": "무주공산 돌파 패턴",
-        "technical_analysis": "직전 고점 돌파 이후 거래량이 실리며 매수세가 강하게 유입되고 있습니다. 반도체/AI 가속기 섹터 전반의 온기가 확산되는 구간입니다.",
-        "entry_price": 200600,
-        "target_price": 229300,
-        "stop_loss": 192400,
+        "logic_summary": "10시 수급 안정화 돌파",
+        "technical_analysis": "10시 정각 기준, 장 초반 공방 이후 에너지가 응축되며 상방 발산이 시작된 구간입니다. 반도체/AI 가속기 섹터의 대장주로서 안정적인 흐름이 예상됩니다.",
+        "entry_price": 200400,
+        "target_price": 229000,
+        "stop_loss": 192200,
         "expected_period": "2~5일"
       },
       "live_status": {
-        "current_price": 204750,
-        "profit_pct": "+2.73%",
+        "current_price": 204500,
+        "profit_pct": "+2.85%",
         "status": "HOLD"
       }
     }

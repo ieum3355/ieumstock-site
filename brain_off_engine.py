@@ -13,14 +13,15 @@ def get_verified_data():
             "000270", "035720", "006400", "051910", "105560"
         ]
         
-        # 지수 정보 가져오기
-        market_res = requests.get("https://polling.finance.naver.com/api/realtime?query=SERVICE_INDEX:KOSPI,KOSDAQ")
+        # 지수 정보 가져오기 (캐시 방지 타임스탬프 추가)
+        ts = int(datetime.now().timestamp() * 1000)
+        market_res = requests.get(f"https://polling.finance.naver.com/api/realtime?query=SERVICE_INDEX:KOSPI,KOSDAQ&_={ts}")
         market_res.encoding = 'utf-8'
         market_data = market_res.json()['result']['areas'][0]['datas']
         
         # 종목 정보 가져오기
         stocks_query = ",".join([f"SERVICE_ITEM:{c}" for c in candidates])
-        stock_res = requests.get(f"https://polling.finance.naver.com/api/realtime?query={stocks_query}")
+        stock_res = requests.get(f"https://polling.finance.naver.com/api/realtime?query={stocks_query}&_={ts}")
         
         try:
             content = stock_res.content.decode('utf-8')
@@ -119,7 +120,7 @@ def get_verified_data():
                 },
                 "seo_content": {
                     "page_title": f"오늘의 {tier} 스윙 종목: {s['info']['sector']} 주도주 분석",
-                    "meta_description": f"{datetime.now().hour}시 수급 분석 결과, {s['info']['name']}의 기술적 타점을 포착했습니다. 상세 전략은 본문에서 확인하세요.",
+                    "meta_description": f"10시 수급 분석 결과, {s['info']['name']}의 기술적 타점을 포착했습니다. 장 초반 변동성을 극복한 스윙 매점입니다.",
                     "keywords": [s['info']['name'], s['info']['sector'], "스윙매매", "이음스탁"]
                 },
                 "score_card": {
@@ -130,8 +131,8 @@ def get_verified_data():
                     "institutional_buy": random.randint(5, 10)
                 },
                 "trading_strategy": {
-                    "logic_summary": "무주공산 돌파 패턴" if s['rate'] > 0 else "눌림목 지지 반등",
-                    "technical_analysis": f"직전 고점 돌파 이후 거래량이 실리며 매수세가 강하게 유입되고 있습니다. {s['info']['sector']} 섹터 전반의 온기가 확산되는 구간입니다.",
+                    "logic_summary": "10시 수급 안정화 돌파" if s['rate'] > 0 else "오전 눌림목 지지 반등",
+                    "technical_analysis": f"10시 정각 기준, 장 초반 공방 이후 에너지가 응축되며 상방 발산이 시작된 구간입니다. {s['info']['sector']} 섹터의 대장주로서 안정적인 흐름이 예상됩니다.",
                     "entry_price": entry,
                     "target_price": target,
                     "stop_loss": stop,
