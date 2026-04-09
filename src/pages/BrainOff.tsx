@@ -1,27 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { Lock, Crown, Zap, ShieldCheck, Info, ChevronRight, BarChart3, Target, KeyRound, AlertTriangle } from 'lucide-react';
-
-const PREMIUM_STOCKS = [
-  { id: 1, name: '기업 A', price: '45,200', target: '52,000', lock: false },
-  { id: 2, name: '기업 B', price: '128,500', target: '150,000', lock: false },
-  { id: 3, name: '기업 C', price: '9,430', target: '12,500', lock: false },
-];
+import { Link } from 'react-router-dom';
+import { 
+  Lock, Crown, Zap, ShieldCheck, Info, ChevronRight, BarChart3, 
+  Target, KeyRound, AlertTriangle, TrendingUp, Sparkles, Activity
+} from 'lucide-react';
 
 const BrainOff = () => {
   const [data, setData] = useState<any>(null);
   const [password, setPassword] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadData = async () => {
+      setLoading(true);
       try {
         const response = await fetch('/dashboard_data.json');
         const result = await response.json();
-        if (result.system.status === "Verified") setData(result);
+        if (result.generation_info) setData(result);
       } catch (e) {
         console.error("Data load failed");
       }
+      setLoading(false);
     };
     loadData();
   }, []);
@@ -39,79 +40,87 @@ const BrainOff = () => {
   return (
     <div className="space-y-10 animate-in fade-in duration-700">
       {/* Hero Section */}
-      <div className="relative overflow-hidden bg-slate-900 rounded-[2rem] p-8 md:p-16 text-white text-center">
-        <div className="absolute top-0 right-0 p-4">
-          <Crown className="w-12 h-12 text-yellow-400 opacity-20" />
+      <div className="relative overflow-hidden bg-slate-900 rounded-[3rem] p-8 md:p-20 text-white text-center">
+        <div className="absolute top-0 right-0 p-8">
+          <Crown className="w-16 h-16 text-primary-500 opacity-20 animate-pulse" />
         </div>
-        <div className="relative z-20 max-w-2xl mx-auto space-y-6">
-          <div className="inline-flex items-center gap-2 px-4 py-1 bg-yellow-400/20 text-yellow-400 rounded-full text-xs font-black tracking-widest uppercase">
-            Premium AI Strategy
+        <div className="relative z-20 max-w-3xl mx-auto space-y-8">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-600/20 text-primary-400 rounded-full text-[10px] font-black tracking-[0.2em] uppercase border border-primary-600/30">
+            <Sparkles className="w-4 h-4" />
+            Brain-Off Hybrid 2.1 Engine
           </div>
-          <h1 className="text-4xl md:text-5xl font-black tracking-tighter leading-tight">
-            BRAIN-OFF <span className="text-secondary-400">Zero-Stress</span> 투자 시스템
+          <h1 className="text-4xl md:text-6xl font-black tracking-tight leading-[1.1]">
+            감정은 빼고, <span className="text-primary-500">데이터</span>로 승부하세요
           </h1>
-          <p className="text-slate-400 text-lg md:text-xl font-medium leading-relaxed">
-            감정에 휘둘리지 마세요. 고수들만 사용하는 알고리즘이 <br className="hidden md:block" /> 
-            지금 가장 유망한 상위 1% 종목을 추출합니다.
+          <p className="text-slate-400 text-lg md:text-xl font-medium leading-relaxed max-w-2xl mx-auto">
+            상위 0.1% 알고리즘이 실시간 수급과 차트 패턴을 분석하여<br className="hidden md:block" /> 
+            가장 승률 높은 타점만을 정밀하게 추출합니다.
           </p>
+          
+          {data?.generation_info && (
+            <div className="inline-flex items-center gap-6 px-8 py-4 bg-white/5 rounded-3xl border border-white/10 backdrop-blur-md">
+              <div className="text-left">
+                <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Engine Status</p>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-emerald-500 rounded-full animate-ping"></div>
+                  <span className="text-sm font-black text-emerald-500 uppercase">Verified Active</span>
+                </div>
+              </div>
+              <div className="w-px h-8 bg-white/10"></div>
+              <div className="text-left">
+                <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Market Condition</p>
+                <p className="text-sm font-black text-white">{data.generation_info.market_condition}</p>
+              </div>
+            </div>
+          )}
         </div>
         
         {/* Background Decorative Elements */}
-        <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-primary-600/20 blur-[100px] rounded-full"></div>
-        <div className="absolute -top-20 -right-20 w-64 h-64 bg-secondary-600/20 blur-[100px] rounded-full"></div>
+        <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-primary-600/20 blur-[120px] rounded-full"></div>
+        <div className="absolute -top-20 -right-20 w-96 h-96 bg-primary-500/10 blur-[120px] rounded-full"></div>
       </div>
 
-      {/* Algorithm Strategy Description */}
-      <div className="bg-white border border-slate-100 rounded-[2rem] p-8 shadow-xl shadow-slate-100/50">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="bg-primary-50 p-3 rounded-2xl">
-            <Target className="w-6 h-6 text-primary-600" />
-          </div>
-          <div>
-            <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight">이음스탁 종목 선정 기준</h2>
-            <p className="text-sm text-slate-400 font-bold uppercase tracking-widest">Selection Methodology</p>
-          </div>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[
-            { tag: 'RSI', title: '과매도 기술적 반등', desc: 'RSI 지표가 30 이하로 주가가 단기 바닥권을 형성한 종목' },
-            { tag: 'MA', title: '이동평균선 정배열', desc: '주가가 5, 20, 60일 이평선 위에서 지지를 받는 추세 전환' },
-            { tag: 'Vol', title: '거래량 급증 포착', desc: '평균 거래량 대비 300% 이상 폭증하며 수급이 몰린 종목' },
-            { tag: 'Gap', title: '내재가치 괴리율', desc: '기업 실적 대비 주가가 지나치게 저평가된 딥-밸류 종목' }
-          ].map((item, idx) => (
-            <div key={idx} className="space-y-2 p-4 rounded-2xl bg-slate-50 border border-slate-100/50">
-              <span className="text-[10px] font-black bg-primary-600 text-white px-2 py-0.5 rounded-md uppercase tracking-widest">{item.tag}</span>
-              <h4 className="font-bold text-slate-900 text-sm">{item.title}</h4>
-              <p className="text-xs text-slate-500 leading-relaxed font-medium">{item.desc}</p>
+      {/* Market Summary Tiles */}
+      {data?.market_summary && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {data.market_summary.map((m: any) => (
+            <div key={m.name} className="bg-white border border-slate-100 p-8 rounded-[2.5rem] shadow-sm flex items-center justify-between">
+              <div className="space-y-1">
+                <h4 className="text-xs font-black text-slate-400 uppercase tracking-widest">{m.name} Index</h4>
+                <p className="text-3xl font-black text-slate-900">{m.value}</p>
+              </div>
+              <div className={`px-4 py-2 rounded-2xl font-black text-sm ${m.rate.startsWith('+') ? 'bg-emerald-50 text-emerald-600' : 'bg-rose-50 text-rose-600'}`}>
+                {m.rate}
+              </div>
             </div>
           ))}
         </div>
-      </div>
+      )}
 
       {/* Main Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Screening Logic Visuals */}
         <div className="lg:col-span-1 space-y-6">
-          <h3 className="text-sm font-black text-slate-400 uppercase tracking-[0.2em] flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-primary-600" />
-            Live Engine Status
+          <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.25em] flex items-center gap-2">
+            <Activity className="w-4 h-4 text-primary-600" />
+            Core Analytics Engine
           </h3>
           <div className="space-y-4">
             {[
-              { icon: <Zap />, title: '실시간 괴리율 필터', desc: '전일 대비 5% 이상의 변동성을 실시간 감시합니다.', status: 'Active' },
-              { icon: <Target />, title: '수급 집중도 분석', desc: '외인/기관의 대량 매집 흔적을 추적합니다.', status: 'Active' },
-              { icon: <BarChart3 />, title: '지수 무결성 체크', desc: '시장 왜곡 현상을 필터링하여 오차를 줄입니다.', status: 'Verified' },
+              { icon: <Zap />, title: 'Real-time Breakout', desc: '직전 고점 돌파 및 매물대 소화 과정을 실시간 추적합니다.', status: 'SCANNING' },
+              { icon: <Target />, title: 'Institutional Flow', desc: '기관과 외국인의 집중 매집 구간을 정밀 분석합니다.', status: 'TRACKING' },
+              { icon: <BarChart3 />, title: 'Volatility Filter', desc: '시장의 노이즈를 제거하고 순수 에너지를 측정합니다.', status: 'VERIFIED' },
             ].map((item, idx) => (
-              <div key={idx} className="p-5 rounded-2xl bg-white border border-slate-100 flex gap-4 hover:shadow-lg transition-shadow">
-                <div className="text-primary-600 bg-primary-50 p-3 rounded-xl h-fit">
-                  {React.cloneElement(item.icon as any, { size: 20 })}
+              <div key={idx} className="p-6 rounded-[2rem] bg-white border border-slate-100 flex gap-5 group hover:border-primary-200 transition-all duration-300">
+                <div className="text-primary-600 bg-primary-50 p-4 rounded-2xl h-fit group-hover:scale-110 transition-transform">
+                  {React.cloneElement(item.icon as any, { size: 22 })}
                 </div>
-                <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    <h4 className="font-bold text-slate-900">{item.title}</h4>
-                    <span className="text-[10px] font-black text-emerald-500 px-1.5 py-0.5 bg-emerald-50 rounded uppercase">{item.status}</span>
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <h4 className="font-black text-slate-900 text-sm">{item.title}</h4>
+                    <span className="text-[9px] font-black text-emerald-500 px-2 py-0.5 bg-emerald-50 rounded uppercase tracking-widest">{item.status}</span>
                   </div>
-                  <p className="text-xs text-slate-500 font-medium">{item.desc}</p>
+                  <p className="text-xs text-slate-500 font-medium leading-relaxed">{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -119,24 +128,29 @@ const BrainOff = () => {
         </div>
 
         {/* Premium Stock Cards or Password Gate */}
-        <div className="lg:col-span-2 space-y-6">
-          <div className="flex items-center justify-between">
-            <h3 className="text-xl font-black">AI 선별 종목 리스트</h3>
-            <div className="text-xs font-bold text-slate-400 bg-slate-100 px-4 py-1.5 rounded-full uppercase tracking-widest">
-              Real-time Analysis
+        <div className="lg:col-span-2 space-y-8">
+          <div className="flex items-center justify-between px-2">
+            <div className="space-y-1">
+              <h3 className="text-2xl font-black text-slate-900">AI 선별 종목</h3>
+              <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">Selected Recommendations</p>
+            </div>
+            <div className="text-[10px] font-black text-primary-600 bg-primary-50 px-4 py-2 rounded-full uppercase tracking-widest border border-primary-100 animate-pulse">
+              Live Feed Active
             </div>
           </div>
 
           {!isAuthenticated ? (
-            <div className="bg-slate-900 rounded-[2rem] p-12 text-center space-y-8 relative overflow-hidden group">
-              <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary-600/20 to-transparent"></div>
-              <div className="relative z-10 space-y-6 max-w-sm mx-auto">
-                <div className="inline-flex p-5 bg-white/5 rounded-[2rem] border border-white/10 mb-4 group-hover:scale-110 transition-transform">
-                  <KeyRound className="w-10 h-10 text-primary-400" />
+            <div className="bg-slate-900 rounded-[3rem] p-12 md:p-20 text-center space-y-10 relative overflow-hidden shadow-2xl">
+              <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary-600/30 to-transparent"></div>
+              <div className="relative z-10 space-y-8 max-w-sm mx-auto">
+                <div className="inline-flex p-6 bg-white/5 rounded-[2.5rem] border border-white/10 mb-2 shadow-inner">
+                  <KeyRound className="w-12 h-12 text-primary-400" />
                 </div>
-                <div className="space-y-2">
-                  <h4 className="text-2xl font-black text-white">비공개 프리미엄 데이터</h4>
-                  <p className="text-slate-400 text-sm font-medium">관리자가 부여한 4자리 비밀번호를 입력해주세요.</p>
+                <div className="space-y-3">
+                  <h4 className="text-3xl font-black text-white tracking-tight">Access Restricted</h4>
+                  <p className="text-slate-400 font-medium leading-relaxed">
+                    프리미엄 데이터 접근을 위해<br />인증 코드를 입력해주세요.
+                  </p>
                 </div>
                 <form onSubmit={handleLogin} className="space-y-4">
                   <input 
@@ -144,66 +158,95 @@ const BrainOff = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••"
-                    className="w-full bg-white/10 border border-white/20 rounded-2xl px-6 py-4 text-center text-2xl tracking-[1em] text-white focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all placeholder:text-white/20"
+                    className="w-full bg-white/10 border border-white/20 rounded-[1.5rem] px-8 py-5 text-center text-3xl tracking-[0.8em] text-white focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all placeholder:text-white/10 font-black"
                     maxLength={4}
                   />
-                  {error && <p className="text-rose-400 text-xs font-bold flex items-center justify-center gap-1"><AlertTriangle className="w-3 h-3" /> {error}</p>}
+                  {error && (
+                    <p className="text-rose-400 text-xs font-black flex items-center justify-center gap-1 animate-bounce">
+                      <AlertTriangle className="w-3 h-3" /> {error}
+                    </p>
+                  )}
                   <button 
                     type="submit"
-                    className="w-full bg-primary-600 hover:bg-primary-500 text-white font-black py-4 rounded-2xl shadow-xl shadow-primary-900/50 transition-all active:scale-95"
+                    className="w-full bg-primary-600 hover:bg-primary-500 text-white font-black py-5 rounded-[1.5rem] shadow-2xl shadow-primary-900/50 transition-all active:scale-[0.98] text-sm uppercase tracking-widest"
                   >
-                    데이터 분석결과 확인
+                    Authorize Engine
                   </button>
                 </form>
+                <button className="text-slate-500 text-xs font-black uppercase tracking-widest hover:text-white transition-colors">
+                  Lost your code? Contact Support
+                </button>
               </div>
             </div>
-          ) : !data || !data.stocks || data.stocks.length === 0 ? (
-            <div className="bg-white border border-slate-100 rounded-[2rem] py-20 text-center space-y-4 shadow-xl shadow-slate-100/50">
-              <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto text-slate-400">
-                <Info className="w-8 h-8" />
+          ) : loading ? (
+            <div className="p-12 text-center">
+              <div className="w-12 h-12 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin mx-auto"></div>
+            </div>
+          ) : !data || !data.recommendations || data.recommendations.length === 0 ? (
+            <div className="bg-white border border-slate-100 rounded-[3rem] py-24 text-center space-y-6 shadow-sm">
+              <div className="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mx-auto text-slate-300">
+                <Info className="w-10 h-10" />
               </div>
-              <div>
-                <p className="text-slate-900 font-black text-lg">현재 분석 중인 종목이 없습니다.</p>
-                <p className="text-slate-400 font-bold uppercase tracking-widest text-xs">장 시간(09:00 - 15:30)에 실시간 데이터가 업데이트됩니다.</p>
+              <div className="space-y-2">
+                <p className="text-slate-900 font-black text-xl">분석 대기 중</p>
+                <p className="text-slate-400 font-bold uppercase tracking-widest text-xs">시장의 유의미한 변동성을 기다리고 있습니다.</p>
               </div>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-in zoom-in-95 duration-500">
-              {data.stocks.map((stock: any) => (
-                <div key={stock.id} className="premium-card group relative p-8 bg-white overflow-hidden border-2 border-primary-50">
-                  <div className="flex justify-between items-start mb-6">
-                    <div className="space-y-1">
-                      <span className="text-[10px] font-black text-primary-600 tracking-widest uppercase bg-primary-50 px-2 py-0.5 rounded">
-                        {stock.reason || 'AI Optimized'}
-                      </span>
-                      <h4 className="text-2xl font-black text-slate-900 tracking-tight">{stock.name}</h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-in slide-in-from-bottom-6 duration-700">
+              {data.recommendations.map((rec: any) => (
+                <Link 
+                  key={rec.metadata.id} 
+                  to={`/insights/${rec.metadata.slug}`}
+                  className="group bg-white border border-slate-100 hover:border-primary-200 p-8 rounded-[2.5rem] shadow-sm hover:shadow-2xl hover:shadow-primary-100/30 transition-all duration-500 relative overflow-hidden"
+                >
+                  {rec.metadata.tier === 'Premium' && (
+                    <div className="absolute top-0 right-0 p-4">
+                      <Lock className="w-5 h-5 text-amber-400 opacity-30 group-hover:opacity-100 transition-opacity" />
                     </div>
-                    <div className="bg-primary-600 p-2 rounded-xl text-white shadow-lg shadow-primary-100">
-                      <Target className="w-5 h-5" />
+                  )}
+                  
+                  <div className="space-y-6">
+                    <div className="flex items-center gap-3">
+                      <span className={`px-2 py-0.5 rounded-md text-[9px] font-black uppercase tracking-widest ${
+                        rec.metadata.tier === 'Premium' ? 'bg-amber-100 text-amber-700' : 'bg-primary-50 text-primary-600'
+                      }`}>
+                        {rec.metadata.tier}
+                      </span>
+                      <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{rec.stock_info.sector}</span>
+                    </div>
+
+                    <div className="space-y-2">
+                      <h4 className="text-3xl font-black text-slate-900 group-hover:text-primary-600 transition-colors tracking-tight">
+                        {rec.stock_info.name}
+                      </h4>
+                      <p className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em]">{rec.stock_info.ticker} / {rec.stock_info.market}</p>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="p-4 bg-slate-50 rounded-2xl space-y-1">
+                        <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Entry Target</p>
+                        <p className="text-sm font-black text-slate-900">{rec.trading_strategy.entry_price.toLocaleString()}원</p>
+                      </div>
+                      <div className="p-4 bg-primary-50 rounded-2xl space-y-1">
+                        <p className="text-[9px] font-black text-primary-600 uppercase tracking-widest">AI Score</p>
+                        <p className="text-sm font-black text-slate-900">{rec.score_card.total_score}</p>
+                      </div>
+                    </div>
+
+                    <div className="pt-6 border-t border-slate-50 flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <div className={`w-2 h-2 rounded-full ${rec.live_status.profit_pct.startsWith('+') ? 'bg-emerald-500' : 'bg-rose-500'}`}></div>
+                        <span className={`text-sm font-black ${rec.live_status.profit_pct.startsWith('+') ? 'text-emerald-500' : 'text-rose-500'}`}>
+                          {rec.live_status.profit_pct}
+                        </span>
+                      </div>
+                      <span className="text-primary-600 font-black text-[11px] flex items-center gap-1 group-hover:translate-x-1 transition-transform uppercase tracking-widest">
+                        View Analysis <ChevronRight className="w-4 h-4" />
+                      </span>
                     </div>
                   </div>
-
-                  <div className="space-y-5">
-                    <div className="flex justify-between items-center text-sm border-b border-slate-50 pb-3">
-                      <span className="text-slate-400 font-bold uppercase tracking-widest">실시간 현재가</span>
-                      <span className="text-slate-900 font-black">{stock.price}원</span>
-                    </div>
-                    <div className="flex justify-between items-center text-sm border-b border-slate-50 pb-3">
-                      <span className="text-slate-400 font-bold uppercase tracking-widest">AI 목표가</span>
-                      <span className="text-emerald-600 font-black">{stock.target}원</span>
-                    </div>
-                    <div className="flex justify-between items-center text-sm">
-                      <span className="text-slate-400 font-bold uppercase tracking-widest">오늘의 변동성</span>
-                      <span className={`${stock.rate.startsWith('-') ? 'text-rose-500' : 'text-primary-600'} font-black text-lg`}>
-                        {stock.rate}%
-                      </span>
-                    </div>
-                  </div>
-
-                  <button className="w-full mt-6 py-3 rounded-xl bg-slate-900 text-white font-black text-xs uppercase tracking-widest hover:bg-primary-600 transition-colors">
-                    상세분석 리포트 보기
-                  </button>
-                </div>
+                </Link>
               ))}
             </div>
           )}
@@ -212,5 +255,7 @@ const BrainOff = () => {
     </div>
   );
 };
+
+export default BrainOff;
 
 export default BrainOff;

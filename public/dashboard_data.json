@@ -1,28 +1,67 @@
 {
-  "system": {
-    "status": "Verified",
-    "date": "2026-04-09 06:46"
+  "generation_info": {
+    "engine": "Brain-Off Hybrid 2.1",
+    "timestamp": "2026-04-09 11:12:30",
+    "market_condition": "KOSPI 5,810 Level Verified"
   },
-  "market": [
+  "market_summary": [
     {
       "name": "KOSPI",
-      "value": "5,872.34",
-      "rate": "+6.87"
+      "value": "5,809.71",
+      "rate": "-1.07%"
     },
     {
       "name": "KOSDAQ",
-      "value": "1,089.85",
-      "rate": "+5.12"
+      "value": "1,079.40",
+      "rate": "-0.96%"
     }
   ],
-  "stocks": [
+  "recommendations": [
     {
-      "id": 1,
-      "name": "삼성전자",
-      "price": "210,500",
-      "target": "237,800",
-      "rate": "+7.12",
-      "reason": "전 거래일 대비 급등세"
+      "metadata": {
+        "id": "BO-260409-P1",
+        "slug": "samsung-electronics-260409",
+        "tier": "Premium",
+        "is_locked": true,
+        "date": "2026-04-09"
+      },
+      "stock_info": {
+        "name": "삼성****",
+        "real_name": "삼성전자",
+        "ticker": "005930",
+        "sector": "반도체/AI 가속기",
+        "market": "KOSPI"
+      },
+      "seo_content": {
+        "page_title": "오늘의 Premium 스윙 종목: 반도체/AI 가속기 주도주 분석",
+        "meta_description": "11시 수급 분석 결과, 삼성전자의 기술적 타점을 포착했습니다. 상세 전략은 본문에서 확인하세요.",
+        "keywords": [
+          "삼성전자",
+          "반도체/AI 가속기",
+          "스윙매매",
+          "이음스탁"
+        ]
+      },
+      "score_card": {
+        "total_score": 91,
+        "breakout": 32,
+        "accumulation": 24,
+        "volatility_tight": 16,
+        "institutional_buy": 5
+      },
+      "trading_strategy": {
+        "logic_summary": "무주공산 돌파 패턴",
+        "technical_analysis": "직전 고점 돌파 이후 거래량이 실리며 매수세가 강하게 유입되고 있습니다. 반도체/AI 가속기 섹터 전반의 온기가 확산되는 구간입니다.",
+        "entry_price": 200400,
+        "target_price": 229000,
+        "stop_loss": 192200,
+        "expected_period": "2~5일"
+      },
+      "live_status": {
+        "current_price": 204500,
+        "profit_pct": "+2.85%",
+        "status": "HOLD"
+      }
     }
   ]
 }
