@@ -257,5 +257,3 @@ const BrainOff = () => {
 };
 
 export default BrainOff;
-
-export default BrainOff;

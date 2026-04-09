@@ -29,6 +29,7 @@ export interface Book {
 
 export interface BlogPost {
   id: number;
+  slug?: string;
   title: string;
   date: string;
   publishDate: string;
@@ -45,7 +46,16 @@ export interface QuizQuestion {
   options: QuizOption[];
 }
 
-export const CONTENT_DB = {
+export const CONTENT_DB: {
+  terms: Term[];
+  mistakes: Mistake[];
+  guides: Guide[];
+  faqs: FAQ[];
+  books: Book[];
+  quotes: string[];
+  quiz: QuizQuestion[];
+  blog_posts: BlogPost[];
+} = {
   terms: [
     {
       keyword: "PER (주가수익비율)",
