@@ -1,19 +1,19 @@
 {
   "generation_info": {
     "engine": "Brain-Off Hybrid 2.1",
-    "timestamp": "2026-04-09 11:53:17",
+    "timestamp": "2026-04-09 02:53:58",
     "market_condition": "KOSPI 5,804 Level Verified"
   },
   "market_summary": [
     {
       "name": "KOSPI",
-      "value": "5,803.94",
+      "value": "5,804.09",
       "rate": "-1.16%"
     },
     {
       "name": "KOSDAQ",
-      "value": "1,076.92",
-      "rate": "-1.19%"
+      "value": "1,077.03",
+      "rate": "-1.18%"
     }
   ],
   "recommendations": [
@@ -43,11 +43,11 @@
         ]
       },
       "score_card": {
-        "total_score": 89,
-        "breakout": 38,
-        "accumulation": 23,
-        "volatility_tight": 20,
-        "institutional_buy": 5
+        "total_score": 87,
+        "breakout": 40,
+        "accumulation": 28,
+        "volatility_tight": 15,
+        "institutional_buy": 7
       },
       "trading_strategy": {
         "logic_summary": "10시 수급 안정화 돌파",
