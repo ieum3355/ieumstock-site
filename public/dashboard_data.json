@@ -1,19 +1,19 @@
 {
   "generation_info": {
     "engine": "Brain-Off Hybrid 2.1",
-    "timestamp": "2026-04-09 11:33:59",
-    "market_condition": "KOSPI 5,799 Level Verified"
+    "timestamp": "2026-04-09 11:34:27",
+    "market_condition": "KOSPI 5,800 Level Verified"
   },
   "market_summary": [
     {
       "name": "KOSPI",
-      "value": "5,799.48",
+      "value": "5,799.55",
       "rate": "-1.24%"
     },
     {
       "name": "KOSDAQ",
-      "value": "1,077.91",
-      "rate": "-1.10%"
+      "value": "1,077.63",
+      "rate": "-1.12%"
     }
   ],
   "recommendations": [
@@ -43,23 +43,23 @@
         ]
       },
       "score_card": {
-        "total_score": 89,
-        "breakout": 33,
-        "accumulation": 27,
-        "volatility_tight": 17,
-        "institutional_buy": 7
+        "total_score": 98,
+        "breakout": 39,
+        "accumulation": 25,
+        "volatility_tight": 15,
+        "institutional_buy": 6
       },
       "trading_strategy": {
         "logic_summary": "10시 수급 안정화 돌파",
         "technical_analysis": "10시 정각 기준, 장 초반 공방 이후 에너지가 응축되며 상방 발산이 시작된 구간입니다. 반도체/AI 가속기 섹터의 대장주로서 안정적인 흐름이 예상됩니다.",
-        "entry_price": 200100,
-        "target_price": 228700,
-        "stop_loss": 191900,
+        "entry_price": 199900,
+        "target_price": 228400,
+        "stop_loss": 191700,
         "expected_period": "2~5일"
       },
       "live_status": {
-        "current_price": 204250,
-        "profit_pct": "+2.97%",
+        "current_price": 204000,
+        "profit_pct": "+3.09%",
         "status": "HOLD"
       }
     }
