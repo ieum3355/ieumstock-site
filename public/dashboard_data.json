@@ -1,29 +1,29 @@
 {
   "generation_info": {
     "engine": "Brain-Off Hybrid 2.1",
-    "timestamp": "2026-04-09 02:53:58",
-    "market_condition": "KOSPI 5,804 Level Verified"
+    "timestamp": "2026-04-10 14:11:44",
+    "market_condition": "KOSPI 5,859 Level Verified"
   },
   "market_summary": [
     {
       "name": "KOSPI",
-      "value": "5,804.09",
-      "rate": "-1.16%"
+      "value": "5,858.87",
+      "rate": "+1.40%"
     },
     {
       "name": "KOSDAQ",
-      "value": "1,077.03",
-      "rate": "-1.18%"
+      "value": "1,093.63",
+      "rate": "+1.64%"
     }
   ],
   "recommendations": [
     {
       "metadata": {
-        "id": "BO-260409-P1",
-        "slug": "samsung-electronics-260409",
+        "id": "BO-260410-P1",
+        "slug": "samsung-electronics-260410",
         "tier": "Premium",
         "is_locked": true,
-        "date": "2026-04-09"
+        "date": "2026-04-10"
       },
       "stock_info": {
         "name": "삼성****",
@@ -43,23 +43,23 @@
         ]
       },
       "score_card": {
-        "total_score": 87,
-        "breakout": 40,
-        "accumulation": 28,
+        "total_score": 90,
+        "breakout": 33,
+        "accumulation": 26,
         "volatility_tight": 15,
-        "institutional_buy": 7
+        "institutional_buy": 6
       },
       "trading_strategy": {
         "logic_summary": "10시 수급 안정화 돌파",
         "technical_analysis": "10시 정각 기준, 장 초반 공방 이후 에너지가 응축되며 상방 발산이 시작된 구간입니다. 반도체/AI 가속기 섹터의 대장주로서 안정적인 흐름이 예상됩니다.",
-        "entry_price": 200400,
-        "target_price": 229000,
-        "stop_loss": 192200,
+        "entry_price": 201800,
+        "target_price": 230700,
+        "stop_loss": 193600,
         "expected_period": "2~5일"
       },
       "live_status": {
-        "current_price": 204500,
-        "profit_pct": "+2.85%",
+        "current_price": 206000,
+        "profit_pct": "+0.98%",
         "status": "HOLD"
       }
     }
