@@ -35,7 +35,14 @@ const Insights = () => {
     fetchDynamic();
   }, []);
 
-  const allPosts = [...dynamicPosts, ...CONTENT_DB.blog_posts.map(p => ({ ...p, type: 'article' }))];
+  const allPosts = [...dynamicPosts, ...CONTENT_DB.blog_posts.map(p => ({ 
+    ...p, 
+    id: p.article_info.id,
+    slug: p.article_info.slug,
+    title: p.article_info.title,
+    date: p.article_info.date,
+    type: 'article' 
+  }))];
 
   return (
     <div className="space-y-12 animate-in fade-in duration-700">
@@ -99,16 +106,23 @@ const Insights = () => {
                   <h2 className="text-2xl font-black text-slate-900 group-hover:text-primary-600 transition-colors leading-tight">
                     {post.title}
                   </h2>
-                  <div 
-                    className={`text-slate-500 text-sm font-medium leading-relaxed line-clamp-3 ${post.isLocked ? 'blur-[3px] select-none' : ''}`}
-                    dangerouslySetInnerHTML={{ __html: post.content }}
-                  />
+                  <p className={`text-slate-500 text-sm font-medium leading-relaxed line-clamp-3 ${post.isLocked ? 'blur-[3px] select-none' : ''}`}>
+                    {post.type === 'article' ? (post as any).content_body.introduction.text : (post as any).content}
+                  </p>
                 </div>
 
                 <div className="mt-auto pt-6 border-t border-slate-50 flex items-center justify-between">
                   <div className="flex gap-2">
-                    <span className="text-[10px] font-black text-slate-400 bg-slate-50 px-2 py-1 rounded-md">#실전전략</span>
-                    <span className="text-[10px] font-black text-slate-400 bg-slate-50 px-2 py-1 rounded-md">#데이터분석</span>
+                    {post.type === 'article' ? (
+                      (post as any).article_info.tags?.slice(0, 2).map((tag: string) => (
+                        <span key={tag} className="text-[10px] font-black text-slate-400 bg-slate-50 px-2 py-1 rounded-md">#{tag}</span>
+                      ))
+                    ) : (
+                      <>
+                        <span className="text-[10px] font-black text-slate-400 bg-slate-50 px-2 py-1 rounded-md">#실전전략</span>
+                        <span className="text-[10px] font-black text-slate-400 bg-slate-50 px-2 py-1 rounded-md">#데이터분석</span>
+                      </>
+                    )}
                   </div>
                   <span className="text-primary-600 font-black text-xs flex items-center gap-1 group-hover:translate-x-1 transition-transform">
                     {post.isLocked ? '프리미엄 읽기' : '자세히 읽기'} <ChevronRight className="w-4 h-4" />
@@ -118,6 +132,7 @@ const Insights = () => {
             </Link>
           ))}
         </div>
+
       )}
 
       {/* Bottom CTA */}

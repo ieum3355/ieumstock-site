@@ -162,14 +162,14 @@ const Home = () => {
             </div>
             <div className="space-y-3">
               <h3 className="text-2xl font-black text-slate-900 leading-snug group-hover:text-primary-700 transition-colors">
-                {recentInsight.title}
+                {recentInsight.article_info.title}
               </h3>
               <p className="text-slate-500 font-medium leading-relaxed line-clamp-3">
-                {recentInsight.content.replace(/<[^>]*>/g, '')}
+                {recentInsight.content_body.introduction.text}
               </p>
             </div>
             <div className="mt-auto pt-6 flex items-center gap-4 text-xs font-black text-slate-400 tracking-widest uppercase">
-              <span>{recentInsight.date}</span>
+              <span>{recentInsight.article_info.date}</span>
               <span className="w-1 h-1 bg-slate-200 rounded-full"></span>
               <span className="text-primary-500">Must Read</span>
             </div>

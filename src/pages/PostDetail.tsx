@@ -4,8 +4,21 @@ import { Helmet } from 'react-helmet-async';
 import { CONTENT_DB } from '../data/content_db';
 import { 
   ArrowLeft, Calendar, Clock, Share2, Bookmark, BookmarkCheck, 
-  Lock, AlertCircle, ChevronRight, TrendingUp, Target, ShieldAlert
+  Lock, AlertCircle, ChevronRight, TrendingUp, Target, ShieldAlert,
+  Zap, Lightbulb, CheckCircle2, MessageSquareQuote, Info
 } from 'lucide-react';
+
+const AnalysisIcon = ({ type }: { type?: string }) => {
+  switch (type) {
+    case 'trend': return <TrendingUp className="w-6 h-6 text-emerald-500" />;
+    case 'risk': return <ShieldAlert className="w-6 h-6 text-rose-500" />;
+    case 'volume': return <Zap className="w-6 h-6 text-amber-500" />;
+    case 'analysis': return <Target className="w-6 h-6 text-blue-500" />;
+    case 'psychology': return <Info className="w-6 h-6 text-purple-500" />;
+    case 'strategy': return <Lightbulb className="w-6 h-6 text-primary-500" />;
+    default: return <AlertCircle className="w-6 h-6 text-slate-400" />;
+  }
+};
 
 const PostDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -19,14 +32,14 @@ const PostDetail = () => {
       setLoading(true);
       
       // 1. Check static posts
-      const staticPost = CONTENT_DB.blog_posts.find(p => p.id.toString() === id || p.slug === id);
+      const staticPost = CONTENT_DB.blog_posts.find(p => p.article_info.id.toString() === id || p.article_info.slug === id);
       if (staticPost) {
         setPost({ ...staticPost, type: 'article' });
         setLoading(false);
         return;
       }
 
-      // 2. Check dynamic recommendations from dashboard_data.json
+      // 2. Check dynamic recommendations
       try {
         const res = await fetch('/dashboard_data.json');
         if (res.ok) {
@@ -50,7 +63,7 @@ const PostDetail = () => {
     return (
       <div className="min-h-[60vh] flex flex-col items-center justify-center space-y-4">
         <div className="w-12 h-12 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin"></div>
-        <p className="text-slate-400 font-bold animate-pulse uppercase tracking-widest text-xs">분석 데이터를 불러오는 중...</p>
+        <p className="text-slate-400 font-bold animate-pulse uppercase tracking-widest text-xs">데이터 정밀 분석 중...</p>
       </div>
     );
   }
@@ -71,25 +84,32 @@ const PostDetail = () => {
   }
 
   const isLocked = post.type === 'recommendation' && post.metadata.is_locked;
-  const seo = post.type === 'recommendation' ? post.seo_content : {
-    page_title: post.title,
-    meta_description: post.excerpt || post.title,
-    keywords: ["이음스탁", "주식분석"]
+  const seo = post.type === 'recommendation' ? {
+    page_title: post.seo_content.page_title,
+    meta_description: post.seo_content.meta_description,
+    keywords: post.seo_content.keywords
+  } : {
+    page_title: post.seo_metadata.meta_title,
+    meta_description: post.seo_metadata.meta_description,
+    keywords: post.article_info.tags || ["이음스탁", "주식분석", "투자전략"]
   };
 
   return (
-    <div className="max-w-4xl mx-auto space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
       <Helmet>
         <title>{seo.page_title} | IEUMSTOCK PRO</title>
         <meta name="description" content={seo.meta_description} />
         <meta name="keywords" content={seo.keywords.join(', ')} />
+        {post.type === 'article' && post.seo_metadata.og_image && (
+          <meta property="og:image" content={post.seo_metadata.og_image} />
+        )}
       </Helmet>
 
       {/* Navigation Header */}
-      <div className="flex items-center justify-between pb-6 border-b border-slate-100">
+      <div className="flex items-center justify-between py-6 border-b border-slate-100">
         <button 
           onClick={() => navigate('/insights')}
-          className="flex items-center gap-2 text-slate-400 hover:text-primary-600 font-black text-sm uppercase tracking-tight transition-colors group"
+          className="flex items-center gap-2 text-slate-400 hover:text-primary-600 font-black text-xs uppercase tracking-tight transition-colors group"
         >
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
           Back to Insights
@@ -97,18 +117,18 @@ const PostDetail = () => {
         <div className="flex items-center gap-4">
           <button 
             onClick={() => setIsBookmarked(!isBookmarked)}
-            className={`p-2 rounded-xl transition-all ${isBookmarked ? 'bg-primary-50 text-primary-600' : 'bg-slate-50 text-slate-400 hover:bg-slate-100'}`}
+            className={`p-2.5 rounded-xl transition-all ${isBookmarked ? 'bg-primary-50 text-primary-600' : 'bg-slate-50 text-slate-400 hover:bg-slate-100'}`}
           >
             {isBookmarked ? <BookmarkCheck className="w-5 h-5" /> : <Bookmark className="w-5 h-5" />}
           </button>
-          <button className="p-2 bg-slate-50 text-slate-400 rounded-xl hover:bg-slate-100 transition-all">
+          <button className="p-2.5 bg-slate-50 text-slate-400 rounded-xl hover:bg-slate-100 transition-all">
             <Share2 className="w-5 h-5" />
           </button>
         </div>
       </div>
 
       {post.type === 'recommendation' ? (
-        // Recommendation View
+        // Recommendation View (AI Dashboard Flow)
         <div className="space-y-12">
           <header className="space-y-6">
             <div className="flex items-center gap-3">
@@ -224,87 +244,200 @@ const PostDetail = () => {
           </div>
         </div>
       ) : (
-        // Standard Article View
-        <div className="space-y-10">
-          <header className="space-y-6">
+        // Premium Article View
+        <div className="space-y-12">
+          <header className="space-y-8">
             <div className="flex items-center gap-3">
               <span className="px-3 py-1 bg-primary-50 text-primary-600 text-[10px] font-black uppercase tracking-[0.2em] rounded-md">
-                Secret Tip #{post.id}
+                {post.article_info.category} Insight
               </span>
               <div className="h-px flex-grow bg-slate-100"></div>
             </div>
             
-            <h1 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-[1.1]">
-              {post.title}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.05]">
+              {post.article_info.title}
             </h1>
 
-            <div className="flex flex-wrap items-center gap-6 text-slate-400 font-bold text-sm">
+            <div className="flex flex-wrap items-center gap-x-8 gap-y-4 text-slate-400 font-bold text-sm">
               <div className="flex items-center gap-2">
-                <Calendar className="w-4 h-4" />
-                <span>{post.date}</span>
+                <Calendar className="w-4 h-4 text-slate-300" />
+                <span>{post.article_info.date}</span>
               </div>
               <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4" />
-                <span>5 min read</span>
+                <Clock className="w-4 h-4 text-slate-300" />
+                <span>Premium Report</span>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span>
-                <span className="text-emerald-500">Premium Analysis Verified</span>
+              <div className="flex items-center gap-2 px-3 py-1 bg-emerald-50 text-emerald-600 rounded-lg text-xs">
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                <span>Verified Insights</span>
               </div>
             </div>
           </header>
 
-          <article className="prose prose-slate prose-lg max-w-none prose-headings:font-black prose-headings:text-slate-900 prose-p:text-slate-600 prose-p:leading-relaxed prose-strong:text-slate-900 prose-li:text-slate-600">
-            <div 
-              className="insights-content"
-              dangerouslySetInnerHTML={{ __html: post.content }} 
-            />
-            
-            <div className="mt-12 p-8 bg-slate-900 rounded-[2rem] text-white space-y-4">
-              <h4 className="text-xl font-black flex items-center gap-2">
-                <span className="w-2 h-2 bg-primary-500 rounded-full"></span>
-                이음스탁 리서치팀 제언
-              </h4>
-              <p className="text-slate-400 font-medium leading-relaxed">
-                위 인사이트는 시장의 극심한 공포와 환희 사이에서 객관적인 데이터를 바탕으로 작성되었습니다. 
-                투자의 최종 결정은 투자자 본인에게 있으며, 시장의 파동보다 기업의 본질적 가치와 본인의 원칙에 집중하시기 바랍니다.
-              </p>
+          {/* Ad Slot: Top */}
+          <div className="space-y-2">
+            <p className="text-[9px] font-black text-slate-300 uppercase tracking-widest ml-4">Advertisement</p>
+            <div id="adsense-top" className="w-full min-h-[120px] bg-slate-50/50 border border-slate-100 rounded-3xl flex items-center justify-center text-[10px] font-black text-slate-300 uppercase tracking-widest">
+              Google AdSense Display Unit (Top)
             </div>
+          </div>
+
+          <article className="space-y-20">
+            {/* Introduction */}
+            <section className="space-y-6 relative">
+              <div className="absolute -left-4 top-0 w-1.5 h-full bg-primary-600/30 rounded-full hidden md:block"></div>
+              <h2 className="text-3xl md:text-4xl font-black text-slate-900 leading-tight">
+                {post.content_body.introduction.heading}
+              </h2>
+              <p className="text-xl text-slate-600 leading-relaxed font-medium whitespace-pre-line">
+                {post.content_body.introduction.text}
+              </p>
+            </section>
+
+            {/* Core Analysis */}
+            <div className="space-y-12">
+              <h3 className="text-[11px] font-black text-slate-400 uppercase tracking-[0.4em] flex items-center gap-4">
+                Deep Analysis <div className="h-px flex-grow bg-slate-100"></div>
+              </h3>
+              
+              <div className="grid grid-cols-1 gap-12">
+                {post.content_body.core_analysis.map((analysis: any, idx: number) => (
+                  <div key={idx} className="group space-y-6">
+                    <div className="flex items-start gap-6">
+                      <div className="p-4 bg-white border border-slate-100 rounded-3xl shadow-sm group-hover:shadow-xl group-hover:border-primary-100 transition-all group-hover:-translate-y-1">
+                        <AnalysisIcon type={analysis.icon_type} />
+                      </div>
+                      <div className="space-y-5 flex-grow">
+                        <h4 className="text-2xl font-black text-slate-900 group-hover:text-primary-600 transition-colors tracking-tight">
+                          {analysis.sub_heading}
+                        </h4>
+                        <p className="text-lg text-slate-600 leading-relaxed font-medium whitespace-pre-line">
+                          {analysis.text}
+                        </p>
+                        {analysis.insight_tip && (
+                          <div className="bg-primary-50/50 p-6 rounded-[2rem] border border-primary-100 flex gap-4 relative overflow-hidden">
+                            <div className="absolute top-0 right-0 w-16 h-16 bg-primary-100/30 rounded-full -mr-8 -mt-8"></div>
+                            <Lightbulb className="w-7 h-7 text-primary-500 flex-shrink-0" />
+                            <p className="text-base font-bold text-primary-900 italic leading-relaxed">
+                              "{analysis.insight_tip}"
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Ad Slot: Middle */}
+            <div className="space-y-2">
+              <p className="text-[9px] font-black text-slate-300 uppercase tracking-widest text-center">Advertisement</p>
+              <div id="adsense-middle" className="w-full min-h-[250px] bg-slate-50/30 border border-dashed border-slate-200 rounded-[2.5rem] flex items-center justify-center text-[10px] font-black text-slate-300 uppercase tracking-widest italic">
+                Google AdSense In-Article Ad Unit (Middle)
+              </div>
+            </div>
+
+            {/* Practical Guide */}
+            <section className="bg-slate-900 rounded-[3.5rem] p-10 md:p-16 text-white space-y-10 shadow-2xl relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-80 h-80 bg-primary-600/20 blur-[120px] -z-10"></div>
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-600/10 blur-[100px] -z-10"></div>
+              
+              <div className="space-y-2 text-center md:text-left">
+                <h3 className="text-3xl md:text-4xl font-black">
+                  {post.content_body.practical_guide.heading}
+                </h3>
+                <p className="text-primary-400 font-black uppercase tracking-[0.3em] text-[10px]">Actionable Execution Framework</p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {post.content_body.practical_guide.items.map((item: any, idx: number) => (
+                  <div key={idx} className="p-8 bg-white/5 border border-white/10 rounded-[2.5rem] hover:bg-white/10 transition-all group">
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="w-10 h-10 bg-primary-600/30 text-primary-400 rounded-full flex items-center justify-center font-black text-lg border border-primary-600/50 group-hover:bg-primary-600 group-hover:text-white transition-all">
+                        {idx + 1}
+                      </div>
+                      <h5 className="font-black text-xl">{item.title}</h5>
+                    </div>
+                    <p className="text-slate-400 text-base font-medium leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              {post.system_link && post.system_link.related_ticker.length > 0 && (
+                <div className="pt-8 border-t border-white/10 flex flex-wrap items-center gap-6">
+                  <span className="text-xs font-black text-slate-500 uppercase tracking-widest">Related Tickers</span>
+                  <div className="flex flex-wrap gap-3">
+                    {post.system_link.related_ticker.map((ticker: string) => (
+                      <span key={ticker} className="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-xl text-sm font-black transition-colors border border-white/5">
+                        ${ticker}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </section>
+
+            {/* Conclusion */}
+            <section className="space-y-8 pt-6">
+              <div className="flex items-center gap-4">
+                <MessageSquareQuote className="w-10 h-10 text-primary-600" />
+                <h3 className="text-[11px] font-black text-slate-400 uppercase tracking-[0.4em]">Strategic Conclusion</h3>
+              </div>
+              <div className="space-y-8">
+                <p className="text-2xl text-slate-600 font-bold leading-relaxed whitespace-pre-line">
+                  {post.content_body.conclusion.text}
+                </p>
+                <div className="p-10 md:p-14 bg-gradient-to-br from-slate-800 to-slate-900 rounded-[3rem] text-white shadow-2xl relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-primary-600/10 blur-3xl rounded-full group-hover:scale-150 transition-transform duration-1000"></div>
+                  <p className="text-3xl md:text-4xl font-black italic tracking-tight leading-snug">
+                    "{post.content_body.conclusion.closing_statement}"
+                  </p>
+                </div>
+              </div>
+            </section>
           </article>
+
+          {/* Ad Slot: Bottom */}
+          <div className="space-y-2">
+            <p className="text-[9px] font-black text-slate-300 uppercase tracking-widest ml-4">Advertisement</p>
+            <div id="adsense-bottom" className="w-full min-h-[150px] bg-slate-50 border border-slate-100 rounded-3xl flex items-center justify-center text-[10px] font-black text-slate-400/50 uppercase tracking-widest">
+              Google AdSense Responsive Unit (Bottom)
+            </div>
+          </div>
+
+          <div className="p-10 bg-slate-50 rounded-[3rem] border border-slate-200/50 space-y-6">
+            <h4 className="text-base font-black text-slate-900 flex items-center gap-3 uppercase tracking-tight">
+              <ShieldAlert className="w-5 h-5 text-primary-600" />
+              Investment Transparency & Disclaimer
+            </h4>
+            <p className="text-sm text-slate-500 font-bold leading-relaxed whitespace-pre-line">
+              이음스탁 리서치팀의 모든 콘텐츠는 객관적인 데이터 통계와 거시 경제 흐름을 바탕으로 작성된 고부가가치 정보입니다. 
+              본 리포트는 특정 종목의 매수/매도를 권유하지 않으며, 최종적인 투자 결정에 대한 모든 책임은 투자자 본인에게 있습니다. 
+              시장의 변동성은 예측 불가능하며, 과거의 성과가 미래의 수익을 보장하지 않음을 유의하십시오.
+            </p>
+          </div>
         </div>
       )}
 
       {/* Footer Navigation */}
       <div className="pt-12 border-t border-slate-100 flex flex-col sm:flex-row justify-between items-center gap-8">
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center font-black text-white">IS</div>
+          <div className="w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center font-black text-white shadow-lg shadow-primary-100">IS</div>
           <div>
             <p className="text-sm font-black text-slate-900">IEUMSTOCK Research Center</p>
-            <p className="text-xs text-slate-400 font-bold">Data Scientist & Market Analyst</p>
+            <p className="text-xs text-slate-400 font-bold">Data Engineering & Market Insight</p>
           </div>
         </div>
         <Link 
           to="/insights"
-          className="flex items-center gap-2 px-6 py-3 bg-slate-100 text-slate-600 rounded-2xl font-black text-sm hover:bg-primary-50 hover:text-primary-600 transition-all"
+          className="flex items-center gap-2 px-8 py-4 bg-slate-900 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-primary-600 shadow-xl transition-all"
         >
-          다른 인사이트 더보기
+          View More Insights
+          <ChevronRight className="w-4 h-4" />
         </Link>
-      </div>
-
-      {/* Subscription Banner */}
-      <div className="bg-gradient-to-br from-primary-50 to-white border border-primary-100 rounded-[2rem] p-8 mt-12 text-center space-y-4">
-        <h3 className="text-xl font-black text-slate-900">놓치기 아까운 투자 팁, 이메일로 받아보세요.</h3>
-        <p className="text-slate-500 text-sm font-medium">뉴스레터 구독자에게만 공개되는 비공개 리포트를 보내드립니다.</p>
-        <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto pt-2">
-          <input 
-            type="email" 
-            placeholder="example@email.com"
-            className="flex-grow px-5 py-3 rounded-xl bg-white border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all font-medium"
-          />
-          <button className="px-6 py-3 bg-primary-600 text-white rounded-xl font-black text-sm hover:bg-primary-500 shadow-lg shadow-primary-100 transition-all">
-            구독하기
-          </button>
-        </div>
       </div>
     </div>
   );
