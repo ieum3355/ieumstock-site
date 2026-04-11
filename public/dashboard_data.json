@@ -1,14 +1,9 @@
 {
   "generation_info": {
     "engine": "Brain-Off Hybrid 2.2",
-<<<<<<< HEAD
-    "timestamp": "2026-04-11 11:56:04",
+    "timestamp": "2026-04-11 02:58:50",
     "market_condition": "KOSPI 5,859 Level Verified",
     "status_msg": "오늘의 엄선된 2+2 전략 종목이 분석되었습니다."
-=======
-    "timestamp": "2026-04-11 02:30:19",
-    "market_condition": "KOSPI 5,859 Level Verified"
->>>>>>> 2b5dec21c142a68291b0e4ff318ebd64078d1d13
   },
   "market_summary": [
     {
@@ -23,114 +18,6 @@
     }
   ],
   "recommendations": [
-    {
-      "metadata": {
-<<<<<<< HEAD
-        "id": "BO-260411-P",
-=======
-        "id": "BO-260411-P1",
-        "slug": "kia-260411",
-        "tier": "Premium",
-        "is_locked": true,
-        "date": "2026-04-11"
-      },
-      "stock_info": {
-        "name": "기아",
-        "real_name": "기아",
-        "ticker": "000270",
-        "sector": "자동차",
-        "market": "KOSPI"
-      },
-      "seo_content": {
-        "page_title": "오늘의 Premium 스윙 종목: 자동차 주도주 분석",
-        "meta_description": "10시 수급 분석 결과, 기아의 기술적 타점을 포착했습니다. 장 초반 변동성을 극복한 스윙 매점입니다.",
-        "keywords": [
-          "기아",
-          "자동차",
-          "스윙매매",
-          "이음스탁"
-        ]
-      },
-      "score_card": {
-        "total_score": 91,
-        "breakout": 40,
-        "accumulation": 28,
-        "volatility_tight": 17,
-        "institutional_buy": 6
-      },
-      "trading_strategy": {
-        "logic_summary": "10시 수급 안정화 돌파",
-        "technical_analysis": "10시 정각 기준, 장 초반 공방 이후 에너지가 응축되며 상방 발산이 시작된 구간입니다. 자동차 섹터의 대장주로서 안정적인 흐름이 예상됩니다.",
-        "entry_price": 146000,
-        "target_price": 166800,
-        "stop_loss": 140000,
-        "expected_period": "2~5일"
-      },
-      "live_status": {
-        "current_price": 149000,
-        "profit_pct": "+1.00%",
-        "status": "HOLD"
-      }
-    },
-    {
-      "metadata": {
-        "id": "BO-260411-P2",
->>>>>>> 2b5dec21c142a68291b0e4ff318ebd64078d1d13
-        "slug": "samsung-electronics-260411",
-        "tier": "Premium",
-        "is_locked": true,
-        "date": "2026-04-11"
-      },
-      "stock_info": {
-        "name": "삼성****",
-        "real_name": "삼성전자",
-        "ticker": "005930",
-        "sector": "반도체/AI 가속기",
-        "market": "KOSPI"
-      },
-      "seo_content": {
-        "page_title": "오늘의 Premium 관점: 반도체/AI 가속기 주도주 분석",
-        "meta_description": "삼성전자의 기술적 타점이 Premium 기준을 통과했습니다.",
-        "keywords": [
-          "삼성전자",
-          "반도체/AI 가속기",
-          "이음스탁"
-        ]
-      },
-      "score_card": {
-<<<<<<< HEAD
-        "total_score": 92,
-        "breakout": 33,
-        "accumulation": 26,
-        "volatility_tight": 20,
-        "institutional_buy": 6
-=======
-        "total_score": 99,
-        "breakout": 33,
-        "accumulation": 22,
-        "volatility_tight": 19,
-        "institutional_buy": 7
->>>>>>> 2b5dec21c142a68291b0e4ff318ebd64078d1d13
-      },
-      "trading_strategy": {
-        "logic_summary": "종합 알고리즘 필터 통과 (Selected)",
-        "technical_analysis": "1. [Real-time Breakout] 직전 고점 매물대를 거래량 동반하며 돌파 시도 중입니다. 특히 206,000원 구간의 저항을 흡수하며 상방 발산 에너지가 응축되었습니다. 2. [Institutional Flow] 메이저 수급의 집중 매집가 포착되며, 저점을 높이는 우상향 추세가 기술적으로 완성되었습니다. 3. [Volatility Filter] 시장 노이즈를 제거한 순수 변동성 측정 결과, 안정적인 Premium 등급의 변동성 수축 구간(VCP)을 지나 폭발적인 추세 추종 구간에 진입했음이 검증되었습니다.",
-        "analysis_segments": {
-          "breakout": "직전 고점 매물대를 거래량 동반하며 돌파 중입니다. 206,000원 저항 흡수 및 상방 발산 에너지가 응축되었습니다.",
-          "flow": "메이저 수급(기관/외인)이 집중 매집이 포착되며 우상향 기술적 패턴이 완성되었습니다.",
-          "volatility": "노이즈 제거 결과, Premium 등급 고유의 변동성 수축(VCP) 후 시세 분출 구간임이 검증되었습니다."
-        },
-        "entry_price": 201800,
-        "target_price": 230700,
-        "stop_loss": 193600,
-        "expected_period": "2~5일"
-      },
-      "live_status": {
-        "current_price": 206000,
-        "profit_pct": "+0.98%",
-        "status": "HOLD"
-      }
-    },
     {
       "metadata": {
         "id": "BO-260411-P",
@@ -156,19 +43,11 @@
         ]
       },
       "score_card": {
-<<<<<<< HEAD
-        "total_score": 90,
-        "breakout": 32,
-        "accumulation": 24,
-        "volatility_tight": 13,
-        "institutional_buy": 5
-=======
-        "total_score": 83,
-        "breakout": 25,
-        "accumulation": 21,
-        "volatility_tight": 16,
-        "institutional_buy": 9
->>>>>>> 2b5dec21c142a68291b0e4ff318ebd64078d1d13
+        "total_score": 92,
+        "breakout": 40,
+        "accumulation": 29,
+        "volatility_tight": 19,
+        "institutional_buy": 6
       },
       "trading_strategy": {
         "logic_summary": "종합 알고리즘 필터 통과 (Selected)",
@@ -214,18 +93,18 @@
         ]
       },
       "score_card": {
-        "total_score": 86,
-        "breakout": 35,
-        "accumulation": 27,
-        "volatility_tight": 19,
-        "institutional_buy": 7
+        "total_score": 81,
+        "breakout": 26,
+        "accumulation": 22,
+        "volatility_tight": 14,
+        "institutional_buy": 10
       },
       "trading_strategy": {
         "logic_summary": "핵심 수급 타점 포착 (Qualified)",
-        "technical_analysis": "1. [Real-time Breakout] 직전 고점 매물대를 거래량 동반하며 돌파 시도 중입니다. 특히 149,000원 구간의 저항을 흡수하며 상방 발산 에너지가 응축되었습니다. 2. [Institutional Flow] 메이저 수급의 집중 매집가 포착되며, 저점을 높이는 우상향 추세가 기술적으로 완성되었습니다. 3. [Volatility Filter] 시장 노이즈를 제거한 순수 변동성 측정 결과, 안정적인 Standard 등급의 변동성 수축 구간(VCP)을 지나 폭발적인 추세 추종 구간에 진입했음이 검증되었습니다.",
+        "technical_analysis": "1. [Real-time Breakout] 직전 고점 매물대를 거래량 동반하며 돌파 시도 중입니다. 특히 149,000원 구간의 저항을 흡수하며 상방 발산 에너지가 응축되었습니다. 2. [Institutional Flow] 기관/외인 동반 순매수가 포착되며, 저점을 높이는 우상향 추세가 기술적으로 완성되었습니다. 3. [Volatility Filter] 시장 노이즈를 제거한 순수 변동성 측정 결과, 안정적인 Standard 등급의 변동성 수축 구간(VCP)을 지나 폭발적인 추세 추종 구간에 진입했음이 검증되었습니다.",
         "analysis_segments": {
           "breakout": "직전 고점 매물대를 거래량 동반하며 돌파 중입니다. 149,000원 저항 흡수 및 상방 발산 에너지가 응축되었습니다.",
-          "flow": "메이저 수급(기관/외인)이 집중 매집이 포착되며 우상향 기술적 패턴이 완성되었습니다.",
+          "flow": "수급 안정화 구간 진입이 포착되며 우상향 기술적 패턴이 완성되었습니다.",
           "volatility": "노이즈 제거 결과, Standard 등급 고유의 변동성 수축(VCP) 후 시세 분출 구간임이 검증되었습니다."
         },
         "entry_price": 146000,
