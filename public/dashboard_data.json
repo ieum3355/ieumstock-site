@@ -1,7 +1,7 @@
 {
   "generation_info": {
     "engine": "Brain-Off Hybrid 2.2",
-    "timestamp": "2026-04-11 11:24:40",
+    "timestamp": "2026-04-11 02:30:19",
     "market_condition": "KOSPI 5,859 Level Verified"
   },
   "market_summary": [
@@ -43,11 +43,11 @@
         ]
       },
       "score_card": {
-        "total_score": 96,
-        "breakout": 30,
+        "total_score": 91,
+        "breakout": 40,
         "accumulation": 28,
-        "volatility_tight": 16,
-        "institutional_buy": 9
+        "volatility_tight": 17,
+        "institutional_buy": 6
       },
       "trading_strategy": {
         "logic_summary": "10시 수급 안정화 돌파",
@@ -89,11 +89,11 @@
         ]
       },
       "score_card": {
-        "total_score": 94,
-        "breakout": 38,
-        "accumulation": 20,
-        "volatility_tight": 17,
-        "institutional_buy": 6
+        "total_score": 99,
+        "breakout": 33,
+        "accumulation": 22,
+        "volatility_tight": 19,
+        "institutional_buy": 7
       },
       "trading_strategy": {
         "logic_summary": "10시 수급 안정화 돌파",
@@ -135,11 +135,11 @@
         ]
       },
       "score_card": {
-        "total_score": 72,
-        "breakout": 20,
-        "accumulation": 22,
-        "volatility_tight": 13,
-        "institutional_buy": 6
+        "total_score": 83,
+        "breakout": 25,
+        "accumulation": 21,
+        "volatility_tight": 16,
+        "institutional_buy": 9
       },
       "trading_strategy": {
         "logic_summary": "10시 수급 안정화 돌파",
