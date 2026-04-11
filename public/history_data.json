@@ -1,0 +1,44 @@
+[
+  {
+    "id": "BO-260411-S3",
+    "slug": "samsung-fire-260411",
+    "date": "2026-04-11",
+    "tier": "Standard",
+    "name": "삼성화재",
+    "ticker": "000810",
+    "entry_price": 460100,
+    "target_price": 525800,
+    "stop_loss": 441300,
+    "current_price": 469500,
+    "profit_pct": "+0.43%",
+    "status": "OPEN"
+  },
+  {
+    "id": "BO-260411-P1",
+    "slug": "kia-260411",
+    "date": "2026-04-11",
+    "tier": "Premium",
+    "name": "기아",
+    "ticker": "000270",
+    "entry_price": 146000,
+    "target_price": 166800,
+    "stop_loss": 140000,
+    "current_price": 149000,
+    "profit_pct": "+1.00%",
+    "status": "OPEN"
+  },
+  {
+    "id": "BO-260411-P1",
+    "slug": "samsung-electronics-260411",
+    "date": "2026-04-11",
+    "tier": "Premium",
+    "name": "삼성전자",
+    "ticker": "005930",
+    "entry_price": 201800,
+    "target_price": 230700,
+    "stop_loss": 193600,
+    "current_price": 206000,
+    "profit_pct": "+2.08%",
+    "status": "HOLD"
+  }
+]

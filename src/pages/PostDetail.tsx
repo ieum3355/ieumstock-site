@@ -26,8 +26,13 @@ const PostDetail = () => {
   const [post, setPost] = useState<any>(null);
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
+    // Check auth persistence
+    const savedAuth = localStorage.getItem('ieumstock_auth');
+    if (savedAuth === 'true') setIsAuthenticated(true);
+    
     const findPost = async () => {
       setLoading(true);
       
@@ -83,7 +88,7 @@ const PostDetail = () => {
     );
   }
 
-  const isLocked = post.type === 'recommendation' && post.metadata.is_locked;
+  const isLocked = post.type === 'recommendation' && post.metadata.is_locked && !isAuthenticated;
   const seo = post.type === 'recommendation' ? {
     page_title: post.seo_content.page_title,
     meta_description: post.seo_content.meta_description,
@@ -143,7 +148,7 @@ const PostDetail = () => {
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
               <div className="space-y-2">
                 <h1 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-[1.1]">
-                  {post.stock_info.name} <span className="text-slate-300">({post.stock_info.ticker})</span>
+                  {isAuthenticated ? post.stock_info.real_name : post.stock_info.name} <span className="text-slate-300">({post.stock_info.ticker})</span>
                 </h1>
                 <p className="text-xl font-bold text-slate-400 uppercase tracking-widest">{post.stock_info.sector}</p>
               </div>

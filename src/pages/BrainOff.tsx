@@ -12,13 +12,29 @@ const BrainOff = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
 
+  const [history, setHistory] = useState<any[]>([]);
+
   useEffect(() => {
     const loadData = async () => {
       setLoading(true);
+      
+      // Check persistence
+      const savedAuth = localStorage.getItem('ieumstock_auth');
+      if (savedAuth === 'true') setIsAuthenticated(true);
+
       try {
-        const response = await fetch('/dashboard_data.json');
-        const result = await response.json();
-        if (result.generation_info) setData(result);
+        const [dashRes, histRes] = await Promise.all([
+          fetch('/dashboard_data.json'),
+          fetch('/history_data.json').catch(() => null)
+        ]);
+
+        const dashResult = await dashRes.json();
+        if (dashResult.generation_info) setData(dashResult);
+
+        if (histRes && histRes.ok) {
+          const histResult = await histRes.json();
+          setHistory(histResult);
+        }
       } catch (e) {
         console.error("Data load failed");
       }
@@ -31,10 +47,17 @@ const BrainOff = () => {
     e.preventDefault();
     if (password === '0000') {
       setIsAuthenticated(true);
+      localStorage.setItem('ieumstock_auth', 'true');
       setError('');
     } else {
       setError('비밀번호가 일치하지 않습니다.');
     }
+  };
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    localStorage.removeItem('ieumstock_auth');
+    setPassword('');
   };
 
   return (
@@ -134,9 +157,20 @@ const BrainOff = () => {
               <h3 className="text-2xl font-black text-slate-900">AI 선별 종목</h3>
               <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">Selected Recommendations</p>
             </div>
+          <div className="flex items-center gap-4">
             <div className="text-[10px] font-black text-primary-600 bg-primary-50 px-4 py-2 rounded-full uppercase tracking-widest border border-primary-100 animate-pulse">
               Live Feed Active
             </div>
+            {isAuthenticated && (
+              <button 
+                onClick={handleLogout}
+                className="text-[10px] font-black text-slate-400 hover:text-rose-500 transition-colors uppercase tracking-widest flex items-center gap-1"
+              >
+                <Lock className="w-3 h-3" />
+                Logout
+              </button>
+            )}
+          </div>
           </div>
 
           {!isAuthenticated ? (
@@ -218,7 +252,7 @@ const BrainOff = () => {
 
                     <div className="space-y-2">
                       <h4 className="text-3xl font-black text-slate-900 group-hover:text-primary-600 transition-colors tracking-tight">
-                        {rec.stock_info.name}
+                        {isAuthenticated ? rec.stock_info.real_name : rec.stock_info.name}
                       </h4>
                       <p className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em]">{rec.stock_info.ticker} / {rec.stock_info.market}</p>
                     </div>
@@ -252,6 +286,75 @@ const BrainOff = () => {
           )}
         </div>
       </div>
+
+      {/* History Section */}
+      {isAuthenticated && history.length > 0 && (
+        <div className="space-y-8 pt-10 border-t border-slate-100">
+          <div className="flex items-center justify-between">
+            <div className="space-y-1">
+              <h3 className="text-2xl font-black text-slate-900">추천 성과 기록</h3>
+              <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">Performance History</p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-slate-100 rounded-[2.5rem] overflow-hidden shadow-sm">
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="bg-slate-50 border-b border-slate-100">
+                    <th className="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest">Date / ID</th>
+                    <th className="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest">Stock</th>
+                    <th className="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest">Tier</th>
+                    <th className="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest">Entry</th>
+                    <th className="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest">Current</th>
+                    <th className="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest">Status / P&L</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-50">
+                  {history.map((h) => (
+                    <tr key={h.slug} className="hover:bg-slate-50/50 transition-colors">
+                      <td className="px-8 py-6">
+                        <p className="text-xs font-black text-slate-900">{h.date}</p>
+                        <p className="text-[9px] font-bold text-slate-400">{h.id}</p>
+                      </td>
+                      <td className="px-8 py-6">
+                        <p className="text-base font-black text-slate-900">{h.name}</p>
+                        <p className="text-[10px] font-bold text-slate-400">{h.ticker}</p>
+                      </td>
+                      <td className="px-8 py-6">
+                        <span className={`px-2 py-0.5 rounded text-[9px] font-black uppercase ${
+                          h.tier === 'Premium' ? 'bg-amber-100 text-amber-700' : 'bg-primary-50 text-primary-600'
+                        }`}>
+                          {h.tier}
+                        </span>
+                      </td>
+                      <td className="px-8 py-6 text-sm font-bold text-slate-600">
+                        {h.entry_price.toLocaleString()}원
+                      </td>
+                      <td className="px-8 py-6 text-sm font-bold text-slate-900">
+                        {h.current_price.toLocaleString()}원
+                      </td>
+                      <td className="px-8 py-6">
+                        <div className="flex items-center gap-3">
+                          <span className={`px-3 py-1 rounded-full text-[10px] font-black ${
+                            h.status === 'SUCCESS' ? 'bg-emerald-100 text-emerald-700' : 
+                            h.status === 'FAILED' ? 'bg-rose-100 text-rose-700' : 'bg-slate-100 text-slate-600'
+                          }`}>
+                            {h.status}
+                          </span>
+                          <span className={`text-sm font-black ${h.profit_pct.startsWith('+') ? 'text-emerald-500' : 'text-rose-500'}`}>
+                            {h.profit_pct}
+                          </span>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
