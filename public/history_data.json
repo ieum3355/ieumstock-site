@@ -10,8 +10,8 @@
     "target_price": 525800,
     "stop_loss": 441300,
     "current_price": 469500,
-    "profit_pct": "+0.43%",
-    "status": "OPEN"
+    "profit_pct": "+2.04%",
+    "status": "HOLD"
   },
   {
     "id": "BO-260411-P1",
@@ -24,8 +24,8 @@
     "target_price": 166800,
     "stop_loss": 140000,
     "current_price": 149000,
-    "profit_pct": "+1.00%",
-    "status": "OPEN"
+    "profit_pct": "+2.05%",
+    "status": "HOLD"
   },
   {
     "id": "BO-260411-P1",

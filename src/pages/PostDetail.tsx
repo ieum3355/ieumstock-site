@@ -88,7 +88,7 @@ const PostDetail = () => {
     );
   }
 
-  const isLocked = post.type === 'recommendation' && post.metadata.is_locked && !isAuthenticated;
+  const isLocked = post.type === 'recommendation' && post.metadata.tier === 'Premium' && !isAuthenticated;
   const seo = post.type === 'recommendation' ? {
     page_title: post.seo_content.page_title,
     meta_description: post.seo_content.meta_description,

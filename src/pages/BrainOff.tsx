@@ -157,131 +157,146 @@ const BrainOff = () => {
               <h3 className="text-2xl font-black text-slate-900">AI 선별 종목</h3>
               <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">Selected Recommendations</p>
             </div>
-          <div className="flex items-center gap-4">
-            <div className="text-[10px] font-black text-primary-600 bg-primary-50 px-4 py-2 rounded-full uppercase tracking-widest border border-primary-100 animate-pulse">
-              Live Feed Active
+            <div className="flex items-center gap-4">
+              <div className="text-[10px] font-black text-primary-600 bg-primary-50 px-4 py-2 rounded-full uppercase tracking-widest border border-primary-100 animate-pulse">
+                Live Feed Active
+              </div>
+              {isAuthenticated ? (
+                <button 
+                  onClick={handleLogout}
+                  className="text-[10px] font-black text-slate-400 hover:text-rose-500 transition-colors uppercase tracking-widest flex items-center gap-1"
+                >
+                  <Lock className="w-3 h-3" />
+                  Logout
+                </button>
+              ) : (
+                <button 
+                  onClick={() => {
+                    const pass = prompt('Enter 4-digit Admin Code:');
+                    if (pass === '0000') {
+                      setIsAuthenticated(true);
+                      localStorage.setItem('ieumstock_auth', 'true');
+                    } else if (pass) {
+                      alert('Invalid password');
+                    }
+                  }}
+                  className="text-[10px] font-black text-primary-600 hover:text-primary-700 transition-colors uppercase tracking-widest flex items-center gap-1"
+                >
+                  <KeyRound className="w-3 h-3" />
+                  Admin Login
+                </button>
+              )}
             </div>
-            {isAuthenticated && (
-              <button 
-                onClick={handleLogout}
-                className="text-[10px] font-black text-slate-400 hover:text-rose-500 transition-colors uppercase tracking-widest flex items-center gap-1"
-              >
-                <Lock className="w-3 h-3" />
-                Logout
-              </button>
-            )}
-          </div>
           </div>
 
-          {!isAuthenticated ? (
-            <div className="bg-slate-900 rounded-[3rem] p-12 md:p-20 text-center space-y-10 relative overflow-hidden shadow-2xl">
-              <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary-600/30 to-transparent"></div>
-              <div className="relative z-10 space-y-8 max-w-sm mx-auto">
-                <div className="inline-flex p-6 bg-white/5 rounded-[2.5rem] border border-white/10 mb-2 shadow-inner">
-                  <KeyRound className="w-12 h-12 text-primary-400" />
-                </div>
-                <div className="space-y-3">
-                  <h4 className="text-3xl font-black text-white tracking-tight">Access Restricted</h4>
-                  <p className="text-slate-400 font-medium leading-relaxed">
-                    프리미엄 데이터 접근을 위해<br />인증 코드를 입력해주세요.
-                  </p>
-                </div>
-                <form onSubmit={handleLogin} className="space-y-4">
-                  <input 
-                    type="password" 
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="••••"
-                    className="w-full bg-white/10 border border-white/20 rounded-[1.5rem] px-8 py-5 text-center text-3xl tracking-[0.8em] text-white focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all placeholder:text-white/10 font-black"
-                    maxLength={4}
-                  />
-                  {error && (
-                    <p className="text-rose-400 text-xs font-black flex items-center justify-center gap-1 animate-bounce">
-                      <AlertTriangle className="w-3 h-3" /> {error}
-                    </p>
-                  )}
-                  <button 
-                    type="submit"
-                    className="w-full bg-primary-600 hover:bg-primary-500 text-white font-black py-5 rounded-[1.5rem] shadow-2xl shadow-primary-900/50 transition-all active:scale-[0.98] text-sm uppercase tracking-widest"
-                  >
-                    Authorize Engine
-                  </button>
-                </form>
-                <button className="text-slate-500 text-xs font-black uppercase tracking-widest hover:text-white transition-colors">
-                  Lost your code? Contact Support
-                </button>
-              </div>
-            </div>
-          ) : loading ? (
+          {loading ? (
             <div className="p-12 text-center">
               <div className="w-12 h-12 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin mx-auto"></div>
             </div>
           ) : !data || !data.recommendations || data.recommendations.length === 0 ? (
-            <div className="bg-white border border-slate-100 rounded-[3rem] py-24 text-center space-y-6 shadow-sm">
-              <div className="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mx-auto text-slate-300">
-                <Info className="w-10 h-10" />
-              </div>
-              <div className="space-y-2">
-                <p className="text-slate-900 font-black text-xl">분석 대기 중</p>
-                <p className="text-slate-400 font-bold uppercase tracking-widest text-xs">시장의 유의미한 변동성을 기다리고 있습니다.</p>
+            <div className="bg-slate-900 rounded-[3rem] p-12 md:p-20 text-center space-y-8 relative overflow-hidden shadow-2xl">
+              <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-rose-600/20 to-transparent"></div>
+              <div className="relative z-10 space-y-6 max-w-lg mx-auto">
+                <div className="inline-flex p-6 bg-white/5 rounded-[2.5rem] border border-white/10 mb-2">
+                  <AlertTriangle className="w-12 h-12 text-rose-400" />
+                </div>
+                <div className="space-y-3">
+                  <h4 className="text-3xl font-black text-white tracking-tight">시장 관망 권고</h4>
+                  <p className="text-slate-400 font-medium leading-relaxed">
+                    {data?.generation_info?.status_msg || "현재 알고리즘 기준을 충족하는 고득점 종목이 포착되지 않았습니다."}
+                    <br />무리한 매매보다 현금 비중 확대를 권장합니다.
+                  </p>
+                </div>
+                <div className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em]">
+                  AI Engine is constantly re-scanning for setups...
+                </div>
               </div>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-in slide-in-from-bottom-6 duration-700">
-              {data.recommendations.map((rec: any) => (
-                <Link 
-                  key={rec.metadata.id} 
-                  to={`/insights/${rec.metadata.slug}`}
-                  className="group bg-white border border-slate-100 hover:border-primary-200 p-8 rounded-[2.5rem] shadow-sm hover:shadow-2xl hover:shadow-primary-100/30 transition-all duration-500 relative overflow-hidden"
-                >
-                  {rec.metadata.tier === 'Premium' && (
-                    <div className="absolute top-0 right-0 p-4">
-                      <Lock className="w-5 h-5 text-amber-400 opacity-30 group-hover:opacity-100 transition-opacity" />
-                    </div>
-                  )}
-                  
-                  <div className="space-y-6">
-                    <div className="flex items-center gap-3">
-                      <span className={`px-2 py-0.5 rounded-md text-[9px] font-black uppercase tracking-widest ${
-                        rec.metadata.tier === 'Premium' ? 'bg-amber-100 text-amber-700' : 'bg-primary-50 text-primary-600'
-                      }`}>
-                        {rec.metadata.tier}
-                      </span>
-                      <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{rec.stock_info.sector}</span>
-                    </div>
-
-                    <div className="space-y-2">
-                      <h4 className="text-3xl font-black text-slate-900 group-hover:text-primary-600 transition-colors tracking-tight">
-                        {isAuthenticated ? rec.stock_info.real_name : rec.stock_info.name}
-                      </h4>
-                      <p className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em]">{rec.stock_info.ticker} / {rec.stock_info.market}</p>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="p-4 bg-slate-50 rounded-2xl space-y-1">
-                        <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Entry Target</p>
-                        <p className="text-sm font-black text-slate-900">{rec.trading_strategy.entry_price.toLocaleString()}원</p>
+              {data.recommendations.map((rec: any) => {
+                const isCardLocked = rec.metadata.tier === 'Premium' && !isAuthenticated;
+                return (
+                  <Link 
+                    key={rec.metadata.id} 
+                    to={isCardLocked ? '#' : `/insights/${rec.metadata.slug}`}
+                    onClick={(e) => {
+                      if (isCardLocked) {
+                        e.preventDefault();
+                        const pass = prompt('Premium access password required:');
+                        if (pass === '0000') {
+                          setIsAuthenticated(true);
+                          localStorage.setItem('ieumstock_auth', 'true');
+                        }
+                      }
+                    }}
+                    className="group bg-white border border-slate-100 hover:border-primary-200 p-8 rounded-[2.5rem] shadow-sm hover:shadow-2xl hover:shadow-primary-100/30 transition-all duration-500 relative overflow-hidden"
+                  >
+                    {isCardLocked && (
+                      <div className="absolute inset-0 bg-white/40 backdrop-blur-md z-10 flex flex-col items-center justify-center p-6 text-center space-y-4">
+                        <div className="w-12 h-12 bg-slate-900 text-amber-400 rounded-2xl flex items-center justify-center shadow-xl">
+                          <Lock className="w-6 h-6" />
+                        </div>
+                        <div className="space-y-1">
+                          <p className="text-sm font-black text-slate-900">Premium 분석 잠금</p>
+                          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Click to Unlock</p>
+                        </div>
                       </div>
-                      <div className="p-4 bg-primary-50 rounded-2xl space-y-1">
-                        <p className="text-[9px] font-black text-primary-600 uppercase tracking-widest">AI Score</p>
-                        <p className="text-sm font-black text-slate-900">{rec.score_card.total_score}</p>
+                    )}
+                    
+                    {rec.metadata.tier === 'Premium' && (
+                      <div className="absolute top-0 right-0 p-4">
+                        <Crown className="w-5 h-5 text-amber-400 opacity-30 group-hover:opacity-100 transition-opacity" />
                       </div>
-                    </div>
+                    )}
+                    
+                    <div className="space-y-6">
+                      <div className="flex items-center gap-3">
+                        <span className={`px-2 py-0.5 rounded-md text-[9px] font-black uppercase tracking-widest ${
+                          rec.metadata.tier === 'Premium' ? 'bg-amber-100 text-amber-700' : 'bg-primary-50 text-primary-600'
+                        }`}>
+                          {rec.metadata.tier}
+                        </span>
+                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{rec.stock_info.sector}</span>
+                      </div>
 
-                    <div className="pt-6 border-t border-slate-50 flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <div className={`w-2 h-2 rounded-full ${rec.live_status.profit_pct.startsWith('+') ? 'bg-emerald-500' : 'bg-rose-500'}`}></div>
-                        <span className={`text-sm font-black ${rec.live_status.profit_pct.startsWith('+') ? 'text-emerald-500' : 'text-rose-500'}`}>
-                          {rec.live_status.profit_pct}
+                      <div className="space-y-2">
+                        <h4 className="text-3xl font-black text-slate-900 group-hover:text-primary-600 transition-colors tracking-tight">
+                          {isAuthenticated || rec.metadata.tier === 'Standard' ? rec.stock_info.real_name : rec.stock_info.name}
+                        </h4>
+                        <p className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em]">
+                          {isAuthenticated || rec.metadata.tier === 'Standard' ? rec.stock_info.ticker : '*******'} / {rec.stock_info.market}
+                        </p>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="p-4 bg-slate-50 rounded-2xl space-y-1">
+                          <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Entry Target</p>
+                          <p className="text-sm font-black text-slate-900">
+                            {isCardLocked ? '***,***원' : `${rec.trading_strategy.entry_price.toLocaleString()}원`}
+                          </p>
+                        </div>
+                        <div className="p-4 bg-primary-50 rounded-2xl space-y-1">
+                          <p className="text-[9px] font-black text-primary-600 uppercase tracking-widest">AI Score</p>
+                          <p className="text-sm font-black text-slate-900">{rec.score_card.total_score}</p>
+                        </div>
+                      </div>
+
+                      <div className="pt-6 border-t border-slate-50 flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <div className={`w-2 h-2 rounded-full ${rec.live_status.profit_pct.startsWith('+') ? 'bg-emerald-500' : 'bg-rose-500'}`}></div>
+                          <span className={`text-sm font-black ${rec.live_status.profit_pct.startsWith('+') ? 'text-emerald-500' : 'text-rose-500'}`}>
+                            {rec.live_status.profit_pct}
+                          </span>
+                        </div>
+                        <span className="text-primary-600 font-black text-[11px] flex items-center gap-1 group-hover:translate-x-1 transition-transform uppercase tracking-widest">
+                          View Analysis <ChevronRight className="w-4 h-4" />
                         </span>
                       </div>
-                      <span className="text-primary-600 font-black text-[11px] flex items-center gap-1 group-hover:translate-x-1 transition-transform uppercase tracking-widest">
-                        View Analysis <ChevronRight className="w-4 h-4" />
-                      </span>
                     </div>
-                  </div>
-                </Link>
-              ))}
+                  </Link>
+                );
+              })}
             </div>
           )}
         </div>

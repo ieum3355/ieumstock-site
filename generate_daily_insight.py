@@ -112,37 +112,126 @@ def generate_insight():
         print(f"Insight for {today} already exists.")
         return
 
-    # Select a topic
-    topic_idx = len(insights) % len(TOPICS)
-    t = TOPICS[topic_idx]
-    
+    # 1. Load Recommendation Data
+    dashboard_data = {}
+    try:
+        with open('public/dashboard_data.json', 'r', encoding='utf-8') as f:
+            dashboard_data = json.load(f)
+    except:
+        pass
+
+    recs = dashboard_data.get('recommendations', [])
     today_str = datetime.now().strftime("%y%m%d")
-    
+
+    # 2. Case Selection: Stock Analysis vs Market Warning
+    if recs:
+        # Pick the top recommended stock (usually the first Premium)
+        pick = recs[0]
+        segments = pick['trading_strategy'].get('analysis_segments', {})
+        
+        title = f"오늘의 {pick['metadata']['tier']} 관점: {pick['stock_info']['real_name']} 정밀 분석"
+        intro_text = f"현재 시장 수급 분석 결과, {pick['stock_info']['real_name']} 종목에서 유의미한 에너지 응축이 포착되었습니다. {pick['metadata']['tier']} 등급의 선정 기준인 {pick['score_card']['total_score']}점을 획득하며 기술적 필터를 통과했습니다."
+        
+        content_body = {
+            "introduction": {
+                "heading": f"{pick['stock_info']['real_name']}, 왜 지금인가?",
+                "text": intro_text
+            },
+            "core_analysis": [
+                {
+                    "sub_heading": "Real-time Breakout (SCANNING)",
+                    "text": segments.get('breakout', "직전 고점 돌파 및 매물대 소화 과정을 실시간 추적하고 있습니다."),
+                    "insight_tip": f"주요 저항 구역인 {pick['trading_strategy']['target_price']:,}원 돌파 여부가 핵심입니다.",
+                    "icon_type": "analysis"
+                },
+                {
+                    "sub_heading": "Institutional Flow (TRACKING)",
+                    "text": segments.get('flow', "메이저 수급의 집중 매집 구간을 정밀 분석 중입니다."),
+                    "insight_tip": "외국인/기관의 동반 순매수가 이어지는지 수급 창구를 확인하십시오.",
+                    "icon_type": "volume"
+                },
+                {
+                    "sub_heading": "Volatility Filter (VERIFIED)",
+                    "text": segments.get('volatility', "시장 노이즈를 제거하고 순수 에너지를 측정하여 변동성 응축을 확인했습니다."),
+                    "insight_tip": "변동성 지표가 안정적인 {pick['metadata']['tier']} 등급 표준 수치 내에 머물러 있습니다.",
+                    "icon_type": "risk"
+                }
+            ],
+            "practical_guide": {
+                "heading": "대응 가이드라인",
+                "items": [
+                    {
+                        "title": "진입 구간 설정",
+                        "description": f"{pick['trading_strategy']['entry_price']:,}원 부근에서의 분할 매수 접근이 유리합니다."
+                    },
+                    {
+                        "title": "리스크 관리",
+                        "description": f"손절가 {pick['trading_strategy']['stop_loss']:,}원 이탈 시 비중 축소 또는 청산 대응을 권장합니다."
+                    }
+                ]
+            },
+            "conclusion": {
+                "text": f"{pick['stock_info']['real_name']}은 단기 스윙 관점에서 충분한 기대 수익률을 가진 종목입니다.",
+                "closing_statement": "이음스탁의 AI 분석이 귀하의 성공 투자를 돕겠습니다."
+            }
+        }
+        slug = f"analysis-{pick['metadata']['slug']}"
+        tags = [pick['stock_info']['real_name'], pick['stock_info']['sector'], "AI추천", "기술적분석"]
+    else:
+        # Market Warning Case
+        status_msg = dashboard_data.get('generation_info', {}).get('status_msg', "시장 변동성 확인 중")
+        title = "현재 시장 상황이 좋지 않아 추천 종목이 없습니다 (관망 권장)"
+        content_body = {
+            "introduction": {
+                "heading": "보수적 관망이 필요한 구간입니다",
+                "text": f"현재 {status_msg} AI 엔진의 정밀 스캔 결과, 안정적인 수익 확률을 보장할 수 있는 고득점 종목이 포착되지 않았습니다."
+            },
+            "core_analysis": [
+                {
+                    "sub_heading": "무리한 매매보다 현금 비중 확대",
+                    "text": "지수의 하방 압력이 강하거나 주도 섹터의 에너지가 분산되는 시기에는 휴식도 투자입니다. 억지로 종목을 매수하기보다 다음 주도주를 기다리는 인내심이 필요합니다.",
+                    "insight_tip": "현금을 보유하는 것 또한 하나의 포지션입니다.",
+                    "icon_type": "risk"
+                }
+            ],
+            "practical_guide": {
+                "heading": "현재 구간 대응 전략",
+                "items": [
+                    {
+                        "title": "기존 보유 종목 점검",
+                        "description": "추가 매수보다는 기대 수익률이 훼손된 종목의 비중을 조절하는 시기로 활용하십시오."
+                    },
+                    {
+                        "title": "차기 주도주 모니터링",
+                        "description": "지수 반등 시 가장 먼저 올라올 섹터를 미리 선별해 두는 공부의 시간으로 삼으십시오."
+                    }
+                ]
+            },
+            "conclusion": {
+                "text": "시장이 안정화되고 확률 높은 종목이 포착되는 즉시 다시 분석 보고서를 발행하겠습니다.",
+                "closing_statement": "기다림 끝에 가장 달콤한 수익이 옵니다."
+            }
+        }
+        slug = f"market-warning-{today_str}"
+        tags = ["시장주의", "관망권고", "리스크관리", "AI분석", "이음스탁"]
+
     new_insight = {
         "article_info": {
             "id": 2000 + len(insights),
-            "slug": f"{t['slug']}-{today_str}",
-            "title": t["title"],
+            "slug": slug,
+            "title": title,
             "author": "ieumstock AI Research",
             "date": today,
             "publishDate": today_iso,
-            "category": t["category"],
-            "tags": t["tags"]
+            "category": "Market Analysis" if not recs else "Stock Analysis",
+            "tags": tags
         },
         "seo_metadata": {
-            "meta_title": f"{t['title']} | 이음스탁 투자 리포트",
-            "meta_description": t["introduction"]["text"][:150],
+            "meta_title": f"{title} | 이음스탁 투자 리포트",
+            "meta_description": content_body["introduction"]["text"][:150],
             "og_image": "/assets/images/insight/default-insight.jpg"
         },
-        "content_body": {
-            "introduction": {
-                "heading": t["introduction"]["heading"],
-                "text": t["introduction"]["text"]
-            },
-            "core_analysis": t["core_analysis"],
-            "practical_guide": t["practical_guide"],
-            "conclusion": t["conclusion"]
-        },
+        "content_body": content_body,
         "system_link": {
             "target_tool": "BrainOff",
             "related_ticker": ["KOSPI", "KOSDAQ"]
@@ -155,7 +244,7 @@ def generate_insight():
     with open(INSIGHTS_FILE, 'w', encoding='utf-8') as f:
         json.dump(insights, f, ensure_ascii=False, indent=2)
     
-    print(f"Successfully generated high-grade insight for {today}")
+    print(f"Successfully generated dynamic insight for {today}")
 
 if __name__ == "__main__":
     generate_insight()

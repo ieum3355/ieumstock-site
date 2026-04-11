@@ -1,8 +1,9 @@
 {
   "generation_info": {
     "engine": "Brain-Off Hybrid 2.2",
-    "timestamp": "2026-04-11 11:24:40",
-    "market_condition": "KOSPI 5,859 Level Verified"
+    "timestamp": "2026-04-11 11:56:04",
+    "market_condition": "KOSPI 5,859 Level Verified",
+    "status_msg": "오늘의 엄선된 2+2 전략 종목이 분석되었습니다."
   },
   "market_summary": [
     {
@@ -19,53 +20,7 @@
   "recommendations": [
     {
       "metadata": {
-        "id": "BO-260411-P1",
-        "slug": "kia-260411",
-        "tier": "Premium",
-        "is_locked": true,
-        "date": "2026-04-11"
-      },
-      "stock_info": {
-        "name": "기아",
-        "real_name": "기아",
-        "ticker": "000270",
-        "sector": "자동차",
-        "market": "KOSPI"
-      },
-      "seo_content": {
-        "page_title": "오늘의 Premium 스윙 종목: 자동차 주도주 분석",
-        "meta_description": "10시 수급 분석 결과, 기아의 기술적 타점을 포착했습니다. 장 초반 변동성을 극복한 스윙 매점입니다.",
-        "keywords": [
-          "기아",
-          "자동차",
-          "스윙매매",
-          "이음스탁"
-        ]
-      },
-      "score_card": {
-        "total_score": 96,
-        "breakout": 30,
-        "accumulation": 28,
-        "volatility_tight": 16,
-        "institutional_buy": 9
-      },
-      "trading_strategy": {
-        "logic_summary": "10시 수급 안정화 돌파",
-        "technical_analysis": "10시 정각 기준, 장 초반 공방 이후 에너지가 응축되며 상방 발산이 시작된 구간입니다. 자동차 섹터의 대장주로서 안정적인 흐름이 예상됩니다.",
-        "entry_price": 146000,
-        "target_price": 166800,
-        "stop_loss": 140000,
-        "expected_period": "2~5일"
-      },
-      "live_status": {
-        "current_price": 149000,
-        "profit_pct": "+1.00%",
-        "status": "HOLD"
-      }
-    },
-    {
-      "metadata": {
-        "id": "BO-260411-P2",
+        "id": "BO-260411-P",
         "slug": "samsung-electronics-260411",
         "tier": "Premium",
         "is_locked": true,
@@ -79,25 +34,29 @@
         "market": "KOSPI"
       },
       "seo_content": {
-        "page_title": "오늘의 Premium 스윙 종목: 반도체/AI 가속기 주도주 분석",
-        "meta_description": "10시 수급 분석 결과, 삼성전자의 기술적 타점을 포착했습니다. 장 초반 변동성을 극복한 스윙 매점입니다.",
+        "page_title": "오늘의 Premium 관점: 반도체/AI 가속기 주도주 분석",
+        "meta_description": "삼성전자의 기술적 타점이 Premium 기준을 통과했습니다.",
         "keywords": [
           "삼성전자",
           "반도체/AI 가속기",
-          "스윙매매",
           "이음스탁"
         ]
       },
       "score_card": {
-        "total_score": 94,
-        "breakout": 38,
-        "accumulation": 20,
-        "volatility_tight": 17,
+        "total_score": 92,
+        "breakout": 33,
+        "accumulation": 26,
+        "volatility_tight": 20,
         "institutional_buy": 6
       },
       "trading_strategy": {
-        "logic_summary": "10시 수급 안정화 돌파",
-        "technical_analysis": "10시 정각 기준, 장 초반 공방 이후 에너지가 응축되며 상방 발산이 시작된 구간입니다. 반도체/AI 가속기 섹터의 대장주로서 안정적인 흐름이 예상됩니다.",
+        "logic_summary": "종합 알고리즘 필터 통과 (Selected)",
+        "technical_analysis": "1. [Real-time Breakout] 직전 고점 매물대를 거래량 동반하며 돌파 시도 중입니다. 특히 206,000원 구간의 저항을 흡수하며 상방 발산 에너지가 응축되었습니다. 2. [Institutional Flow] 메이저 수급의 집중 매집가 포착되며, 저점을 높이는 우상향 추세가 기술적으로 완성되었습니다. 3. [Volatility Filter] 시장 노이즈를 제거한 순수 변동성 측정 결과, 안정적인 Premium 등급의 변동성 수축 구간(VCP)을 지나 폭발적인 추세 추종 구간에 진입했음이 검증되었습니다.",
+        "analysis_segments": {
+          "breakout": "직전 고점 매물대를 거래량 동반하며 돌파 중입니다. 206,000원 저항 흡수 및 상방 발산 에너지가 응축되었습니다.",
+          "flow": "메이저 수급(기관/외인)이 집중 매집이 포착되며 우상향 기술적 패턴이 완성되었습니다.",
+          "volatility": "노이즈 제거 결과, Premium 등급 고유의 변동성 수축(VCP) 후 시세 분출 구간임이 검증되었습니다."
+        },
         "entry_price": 201800,
         "target_price": 230700,
         "stop_loss": 193600,
@@ -111,39 +70,43 @@
     },
     {
       "metadata": {
-        "id": "BO-260411-S3",
+        "id": "BO-260411-P",
         "slug": "samsung-fire-260411",
-        "tier": "Standard",
-        "is_locked": false,
+        "tier": "Premium",
+        "is_locked": true,
         "date": "2026-04-11"
       },
       "stock_info": {
-        "name": "삼성화재",
+        "name": "삼성**",
         "real_name": "삼성화재",
         "ticker": "000810",
         "sector": "보험/금융",
         "market": "KOSPI"
       },
       "seo_content": {
-        "page_title": "오늘의 Standard 스윙 종목: 보험/금융 주도주 분석",
-        "meta_description": "10시 수급 분석 결과, 삼성화재의 기술적 타점을 포착했습니다. 장 초반 변동성을 극복한 스윙 매점입니다.",
+        "page_title": "오늘의 Premium 관점: 보험/금융 주도주 분석",
+        "meta_description": "삼성화재의 기술적 타점이 Premium 기준을 통과했습니다.",
         "keywords": [
           "삼성화재",
           "보험/금융",
-          "스윙매매",
           "이음스탁"
         ]
       },
       "score_card": {
-        "total_score": 72,
-        "breakout": 20,
-        "accumulation": 22,
+        "total_score": 90,
+        "breakout": 32,
+        "accumulation": 24,
         "volatility_tight": 13,
-        "institutional_buy": 6
+        "institutional_buy": 5
       },
       "trading_strategy": {
-        "logic_summary": "10시 수급 안정화 돌파",
-        "technical_analysis": "10시 정각 기준, 장 초반 공방 이후 에너지가 응축되며 상방 발산이 시작된 구간입니다. 보험/금융 섹터의 대장주로서 안정적인 흐름이 예상됩니다.",
+        "logic_summary": "종합 알고리즘 필터 통과 (Selected)",
+        "technical_analysis": "1. [Real-time Breakout] 직전 고점 매물대를 거래량 동반하며 돌파 시도 중입니다. 특히 469,500원 구간의 저항을 흡수하며 상방 발산 에너지가 응축되었습니다. 2. [Institutional Flow] 메이저 수급의 집중 매집가 포착되며, 저점을 높이는 우상향 추세가 기술적으로 완성되었습니다. 3. [Volatility Filter] 시장 노이즈를 제거한 순수 변동성 측정 결과, 안정적인 Premium 등급의 변동성 수축 구간(VCP)을 지나 폭발적인 추세 추종 구간에 진입했음이 검증되었습니다.",
+        "analysis_segments": {
+          "breakout": "직전 고점 매물대를 거래량 동반하며 돌파 중입니다. 469,500원 저항 흡수 및 상방 발산 에너지가 응축되었습니다.",
+          "flow": "메이저 수급(기관/외인)이 집중 매집이 포착되며 우상향 기술적 패턴이 완성되었습니다.",
+          "volatility": "노이즈 제거 결과, Premium 등급 고유의 변동성 수축(VCP) 후 시세 분출 구간임이 검증되었습니다."
+        },
         "entry_price": 460100,
         "target_price": 525800,
         "stop_loss": 441300,
@@ -152,6 +115,56 @@
       "live_status": {
         "current_price": 469500,
         "profit_pct": "+0.43%",
+        "status": "HOLD"
+      }
+    },
+    {
+      "metadata": {
+        "id": "BO-260411-S",
+        "slug": "kia-260411",
+        "tier": "Standard",
+        "is_locked": false,
+        "date": "2026-04-11"
+      },
+      "stock_info": {
+        "name": "기아",
+        "real_name": "기아",
+        "ticker": "000270",
+        "sector": "자동차",
+        "market": "KOSPI"
+      },
+      "seo_content": {
+        "page_title": "오늘의 Standard 관점: 자동차 주도주 분석",
+        "meta_description": "기아의 기술적 타점이 Standard 기준을 통과했습니다.",
+        "keywords": [
+          "기아",
+          "자동차",
+          "이음스탁"
+        ]
+      },
+      "score_card": {
+        "total_score": 86,
+        "breakout": 35,
+        "accumulation": 27,
+        "volatility_tight": 19,
+        "institutional_buy": 7
+      },
+      "trading_strategy": {
+        "logic_summary": "핵심 수급 타점 포착 (Qualified)",
+        "technical_analysis": "1. [Real-time Breakout] 직전 고점 매물대를 거래량 동반하며 돌파 시도 중입니다. 특히 149,000원 구간의 저항을 흡수하며 상방 발산 에너지가 응축되었습니다. 2. [Institutional Flow] 메이저 수급의 집중 매집가 포착되며, 저점을 높이는 우상향 추세가 기술적으로 완성되었습니다. 3. [Volatility Filter] 시장 노이즈를 제거한 순수 변동성 측정 결과, 안정적인 Standard 등급의 변동성 수축 구간(VCP)을 지나 폭발적인 추세 추종 구간에 진입했음이 검증되었습니다.",
+        "analysis_segments": {
+          "breakout": "직전 고점 매물대를 거래량 동반하며 돌파 중입니다. 149,000원 저항 흡수 및 상방 발산 에너지가 응축되었습니다.",
+          "flow": "메이저 수급(기관/외인)이 집중 매집이 포착되며 우상향 기술적 패턴이 완성되었습니다.",
+          "volatility": "노이즈 제거 결과, Standard 등급 고유의 변동성 수축(VCP) 후 시세 분출 구간임이 검증되었습니다."
+        },
+        "entry_price": 146000,
+        "target_price": 166800,
+        "stop_loss": 140000,
+        "expected_period": "2~5일"
+      },
+      "live_status": {
+        "current_price": 149000,
+        "profit_pct": "+1.00%",
         "status": "HOLD"
       }
     }
