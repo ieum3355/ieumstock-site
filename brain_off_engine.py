@@ -12,7 +12,9 @@ def get_verified_data():
         candidates = [
             "005930", "000660", "068270", "005380", "035420", 
             "000270", "035720", "006400", "051910", "105560",
-            "000810", "005490", "012330", "032830", "096770"
+            "000810", "005490", "012330", "032830", "096770",
+            "012450", "079550", "196170", "247540", "035900",
+            "263750", "403870", "241560", "028260", "010140"
         ]
         
         # 지수 정보 가져오기 (캐시 방지 타임스탬프 추가)
@@ -99,8 +101,18 @@ def get_verified_data():
             "000810": {"slug": "samsung-fire", "name": "삼성화재", "sector": "보험/금융", "alias": "삼성**"},
             "005490": {"slug": "posco-holdings", "name": "POSCO홀딩스", "sector": "철강/소재", "alias": "POSCO**"},
             "012330": {"slug": "hyundai-mobis", "name": "현대모비스", "sector": "자동차부품", "alias": "현대***"},
-            "032830": {"slug": "samsung-life", "name": "삼성생명", "sector": "보험", "alias": "삼성**"},
-            "096770": {"slug": "sk-innovation", "name": "SK이노베이션", "sector": "에너지/배터리", "alias": "SK***"}
+            "032830": {"slug": "samsung-life", "name": "삼성생명", "sector": "보험", "alias": "삼성**", "market": "KOSPI"},
+            "096770": {"slug": "sk-innovation", "name": "SK이노베이션", "sector": "에너지/배터리", "alias": "SK***", "market": "KOSPI"},
+            "012450": {"slug": "hanwha-aerospace", "name": "한화에어로스페이스", "sector": "방산/우주", "alias": "한화***", "market": "KOSPI"},
+            "079550": {"slug": "lig-nex1", "name": "LIG넥스원", "sector": "방산", "alias": "LIG***", "market": "KOSPI"},
+            "196170": {"slug": "alteogen", "name": "알테오젠", "sector": "바이오/플랫폼", "alias": "알테**", "market": "KOSDAQ"},
+            "247540": {"slug": "ecopro-bm", "name": "에코프로비엠", "sector": "2차전지 소재", "alias": "에코***", "market": "KOSDAQ"},
+            "035900": {"slug": "jyp-ent", "name": "JYP Ent.", "sector": "엔터테인먼트", "alias": "JY*", "market": "KOSDAQ"},
+            "263750": {"slug": "pearl-abyss", "name": "펄어비스", "sector": "게임", "alias": "펄**", "market": "KOSDAQ"},
+            "403870": {"slug": "hpsp", "name": "HPSP", "sector": "반도체 장비", "alias": "HP**", "market": "KOSDAQ"},
+            "241560": {"slug": "doosan-bobcat", "name": "두산밥캣", "sector": "건설기계", "alias": "두산***", "market": "KOSPI"},
+            "028260": {"slug": "samsung-cnt", "name": "삼성물산", "sector": "지주/건설", "alias": "삼성***", "market": "KOSPI"},
+            "010140": {"slug": "samsung-heavy", "name": "삼성중공업", "sector": "조선", "alias": "삼성***", "market": "KOSPI"}
         }
         
         # 종목 데이터 파싱
@@ -157,7 +169,7 @@ def get_verified_data():
                     "real_name": s['info']['name'],
                     "ticker": s['code'],
                     "sector": s['info']['sector'],
-                    "market": "KOSPI"
+                    "market": s['info'].get('market', 'KOSPI')
                 },
                 "seo_content": {
                     "page_title": f"오늘의 {tier} 관점: {s['info']['sector']} 주도주 분석",
