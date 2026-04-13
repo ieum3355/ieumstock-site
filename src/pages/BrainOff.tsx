@@ -24,9 +24,10 @@ const BrainOff = () => {
       if (savedAuth === 'true') setIsAuthenticated(true);
 
       try {
+        const v = new Date().getTime();
         const [dashRes, histRes] = await Promise.all([
-          fetch('/dashboard_data.json'),
-          fetch('/history_data.json').catch(() => null)
+          fetch(`/dashboard_data.json?v=${v}`),
+          fetch(`/history_data.json?v=${v}`).catch(() => null)
         ]);
 
         const dashResult = await dashRes.json();
@@ -71,7 +72,7 @@ const BrainOff = () => {
         <div className="relative z-20 max-w-3xl mx-auto space-y-8">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-600/20 text-primary-400 rounded-full text-[10px] font-black tracking-[0.2em] uppercase border border-primary-600/30">
             <Sparkles className="w-4 h-4" />
-            Brain-Off Hybrid 2.1 Engine
+            Swing Engine 3.0 (Full Scan)
           </div>
           <h1 className="text-4xl md:text-6xl font-black tracking-tight leading-[1.1]">
             감정은 빼고, <span className="text-primary-500">데이터</span>로 승부하세요
@@ -310,6 +311,9 @@ const BrainOff = () => {
                           {rec.metadata.tier}
                         </span>
                         <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{rec.stock_info.sector}</span>
+                        <span className="text-[10px] font-black text-primary-500/60 uppercase tracking-widest ml-auto">
+                          분석일: {rec.metadata.date?.split('-').slice(1).join('/')}
+                        </span>
                       </div>
 
                       <div className="space-y-2">
@@ -332,6 +336,15 @@ const BrainOff = () => {
                           <p className="text-[9px] font-black text-primary-600 uppercase tracking-widest">AI Score</p>
                           <p className="text-sm font-black text-slate-900">{rec.score_card.total_score}</p>
                         </div>
+                      </div>
+
+                      {/* Criteria Badges */}
+                      <div className="flex flex-wrap gap-2">
+                        {rec.metadata.met_criteria?.map((c: string) => (
+                          <span key={c} className="px-2 py-1 bg-slate-900 text-white text-[8px] font-black rounded-lg border border-white/10 shadow-lg">
+                            Condition {c}
+                          </span>
+                        ))}
                       </div>
 
                       <div className="pt-6 border-t border-slate-50 flex items-center justify-between">
