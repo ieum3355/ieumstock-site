@@ -9,9 +9,9 @@
     "entry_price": 196400,
     "target_price": 224500,
     "stop_loss": 188400,
-    "current_price": 200500,
-    "profit_pct": "+2.67%",
-    "status": "OPEN"
+    "current_price": 200750,
+    "profit_pct": "+2.21%",
+    "status": "HOLD"
   },
   {
     "id": "BO-260413-P",
@@ -23,9 +23,9 @@
     "entry_price": 1512100,
     "target_price": 1728100,
     "stop_loss": 1450400,
-    "current_price": 1543000,
-    "profit_pct": "+2.39%",
-    "status": "OPEN"
+    "current_price": 1542000,
+    "profit_pct": "+1.98%",
+    "status": "HOLD"
   },
   {
     "id": "BO-260413-P",
@@ -37,8 +37,8 @@
     "entry_price": 456600,
     "target_price": 521900,
     "stop_loss": 438000,
-    "current_price": 467500,
-    "profit_pct": "+2.39%",
+    "current_price": 466500,
+    "profit_pct": "+2.17%",
     "status": "HOLD"
   },
   {
@@ -51,8 +51,8 @@
     "entry_price": 143600,
     "target_price": 164100,
     "stop_loss": 137800,
-    "current_price": 146800,
-    "profit_pct": "+2.23%",
+    "current_price": 146700,
+    "profit_pct": "+2.16%",
     "status": "HOLD"
   },
   {
@@ -65,8 +65,8 @@
     "entry_price": 460100,
     "target_price": 525800,
     "stop_loss": 441300,
-    "current_price": 467500,
-    "profit_pct": "+1.61%",
+    "current_price": 466500,
+    "profit_pct": "+1.39%",
     "status": "HOLD"
   },
   {
@@ -79,8 +79,8 @@
     "entry_price": 146000,
     "target_price": 166800,
     "stop_loss": 140000,
-    "current_price": 146800,
-    "profit_pct": "+0.55%",
+    "current_price": 146700,
+    "profit_pct": "+0.48%",
     "status": "HOLD"
   },
   {
@@ -93,8 +93,8 @@
     "entry_price": 201800,
     "target_price": 230700,
     "stop_loss": 193600,
-    "current_price": 200500,
-    "profit_pct": "-0.64%",
+    "current_price": 200750,
+    "profit_pct": "-0.52%",
     "status": "HOLD"
   }
 ]

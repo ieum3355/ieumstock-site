@@ -151,7 +151,54 @@ const BrainOff = () => {
           </div>
         </div>
 
-        {/* Premium Stock Cards or Password Gate */}
+        {/* 오늘의 맥점 돌파주 (Swing Engine Results) */}
+        {data?.swing_candidates && data.swing_candidates.length > 0 && (
+          <div className="lg:col-span-3 space-y-6">
+            <div className="flex items-center justify-between px-2">
+              <div className="space-y-1">
+                <h3 className="text-2xl font-black text-slate-900 flex items-center gap-2">
+                  <Zap className="w-6 h-6 text-primary-600 fill-primary-600" />
+                  오늘의 맥점 돌파주
+                </h3>
+                <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">Swing Breakout Candidates (A·B·D·!E)</p>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {data.swing_candidates.map((swing: any) => (
+                <div key={swing.ticker} className="bg-slate-900 p-6 rounded-[2.5rem] border border-white/5 relative overflow-hidden group hover:scale-[1.02] transition-transform shadow-xl">
+                  <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-30 transition-opacity">
+                    <Target className="w-12 h-12 text-white" />
+                  </div>
+                  <div className="space-y-4 relative z-10">
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <h4 className="text-white text-xl font-black tracking-tight">{swing.name}</h4>
+                        <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">{swing.ticker}</p>
+                      </div>
+                      <span className="text-emerald-400 font-black text-sm">{swing.rate}</span>
+                    </div>
+                    <div className="space-y-2">
+                      <div className="flex justify-between text-[10px] font-bold">
+                        <span className="text-slate-500 uppercase">Breakout Level</span>
+                        <span className="text-primary-400 font-black">{swing.breakout_level.toLocaleString()}원</span>
+                      </div>
+                      <div className="flex justify-between text-[10px] font-bold">
+                        <span className="text-slate-500 uppercase">Current Price</span>
+                        <span className="text-white font-black">{swing.price.toLocaleString()}원</span>
+                      </div>
+                    </div>
+                    <div className="pt-2">
+                      <div className="px-3 py-1 bg-white/5 border border-white/10 rounded-full inline-block">
+                        <span className="text-[9px] font-black text-primary-400 uppercase tracking-widest">{swing.logic}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className="lg:col-span-2 space-y-8">
           <div className="flex items-center justify-between px-2">
             <div className="space-y-1">

@@ -184,15 +184,35 @@ const PostDetail = () => {
                 </div>
                 
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="p-6 bg-primary-50 rounded-3xl border border-primary-100">
-                    <p className="text-[10px] font-black text-primary-600 uppercase mb-1">Target Price</p>
-                    <p className="text-xl font-black text-slate-900">{post.trading_strategy.target_price.toLocaleString()}원</p>
+                  <div className="p-6 bg-primary-50 rounded-3xl border border-primary-100 group hover:bg-primary-600 transition-all duration-500">
+                    <p className="text-[10px] font-black text-primary-600 group-hover:text-primary-200 uppercase mb-1">Target Price</p>
+                    <p className="text-xl font-black text-slate-900 group-hover:text-white">{post.trading_strategy.target_price.toLocaleString()}원</p>
                   </div>
-                  <div className="p-6 bg-rose-50 rounded-3xl border border-rose-100">
-                    <p className="text-[10px] font-black text-rose-600 uppercase mb-1">Stop Loss</p>
-                    <p className="text-xl font-black text-slate-900">{post.trading_strategy.stop_loss.toLocaleString()}원</p>
+                  <div className="p-6 bg-rose-50 rounded-3xl border border-rose-100 group hover:bg-rose-600 transition-all duration-500">
+                    <p className="text-[10px] font-black text-rose-600 group-hover:text-rose-200 uppercase mb-1">맥점(손절선)</p>
+                    <p className="text-xl font-black text-slate-900 group-hover:text-white">
+                      {(post.live_status.breakout_level || post.trading_strategy.stop_loss || 0).toLocaleString()}원
+                    </p>
                   </div>
                 </div>
+
+                {post.live_status.breakout_level && (
+                  <div className="p-6 bg-slate-900 rounded-3xl border border-white/10 relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10">
+                      <Zap className="w-16 h-16 text-white" />
+                    </div>
+                    <div className="flex items-center justify-between relative z-10">
+                      <div className="space-y-1">
+                        <p className="text-[10px] font-black text-primary-400 uppercase tracking-widest">Core Signal</p>
+                        <h4 className="text-white text-lg font-black">무주공산 맥점 돌파가</h4>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-2xl font-black text-white">{post.live_status.breakout_level.toLocaleString()}원</p>
+                        <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Breakout Level</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {isLocked && (
