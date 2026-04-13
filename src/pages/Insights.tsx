@@ -11,11 +11,17 @@ const Insights = () => {
     const fetchDynamic = async () => {
       setLoading(true);
       try {
-        const res = await fetch('/dashboard_data.json');
-        if (res.ok) {
-          const data = await res.json();
-          // Transform recommendations to list items
-          const transformed = data.recommendations.map((rec: any) => ({
+        const v = new Date().getTime();
+        const [dashRes, insightRes] = await Promise.all([
+          fetch(`/dashboard_data.json?v=${v}`),
+          fetch(`/daily_insights.json?v=${v}`).catch(() => null)
+        ]);
+
+        let allDynamic: any[] = [];
+
+        if (dashRes.ok) {
+          const data = await dashRes.json();
+          const dashPosts = data.recommendations.map((rec: any) => ({
             id: rec.metadata.id,
             slug: rec.metadata.slug,
             title: rec.seo_content.page_title,
@@ -25,10 +31,27 @@ const Insights = () => {
             tier: rec.metadata.tier,
             type: 'recommendation'
           }));
-          setDynamicPosts(transformed);
+          allDynamic = [...allDynamic, ...dashPosts];
         }
+
+        if (insightRes && insightRes.ok) {
+          const insights = await insightRes.json();
+          const insightPosts = insights.map((i: any) => ({
+            id: i.article_info.id,
+            slug: i.article_info.slug,
+            title: i.article_info.title,
+            content: i.content_body.introduction.text,
+            date: i.article_info.date,
+            type: 'article',
+            isDynamic: true,
+            raw: i // Keep raw data for detail rendering if needed
+          }));
+          allDynamic = [...allDynamic, ...insightPosts];
+        }
+
+        setDynamicPosts(allDynamic);
       } catch (e) {
-        console.error("Failed to load dashboard data");
+        console.error("Failed to load dynamic data", e);
       }
       setLoading(false);
     };

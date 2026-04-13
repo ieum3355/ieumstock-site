@@ -46,18 +46,35 @@ const PostDetail = () => {
         return;
       }
 
-      // 2. Check dynamic recommendations
+      // 2. Check dynamic insights & recommendations
       try {
-        const res = await fetch('/dashboard_data.json');
-        if (res.ok) {
-          const data = await res.json();
-          const dynamicPost = data.recommendations.find((p: any) => p.metadata.slug === id);
-          if (dynamicPost) {
-            setPost({ ...dynamicPost, type: 'recommendation' });
+        const v = new Date().getTime();
+        const [dashRes, insightRes] = await Promise.all([
+          fetch(`/dashboard_data.json?v=${v}`),
+          fetch(`/daily_insights.json?v=${v}`).catch(() => null)
+        ]);
+
+        if (dashRes && dashRes.ok) {
+          const data = await dashRes.json();
+          const dynamicRec = data.recommendations.find((p: any) => p.metadata.id.toString() === id || p.metadata.slug === id);
+          if (dynamicRec) {
+            setPost({ ...dynamicRec, type: 'recommendation' });
+            setLoading(false);
+            return;
+          }
+        }
+
+        if (insightRes && insightRes.ok) {
+          const insights = await insightRes.json();
+          const dynamicInsight = insights.find((p: any) => p.article_info.id.toString() === id || p.article_info.slug === id);
+          if (dynamicInsight) {
+            setPost({ ...dynamicInsight, type: 'article' });
+            setLoading(false);
+            return;
           }
         }
       } catch (e) {
-        console.error("Dashboard data fetch failed", e);
+        console.error("Dynamic data fetch failed", e);
       }
       setLoading(false);
     };

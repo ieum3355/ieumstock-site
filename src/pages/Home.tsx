@@ -21,6 +21,7 @@ interface DashboardData {
 
 const Home = () => {
   const [data, setData] = useState<DashboardData | null>(null);
+  const [dynamicInsight, setDynamicInsight] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -32,21 +33,29 @@ const Home = () => {
     ? dailyQuote.split(' - ') 
     : [dailyQuote, '익명'];
 
-  // Get most recent insight
-  const recentInsight = CONTENT_DB.blog_posts[0];
+  // Default to static, but will be overridden by dynamic if available
+  const recentInsight = dynamicInsight || CONTENT_DB.blog_posts[0];
 
   useEffect(() => {
     const loadData = async () => {
       try {
-        const response = await fetch('/dashboard_data.json');
-        if (!response.ok) throw new Error('Data not found');
-        const result = await response.json();
-        
-        // Match Hybrid 2.1 Schema
-        if (result.generation_info) {
-          setData(result);
-        } else {
-          setError('데이터 구조가 올바르지 않습니다.');
+        const v = new Date().getTime();
+        const [dashRes, insightRes] = await Promise.all([
+          fetch(`/dashboard_data.json?v=${v}`),
+          fetch(`/daily_insights.json?v=${v}`).catch(() => null)
+        ]);
+
+        if (dashRes.ok) {
+          const dashResult = await dashRes.json();
+          if (dashResult.generation_info) setData(dashResult);
+          else setError('데이터 구조가 올바르지 않습니다.');
+        }
+
+        if (insightRes && insightRes.ok) {
+          const insightResult = await insightRes.json();
+          if (insightResult.length > 0) {
+            setDynamicInsight(insightResult[0]);
+          }
         }
       } catch (err) {
         setError('데이터를 불러오는 중 오류가 발생했습니다.');
@@ -133,7 +142,7 @@ const Home = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Daily Quote Section */}
-        <div className="premium-card bg-slate-900 text-white p-10 flex flex-col justify-center relative overflow-hidden group">
+        <div className="premium-card !bg-slate-900 text-white !p-10 flex flex-col justify-center relative overflow-hidden group">
           <Quote className="absolute top-8 left-8 w-20 h-20 text-white/5 -rotate-12 group-hover:rotate-0 transition-transform duration-700" />
           <div className="relative z-10 space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 rounded-full text-[10px] font-black tracking-[0.2em] uppercase text-primary-400 border border-white/10">
