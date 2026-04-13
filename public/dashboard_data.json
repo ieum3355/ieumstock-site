@@ -1,20 +1,20 @@
 {
   "generation_info": {
     "engine": "Brain-Off Hybrid 2.2",
-    "timestamp": "2026-04-13 11:54:12",
-    "market_condition": "KOSPI 5,789 Level Verified",
+    "timestamp": "2026-04-13 02:59:10",
+    "market_condition": "KOSPI 5,801 Level Verified",
     "status_msg": "현재 기준 충족 종목이 없습니다. 관망 권장."
   },
   "market_summary": [
     {
       "name": "KOSPI",
-      "value": "5,789.23",
-      "rate": "-1.19%"
+      "value": "5,801.33",
+      "rate": "-0.98%"
     },
     {
       "name": "KOSDAQ",
-      "value": "1,098.14",
-      "rate": "+0.41%"
+      "value": "1,098.69",
+      "rate": "+0.46%"
     }
   ],
   "recommendations": [],
