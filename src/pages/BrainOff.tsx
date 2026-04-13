@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { 
   Lock, Crown, Zap, ShieldCheck, Info, ChevronRight, BarChart3, 
   Target, KeyRound, AlertTriangle, TrendingUp, Sparkles, Activity
 } from 'lucide-react';
 
 const BrainOff = () => {
+  const navigate = useNavigate();
   const [data, setData] = useState<any>(null);
   const [password, setPassword] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -227,6 +228,10 @@ const BrainOff = () => {
                         if (pass === '0000') {
                           setIsAuthenticated(true);
                           localStorage.setItem('ieumstock_auth', 'true');
+                          // Navigate immediately after successful auth
+                          setTimeout(() => {
+                            navigate(`/insights/${rec.metadata.slug}`);
+                          }, 100);
                         }
                       }
                     }}

@@ -1,80 +1,30 @@
 {
   "generation_info": {
     "engine": "Brain-Off Hybrid 2.2",
-    "timestamp": "2026-04-11 02:58:50",
-    "market_condition": "KOSPI 5,859 Level Verified",
-    "status_msg": "오늘의 엄선된 2+2 전략 종목이 분석되었습니다."
+    "timestamp": "2026-04-13 11:20:40",
+    "market_condition": "KOSPI 5,791 Level Verified",
+    "status_msg": "오늘의 엄선된 2개 전략 종목이 분석되었습니다. (정밀 필터링 통과)"
   },
   "market_summary": [
     {
       "name": "KOSPI",
-      "value": "5,858.87",
-      "rate": "+1.40%"
+      "value": "5,790.74",
+      "rate": "-1.16%"
     },
     {
       "name": "KOSDAQ",
-      "value": "1,093.63",
-      "rate": "+1.64%"
+      "value": "1,098.80",
+      "rate": "+0.47%"
     }
   ],
   "recommendations": [
     {
       "metadata": {
-        "id": "BO-260411-P",
-        "slug": "samsung-fire-260411",
+        "id": "BO-260413-P",
+        "slug": "kia-260413",
         "tier": "Premium",
         "is_locked": true,
-        "date": "2026-04-11"
-      },
-      "stock_info": {
-        "name": "삼성**",
-        "real_name": "삼성화재",
-        "ticker": "000810",
-        "sector": "보험/금융",
-        "market": "KOSPI"
-      },
-      "seo_content": {
-        "page_title": "오늘의 Premium 관점: 보험/금융 주도주 분석",
-        "meta_description": "삼성화재의 기술적 타점이 Premium 기준을 통과했습니다.",
-        "keywords": [
-          "삼성화재",
-          "보험/금융",
-          "이음스탁"
-        ]
-      },
-      "score_card": {
-        "total_score": 92,
-        "breakout": 40,
-        "accumulation": 29,
-        "volatility_tight": 19,
-        "institutional_buy": 6
-      },
-      "trading_strategy": {
-        "logic_summary": "종합 알고리즘 필터 통과 (Selected)",
-        "technical_analysis": "1. [Real-time Breakout] 직전 고점 매물대를 거래량 동반하며 돌파 시도 중입니다. 특히 469,500원 구간의 저항을 흡수하며 상방 발산 에너지가 응축되었습니다. 2. [Institutional Flow] 메이저 수급의 집중 매집가 포착되며, 저점을 높이는 우상향 추세가 기술적으로 완성되었습니다. 3. [Volatility Filter] 시장 노이즈를 제거한 순수 변동성 측정 결과, 안정적인 Premium 등급의 변동성 수축 구간(VCP)을 지나 폭발적인 추세 추종 구간에 진입했음이 검증되었습니다.",
-        "analysis_segments": {
-          "breakout": "직전 고점 매물대를 거래량 동반하며 돌파 중입니다. 469,500원 저항 흡수 및 상방 발산 에너지가 응축되었습니다.",
-          "flow": "메이저 수급(기관/외인)이 집중 매집이 포착되며 우상향 기술적 패턴이 완성되었습니다.",
-          "volatility": "노이즈 제거 결과, Premium 등급 고유의 변동성 수축(VCP) 후 시세 분출 구간임이 검증되었습니다."
-        },
-        "entry_price": 460100,
-        "target_price": 525800,
-        "stop_loss": 441300,
-        "expected_period": "2~5일"
-      },
-      "live_status": {
-        "current_price": 469500,
-        "profit_pct": "+0.43%",
-        "status": "HOLD"
-      }
-    },
-    {
-      "metadata": {
-        "id": "BO-260411-S",
-        "slug": "kia-260411",
-        "tier": "Standard",
-        "is_locked": false,
-        "date": "2026-04-11"
+        "date": "2026-04-13"
       },
       "stock_info": {
         "name": "기아",
@@ -84,8 +34,8 @@
         "market": "KOSPI"
       },
       "seo_content": {
-        "page_title": "오늘의 Standard 관점: 자동차 주도주 분석",
-        "meta_description": "기아의 기술적 타점이 Standard 기준을 통과했습니다.",
+        "page_title": "오늘의 Premium 관점: 자동차 주도주 분석",
+        "meta_description": "기아의 기술적 타점이 Premium 기준을 통과했습니다.",
         "keywords": [
           "기아",
           "자동차",
@@ -93,28 +43,78 @@
         ]
       },
       "score_card": {
+        "total_score": 97,
+        "breakout": 39,
+        "accumulation": 23,
+        "volatility_tight": 15,
+        "institutional_buy": 7
+      },
+      "trading_strategy": {
+        "logic_summary": "종합 알고리즘 필터 통과 (Selected)",
+        "technical_analysis": "1. [Real-time Breakout] 직전 고점 매물대를 거래량 동반하며 돌파 시도 중입니다. 특히 146,800원 구간의 저항을 흡수하며 상방 발산 에너지가 응축되었습니다. 2. [Institutional Flow] 메이저 수급의 집중 매집가 포착되며, 저점을 높이는 우상향 추세가 기술적으로 완성되었습니다. 3. [Volatility Filter] 시장 노이즈를 제거한 순수 변동성 측정 결과, 안정적인 Premium 등급의 변동성 수축 구간(VCP)을 지나 폭발적인 추세 추종 구간에 진입했음이 검증되었습니다.",
+        "analysis_segments": {
+          "breakout": "직전 고점 매물대를 거래량 동반하며 돌파 중입니다. 146,800원 저항 흡수 및 상방 발산 에너지가 응축되었습니다.",
+          "flow": "메이저 수급(기관/외인)이 집중 매집이 포착되며 우상향 기술적 패턴이 완성되었습니다.",
+          "volatility": "노이즈 제거 결과, Premium 등급 고유의 변동성 수축(VCP) 후 시세 분출 구간임이 검증되었습니다."
+        },
+        "entry_price": 143800,
+        "target_price": 164400,
+        "stop_loss": 137900,
+        "expected_period": "2~5일"
+      },
+      "live_status": {
+        "current_price": 146800,
+        "profit_pct": "+1.48%",
+        "status": "HOLD"
+      }
+    },
+    {
+      "metadata": {
+        "id": "BO-260413-S",
+        "slug": "samsung-fire-260413",
+        "tier": "Standard",
+        "is_locked": false,
+        "date": "2026-04-13"
+      },
+      "stock_info": {
+        "name": "삼성화재",
+        "real_name": "삼성화재",
+        "ticker": "000810",
+        "sector": "보험/금융",
+        "market": "KOSPI"
+      },
+      "seo_content": {
+        "page_title": "오늘의 Standard 관점: 보험/금융 주도주 분석",
+        "meta_description": "삼성화재의 기술적 타점이 Standard 기준을 통과했습니다.",
+        "keywords": [
+          "삼성화재",
+          "보험/금융",
+          "이음스탁"
+        ]
+      },
+      "score_card": {
         "total_score": 81,
-        "breakout": 26,
-        "accumulation": 22,
-        "volatility_tight": 14,
+        "breakout": 27,
+        "accumulation": 23,
+        "volatility_tight": 18,
         "institutional_buy": 10
       },
       "trading_strategy": {
         "logic_summary": "핵심 수급 타점 포착 (Qualified)",
-        "technical_analysis": "1. [Real-time Breakout] 직전 고점 매물대를 거래량 동반하며 돌파 시도 중입니다. 특히 149,000원 구간의 저항을 흡수하며 상방 발산 에너지가 응축되었습니다. 2. [Institutional Flow] 기관/외인 동반 순매수가 포착되며, 저점을 높이는 우상향 추세가 기술적으로 완성되었습니다. 3. [Volatility Filter] 시장 노이즈를 제거한 순수 변동성 측정 결과, 안정적인 Standard 등급의 변동성 수축 구간(VCP)을 지나 폭발적인 추세 추종 구간에 진입했음이 검증되었습니다.",
+        "technical_analysis": "1. [Real-time Breakout] 직전 고점 매물대를 거래량 동반하며 돌파 시도 중입니다. 특히 466,000원 구간의 저항을 흡수하며 상방 발산 에너지가 응축되었습니다. 2. [Institutional Flow] 기관/외인 동반 순매수가 포착되며, 저점을 높이는 우상향 추세가 기술적으로 완성되었습니다. 3. [Volatility Filter] 시장 노이즈를 제거한 순수 변동성 측정 결과, 안정적인 Standard 등급의 변동성 수축 구간(VCP)을 지나 폭발적인 추세 추종 구간에 진입했음이 검증되었습니다.",
         "analysis_segments": {
-          "breakout": "직전 고점 매물대를 거래량 동반하며 돌파 중입니다. 149,000원 저항 흡수 및 상방 발산 에너지가 응축되었습니다.",
+          "breakout": "직전 고점 매물대를 거래량 동반하며 돌파 중입니다. 466,000원 저항 흡수 및 상방 발산 에너지가 응축되었습니다.",
           "flow": "수급 안정화 구간 진입이 포착되며 우상향 기술적 패턴이 완성되었습니다.",
           "volatility": "노이즈 제거 결과, Standard 등급 고유의 변동성 수축(VCP) 후 시세 분출 구간임이 검증되었습니다."
         },
-        "entry_price": 146000,
-        "target_price": 166800,
-        "stop_loss": 140000,
+        "entry_price": 456600,
+        "target_price": 521900,
+        "stop_loss": 438000,
         "expected_period": "2~5일"
       },
       "live_status": {
-        "current_price": 149000,
-        "profit_pct": "+1.00%",
+        "current_price": 466000,
+        "profit_pct": "+0.75%",
         "status": "HOLD"
       }
     }

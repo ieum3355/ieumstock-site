@@ -1,6 +1,78 @@
 [
   {
     "article_info": {
+      "id": 2003,
+      "slug": "analysis-kia-260413",
+      "title": "오늘의 Premium 관점: 기아 정밀 분석",
+      "author": "ieumstock AI Research",
+      "date": "2026.04.13",
+      "publishDate": "2026-04-13",
+      "category": "Stock Analysis",
+      "tags": [
+        "기아",
+        "자동차",
+        "AI추천",
+        "기술적분석"
+      ]
+    },
+    "seo_metadata": {
+      "meta_title": "오늘의 Premium 관점: 기아 정밀 분석 | 이음스탁 투자 리포트",
+      "meta_description": "현재 시장 수급 분석 결과, 기아 종목에서 유의미한 에너지 응축이 포착되었습니다. Premium 등급의 선정 기준인 95점을 획득하며 기술적 필터를 통과했습니다.",
+      "og_image": "/assets/images/insight/default-insight.jpg"
+    },
+    "content_body": {
+      "introduction": {
+        "heading": "기아, 왜 지금인가?",
+        "text": "현재 시장 수급 분석 결과, 기아 종목에서 유의미한 에너지 응축이 포착되었습니다. Premium 등급의 선정 기준인 95점을 획득하며 기술적 필터를 통과했습니다."
+      },
+      "core_analysis": [
+        {
+          "sub_heading": "Real-time Breakout (SCANNING)",
+          "text": "직전 고점 매물대를 거래량 동반하며 돌파 중입니다. 146,800원 저항 흡수 및 상방 발산 에너지가 응축되었습니다.",
+          "insight_tip": "주요 저항 구역인 164,400원 돌파 여부가 핵심입니다.",
+          "icon_type": "analysis"
+        },
+        {
+          "sub_heading": "Institutional Flow (TRACKING)",
+          "text": "메이저 수급(기관/외인)이 집중 매집이 포착되며 우상향 기술적 패턴이 완성되었습니다.",
+          "insight_tip": "외국인/기관의 동반 순매수가 이어지는지 수급 창구를 확인하십시오.",
+          "icon_type": "volume"
+        },
+        {
+          "sub_heading": "Volatility Filter (VERIFIED)",
+          "text": "노이즈 제거 결과, Premium 등급 고유의 변동성 수축(VCP) 후 시세 분출 구간임이 검증되었습니다.",
+          "insight_tip": "변동성 지표가 안정적인 {pick['metadata']['tier']} 등급 표준 수치 내에 머물러 있습니다.",
+          "icon_type": "risk"
+        }
+      ],
+      "practical_guide": {
+        "heading": "대응 가이드라인",
+        "items": [
+          {
+            "title": "진입 구간 설정",
+            "description": "143,800원 부근에서의 분할 매수 접근이 유리합니다."
+          },
+          {
+            "title": "리스크 관리",
+            "description": "손절가 137,900원 이탈 시 비중 축소 또는 청산 대응을 권장합니다."
+          }
+        ]
+      },
+      "conclusion": {
+        "text": "기아은 단기 스윙 관점에서 충분한 기대 수익률을 가진 종목입니다.",
+        "closing_statement": "이음스탁의 AI 분석이 귀하의 성공 투자를 돕겠습니다."
+      }
+    },
+    "system_link": {
+      "target_tool": "BrainOff",
+      "related_ticker": [
+        "KOSPI",
+        "KOSDAQ"
+      ]
+    }
+  },
+  {
+    "article_info": {
       "id": 2002,
       "slug": "interest-rate-impact-analysis-260411",
       "title": "금리 동결과 시장의 반응: 기회인가 함정인가?",

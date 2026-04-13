@@ -27,6 +27,8 @@ const PostDetail = () => {
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [loading, setLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [passwordInput, setPasswordInput] = useState('');
+  const [passError, setPassError] = useState(false);
 
   useEffect(() => {
     // Check auth persistence
@@ -194,19 +196,55 @@ const PostDetail = () => {
               </div>
 
               {isLocked && (
-                <div className="bg-slate-900 text-white p-8 rounded-[2rem] text-center space-y-4 animate-in zoom-in-95 duration-500">
-                  <Lock className="w-10 h-10 text-amber-400 mx-auto" />
-                  <div className="space-y-2">
-                    <h4 className="text-xl font-black">심층 분석 데이터가 잠겨 있습니다</h4>
-                    <p className="text-slate-400 text-sm font-medium">프리미엄 회원이 되시면 AI 정밀 타점과<br />기술적 분석을 실시간으로 확인하실 수 있습니다.</p>
+                <div className="bg-slate-900 text-white p-8 md:p-12 rounded-[2rem] text-center space-y-8 animate-in zoom-in-95 duration-500 shadow-2xl relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-primary-600/10 blur-3xl rounded-full"></div>
+                  <Lock className="w-12 h-12 text-amber-400 mx-auto animate-bounce" />
+                  <div className="space-y-3">
+                    <h4 className="text-2xl font-black">심층 분석 데이터가 잠겨 있습니다</h4>
+                    <p className="text-slate-400 text-sm font-medium leading-relaxed">프리미엄 회원이 되시면 AI 정밀 타점과<br />기술적 분석을 실시간으로 확인하실 수 있습니다.</p>
                   </div>
-                  <button 
-                    onClick={() => alert('프리미엄 구독 문의: 텔레그램 @ieumstock_pro')}
-                    className="w-full py-4 bg-primary-600 text-white rounded-2xl font-black text-sm hover:bg-primary-500 transition-all flex items-center justify-center gap-2"
-                  >
-                    프리미엄 등업 신청하기
-                    <ChevronRight className="w-4 h-4" />
-                  </button>
+                  
+                  <div className="max-w-xs mx-auto space-y-4">
+                    <div className="relative">
+                      <input 
+                        type="password" 
+                        placeholder="Premium Password"
+                        value={passwordInput}
+                        onChange={(e) => setPasswordInput(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            if (passwordInput === '0000') {
+                              setIsAuthenticated(true);
+                              localStorage.setItem('ieumstock_auth', 'true');
+                            } else {
+                              setPassError(true);
+                              setTimeout(() => setPassError(false), 2000);
+                            }
+                          }
+                        }}
+                        className={`w-full bg-white/5 border ${passError ? 'border-rose-500' : 'border-white/10'} rounded-2xl px-6 py-4 text-center text-xl font-black tracking-[0.5em] focus:outline-none focus:border-primary-500 transition-all`}
+                      />
+                      {passError && <p className="text-rose-500 text-[10px] font-black uppercase mt-2 tracking-widest">Invalid Password</p>}
+                    </div>
+                    <button 
+                      onClick={() => {
+                        if (passwordInput === '0000') {
+                          setIsAuthenticated(true);
+                          localStorage.setItem('ieumstock_auth', 'true');
+                        } else {
+                          setPassError(true);
+                          setTimeout(() => setPassError(false), 2000);
+                        }
+                      }}
+                      className="w-full py-4 bg-primary-600 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-primary-500 transition-all flex items-center justify-center gap-2 group"
+                    >
+                      Unlock Report
+                      <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </button>
+                    <p className="text-[9px] font-black text-slate-500 uppercase tracking-widest">
+                      문의: 텔레그램 @ieumstock_pro
+                    </p>
+                  </div>
                 </div>
               )}
             </div>

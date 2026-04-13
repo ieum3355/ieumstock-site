@@ -131,6 +131,7 @@ def get_verified_data():
         standard_picks = [s for s in parsed_stocks if 80 <= s['score'] <= 89]
         standard_picks = sorted(standard_picks, key=lambda x: x['score'], reverse=True)[:2]
         
+        # [Strict Rule] 2+2 전략: 프리미엄 90점 이상, 스탠다드 80점 이상일 때만 추천 목록 구성
         selected_picks = []
         for s in premium_picks: selected_picks.append((s, "Premium"))
         for s in standard_picks: selected_picks.append((s, "Standard"))
@@ -199,10 +200,10 @@ def get_verified_data():
         
         # 시장 상태 메시지
         if not final_recs:
-            final_json["generation_info"]["market_condition"] = "시장 변동성 심화로 인한 보수적 관망 권장"
-            final_json["generation_info"]["status_msg"] = "알고리즘 기준(최소 80점)을 충족하는 종목이 없어 오늘은 추천을 진행하지 않습니다."
+            final_json["generation_info"]["market_condition"] = "시장 기준 미달로 인한 보수적 관망 권장"
+            final_json["generation_info"]["status_msg"] = "현재 AI 알고리즘 분석 결과, 프리미엄(90점↑) 및 스탠다드(80점↑) 기준을 충족하는 종목이 포착되지 않았습니다. 무리한 추격 매수보다는 현금 비중을 유지하며 시장의 명확한 방향성을 기다리는 것을 권장합니다."
         else:
-            final_json["generation_info"]["status_msg"] = "오늘의 엄선된 2+2 전략 종목이 분석되었습니다."
+            final_json["generation_info"]["status_msg"] = f"오늘의 엄선된 {len(final_recs)}개 전략 종목이 분석되었습니다. (정밀 필터링 통과)"
             
         # 3. 데이터 저장
         output_path = "public/dashboard_data.json"
