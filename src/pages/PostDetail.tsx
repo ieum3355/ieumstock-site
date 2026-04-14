@@ -129,15 +129,15 @@ const PostDetail = () => {
     );
   }
 
-  const isLocked = post.type === 'recommendation' && post.metadata.tier === 'Premium' && !isAuthenticated;
-  const seo = post.type === 'recommendation' ? {
-    page_title: post.seo_content?.page_title || `${post.stock_info?.real_name} 분석 리포트`,
-    meta_description: post.seo_content?.meta_description || "이음스탁 AI 정밀 종목 분석 결과",
-    keywords: post.seo_content?.keywords || ["이음스탁", "주식분석"]
+  const isLocked = post?.type === 'recommendation' && post?.metadata?.tier === 'Premium' && !isAuthenticated;
+  const seo = post?.type === 'recommendation' ? {
+    page_title: post?.seo_content?.page_title || `${post?.stock_info?.real_name} 분석 리포트`,
+    meta_description: post?.seo_content?.meta_description || "이음스탁 AI 정밀 종목 분석 결과",
+    keywords: post?.seo_content?.keywords || ["이음스탁", "주식분석"]
   } : {
-    page_title: post.seo_metadata?.meta_title || post.article_info?.title || "투자 인사이트",
-    meta_description: post.seo_metadata?.meta_description || "",
-    keywords: post.article_info?.tags || ["이음스탁", "주식분석", "투자전략"]
+    page_title: post?.seo_metadata?.meta_title || post?.article_info?.title || "투자 인사이트",
+    meta_description: post?.seo_metadata?.meta_description || "",
+    keywords: post?.article_info?.tags || ["이음스탁", "주식분석", "투자전략"]
   };
 
   return (
@@ -189,9 +189,9 @@ const PostDetail = () => {
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
               <div className="space-y-2">
                 <h1 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-[1.1]">
-                  {isAuthenticated ? (post.stock_info?.real_name || 'Stock') : (post.stock_info?.name || 'Stock')} <span className="text-slate-300">({post.stock_info?.ticker || 'TICKER'})</span>
+                  {isAuthenticated ? (post?.stock_info?.real_name || 'Stock') : (post?.stock_info?.name || 'Stock')} <span className="text-slate-300">({post?.stock_info?.ticker || 'TICKER'})</span>
                 </h1>
-                <p className="text-xl font-bold text-slate-400 uppercase tracking-widest">{post.stock_info.sector}</p>
+                <p className="text-xl font-bold text-slate-400 uppercase tracking-widest">{post?.stock_info?.sector || '기술적 분석 모델'}</p>
               </div>
               <div className="bg-slate-900 text-white p-6 rounded-[2rem] flex items-center gap-6 shadow-2xl">
                 <div>
@@ -501,10 +501,10 @@ const PostDetail = () => {
             <section className="space-y-6 relative">
               <div className="absolute -left-4 top-0 w-1.5 h-full bg-primary-600/30 rounded-full hidden md:block"></div>
               <h2 className="text-3xl md:text-4xl font-black text-slate-900 leading-tight">
-                {post.content_body.introduction.heading}
+                {post?.content_body?.introduction?.heading || post?.article_info?.title}
               </h2>
               <p className="text-xl text-slate-600 leading-relaxed font-medium whitespace-pre-line">
-                {post.content_body.introduction.text}
+                {post?.content_body?.introduction?.text || post?.content}
               </p>
             </section>
 

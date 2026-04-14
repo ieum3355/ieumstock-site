@@ -241,7 +241,7 @@ def generate_insight():
     # Add to list and save
     insights.insert(0, new_insight) # Newest first
     
-    with open(INSIGHTS_FILE, 'w', encoding='utf-8-sig') as f:
+    with open(INSIGHTS_FILE, 'w', encoding='utf-8') as f:
         json.dump(insights, f, ensure_ascii=False, indent=2)
     
     print(f"Successfully generated dynamic insight for {today}")

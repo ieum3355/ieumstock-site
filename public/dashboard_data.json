@@ -1,21 +1,21 @@
 ﻿{
   "generation_info": {
     "engine": "Swing Engine 3.0 (Full Scan)",
-    "timestamp": "2026-04-14 03:05:22",
+    "timestamp": "2026-04-14 16:35:09",
     "date": "2026-04-14",
     "market_condition": "Monitoring Active Markets",
-    "status_msg": "전체 시장 300대 종목 정밀 분석 완료. 4개 유망 종목 포착."
+    "status_msg": "전체 시장 300대 종목 정밀 분석 완료. 2개 유망 종목 포착."
   },
   "market_summary": [
     {
       "name": "코스피 (KOSPI)",
-      "value": "5,998.86",
-      "rate": "+3.28%"
+      "value": "5,967.75",
+      "rate": "+2.74%"
     },
     {
       "name": "코스닥 (KOSDAQ)",
-      "value": "1,125.08",
-      "rate": "+2.29%"
+      "value": "1,121.88",
+      "rate": "+2.00%"
     }
   ],
   "recommendations": [
@@ -33,8 +33,8 @@
         ]
       },
       "seo_content": {
-        "page_title": "뉴프렉스 (085670) 주가 전망 및 AI 정밀 분석 리포트",
-        "meta_description": "뉴프렉스 종목의 실시간 맥점 돌파 및 수급 패턴 분석 결과입니다. 목표가 7,000원, 손절가 5,700원 전략 수립.",
+        "page_title": "엠케이전자 (033160) 주가 전망 및 AI 정밀 분석 리포트",
+        "meta_description": "엠케이전자 종목의 실시간 맥점 돌파 및 수급 패턴 분석 결과입니다. 목표가 27,700원, 손절가 22,400원 전략 수립.",
         "keywords": [
           "엠케이전자",
           "033160",
@@ -64,7 +64,7 @@
         "institutional_buy": 14
       },
       "analysis_report": {
-        "summary": "현재 뉴프렉스 종목은 6,160원 기술적 맥점을 상향 돌파하며 강력한 매수 에너지가 유입되고 있습니다. 최근 10일 이내에 평소 거래량의 1.5배가 넘는 매집봉이 포착되었으며, 이는 세력의 진입 가능성을 강력히 시사합니다. 단기적으로는 전고점 6,468원 구간의 저항이 예상되나, 돌파 시 7,000원까지 추가 상승 여력이 충분한 구간입니다.",
+        "summary": "현재 엠케이전자 종목은 24,100원 기술적 맥점을 상향 돌파하며 강력한 매수 에너지가 유입되고 있습니다. 최근 10일 이내에 평소 거래량의 1.5배가 넘는 매집봉이 포착되었으며, 이는 세력의 진입 가능성을 강력히 시사합니다. 단기적으로는 전고점 25,305원 구간의 저항이 예상되나, 돌파 시 27,700원까지 추가 상승 여력이 충분한 구간입니다.",
         "why_recommended": [
           "20일 신고가 경신 및 기술적 맥점 상향 돌파",
           "바닥권 대비 거래량 유의미한 급증 포착",
@@ -73,15 +73,15 @@
       },
       "trading_strategy": {
         "logic_summary": "전체 시장 거래량 상위 스캔 및 기술적 정밀 필터 통과",
-        "technical_analysis": "1. [돌파] 6,160원 구간 전고점 돌파 확인. 2. [수급] 최근 거래량 급증 매집봉(C) 포착. 3. [추세] 상방 수렴 후 발산 초입 구간.",
-        "entry_price": 6160,
-        "target_price": 7000,
-        "stop_loss": 5700,
+        "technical_analysis": "1. [돌파] 24,100원 구간 전고점 돌파 확인. 2. [수급] 최근 거래량 급증 매집봉(C) 포착. 3. [추세] 상방 수렴 후 발산 초입 구간.",
+        "entry_price": 24100,
+        "target_price": 27700,
+        "stop_loss": 22400,
         "expected_period": "3~7일"
       },
       "live_status": {
-        "current_price": 6160,
-        "profit_pct": "+11.19%",
+        "current_price": 24100,
+        "profit_pct": "+24.29%",
         "status": "HOLD"
       }
     },
@@ -130,7 +130,7 @@
         "institutional_buy": 14
       },
       "analysis_report": {
-        "summary": "현재 세림B&G 종목은 2,615원 기술적 맥점을 상향 돌파하며 강력한 매수 에너지가 유입되고 있습니다. 최근 10일 이내에 평소 거래량의 1.5배가 넘는 매집봉이 포착되었으며, 이는 세력의 진입 가능성을 강력히 시사합니다. 단기적으로는 전고점 2,745원 구간의 저항이 예상되나, 돌파 시 3,000원까지 추가 상승 여력이 충분한 구간입니다.",
+        "summary": "현재 삼성E&A 종목은 51,800원 기술적 맥점을 상향 돌파하며 강력한 매수 에너지가 유입되고 있습니다. 최근 10일 이내에 평소 거래량의 1.5배가 넘는 매집봉이 포착되었으며, 이는 세력의 진입 가능성을 강력히 시사합니다. 단기적으로는 전고점 54,390원 구간의 저항이 예상되나, 돌파 시 59,500원까지 추가 상승 여력이 충분한 구간입니다.",
         "why_recommended": [
           "20일 신고가 경신 및 기술적 맥점 상향 돌파",
           "바닥권 대비 거래량 유의미한 급증 포착",
@@ -139,146 +139,15 @@
       },
       "trading_strategy": {
         "logic_summary": "전체 시장 거래량 상위 스캔 및 기술적 정밀 필터 통과",
-        "technical_analysis": "1. [돌파] 2,615원 구간 전고점 돌파 확인. 2. [수급] 최근 거래량 급증 매집봉(C) 포착. 3. [추세] 상방 수렴 후 발산 초입 구간.",
-        "entry_price": 2615,
-        "target_price": 3000,
-        "stop_loss": 2400,
+        "technical_analysis": "1. [돌파] 51,800원 구간 전고점 돌파 확인. 2. [수급] 최근 거래량 급증 매집봉(C) 포착. 3. [추세] 상방 수렴 후 발산 초입 구간.",
+        "entry_price": 51800,
+        "target_price": 59500,
+        "stop_loss": 48100,
         "expected_period": "3~7일"
       },
       "live_status": {
-        "current_price": 2615,
-        "profit_pct": "+13.20%",
-        "status": "HOLD"
-      }
-    },
-    {
-      "metadata": {
-        "id": "BO-260414-S-2",
-        "slug": "stock-260414",
-        "tier": "Standard",
-        "is_locked": false,
-        "date": "2026-04-14",
-        "met_criteria": [
-          "돌파(A/B)",
-          "매집(C)",
-          "수급(D)"
-        ]
-      },
-      "seo_content": {
-        "page_title": "저스템 (417840) 주가 전망 및 AI 정밀 분석 리포트",
-        "meta_description": "저스템 종목의 실시간 맥점 돌파 및 수급 패턴 분석 결과입니다. 목표가 8,800원, 손절가 7,100원 전략 수립.",
-        "keywords": [
-          "저스템",
-          "417840",
-          "주식전망",
-          "AI추천",
-          "이음스탁"
-        ]
-      },
-      "stock_info": {
-        "name": "저스템",
-        "real_name": "저스템",
-        "ticker": "417840",
-        "sector": "실시간 거래량 폭증 및 기술적 돌파",
-        "market": "KOSPI/KOSDAQ"
-      },
-      "financial_data": {
-        "per": "15.4",
-        "pbr": "1.2",
-        "eps": "1,250",
-        "dividend": "2.1%"
-      },
-      "score_card": {
-        "total_score": 90,
-        "breakout": 35,
-        "accumulation": 30,
-        "volatility_tight": 20,
-        "institutional_buy": 14
-      },
-      "analysis_report": {
-        "summary": "현재 저스템 종목은 7,680원 기술적 맥점을 상향 돌파하며 강력한 매수 에너지가 유입되고 있습니다. 최근 10일 이내에 평소 거래량의 1.5배가 넘는 매집봉이 포착되었으며, 이는 세력의 진입 가능성을 강력히 시사합니다. 단기적으로는 전고점 8,064원 구간의 저항이 예상되나, 돌파 시 8,800원까지 추가 상승 여력이 충분한 구간입니다.",
-        "why_recommended": [
-          "20일 신고가 경신 및 기술적 맥점 상향 돌파",
-          "바닥권 대비 거래량 유의미한 급증 포착",
-          "하락 추세를 마무리하고 정배열 초입 구간 진입"
-        ]
-      },
-      "trading_strategy": {
-        "logic_summary": "전체 시장 거래량 상위 스캔 및 기술적 정밀 필터 통과",
-        "technical_analysis": "1. [돌파] 7,680원 구간 전고점 돌파 확인. 2. [수급] 최근 거래량 급증 매집봉(C) 포착. 3. [추세] 상방 수렴 후 발산 초입 구간.",
-        "entry_price": 7680,
-        "target_price": 8800,
-        "stop_loss": 7100,
-        "expected_period": "3~7일"
-      },
-      "live_status": {
-        "current_price": 7680,
-        "profit_pct": "+4.07%",
-        "status": "HOLD"
-      }
-    },
-    {
-      "metadata": {
-        "id": "BO-260414-S-3",
-        "slug": "ps-260414",
-        "tier": "Standard",
-        "is_locked": false,
-        "date": "2026-04-14",
-        "met_criteria": [
-          "돌파(A/B)",
-          "수급(D)"
-        ]
-      },
-      "seo_content": {
-        "page_title": "PS일렉트로닉스 (332570) 주가 전망 및 AI 정밀 분석 리포트",
-        "meta_description": "PS일렉트로닉스 종목의 실시간 맥점 돌파 및 수급 패턴 분석 결과입니다. 목표가 7,600원, 손절가 6,200원 전략 수립.",
-        "keywords": [
-          "PS일렉트로닉스",
-          "332570",
-          "주식전망",
-          "AI추천",
-          "이음스탁"
-        ]
-      },
-      "stock_info": {
-        "name": "PS일렉트로닉스",
-        "real_name": "PS일렉트로닉스",
-        "ticker": "332570",
-        "sector": "실시간 거래량 폭증 및 기술적 돌파",
-        "market": "KOSPI/KOSDAQ"
-      },
-      "financial_data": {
-        "per": "15.4",
-        "pbr": "1.2",
-        "eps": "1,250",
-        "dividend": "2.1%"
-      },
-      "score_card": {
-        "total_score": 85,
-        "breakout": 35,
-        "accumulation": 15,
-        "volatility_tight": 20,
-        "institutional_buy": 14
-      },
-      "analysis_report": {
-        "summary": "현재 PS일렉트로닉스 종목은 6,670원 기술적 맥점을 상향 돌파하며 강력한 매수 에너지가 유입되고 있습니다. 단기적으로는 전고점 7,003원 구간의 저항이 예상되나, 돌파 시 7,600원까지 추가 상승 여력이 충분한 구간입니다.",
-        "why_recommended": [
-          "20일 신고가 경신 및 기술적 맥점 상향 돌파",
-          "바닥권 대비 거래량 유의미한 급증 포착",
-          "하락 추세를 마무리하고 정배열 초입 구간 진입"
-        ]
-      },
-      "trading_strategy": {
-        "logic_summary": "전체 시장 거래량 상위 스캔 및 기술적 정밀 필터 통과",
-        "technical_analysis": "1. [돌파] 6,670원 구간 전고점 돌파 확인. 2. [수급] 최근 거래량 급증 매집봉(C) 포착. 3. [추세] 상방 수렴 후 발산 초입 구간.",
-        "entry_price": 6670,
-        "target_price": 7600,
-        "stop_loss": 6200,
-        "expected_period": "3~7일"
-      },
-      "live_status": {
-        "current_price": 6670,
-        "profit_pct": "+0.00%",
+        "current_price": 51800,
+        "profit_pct": "+4.54%",
         "status": "HOLD"
       }
     }
