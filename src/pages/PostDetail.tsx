@@ -5,7 +5,8 @@ import { CONTENT_DB } from '../data/content_db';
 import { 
   ArrowLeft, Calendar, Clock, Share2, Bookmark, BookmarkCheck, 
   Lock, AlertCircle, ChevronRight, TrendingUp, Target, ShieldAlert,
-  Zap, Lightbulb, CheckCircle2, MessageSquareQuote, Info
+  Zap, Lightbulb, CheckCircle2, MessageSquareQuote, Info,
+  ShieldCheck, BookOpen
 } from 'lucide-react';
 
 const AnalysisIcon = ({ type }: { type?: string }) => {
@@ -55,22 +56,36 @@ const PostDetail = () => {
         ]);
 
         if (dashRes && dashRes.ok) {
-          const data = await dashRes.json();
-          const dynamicRec = data.recommendations.find((p: any) => p.metadata.id.toString() === id || p.metadata.slug === id);
-          if (dynamicRec) {
-            setPost({ ...dynamicRec, type: 'recommendation' });
-            setLoading(false);
-            return;
+          try {
+            const data = await dashRes.json();
+            const dynamicRec = (data.recommendations || []).find((p: any) => 
+              p.metadata?.id?.toString() === id || 
+              p.metadata?.slug === id
+            );
+            if (dynamicRec) {
+              setPost({ ...dynamicRec, type: 'recommendation' });
+              setLoading(false);
+              return;
+            }
+          } catch (err) {
+            console.error("Dashboard JSON parse failed", err);
           }
         }
 
         if (insightRes && insightRes.ok) {
-          const insights = await insightRes.json();
-          const dynamicInsight = insights.find((p: any) => p.article_info.id.toString() === id || p.article_info.slug === id);
-          if (dynamicInsight) {
-            setPost({ ...dynamicInsight, type: 'article' });
-            setLoading(false);
-            return;
+          try {
+            const insights = await insightRes.json();
+            const dynamicInsight = (insights || []).find((p: any) => 
+              p.article_info?.id?.toString() === id || 
+              p.article_info?.slug === id
+            );
+            if (dynamicInsight) {
+              setPost({ ...dynamicInsight, type: 'article' });
+              setLoading(false);
+              return;
+            }
+          } catch (err) {
+            console.error("Insight JSON parse failed", err);
           }
         }
       } catch (e) {
@@ -167,7 +182,7 @@ const PostDetail = () => {
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
               <div className="space-y-2">
                 <h1 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-[1.1]">
-                  {isAuthenticated ? post.stock_info.real_name : post.stock_info.name} <span className="text-slate-300">({post.stock_info.ticker})</span>
+                  {isAuthenticated ? (post.stock_info?.real_name || 'Stock') : (post.stock_info?.name || 'Stock')} <span className="text-slate-300">({post.stock_info?.ticker || 'TICKER'})</span>
                 </h1>
                 <p className="text-xl font-bold text-slate-400 uppercase tracking-widest">{post.stock_info.sector}</p>
               </div>

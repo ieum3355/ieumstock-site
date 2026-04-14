@@ -1,16 +1,55 @@
 ﻿[
   {
+<<<<<<< HEAD
+=======
+    "id": "BO-260414-S-3",
+    "slug": "ps-260414",
+    "date": "2026-04-14",
+    "tier": "Standard",
+    "name": "PS일렉트로닉스",
+    "ticker": "332570",
+    "entry_price": 6670,
+    "target_price": 7600,
+    "stop_loss": 6200,
+    "current_price": 6670,
+    "profit_pct": "+0.00%",
+    "status": "OPEN"
+  },
+  {
+    "id": "BO-260414-S-2",
+    "slug": "stock-260414",
+    "date": "2026-04-14",
+    "tier": "Standard",
+    "name": "저스템",
+    "ticker": "417840",
+    "entry_price": 7690,
+    "target_price": 8800,
+    "stop_loss": 7100,
+    "current_price": 7690,
+    "profit_pct": "+4.20%",
+    "status": "OPEN"
+  },
+  {
+>>>>>>> cb48248 (fix: 최종 하얀 화면 복구 (누락된 아이콘 및 예외 처리 추가))
     "id": "BO-260414-P-1",
     "slug": "bg-260414",
     "date": "2026-04-14",
     "tier": "Premium",
     "name": "세림B&G",
     "ticker": "340440",
+<<<<<<< HEAD
     "entry_price": 2625,
     "target_price": 3000,
     "stop_loss": 2400,
     "current_price": 2625,
     "profit_pct": "+13.64%",
+=======
+    "entry_price": 2620,
+    "target_price": 3000,
+    "stop_loss": 2400,
+    "current_price": 2620,
+    "profit_pct": "+13.42%",
+>>>>>>> cb48248 (fix: 최종 하얀 화면 복구 (누락된 아이콘 및 예외 처리 추가))
     "status": "OPEN"
   },
   {
@@ -20,11 +59,19 @@
     "tier": "Premium",
     "name": "뉴프렉스",
     "ticker": "085670",
+<<<<<<< HEAD
     "entry_price": 6170,
     "target_price": 7000,
     "stop_loss": 5700,
     "current_price": 6170,
     "profit_pct": "+11.37%",
+=======
+    "entry_price": 6190,
+    "target_price": 7100,
+    "stop_loss": 5700,
+    "current_price": 6190,
+    "profit_pct": "+11.73%",
+>>>>>>> cb48248 (fix: 최종 하얀 화면 복구 (누락된 아이콘 및 예외 처리 추가))
     "status": "OPEN"
   }
 ]
