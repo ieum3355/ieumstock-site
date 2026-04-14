@@ -1,41 +1,30 @@
 ﻿[
   {
-<<<<<<< HEAD
-=======
     "id": "BO-260414-S-3",
     "slug": "stock-260414",
     "date": "2026-04-14",
     "tier": "Standard",
     "name": "저스템",
     "ticker": "417840",
-    "entry_price": 7640,
+    "entry_price": 7650,
     "target_price": 8700,
     "stop_loss": 7100,
-    "current_price": 7640,
-    "profit_pct": "+3.52%",
+    "current_price": 7650,
+    "profit_pct": "+3.66%",
     "status": "OPEN"
   },
   {
->>>>>>> 2303a4f (feat: AI 매매 가이드 도입 및 추천 성과(Win-rate) 공개 대시보드 구축)
     "id": "BO-260414-S-2",
     "slug": "stock-260414",
     "date": "2026-04-14",
     "tier": "Standard",
     "name": "희림",
     "ticker": "037440",
-<<<<<<< HEAD
     "entry_price": 6210,
     "target_price": 7100,
     "stop_loss": 5700,
     "current_price": 6210,
     "profit_pct": "+2.64%",
-=======
-    "entry_price": 6240,
-    "target_price": 7100,
-    "stop_loss": 5800,
-    "current_price": 6240,
-    "profit_pct": "+3.14%",
->>>>>>> 2303a4f (feat: AI 매매 가이드 도입 및 추천 성과(Win-rate) 공개 대시보드 구축)
     "status": "OPEN"
   },
   {
@@ -45,19 +34,11 @@
     "tier": "Premium",
     "name": "세림B&G",
     "ticker": "340440",
-<<<<<<< HEAD
-    "entry_price": 2635,
-    "target_price": 3000,
-    "stop_loss": 2400,
-    "current_price": 2635,
-    "profit_pct": "+14.07%",
-=======
     "entry_price": 2610,
     "target_price": 3000,
     "stop_loss": 2400,
     "current_price": 2610,
     "profit_pct": "+12.99%",
->>>>>>> 2303a4f (feat: AI 매매 가이드 도입 및 추천 성과(Win-rate) 공개 대시보드 구축)
     "status": "OPEN"
   },
   {
@@ -65,15 +46,6 @@
     "slug": "stock-260414",
     "date": "2026-04-14",
     "tier": "Premium",
-<<<<<<< HEAD
-    "name": "엑스게이트",
-    "ticker": "356680",
-    "entry_price": 9620,
-    "target_price": 11000,
-    "stop_loss": 8900,
-    "current_price": 9620,
-    "profit_pct": "+25.10%",
-=======
     "name": "가온그룹",
     "ticker": "078890",
     "entry_price": 7850,
@@ -81,7 +53,6 @@
     "stop_loss": 7300,
     "current_price": 7850,
     "profit_pct": "+29.97%",
->>>>>>> 2303a4f (feat: AI 매매 가이드 도입 및 추천 성과(Win-rate) 공개 대시보드 구축)
     "status": "OPEN"
   }
 ]
