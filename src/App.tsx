@@ -145,8 +145,8 @@ function App() {
             <div className="pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-400 text-xs font-black tracking-widest uppercase">
               <p>&copy; 2026 IEUMSTOCK PRO. ALL DATA VERIFIED.</p>
               <div className="flex gap-6">
-                <Link to="/privacy" className="hover:text-primary-600">Privacy Policy</Link>
-                <Link to="/terms" className="hover:text-primary-600">Terms of Service</Link>
+                <Link to="/privacy" className="hover:text-primary-600">개인정보처리방침</Link>
+                <Link to="/terms" className="hover:text-primary-600">이용약관</Link>
               </div>
             </div>
           </div>

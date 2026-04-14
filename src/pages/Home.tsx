@@ -73,7 +73,7 @@ const Home = () => {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
         <div className="space-y-2">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-xs font-black tracking-widest uppercase mb-2">
-            Market Dashboard
+            실시간 시장 보드
           </div>
           <h1 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight">오늘의 시장 인사이트</h1>
           <p className="text-slate-500 text-lg font-medium">데이터 무결성 기반의 정밀 분석 결과를 확인하세요.</p>
@@ -83,8 +83,8 @@ const Home = () => {
             <CheckCircle2 className="w-5 h-5" />
           </div>
           <div>
-            <p className="text-xs font-black text-slate-400 uppercase tracking-widest leading-none mb-1">System Status</p>
-            <p className="text-sm font-bold text-slate-900">{data ? `Verified: ${data.generation_info.timestamp}` : 'Verification Pending'}</p>
+            <p className="text-xs font-black text-slate-400 uppercase tracking-widest leading-none mb-1">시스템 상태</p>
+            <p className="text-sm font-bold text-slate-900">{data ? `점검완료: ${data.generation_info.timestamp}` : '데이터 수집 중'}</p>
           </div>
         </div>
       </div>
@@ -124,8 +124,8 @@ const Home = () => {
                 
                 <div className="mt-8 space-y-2 relative z-10">
                   <div className="flex justify-between text-[10px] font-black text-slate-400 uppercase tracking-widest">
-                    <span>Bearish</span>
-                    <span>Bullish</span>
+                    <span>하락장 (BEAR)</span>
+                    <span>상승장 (BULL)</span>
                   </div>
                   <div className="w-full bg-slate-50 h-2 rounded-full overflow-hidden border border-slate-100">
                     <div 
@@ -146,7 +146,7 @@ const Home = () => {
           <Quote className="absolute top-8 left-8 w-20 h-20 text-white/5 -rotate-12 group-hover:rotate-0 transition-transform duration-700" />
           <div className="relative z-10 space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 rounded-full text-[10px] font-black tracking-[0.2em] uppercase text-primary-400 border border-white/10">
-              Daily Wisdom
+              오늘의 명언
             </div>
             <p className="text-2xl md:text-3xl font-black leading-tight tracking-tight">
               "{quoteText}"
@@ -166,7 +166,7 @@ const Home = () => {
                 <BookOpen className="w-8 h-8 text-primary-600 group-hover:text-white transition-colors" />
               </div>
               <div className="flex items-center gap-2 text-slate-300 group-hover:text-primary-600 transition-all font-black text-sm uppercase tracking-widest">
-                Latest Insight <ChevronRight className="w-5 h-5" />
+                최신 인사이트 <ChevronRight className="w-5 h-5" />
               </div>
             </div>
             <div className="space-y-3">

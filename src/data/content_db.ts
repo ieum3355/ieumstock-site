@@ -550,7 +550,7 @@ export const CONTENT_DB: {
       },
       system_link: {
         target_tool: "BrainOff",
-        related_ticker: ["NVDA", "TSLA"]
+        related_ticker: ["SK하이닉스", "LG에너지솔루션"]
       }
     },
     {
@@ -611,7 +611,7 @@ export const CONTENT_DB: {
       },
       system_link: {
         target_tool: "FearAndGreed",
-        related_ticker: ["SPY", "QQQ"]
+        related_ticker: ["KODEX 200", "TIGER 미국나스닥100"]
       }
     },
     {
@@ -882,13 +882,13 @@ export const CONTENT_DB: {
         core_analysis: [
           {
             sub_heading: "브랜드와 무형 자산의 강력한 힘",
-            text: "애플(Apple)이나 코카콜라처럼 고객이 더 비싼 값을 지불하더라도 기꺼이 선택하는 브랜드는 불황에도 살아남습니다. 브랜드가 곧 가격 결정력(Pricing Power)이기 때문입니다.",
+            text: "삼성전자(Samsung)나 신라면처럼 고객이 더 비싼 값을 지불하더라도 기꺼이 선택하는 브랜드는 불황에도 살아남습니다. 브랜드가 곧 가격 결정력(Pricing Power)이기 때문입니다.",
             insight_tip: "가격 결정력이 있는 기업은 인플레이션 시기에도 비용 상승분을 고객에게 전가할 수 있습니다.",
             icon_type: "analysis"
           },
           {
             sub_heading: "높은 교체 비용(Switching Costs)의 늪",
-            text: "한 번 쓰기 시작하면 다른 서비스로 옮기기 너무 고통스럽거나 비용이 많이 드는 기업들이 있습니다. 마이크로소프트의 윈도우나 어도비의 포토샵이 대표적입니다. 고객을 락인(Lock-in)시키는 능력이 해자의 정수입니다.",
+            text: "한 번 쓰기 시작하면 다른 서비스로 옮기기 너무 고통스럽거나 비용이 많이 드는 기업들이 있습니다. 카카오톡이나 NAVER의 검색 생태계가 대표적입니다. 고객을 락인(Lock-in)시키는 능력이 해자의 정수입니다.",
             icon_type: "discipline"
           }
         ],
@@ -916,7 +916,7 @@ export const CONTENT_DB: {
       },
       system_link: {
         target_tool: "BrainOff",
-        related_ticker: ["AAPL", "MSFT", "GOOGL"]
+        related_ticker: ["삼성전자", "NAVER", "카카오"]
       }
     },
     {
@@ -1038,7 +1038,7 @@ export const CONTENT_DB: {
       },
       system_link: {
         target_tool: "BrainOff",
-        related_ticker: ["KOSDAQ", "S&P 500"]
+        related_ticker: ["KOSDAQ", "KOSPI"]
       }
     },
     {
@@ -1099,7 +1099,7 @@ export const CONTENT_DB: {
       },
       system_link: {
         target_tool: "FearAndGreed",
-        related_ticker: ["TSLA", "NVDA"]
+        related_ticker: ["LG화학", "삼성SDI"]
       }
     },
     {
@@ -1343,7 +1343,7 @@ export const CONTENT_DB: {
       },
       system_link: {
         target_tool: "BrainOff",
-        related_ticker: ["NVDA", "TSMC", "삼성전자"]
+        related_ticker: ["SK하이닉스", "한미반도체", "삼성전자"]
       }
     },
     {
@@ -1404,7 +1404,7 @@ export const CONTENT_DB: {
       },
       system_link: {
         target_tool: "FearAndGreed",
-        related_ticker: ["KOSPI", "NASDAQ"]
+        related_ticker: ["KOSPI", "KOSDAQ"]
       }
     },
     {
@@ -1465,7 +1465,7 @@ export const CONTENT_DB: {
       },
       system_link: {
         target_tool: "IncomeTrack",
-        related_ticker: ["SPY", "QQQ"]
+        related_ticker: ["KODEX 200", "KODEX 코스닥150"]
       }
     },
     {
@@ -1587,7 +1587,7 @@ export const CONTENT_DB: {
       },
       system_link: {
         target_tool: "ChartPro",
-        related_ticker: ["TQQQ", "SOXL"]
+        related_ticker: ["KODEX 레버리지", "KODEX 반도체"]
       }
     },
     {

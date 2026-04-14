@@ -51,7 +51,14 @@ def get_verified_data():
         # 지수 데이터 파싱
         for item in market_data:
             cd = item.get('cd', '')
-            name = "KOSPI" if cd == "KOSPI" else "KOSDAQ"
+            # 한국어 지수명 매핑
+            if cd == "KOSPI":
+                name = "코스피 (KOSPI)"
+            elif cd == "KOSDAQ":
+                name = "코스닥 (KOSDAQ)"
+            else:
+                name = cd
+                
             raw_val = item.get('nv', 0)
             val = raw_val / 100.0 if raw_val > 50000 else float(raw_val)
             rate = item.get('cr', 0.0)
@@ -78,7 +85,7 @@ def get_verified_data():
             
             # [Step 2] 정밀 차트 분석
             hist = fetch_historical_data(code)
-            if not hist or len(hist) < 60: continue # 최소 60영업일 데이터 필요
+            if not hist or len(hist) < 30: continue # 최소 30영업일 데이터 필요 (데이터 가용성 확대)
             
             closes = [h['close'] for h in hist]
             highs = [h['high'] for h in hist]
@@ -90,39 +97,35 @@ def get_verified_data():
             
             cond_A = (nv >= max(highs[1:21])) # 20일 고가 돌파
             cond_B = (nv >= max(closes[1:21])) # 20일 종가 신고가
-            cond_C = any(volumes[i] >= volumes[i+1] * 2.5 for i in range(10)) # 최근 10일내 거래량 폭증
+            cond_C = any(volumes[i] >= volumes[i+1] * 1.5 for i in range(10)) # 최근 10일내 거래량 유의미한 증가 (기준 완화: 2.5 -> 1.5)
             cond_D = True # 이미 거래량 상위 300위임
             not_E = not (ma120 > ma60 > ma20) # 역배열 하강 추세 제외
             
-            # 결정론적 점수
-            score = 70
-            if cond_A or cond_B: score += 12
-            if cond_C: score += 10
-            if nv > ma20: score += 5
-            if nv > ma60: score += 3
-            
-            final_score = min(99, score)
-
-            stock_data = {
-                "code": code, "name": name, "price": nv, "rate": cr,
-                "score": final_score, "conditions": {"A": cond_A, "B": cond_B, "C": cond_C, "D": cond_D, "not_E": not_E},
-                "hist": hist
-            }
-            parsed_stocks.append(stock_data)
-
-        # [AI 추천 로직] - 엄격한 필터링
-        premium_picks = sorted([s for s in parsed_stocks if s['score'] >= 90 and s['conditions']['not_E']], key=lambda x: x['score'], reverse=True)[:2]
-        standard_picks = sorted([s for s in parsed_stocks if 80 <= s['score'] <= 89 and s['conditions']['not_E']], key=lambda x: x['score'], reverse=True)[:2]
+            # [Step 3] 필터링 결정 (기준 대폭 완화: 돌파 신호만 있으면 일단 포착)
+            # 기존: (cond_A or cond_B) and cond_C and cond_D and not_E
+            # 변경: 돌파(A or B)가 있고 너무 급격한 하락세(not_E)가 아니면 추천 후보 등록
+            if (cond_A or cond_B) and not_E:
+                final_score = 75 # 기본 점수
+                if cond_A: final_score += 10
+                if cond_C: final_score += 15 # 거래량 폭증은 가점 처리
+                
+                parsed_stocks.append({
+                    "ticker": code, "name": mask_name(name), "real_name": name,
+                    "price": nv, "rate": cr, "score": min(98, final_score),
+                    "conditions": {"A": cond_A, "B": cond_B, "C": cond_C, "D": True}
+                })
         
-        selected_picks = [(s, "Premium") for s in premium_picks] + [(s, "Standard") for s in standard_picks]
+        # 3. 데이터 포인트 변환 (최종 JSON 구조화)
+        parsed_stocks.sort(key=lambda x: x['score'], reverse=True)
         
         final_recs = []
-        for s, tier in selected_picks:
+        for i, s in enumerate(parsed_stocks[:4]): # 최대 4개 포착
+            tier = "Premium" if i < 2 else "Standard"
             is_premium = (tier == "Premium")
             entry = s['price']
             target = int(s['price'] * 1.15 / 100) * 100
             stop = int(s['price'] * 0.93 / 100) * 100
-            full_slug = f"{code_to_slug(s['name'])}-{today_str}"
+            full_slug = f"{code_to_slug(s['real_name'])}-{today_str}"
             
             met_conds = []
             if s['conditions']['A'] or s['conditions']['B']: met_conds.append("돌파(A/B)")
@@ -131,14 +134,14 @@ def get_verified_data():
 
             rec = {
                 "metadata": {
-                    "id": f"BO-{today_str}-{'P' if is_premium else 'S'}", 
+                    "id": f"BO-{today_str}-{'P' if is_premium else 'S'}-{i}", 
                     "slug": full_slug, "tier": tier, "is_locked": is_premium, 
                     "date": datetime.now().strftime("%Y-%m-%d"),
                     "met_criteria": met_conds
                 },
                 "stock_info": {
-                    "name": mask_name(s['name']) if is_premium else s['name'], 
-                    "real_name": s['name'], "ticker": s['code'], 
+                    "name": mask_name(s['real_name']) if is_premium else s['real_name'], 
+                    "real_name": s['real_name'], "ticker": s['ticker'], 
                     "sector": "실시간 거래량 폭증 및 기술적 돌파", 
                     "market": "KOSPI/KOSDAQ"
                 },
@@ -163,7 +166,7 @@ def get_verified_data():
             
         output_path = "public/dashboard_data.json"
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
-        with open(output_path, "w", encoding="utf-8") as f:
+        with open(output_path, "w", encoding="utf-8-sig") as f:
             json.dump(final_json, f, ensure_ascii=False, indent=2)
             
         manage_history(final_recs, stock_items)
@@ -215,7 +218,7 @@ def manage_history(new_recs, current_stocks_data):
                 "profit_pct": r['live_status']['profit_pct'], "status": "OPEN"
             })
     history = history[:30]
-    with open(history_path, "w", encoding="utf-8") as f:
+    with open(history_path, "w", encoding="utf-8-sig") as f:
         json.dump(history, f, ensure_ascii=False, indent=2)
 
 def fetch_historical_data(code):
@@ -224,7 +227,7 @@ def fetch_historical_data(code):
     hist_data = []
     try:
         # 최근 5페이지만 수집 (데이터 수집 속도 최적화)
-        for page in range(1, 6):
+        for page in range(1, 4):
             res = requests.get(url + str(page), headers=headers)
             res.encoding = 'euc-kr'
             dates = re.findall(r'(\d{4}\.\d{2}\.\d{2})', res.text)
@@ -232,16 +235,16 @@ def fetch_historical_data(code):
             if not dates: break
             for i in range(len(dates)):
                 try:
-                    p_idx = i * 6
+                    p_idx = i * 5 # Naver Finance 구조 변경 대응 (한 행당 5개 데이터: 종가, 시가, 고가, 저가, 거래량)
                     hist_data.append({
                         "date": dates[i], "close": int(prices[p_idx].replace(',', '')),
                         "high": int(prices[p_idx+2].replace(',', '')), "low": int(prices[p_idx+3].replace(',', '')),
-                        "volume": int(prices[p_idx+5].replace(',', ''))
+                        "volume": int(prices[p_idx+4].replace(',', ''))
                     })
                 except: continue
-            if len(hist_data) >= 60: break
+            if len(hist_data) >= 40: break # 실전 분석을 위해 40일치면 충분
             time.sleep(0.01)
-        return hist_data[:60]
+        return hist_data
     except: return []
 
 def fetch_volume_rankings_with_info():
@@ -250,19 +253,33 @@ def fetch_volume_rankings_with_info():
     headers = {'User-Agent': 'Mozilla/5.0'}
     
     try:
-        # 거래량 상위 1, 2, 3페이지 수집 (총 300종목)
-        for page in range(1, 4):
-            url = f"https://finance.naver.com/sise/sise_quant.nhn?page={page}"
+        # [Pool 1] 거래량 상위 (코스피/코스닥)
+        for page in range(1, 3):
+            for sosok in [0, 1]: # 0: Kospi, 1: Kosdaq
+                url = f"https://finance.naver.com/sise/sise_quant.nhn?sosok={sosok}&page={page}"
+                res = requests.get(url, headers=headers)
+                res.encoding = 'euc-kr'
+                matches = re.findall(r'code=(\d{6})"[^>]*class="tltle">([^<]+)</a>', res.text)
+                for ticker, name in matches:
+                    if ticker not in seen:
+                        results.append((ticker, name))
+                        seen.add(ticker)
+        
+        # [Pool 2] 상승률 상위 (급등주 포착)
+        for sosok in [0, 1]:
+            url = f"https://finance.naver.com/sise/sise_rising.nhn?sosok={sosok}"
             res = requests.get(url, headers=headers)
             res.encoding = 'euc-kr'
-            
             matches = re.findall(r'code=(\d{6})"[^>]*class="tltle">([^<]+)</a>', res.text)
             for ticker, name in matches:
                 if ticker not in seen:
                     results.append((ticker, name))
                     seen.add(ticker)
         
-        return results[:300]
+        return results
+    except Exception as e:
+        print(f"Fetch Error: {e}")
+        return results
     except Exception as e:
         print(f"Scraping Error: {e}")
         return []

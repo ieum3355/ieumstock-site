@@ -106,12 +106,12 @@ const Insights = () => {
                         </span>
                       )}
                       <span className="text-[10px] font-black text-slate-400 tracking-widest uppercase">
-                        {post.type === 'recommendation' ? 'AI Analysis' : `Article #${post.id}`}
+                        {post.type === 'recommendation' ? 'AI 분석 리포트' : `콘텐츠 #${post.id}`}
                       </span>
                     </div>
                     <div className="flex items-center gap-3 text-slate-400 text-[10px] font-bold uppercase">
                       <span className="flex items-center gap-1"><Calendar className="w-3 h-3" /> {post.date}</span>
-                      <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> 5 min read</span>
+                      <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> 약 5분 소요</span>
                     </div>
                   </div>
                   {post.isLocked ? (
@@ -164,7 +164,7 @@ const Insights = () => {
         <div className="relative z-10 text-center space-y-8">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-600/20 text-primary-400 rounded-full text-xs font-black uppercase tracking-widest border border-primary-600/30">
             <Sparkles className="w-4 h-4" />
-            Join our Newsletter
+            뉴스레터 구독하기
           </div>
           <div className="space-y-3">
             <h2 className="text-3xl font-black">시장의 파동을 이기는 인사이트</h2>

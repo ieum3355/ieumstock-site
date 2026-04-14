@@ -10,7 +10,7 @@ TOPICS = [
     {
         "title": "금리 동결과 시장의 반응: 기회인가 함정인가?",
         "slug": "interest-rate-impact-analysis",
-        "category": "Market Analysis",
+        "category": "시장 분석",
         "introduction": {
             "heading": "변곡점에 선 금리 신호, 시장은 무엇을 읽고 있는가?",
             "text": "중앙은행의 금리 동결 결정이 내려졌습니다. 시장은 이를 호재로 받아들이는 듯하지만, 기저에 깔린 인플레이션 우려와 고금리 유지 기간(Higher for Longer)에 대한 불확실성은 여전합니다. 단순히 동결이라는 결과보다 그 이면의 수급 논리를 파악해야 합니다."
@@ -50,7 +50,7 @@ TOPICS = [
     {
         "title": "거래량 없는 상승을 경계해야 하는 이유",
         "slug": "warning-on-low-volume-rally",
-        "category": "Technical Analysis",
+        "category": "기술적 분석",
         "introduction": {
             "heading": "주가는 오르는데 거래량은 줄어든다? 에너지가 고갈되고 있습니다.",
             "text": "진짜 세력의 매집은 거래량을 숨길 수 없습니다. 최근 시장에서 관찰되는 '거래량 없는 상승'은 매도세가 일시적으로 실종된 것일 뿐, 새로운 매수 주체가 강력하게 유입된 것이 아님을 유의해야 합니다."
@@ -139,19 +139,19 @@ def generate_insight():
             },
             "core_analysis": [
                 {
-                    "sub_heading": "Real-time Breakout (SCANNING)",
+                    "sub_heading": "실시간 돌파 감지 (SCANNING)",
                     "text": segments.get('breakout', "직전 고점 돌파 및 매물대 소화 과정을 실시간 추적하고 있습니다."),
                     "insight_tip": f"주요 저항 구역인 {pick['trading_strategy']['target_price']:,}원 돌파 여부가 핵심입니다.",
                     "icon_type": "analysis"
                 },
                 {
-                    "sub_heading": "Institutional Flow (TRACKING)",
+                    "sub_heading": "메이저 수급 추적 (TRACKING)",
                     "text": segments.get('flow', "메이저 수급의 집중 매집 구간을 정밀 분석 중입니다."),
                     "insight_tip": "외국인/기관의 동반 순매수가 이어지는지 수급 창구를 확인하십시오.",
                     "icon_type": "volume"
                 },
                 {
-                    "sub_heading": "Volatility Filter (VERIFIED)",
+                    "sub_heading": "변동성 필터링 (VERIFIED)",
                     "text": segments.get('volatility', "시장 노이즈를 제거하고 순수 에너지를 측정하여 변동성 응축을 확인했습니다."),
                     "insight_tip": "변동성 지표가 안정적인 {pick['metadata']['tier']} 등급 표준 수치 내에 머물러 있습니다.",
                     "icon_type": "risk"
@@ -223,7 +223,7 @@ def generate_insight():
             "author": "ieumstock AI Research",
             "date": today,
             "publishDate": today_iso,
-            "category": "Market Analysis" if not recs else "Stock Analysis",
+            "category": "시장 분석" if not recs else "종목 분석",
             "tags": tags
         },
         "seo_metadata": {
@@ -234,14 +234,14 @@ def generate_insight():
         "content_body": content_body,
         "system_link": {
             "target_tool": "BrainOff",
-            "related_ticker": ["KOSPI", "KOSDAQ"]
+            "related_ticker": ["KOSPI", "KOSDAQ", "KOSPI 200", "KOSDAQ 150", "KODEX 200", "TIGER 2차전지테마"]
         }
     }
 
     # Add to list and save
     insights.insert(0, new_insight) # Newest first
     
-    with open(INSIGHTS_FILE, 'w', encoding='utf-8') as f:
+    with open(INSIGHTS_FILE, 'w', encoding='utf-8-sig') as f:
         json.dump(insights, f, ensure_ascii=False, indent=2)
     
     print(f"Successfully generated dynamic insight for {today}")

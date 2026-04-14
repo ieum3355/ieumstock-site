@@ -136,7 +136,7 @@ const PostDetail = () => {
           className="flex items-center gap-2 text-slate-400 hover:text-primary-600 font-black text-xs uppercase tracking-tight transition-colors group"
         >
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-          Back to Insights
+          목록으로 돌아가기
         </button>
         <div className="flex items-center gap-4">
           <button 
@@ -159,7 +159,7 @@ const PostDetail = () => {
               <span className={`px-3 py-1 text-[10px] font-black uppercase tracking-[0.2em] rounded-md ${
                 post.metadata.tier === 'Premium' ? 'bg-amber-100 text-amber-700' : 'bg-primary-50 text-primary-600'
               }`}>
-                {post.metadata.tier} Recommendation
+                {post.metadata.tier} 추천 리포트
               </span>
               <div className="h-px flex-grow bg-slate-100"></div>
             </div>
@@ -173,12 +173,12 @@ const PostDetail = () => {
               </div>
               <div className="bg-slate-900 text-white p-6 rounded-[2rem] flex items-center gap-6 shadow-2xl">
                 <div>
-                  <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Current</p>
+                  <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">현재가</p>
                   <p className="text-2xl font-black">{post.live_status.current_price.toLocaleString()}원</p>
                 </div>
                 <div className="w-px h-8 bg-slate-800"></div>
                 <div>
-                  <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Status</p>
+                  <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">수익률(배당)</p>
                   <p className={`text-xl font-black ${post.live_status.profit_pct.startsWith('+') ? 'text-emerald-400' : 'text-rose-400'}`}>
                     {post.live_status.profit_pct}
                   </p>
@@ -191,18 +191,18 @@ const PostDetail = () => {
             <div className="bg-white border border-slate-100 p-8 rounded-[2.5rem] shadow-sm space-y-6">
               <h3 className="text-lg font-black flex items-center gap-2">
                 <Target className="w-5 h-5 text-primary-600" />
-                Trading Strategy
+                정밀 매매 전략
               </h3>
               
               <div className={`space-y-6 transition-all duration-700 ${isLocked ? 'blur-md select-none pointer-events-none' : ''}`}>
                 <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                  <p className="text-xs font-black text-slate-400 uppercase mb-2">Technical Analysis</p>
+                  <p className="text-xs font-black text-slate-400 uppercase mb-2">기술적 분석 (TECHNICAL)</p>
                   <p className="text-slate-600 font-medium leading-relaxed">{post.trading_strategy.technical_analysis}</p>
                 </div>
                 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="p-6 bg-primary-50 rounded-3xl border border-primary-100 group hover:bg-primary-600 transition-all duration-500">
-                    <p className="text-[10px] font-black text-primary-600 group-hover:text-primary-200 uppercase mb-1">Target Price</p>
+                    <p className="text-[10px] font-black text-primary-600 group-hover:text-primary-200 uppercase mb-1">목표가 (Target)</p>
                     <p className="text-xl font-black text-slate-900 group-hover:text-white">{post.trading_strategy.target_price.toLocaleString()}원</p>
                   </div>
                   <div className="p-6 bg-rose-50 rounded-3xl border border-rose-100 group hover:bg-rose-600 transition-all duration-500">
@@ -245,7 +245,7 @@ const PostDetail = () => {
                     <div className="relative">
                       <input 
                         type="password" 
-                        placeholder="Premium Password"
+                        placeholder="프리미엄 비밀번호"
                         value={passwordInput}
                         onChange={(e) => setPasswordInput(e.target.value)}
                         onKeyDown={(e) => {
@@ -275,7 +275,7 @@ const PostDetail = () => {
                       }}
                       className="w-full py-4 bg-primary-600 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-primary-500 transition-all flex items-center justify-center gap-2 group"
                     >
-                      Unlock Report
+                      리포트 잠금 해제
                       <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </button>
                     <p className="text-[9px] font-black text-slate-500 uppercase tracking-widest">
@@ -289,12 +289,12 @@ const PostDetail = () => {
             <div className="bg-slate-50 p-8 rounded-[2.5rem] space-y-8">
               <h3 className="text-lg font-black flex items-center gap-2">
                 <AlertCircle className="w-5 h-5 text-primary-600" />
-                Quick Analysis Score
+                정밀 분석 점수
               </h3>
               
               <div className="space-y-6">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-black text-slate-500">Overall Score</span>
+                  <span className="text-sm font-black text-slate-500">종합 분석 점수</span>
                   <span className="text-3xl font-black text-primary-600">{post.score_card.total_score} <span className="text-xs text-slate-300">/ 100</span></span>
                 </div>
                 
@@ -329,7 +329,7 @@ const PostDetail = () => {
           <header className="space-y-8">
             <div className="flex items-center gap-3">
               <span className="px-3 py-1 bg-primary-50 text-primary-600 text-[10px] font-black uppercase tracking-[0.2em] rounded-md">
-                {post.article_info.category} Insight
+                {post.article_info.category} 인사이트
               </span>
               <div className="h-px flex-grow bg-slate-100"></div>
             </div>
@@ -345,11 +345,11 @@ const PostDetail = () => {
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4 text-slate-300" />
-                <span>Premium Report</span>
+                <span>프리미엄 리포트</span>
               </div>
               <div className="flex items-center gap-2 px-3 py-1 bg-emerald-50 text-emerald-600 rounded-lg text-xs">
                 <CheckCircle2 className="w-3.5 h-3.5" />
-                <span>Verified Insights</span>
+                <span>검증된 인사이트</span>
               </div>
             </div>
           </header>
@@ -358,7 +358,7 @@ const PostDetail = () => {
           <div className="space-y-2">
             <p className="text-[9px] font-black text-slate-300 uppercase tracking-widest ml-4">Advertisement</p>
             <div id="adsense-top" className="w-full min-h-[120px] bg-slate-50/50 border border-slate-100 rounded-3xl flex items-center justify-center text-[10px] font-black text-slate-300 uppercase tracking-widest">
-              Google AdSense Display Unit (Top)
+              Google AdSense 광고 (Top)
             </div>
           </div>
 
@@ -377,7 +377,7 @@ const PostDetail = () => {
             {/* Core Analysis */}
             <div className="space-y-12">
               <h3 className="text-[11px] font-black text-slate-400 uppercase tracking-[0.4em] flex items-center gap-4">
-                Deep Analysis <div className="h-px flex-grow bg-slate-100"></div>
+                심층 분석 <div className="h-px flex-grow bg-slate-100"></div>
               </h3>
               
               <div className="grid grid-cols-1 gap-12">
@@ -427,7 +427,7 @@ const PostDetail = () => {
                 <h3 className="text-3xl md:text-4xl font-black">
                   {post.content_body.practical_guide.heading}
                 </h3>
-                <p className="text-primary-400 font-black uppercase tracking-[0.3em] text-[10px]">Actionable Execution Framework</p>
+                <p className="text-primary-400 font-black uppercase tracking-[0.3em] text-[10px]">실전 매매 가이드라인 (EXECUTION)</p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -448,7 +448,7 @@ const PostDetail = () => {
 
               {post.system_link && post.system_link.related_ticker.length > 0 && (
                 <div className="pt-8 border-t border-white/10 flex flex-wrap items-center gap-6">
-                  <span className="text-xs font-black text-slate-500 uppercase tracking-widest">Related Tickers</span>
+                  <span className="text-xs font-black text-slate-500 uppercase tracking-widest">관련 종목</span>
                   <div className="flex flex-wrap gap-3">
                     {post.system_link.related_ticker.map((ticker: string) => (
                       <span key={ticker} className="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-xl text-sm font-black transition-colors border border-white/5">
@@ -464,7 +464,7 @@ const PostDetail = () => {
             <section className="space-y-8 pt-6">
               <div className="flex items-center gap-4">
                 <MessageSquareQuote className="w-10 h-10 text-primary-600" />
-                <h3 className="text-[11px] font-black text-slate-400 uppercase tracking-[0.4em]">Strategic Conclusion</h3>
+                <h3 className="text-[11px] font-black text-slate-400 uppercase tracking-[0.4em]">전략적 결론</h3>
               </div>
               <div className="space-y-8">
                 <p className="text-2xl text-slate-600 font-bold leading-relaxed whitespace-pre-line">
@@ -515,7 +515,7 @@ const PostDetail = () => {
           to="/insights"
           className="flex items-center gap-2 px-8 py-4 bg-slate-900 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-primary-600 shadow-xl transition-all"
         >
-          View More Insights
+          더 많은 인사이트 보기
           <ChevronRight className="w-4 h-4" />
         </Link>
       </div>

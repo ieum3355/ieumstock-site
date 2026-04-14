@@ -72,7 +72,7 @@ const BrainOff = () => {
         <div className="relative z-20 max-w-3xl mx-auto space-y-8">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-600/20 text-primary-400 rounded-full text-[10px] font-black tracking-[0.2em] uppercase border border-primary-600/30">
             <Sparkles className="w-4 h-4" />
-            Swing Engine 3.0 (Full Scan)
+            스윙 엔진 3.0 (전체 스캔)
           </div>
           <h1 className="text-4xl md:text-6xl font-black tracking-tight leading-[1.1]">
             감정은 빼고, <span className="text-primary-500">데이터</span>로 승부하세요
@@ -85,15 +85,15 @@ const BrainOff = () => {
           {data?.generation_info && (
             <div className="inline-flex items-center gap-6 px-8 py-4 bg-white/5 rounded-3xl border border-white/10 backdrop-blur-md">
               <div className="text-left">
-                <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Engine Status</p>
+                <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">엔진 상태</p>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-emerald-500 rounded-full animate-ping"></div>
-                  <span className="text-sm font-black text-emerald-500 uppercase">Verified Active</span>
+                  <span className="text-sm font-black text-emerald-500 uppercase">가동 중 (정상)</span>
                 </div>
               </div>
               <div className="w-px h-8 bg-white/10"></div>
               <div className="text-left">
-                <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Market Condition</p>
+                <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">시장 상황</p>
                 <p className="text-sm font-black text-white">{data.generation_info.market_condition}</p>
               </div>
             </div>
@@ -111,7 +111,7 @@ const BrainOff = () => {
           {data.market_summary.map((m: any) => (
             <div key={m.name} className="bg-white border border-slate-100 p-8 rounded-[2.5rem] shadow-sm flex items-center justify-between">
               <div className="space-y-1">
-                <h4 className="text-xs font-black text-slate-400 uppercase tracking-widest">{m.name} Index</h4>
+                <h4 className="text-xs font-black text-slate-400 uppercase tracking-widest">{m.name} 지수</h4>
                 <p className="text-3xl font-black text-slate-900">{m.value}</p>
               </div>
               <div className={`px-4 py-2 rounded-2xl font-black text-sm ${m.rate.startsWith('+') ? 'bg-emerald-50 text-emerald-600' : 'bg-rose-50 text-rose-600'}`}>
@@ -128,7 +128,7 @@ const BrainOff = () => {
         <div className="lg:col-span-1 space-y-6">
           <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.25em] flex items-center gap-2">
             <Activity className="w-4 h-4 text-primary-600" />
-            Core Analytics Engine
+            핵심 분석 엔진
           </h3>
           <div className="space-y-4">
             {[
@@ -142,8 +142,8 @@ const BrainOff = () => {
                 </div>
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
-                    <h4 className="font-black text-slate-900 text-sm">{item.title}</h4>
-                    <span className="text-[9px] font-black text-emerald-500 px-2 py-0.5 bg-emerald-50 rounded uppercase tracking-widest">{item.status}</span>
+                    <h4 className="font-black text-slate-900 text-sm">{idx === 0 ? '실시간 돌파 감지' : idx === 1 ? '메이저 수급 추적' : '변동성 필터링'}</h4>
+                    <span className="text-[9px] font-black text-emerald-500 px-2 py-0.5 bg-emerald-50 rounded uppercase tracking-widest">{idx === 0 ? '스캔 중' : idx === 1 ? '추적 중' : '검증됨'}</span>
                   </div>
                   <p className="text-xs text-slate-500 font-medium leading-relaxed">{item.desc}</p>
                 </div>
@@ -161,7 +161,7 @@ const BrainOff = () => {
                   <Zap className="w-6 h-6 text-primary-600 fill-primary-600" />
                   오늘의 맥점 돌파주
                 </h3>
-                <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">Swing Breakout Candidates (A·B·D·!E)</p>
+                <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">스윙 돌파 후보 종목 (A·B·D·!E)</p>
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -180,11 +180,11 @@ const BrainOff = () => {
                     </div>
                     <div className="space-y-2">
                       <div className="flex justify-between text-[10px] font-bold">
-                        <span className="text-slate-500 uppercase">Breakout Level</span>
+                        <span className="text-slate-500 uppercase">돌파 기준가</span>
                         <span className="text-primary-400 font-black">{swing.breakout_level.toLocaleString()}원</span>
                       </div>
                       <div className="flex justify-between text-[10px] font-bold">
-                        <span className="text-slate-500 uppercase">Current Price</span>
+                        <span className="text-slate-500 uppercase">현재가</span>
                         <span className="text-white font-black">{swing.price.toLocaleString()}원</span>
                       </div>
                     </div>
@@ -204,11 +204,11 @@ const BrainOff = () => {
           <div className="flex items-center justify-between px-2">
             <div className="space-y-1">
               <h3 className="text-2xl font-black text-slate-900">AI 선별 종목</h3>
-              <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">Selected Recommendations</p>
+              <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">실시간 선별 리포트</p>
             </div>
             <div className="flex items-center gap-4">
               <div className="text-[10px] font-black text-primary-600 bg-primary-50 px-4 py-2 rounded-full uppercase tracking-widest border border-primary-100 animate-pulse">
-                Live Feed Active
+                실시간 피드 분석 중
               </div>
               {isAuthenticated ? (
                 <button 
@@ -216,7 +216,7 @@ const BrainOff = () => {
                   className="text-[10px] font-black text-slate-400 hover:text-rose-500 transition-colors uppercase tracking-widest flex items-center gap-1"
                 >
                   <Lock className="w-3 h-3" />
-                  Logout
+                  로그아웃
                 </button>
               ) : (
                 <button 
@@ -232,7 +232,7 @@ const BrainOff = () => {
                   className="text-[10px] font-black text-primary-600 hover:text-primary-700 transition-colors uppercase tracking-widest flex items-center gap-1"
                 >
                   <KeyRound className="w-3 h-3" />
-                  Admin Login
+                  관리자 로그인
                 </button>
               )}
             </div>
@@ -257,7 +257,7 @@ const BrainOff = () => {
                   </p>
                 </div>
                 <div className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em]">
-                  AI Engine is constantly re-scanning for setups...
+                  AI 엔진이 실시간으로 타점을 분석하고 있습니다...
                 </div>
               </div>
             </div>
@@ -292,7 +292,7 @@ const BrainOff = () => {
                         </div>
                         <div className="space-y-1">
                           <p className="text-sm font-black text-slate-900">Premium 분석 잠금</p>
-                          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Click to Unlock</p>
+                          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">클릭하여 잠금 해제</p>
                         </div>
                       </div>
                     )}
@@ -327,13 +327,13 @@ const BrainOff = () => {
 
                       <div className="grid grid-cols-2 gap-4">
                         <div className="p-4 bg-slate-50 rounded-2xl space-y-1">
-                          <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Entry Target</p>
+                          <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">진입 목표가</p>
                           <p className="text-sm font-black text-slate-900">
                             {isCardLocked ? '***,***원' : `${rec.trading_strategy.entry_price.toLocaleString()}원`}
                           </p>
                         </div>
                         <div className="p-4 bg-primary-50 rounded-2xl space-y-1">
-                          <p className="text-[9px] font-black text-primary-600 uppercase tracking-widest">AI Score</p>
+                          <p className="text-[9px] font-black text-primary-600 uppercase tracking-widest">AI 스코어</p>
                           <p className="text-sm font-black text-slate-900">{rec.score_card.total_score}</p>
                         </div>
                       </div>
@@ -342,7 +342,7 @@ const BrainOff = () => {
                       <div className="flex flex-wrap gap-2">
                         {rec.metadata.met_criteria?.map((c: string) => (
                           <span key={c} className="px-2 py-1 bg-slate-900 text-white text-[8px] font-black rounded-lg border border-white/10 shadow-lg">
-                            Condition {c}
+                            조건 {c}
                           </span>
                         ))}
                       </div>
@@ -355,7 +355,7 @@ const BrainOff = () => {
                           </span>
                         </div>
                         <span className="text-primary-600 font-black text-[11px] flex items-center gap-1 group-hover:translate-x-1 transition-transform uppercase tracking-widest">
-                          View Analysis <ChevronRight className="w-4 h-4" />
+                          분석 리포트 보기 <ChevronRight className="w-4 h-4" />
                         </span>
                       </div>
                     </div>
@@ -373,7 +373,7 @@ const BrainOff = () => {
           <div className="flex items-center justify-between">
             <div className="space-y-1">
               <h3 className="text-2xl font-black text-slate-900">추천 성과 기록</h3>
-              <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">Performance History</p>
+              <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">과거 운용 퍼포먼스</p>
             </div>
           </div>
 
@@ -382,12 +382,12 @@ const BrainOff = () => {
               <table className="w-full text-left border-collapse">
                 <thead>
                   <tr className="bg-slate-50 border-b border-slate-100">
-                    <th className="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest">Date / ID</th>
-                    <th className="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest">Stock</th>
-                    <th className="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest">Tier</th>
-                    <th className="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest">Entry</th>
-                    <th className="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest">Current</th>
-                    <th className="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest">Status / P&L</th>
+                    <th className="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest">날짜 / ID</th>
+                    <th className="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest">종목명</th>
+                    <th className="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest">등급</th>
+                    <th className="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest">진입가</th>
+                    <th className="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest">현재가</th>
+                    <th className="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest">상태 / 수익률</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-50">
