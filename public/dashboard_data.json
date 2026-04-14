@@ -1,21 +1,21 @@
 ﻿{
   "generation_info": {
     "engine": "Swing Engine 3.0 (Full Scan)",
-    "timestamp": "2026-04-14 02:29:53",
+    "timestamp": "2026-04-14 02:30:52",
     "date": "2026-04-14",
     "market_condition": "Monitoring Active Markets",
-    "status_msg": "전체 시장 300대 종목 정밀 분석 완료. 4개 유망 종목 포착."
+    "status_msg": "전체 시장 300대 종목 정밀 분석 완료. 3개 유망 종목 포착."
   },
   "market_summary": [
     {
       "name": "코스피 (KOSPI)",
-      "value": "6,000.05",
-      "rate": "+3.30%"
+      "value": "6,000.96",
+      "rate": "+3.31%"
     },
     {
       "name": "코스닥 (KOSDAQ)",
-      "value": "1,124.94",
-      "rate": "+2.28%"
+      "value": "1,124.62",
+      "rate": "+2.25%"
     }
   ],
   "recommendations": [
@@ -48,15 +48,15 @@
       },
       "trading_strategy": {
         "logic_summary": "전체 시장 거래량 상위 스캔 및 기술적 정밀 필터 통과",
-        "technical_analysis": "1. [돌파] 2,675원 구간 전고점 돌파 확인. 2. [수급] 최근 거래량 급증 매집봉(C) 포착. 3. [추세] 상방 수렴 후 발산 초입 구간.",
-        "entry_price": 2675,
+        "technical_analysis": "1. [돌파] 2,645원 구간 전고점 돌파 확인. 2. [수급] 최근 거래량 급증 매집봉(C) 포착. 3. [추세] 상방 수렴 후 발산 초입 구간.",
+        "entry_price": 2645,
         "target_price": 3000,
         "stop_loss": 2400,
         "expected_period": "3~7일"
       },
       "live_status": {
-        "current_price": 2675,
-        "profit_pct": "+8.96%",
+        "current_price": 2645,
+        "profit_pct": "+7.74%",
         "status": "HOLD"
       }
     },
@@ -89,62 +89,21 @@
       },
       "trading_strategy": {
         "logic_summary": "전체 시장 거래량 상위 스캔 및 기술적 정밀 필터 통과",
-        "technical_analysis": "1. [돌파] 23,700원 구간 전고점 돌파 확인. 2. [수급] 최근 거래량 급증 매집봉(C) 포착. 3. [추세] 상방 수렴 후 발산 초입 구간.",
-        "entry_price": 23700,
-        "target_price": 27200,
+        "technical_analysis": "1. [돌파] 23,750원 구간 전고점 돌파 확인. 2. [수급] 최근 거래량 급증 매집봉(C) 포착. 3. [추세] 상방 수렴 후 발산 초입 구간.",
+        "entry_price": 23750,
+        "target_price": 27300,
         "stop_loss": 22000,
         "expected_period": "3~7일"
       },
       "live_status": {
-        "current_price": 23700,
-        "profit_pct": "+22.23%",
+        "current_price": 23750,
+        "profit_pct": "+22.49%",
         "status": "HOLD"
       }
     },
     {
       "metadata": {
         "id": "BO-260414-S-2",
-        "slug": "stock-260414",
-        "tier": "Standard",
-        "is_locked": false,
-        "date": "2026-04-14",
-        "met_criteria": [
-          "돌파(A/B)",
-          "매집(C)",
-          "수급(D)"
-        ]
-      },
-      "stock_info": {
-        "name": "오킨스전자",
-        "real_name": "오킨스전자",
-        "ticker": "080580",
-        "sector": "실시간 거래량 폭증 및 기술적 돌파",
-        "market": "KOSPI/KOSDAQ"
-      },
-      "score_card": {
-        "total_score": 98,
-        "breakout": 35,
-        "accumulation": 30,
-        "volatility_tight": 20,
-        "institutional_buy": 14
-      },
-      "trading_strategy": {
-        "logic_summary": "전체 시장 거래량 상위 스캔 및 기술적 정밀 필터 통과",
-        "technical_analysis": "1. [돌파] 23,450원 구간 전고점 돌파 확인. 2. [수급] 최근 거래량 급증 매집봉(C) 포착. 3. [추세] 상방 수렴 후 발산 초입 구간.",
-        "entry_price": 23450,
-        "target_price": 26900,
-        "stop_loss": 21800,
-        "expected_period": "3~7일"
-      },
-      "live_status": {
-        "current_price": 23450,
-        "profit_pct": "+21.57%",
-        "status": "HOLD"
-      }
-    },
-    {
-      "metadata": {
-        "id": "BO-260414-S-3",
         "slug": "bg-260414",
         "tier": "Standard",
         "is_locked": false,
@@ -171,15 +130,15 @@
       },
       "trading_strategy": {
         "logic_summary": "전체 시장 거래량 상위 스캔 및 기술적 정밀 필터 통과",
-        "technical_analysis": "1. [돌파] 2,625원 구간 전고점 돌파 확인. 2. [수급] 최근 거래량 급증 매집봉(C) 포착. 3. [추세] 상방 수렴 후 발산 초입 구간.",
-        "entry_price": 2625,
+        "technical_analysis": "1. [돌파] 2,640원 구간 전고점 돌파 확인. 2. [수급] 최근 거래량 급증 매집봉(C) 포착. 3. [추세] 상방 수렴 후 발산 초입 구간.",
+        "entry_price": 2640,
         "target_price": 3000,
         "stop_loss": 2400,
         "expected_period": "3~7일"
       },
       "live_status": {
-        "current_price": 2625,
-        "profit_pct": "+13.64%",
+        "current_price": 2640,
+        "profit_pct": "+14.29%",
         "status": "HOLD"
       }
     }

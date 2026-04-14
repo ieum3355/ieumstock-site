@@ -1,30 +1,16 @@
 ﻿[
   {
-    "id": "BO-260414-S-3",
+    "id": "BO-260414-S-2",
     "slug": "bg-260414",
     "date": "2026-04-14",
     "tier": "Standard",
     "name": "세림B&G",
     "ticker": "340440",
-    "entry_price": 2625,
+    "entry_price": 2640,
     "target_price": 3000,
     "stop_loss": 2400,
-    "current_price": 2625,
-    "profit_pct": "+13.64%",
-    "status": "OPEN"
-  },
-  {
-    "id": "BO-260414-S-2",
-    "slug": "stock-260414",
-    "date": "2026-04-14",
-    "tier": "Standard",
-    "name": "오킨스전자",
-    "ticker": "080580",
-    "entry_price": 23450,
-    "target_price": 26900,
-    "stop_loss": 21800,
-    "current_price": 23450,
-    "profit_pct": "+21.57%",
+    "current_price": 2640,
+    "profit_pct": "+14.29%",
     "status": "OPEN"
   },
   {
@@ -34,11 +20,11 @@
     "tier": "Premium",
     "name": "엠케이전자",
     "ticker": "033160",
-    "entry_price": 23700,
-    "target_price": 27200,
+    "entry_price": 23750,
+    "target_price": 27300,
     "stop_loss": 22000,
-    "current_price": 23700,
-    "profit_pct": "+22.23%",
+    "current_price": 23750,
+    "profit_pct": "+22.49%",
     "status": "OPEN"
   },
   {
@@ -48,11 +34,11 @@
     "tier": "Premium",
     "name": "엑스큐어",
     "ticker": "070300",
-    "entry_price": 2675,
+    "entry_price": 2645,
     "target_price": 3000,
     "stop_loss": 2400,
-    "current_price": 2675,
-    "profit_pct": "+8.96%",
+    "current_price": 2645,
+    "profit_pct": "+7.74%",
     "status": "OPEN"
   }
 ]
