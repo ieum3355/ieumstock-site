@@ -105,22 +105,48 @@ const BrainOff = () => {
         <div className="absolute -top-20 -right-20 w-96 h-96 bg-primary-500/10 blur-[120px] rounded-full"></div>
       </div>
 
-      {/* Market Summary Tiles */}
-      {data?.market_summary && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {data.market_summary.map((m: any) => (
-            <div key={m.name} className="bg-white border border-slate-100 p-8 rounded-[2.5rem] shadow-sm flex items-center justify-between">
-              <div className="space-y-1">
-                <h4 className="text-xs font-black text-slate-400 uppercase tracking-widest">{m.name} 지수</h4>
-                <p className="text-3xl font-black text-slate-900">{m.value}</p>
+      {/* Market Summary Tiles & Stats */}
+      <div className="space-y-6">
+        {data?.market_summary && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {data.market_summary.map((m: any) => (
+              <div key={m.name} className="bg-white border border-slate-100 p-8 rounded-[2.5rem] shadow-sm flex items-center justify-between">
+                <div className="space-y-1">
+                  <h4 className="text-xs font-black text-slate-400 uppercase tracking-widest">{m.name} 지수</h4>
+                  <p className="text-2xl font-black text-slate-900">{m.value}</p>
+                </div>
+                <div className={`px-4 py-2 rounded-2xl font-black text-sm ${m.rate.startsWith('+') ? 'bg-emerald-50 text-emerald-600' : 'bg-rose-50 text-rose-600'}`}>
+                  {m.rate}
+                </div>
               </div>
-              <div className={`px-4 py-2 rounded-2xl font-black text-sm ${m.rate.startsWith('+') ? 'bg-emerald-50 text-emerald-600' : 'bg-rose-50 text-rose-600'}`}>
-                {m.rate}
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
+            ))}
+            
+            {/* AI Performance Quick Stats */}
+            {data?.performance_stats && (
+              <>
+                <div className="bg-slate-900 p-8 rounded-[2.5rem] shadow-xl border border-white/5 flex items-center justify-between group overflow-hidden relative">
+                  <div className="absolute -right-4 -bottom-4 opacity-10 group-hover:scale-125 transition-transform duration-700">
+                    <TrendingUp className="w-24 h-24 text-primary-500" />
+                  </div>
+                  <div className="space-y-1 relative z-10">
+                    <h4 className="text-xs font-black text-primary-400 uppercase tracking-widest">AI 스윙 승률</h4>
+                    <p className="text-3xl font-black text-white">{data.performance_stats.win_rate}</p>
+                  </div>
+                </div>
+                <div className="bg-white border border-slate-100 p-8 rounded-[2.5rem] shadow-sm flex items-center justify-between">
+                  <div className="space-y-1">
+                    <h4 className="text-xs font-black text-slate-400 uppercase tracking-widest">누적 분석 종목</h4>
+                    <p className="text-2xl font-black text-slate-900">{data.performance_stats.total_recs}개</p>
+                  </div>
+                  <div className="p-3 bg-slate-50 rounded-2xl text-slate-400">
+                    <Activity className="w-5 h-5" />
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+        )}
+      </div>
 
       {/* Main Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -367,14 +393,20 @@ const BrainOff = () => {
         </div>
       </div>
 
-      {/* History Section */}
-      {isAuthenticated && history.length > 0 && (
+      {/* History Section (Now Public for Trust) */}
+      {history.length > 0 && (
         <div className="space-y-8 pt-10 border-t border-slate-100">
           <div className="flex items-center justify-between">
             <div className="space-y-1">
-              <h3 className="text-2xl font-black text-slate-900">추천 성과 기록</h3>
-              <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">과거 운용 퍼포먼스</p>
+              <h3 className="text-2xl font-black text-slate-900">AI 추천 성과 기록</h3>
+              <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">투명한 운용 퍼포먼스 (최근 30개)</p>
             </div>
+            {!isAuthenticated && (
+              <div className="px-5 py-2 bg-amber-50 rounded-full border border-amber-100 flex items-center gap-2">
+                <Info className="w-4 h-4 text-amber-600" />
+                <span className="text-[10px] font-black text-amber-700 uppercase tracking-widest">프리미엄 종목은 마스킹 처리됨</span>
+              </div>
+            )}
           </div>
 
           <div className="bg-white border border-slate-100 rounded-[2.5rem] overflow-hidden shadow-sm">
@@ -391,44 +423,52 @@ const BrainOff = () => {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-50">
-                  {history.map((h) => (
-                    <tr key={h.slug} className="hover:bg-slate-50/50 transition-colors">
-                      <td className="px-8 py-6">
-                        <p className="text-xs font-black text-slate-900">{h.date}</p>
-                        <p className="text-[9px] font-bold text-slate-400">{h.id}</p>
-                      </td>
-                      <td className="px-8 py-6">
-                        <p className="text-base font-black text-slate-900">{h.name}</p>
-                        <p className="text-[10px] font-bold text-slate-400">{h.ticker}</p>
-                      </td>
-                      <td className="px-8 py-6">
-                        <span className={`px-2 py-0.5 rounded text-[9px] font-black uppercase ${
-                          h.tier === 'Premium' ? 'bg-amber-100 text-amber-700' : 'bg-primary-50 text-primary-600'
-                        }`}>
-                          {h.tier}
-                        </span>
-                      </td>
-                      <td className="px-8 py-6 text-sm font-bold text-slate-600">
-                        {h.entry_price.toLocaleString()}원
-                      </td>
-                      <td className="px-8 py-6 text-sm font-bold text-slate-900">
-                        {h.current_price.toLocaleString()}원
-                      </td>
-                      <td className="px-8 py-6">
-                        <div className="flex items-center gap-3">
-                          <span className={`px-3 py-1 rounded-full text-[10px] font-black ${
-                            h.status === 'SUCCESS' ? 'bg-emerald-100 text-emerald-700' : 
-                            h.status === 'FAILED' ? 'bg-rose-100 text-rose-700' : 'bg-slate-100 text-slate-600'
+                  {history.map((h: any) => {
+                    const isMasked = h.tier === 'Premium' && !isAuthenticated;
+                    return (
+                      <tr key={h.id || h.slug} className="hover:bg-slate-50/50 transition-colors">
+                        <td className="px-8 py-6">
+                          <p className="text-xs font-black text-slate-900">{h.date}</p>
+                          <p className="text-[9px] font-bold text-slate-400">{h.id}</p>
+                        </td>
+                        <td className="px-8 py-6">
+                          <p className="text-base font-black text-slate-900">
+                            {isMasked ? h.name[0] + '*'.repeat(h.name.length - 2) + h.name.slice(-1) : h.name}
+                          </p>
+                          <p className="text-[10px] font-bold text-slate-400">
+                            {isMasked ? '*******' : h.ticker}
+                          </p>
+                        </td>
+                        <td className="px-8 py-6">
+                          <span className={`px-2 py-0.5 rounded text-[9px] font-black uppercase ${
+                            h.tier === 'Premium' ? 'bg-amber-100 text-amber-700' : 'bg-primary-50 text-primary-600'
                           }`}>
-                            {h.status}
+                            {h.tier}
                           </span>
-                          <span className={`text-sm font-black ${h.profit_pct.startsWith('+') ? 'text-emerald-500' : 'text-rose-500'}`}>
-                            {h.profit_pct}
-                          </span>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
+                        </td>
+                        <td className="px-8 py-6 text-sm font-bold text-slate-600">
+                          {isMasked ? '***,***원' : `${h.entry_price.toLocaleString()}원`}
+                        </td>
+                        <td className="px-8 py-6 text-sm font-bold text-slate-900">
+                          {isMasked ? '***,***원' : `${h.current_price.toLocaleString()}원`}
+                        </td>
+                        <td className="px-8 py-6">
+                          <div className="flex items-center gap-3">
+                            <span className={`px-3 py-1 rounded-full text-[10px] font-black ${
+                              h.status === 'SUCCESS' ? 'bg-emerald-100 text-emerald-700' : 
+                              h.status === 'FAILED' ? 'bg-rose-100 text-rose-700' : 
+                              h.status === 'WATCH' ? 'bg-amber-100 text-amber-700' : 'bg-slate-100 text-slate-600'
+                            }`}>
+                              {h.status === 'SUCCESS' ? '성공(익절)' : h.status === 'FAILED' ? '실패(손절)' : h.status}
+                            </span>
+                            <span className={`text-sm font-black ${h.profit_pct.startsWith('+') ? 'text-emerald-500' : 'text-rose-500'}`}>
+                              {h.profit_pct}
+                            </span>
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>

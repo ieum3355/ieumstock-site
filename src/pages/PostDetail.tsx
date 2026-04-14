@@ -383,6 +383,57 @@ const PostDetail = () => {
               </section>
             </div>
           )}
+
+          {/* AI Trading Guide Section (NEW) */}
+          <div className="space-y-12">
+            <div className="h-px bg-slate-100"></div>
+            <section className="bg-slate-900 rounded-[3rem] p-10 md:p-14 text-white relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-12 opacity-10">
+                <BookOpen className="w-24 h-24" />
+              </div>
+              <div className="relative z-10 space-y-10">
+                <div className="space-y-4">
+                  <h3 className="text-3xl font-black tracking-tight">AI 돌파 매매 실전 전략 가이드</h3>
+                  <p className="text-slate-400 font-medium max-w-2xl leading-relaxed">
+                    "이미 10% 이상 오른 종목, 지금 들어가도 될까요?"<br />
+                    이음스탁 AI 엔진의 추천은 **상승의 끝이 아닌 에너지가 폭발하는 시작점**을 포착한 것입니다. 아래 가이드를 따라 안전하게 수익을 극대화하세요.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  {[
+                    { 
+                      icon: <Zap className="text-primary-400" />, 
+                      title: "왜 상승 중에 사나요?", 
+                      desc: "강력한 매물대를 뚫어낸 종목은 그 관성으로 추가 상승할 확률이 매우 높습니다. 10% 상승은 매수세가 승리했다는 증거입니다." 
+                    },
+                    { 
+                      icon: <Target className="text-primary-400" />, 
+                      title: "분할 매수 타이밍", 
+                      desc: "추천 당일 비중의 50%를 진입하고, 다음 날 살짝 눌림목(조정)을 줄 때 나머지 50%를 채우는 전략이 리스크 관리에 유리합니다." 
+                    },
+                    { 
+                      icon: <ShieldCheck className="text-primary-400" />, 
+                      title: "손절가 칼준수", 
+                      desc: "AI가 제시한 손절가(-7% 내외)를 반드시 지키세요. 손실은 짧게 끊고 수익은 목표가(15%+)까지 길게 가져가는 것이 핵심입니다." 
+                    }
+                  ].map((guide, i) => (
+                    <div key={i} className="p-8 bg-white/5 rounded-3xl border border-white/10 space-y-4 hover:bg-white/10 transition-colors">
+                      <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center">
+                        {guide.icon}
+                      </div>
+                      <h4 className="text-lg font-black">{guide.title}</h4>
+                      <p className="text-sm text-slate-400 leading-relaxed font-medium">{guide.desc}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="p-6 bg-primary-600/20 border border-primary-600/30 rounded-2xl inline-block">
+                  <p className="text-sm font-black text-primary-400">💡 Tip: 실시간 시장 상황에 따라 목표가 도달 전이라도 5~7% 수익 구간에서 절반 익절을 권장합니다.</p>
+                </div>
+              </div>
+            </section>
+          </div>
         </div>
       ) : (
         // Premium Article View

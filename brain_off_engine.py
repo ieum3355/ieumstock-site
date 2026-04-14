@@ -191,7 +191,8 @@ def get_verified_data():
         with open(output_path, "w", encoding="utf-8-sig") as f:
             json.dump(final_json, f, ensure_ascii=False, indent=2)
             
-        manage_history(final_recs, stock_items)
+        stats = manage_history(final_recs, stock_items)
+        final_json["performance_stats"] = stats
             
     except Exception as e:
         print(f"System Error: {e}")
@@ -239,9 +240,21 @@ def manage_history(new_recs, current_stocks_data):
                 "stop_loss": r['trading_strategy']['stop_loss'], "current_price": r['live_status']['current_price'],
                 "profit_pct": r['live_status']['profit_pct'], "status": "OPEN"
             })
-    history = history[:30]
+    # 통계 계산
+    success_count = len([h for h in history if h['status'] == 'SUCCESS'])
+    failed_count = len([h for h in history if h['status'] == 'FAILED'])
+    total_closed = success_count + failed_count
+    win_rate = (success_count / total_closed * 100) if total_closed > 0 else 0
+    
     with open(history_path, "w", encoding="utf-8-sig") as f:
         json.dump(history, f, ensure_ascii=False, indent=2)
+        
+    return {
+        "win_rate": f"{win_rate:.1f}%",
+        "total_recs": len(history),
+        "success_count": success_count,
+        "failed_count": failed_count
+    }
 
 def fetch_historical_data(code):
     url = f"https://finance.naver.com/item/sise_day.nhn?code={code}&page="
