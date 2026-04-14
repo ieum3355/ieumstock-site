@@ -33,8 +33,8 @@ const Home = () => {
     ? dailyQuote.split(' - ') 
     : [dailyQuote, '익명'];
 
-  // Default to static, but will be overridden by dynamic if available
-  const recentInsight = dynamicInsight || CONTENT_DB.blog_posts[0];
+  // Clear emphasis on dynamic data
+  const recentInsight = dynamicInsight;
 
   useEffect(() => {
     const loadData = async () => {
@@ -159,31 +159,43 @@ const Home = () => {
         </div>
 
         {/* Recent Insight Section */}
-        <Link to="/insights" className="premium-card bg-white p-10 border-l-4 border-l-primary-600 hover:shadow-2xl hover:shadow-primary-100 transition-all group">
-          <div className="space-y-6 h-full flex flex-col">
-            <div className="flex justify-between items-start">
-              <div className="bg-primary-50 p-4 rounded-[1.5rem] group-hover:bg-primary-600 transition-colors">
-                <BookOpen className="w-8 h-8 text-primary-600 group-hover:text-white transition-colors" />
+        {recentInsight ? (
+          <Link to="/insights" className="premium-card bg-white p-10 border-l-4 border-l-primary-600 hover:shadow-2xl hover:shadow-primary-100 transition-all group">
+            <div className="space-y-6 h-full flex flex-col">
+              <div className="flex justify-between items-start">
+                <div className="bg-primary-50 p-4 rounded-[1.5rem] group-hover:bg-primary-600 transition-colors">
+                  <BookOpen className="w-8 h-8 text-primary-600 group-hover:text-white transition-colors" />
+                </div>
+                <div className="flex items-center gap-2 text-slate-300 group-hover:text-primary-600 transition-all font-black text-sm uppercase tracking-widest">
+                  최신 인사이트 <ChevronRight className="w-5 h-5" />
+                </div>
               </div>
-              <div className="flex items-center gap-2 text-slate-300 group-hover:text-primary-600 transition-all font-black text-sm uppercase tracking-widest">
-                최신 인사이트 <ChevronRight className="w-5 h-5" />
+              <div className="space-y-3">
+                <h3 className="text-2xl font-black text-slate-900 leading-snug group-hover:text-primary-700 transition-colors">
+                  {recentInsight.article_info.title}
+                </h3>
+                <p className="text-slate-500 font-medium leading-relaxed line-clamp-3">
+                  {recentInsight.content_body.introduction.text}
+                </p>
+              </div>
+              <div className="mt-auto pt-6 flex items-center gap-4 text-xs font-black text-slate-400 tracking-widest uppercase">
+                <span>{recentInsight.article_info.date}</span>
+                <span className="w-1 h-1 bg-slate-200 rounded-full"></span>
+                <span className="text-primary-500">Must Read</span>
               </div>
             </div>
-            <div className="space-y-3">
-              <h3 className="text-2xl font-black text-slate-900 leading-snug group-hover:text-primary-700 transition-colors">
-                {recentInsight.article_info.title}
-              </h3>
-              <p className="text-slate-500 font-medium leading-relaxed line-clamp-3">
-                {recentInsight.content_body.introduction.text}
-              </p>
+          </Link>
+        ) : (
+          <div className="premium-card bg-slate-50 p-10 flex flex-col items-center justify-center text-center space-y-4 border-dashed border-slate-200">
+            <div className="p-4 bg-white rounded-full text-slate-300 shadow-sm">
+              <BookOpen className="w-8 h-8" />
             </div>
-            <div className="mt-auto pt-6 flex items-center gap-4 text-xs font-black text-slate-400 tracking-widest uppercase">
-              <span>{recentInsight.article_info.date}</span>
-              <span className="w-1 h-1 bg-slate-200 rounded-full"></span>
-              <span className="text-primary-500">Must Read</span>
+            <div className="space-y-1">
+              <p className="font-black text-slate-900">최신 인사이트를 분석 중입니다</p>
+              <p className="text-sm text-slate-500 font-medium">잠시 후 오늘의 정밀 분석 리포트를 확인하세요.</p>
             </div>
           </div>
-        </Link>
+        )}
       </div>
 
       {/* Featured Menu Grid */}

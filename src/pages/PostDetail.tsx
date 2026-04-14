@@ -39,15 +39,7 @@ const PostDetail = () => {
     const findPost = async () => {
       setLoading(true);
       
-      // 1. Check static posts
-      const staticPost = CONTENT_DB.blog_posts.find(p => p.article_info.id.toString() === id || p.article_info.slug === id);
-      if (staticPost) {
-        setPost({ ...staticPost, type: 'article' });
-        setLoading(false);
-        return;
-      }
-
-      // 2. Check dynamic insights & recommendations
+      // 1. Try finding in dynamic recommendations first (Prioritize latest AI data)
       try {
         const v = new Date().getTime();
         const [dashRes, insightRes] = await Promise.all([
@@ -88,10 +80,25 @@ const PostDetail = () => {
             console.error("Insight JSON parse failed", err);
           }
         }
+        // 3. Fallback to static articles from CONTENT_DB
+        const staticPost = CONTENT_DB.blog_posts.find(p => p.article_info.id.toString() === id || p.article_info.slug === id);
+        if (staticPost) {
+          setPost({ ...staticPost, type: 'article' });
+          setLoading(false);
+          return;
+        }
+
+        setLoading(false);
       } catch (e) {
         console.error("Dynamic data fetch failed", e);
+        
+        // Final fallback even on error
+        const staticPost = CONTENT_DB.blog_posts.find(p => p.article_info.id.toString() === id || p.article_info.slug === id);
+        if (staticPost) {
+          setPost({ ...staticPost, type: 'article' });
+        }
+        setLoading(false);
       }
-      setLoading(false);
     };
 
     findPost();
