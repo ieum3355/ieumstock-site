@@ -1,40 +1,11 @@
 ﻿[
   {
-<<<<<<< HEAD
-    "id": "BO-260414-S-3",
-=======
-    "id": "BO-260414-P-1",
->>>>>>> 07aba2a (fix: 긴급 화면 멈춤 수정 및 히스토리 전면 공개 (비로그인 포함))
-    "slug": "stock-260414",
-    "date": "2026-04-14",
-    "tier": "Premium",
-    "name": "저스템",
-    "ticker": "417840",
-<<<<<<< HEAD
-    "entry_price": 7650,
-    "target_price": 8700,
-    "stop_loss": 7100,
-    "current_price": 7650,
-    "profit_pct": "+3.66%",
-    "status": "OPEN"
-  },
-  {
     "id": "BO-260414-S-2",
     "slug": "stock-260414",
     "date": "2026-04-14",
     "tier": "Standard",
-    "name": "희림",
-    "ticker": "037440",
-    "entry_price": 6210,
-    "target_price": 7100,
-    "stop_loss": 5700,
-    "current_price": 6210,
-    "profit_pct": "+2.64%",
-    "status": "OPEN"
-  },
-  {
-    "id": "BO-260414-P-1",
-=======
+    "name": "저스템",
+    "ticker": "417840",
     "entry_price": 7680,
     "target_price": 8800,
     "stop_loss": 7100,
@@ -43,19 +14,17 @@
     "status": "OPEN"
   },
   {
-    "id": "BO-260414-P-0",
->>>>>>> 07aba2a (fix: 긴급 화면 멈춤 수정 및 히스토리 전면 공개 (비로그인 포함))
+    "id": "BO-260414-P-1",
     "slug": "bg-260414",
     "date": "2026-04-14",
     "tier": "Premium",
     "name": "세림B&G",
     "ticker": "340440",
-<<<<<<< HEAD
-    "entry_price": 2610,
+    "entry_price": 2635,
     "target_price": 3000,
     "stop_loss": 2400,
-    "current_price": 2610,
-    "profit_pct": "+12.99%",
+    "current_price": 2635,
+    "profit_pct": "+14.07%",
     "status": "OPEN"
   },
   {
@@ -63,20 +32,13 @@
     "slug": "stock-260414",
     "date": "2026-04-14",
     "tier": "Premium",
-    "name": "가온그룹",
-    "ticker": "078890",
-    "entry_price": 7850,
-    "target_price": 9000,
-    "stop_loss": 7300,
-    "current_price": 7850,
-    "profit_pct": "+29.97%",
-=======
-    "entry_price": 2630,
-    "target_price": 3000,
-    "stop_loss": 2400,
-    "current_price": 2630,
-    "profit_pct": "+13.85%",
->>>>>>> 07aba2a (fix: 긴급 화면 멈춤 수정 및 히스토리 전면 공개 (비로그인 포함))
+    "name": "뉴프렉스",
+    "ticker": "085670",
+    "entry_price": 6140,
+    "target_price": 7000,
+    "stop_loss": 5700,
+    "current_price": 6140,
+    "profit_pct": "+10.83%",
     "status": "OPEN"
   }
 ]
