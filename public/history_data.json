@@ -1,33 +1,16 @@
 ﻿[
   {
-<<<<<<< HEAD
-    "id": "BO-260414-S-2",
-    "slug": "stock-260414",
-    "date": "2026-04-14",
-    "tier": "Standard",
-    "name": "저스템",
-    "ticker": "417840",
-    "entry_price": 7680,
-    "target_price": 8800,
-    "stop_loss": 7100,
-    "current_price": 7680,
-    "profit_pct": "+4.07%",
-    "status": "OPEN"
-  },
-  {
-=======
->>>>>>> ee0db57 (fix: 긴급 복구 - 화면 멈춤 수정 및 히스토리 마스킹 전면 제거)
     "id": "BO-260414-P-1",
     "slug": "bg-260414",
     "date": "2026-04-14",
     "tier": "Premium",
     "name": "세림B&G",
     "ticker": "340440",
-    "entry_price": 2635,
+    "entry_price": 2625,
     "target_price": 3000,
     "stop_loss": 2400,
-    "current_price": 2635,
-    "profit_pct": "+14.07%",
+    "current_price": 2625,
+    "profit_pct": "+13.64%",
     "status": "OPEN"
   },
   {
@@ -37,19 +20,11 @@
     "tier": "Premium",
     "name": "뉴프렉스",
     "ticker": "085670",
-<<<<<<< HEAD
-    "entry_price": 6140,
+    "entry_price": 6170,
     "target_price": 7000,
     "stop_loss": 5700,
-    "current_price": 6140,
-    "profit_pct": "+10.83%",
-=======
-    "entry_price": 6130,
-    "target_price": 7000,
-    "stop_loss": 5700,
-    "current_price": 6130,
-    "profit_pct": "+10.65%",
->>>>>>> ee0db57 (fix: 긴급 복구 - 화면 멈춤 수정 및 히스토리 마스킹 전면 제거)
+    "current_price": 6170,
+    "profit_pct": "+11.37%",
     "status": "OPEN"
   }
 ]
