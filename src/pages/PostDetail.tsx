@@ -109,13 +109,13 @@ const PostDetail = () => {
 
   const isLocked = post.type === 'recommendation' && post.metadata.tier === 'Premium' && !isAuthenticated;
   const seo = post.type === 'recommendation' ? {
-    page_title: post.seo_content?.page_title || `${post.stock_info.real_name} 분석 리포트`,
+    page_title: post.seo_content?.page_title || `${post.stock_info?.real_name} 분석 리포트`,
     meta_description: post.seo_content?.meta_description || "이음스탁 AI 정밀 종목 분석 결과",
     keywords: post.seo_content?.keywords || ["이음스탁", "주식분석"]
   } : {
-    page_title: post.seo_metadata?.meta_title || post.article_info.title,
+    page_title: post.seo_metadata?.meta_title || post.article_info?.title || "투자 인사이트",
     meta_description: post.seo_metadata?.meta_description || "",
-    keywords: post.article_info.tags || ["이음스탁", "주식분석", "투자전략"]
+    keywords: post.article_info?.tags || ["이음스탁", "주식분석", "투자전략"]
   };
 
   return (
@@ -157,9 +157,9 @@ const PostDetail = () => {
           <header className="space-y-6">
             <div className="flex items-center gap-3">
               <span className={`px-3 py-1 text-[10px] font-black uppercase tracking-[0.2em] rounded-md ${
-                post.metadata.tier === 'Premium' ? 'bg-amber-100 text-amber-700' : 'bg-primary-50 text-primary-600'
+                post.metadata?.tier === 'Premium' ? 'bg-amber-100 text-amber-700' : 'bg-primary-50 text-primary-600'
               }`}>
-                {post.metadata.tier} 추천 리포트
+                {post.metadata?.tier} 추천 리포트
               </span>
               <div className="h-px flex-grow bg-slate-100"></div>
             </div>

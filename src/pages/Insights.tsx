@@ -21,14 +21,14 @@ const Insights = () => {
 
         if (dashRes.ok) {
           const data = await dashRes.json();
-          const dashPosts = data.recommendations.map((rec: any) => ({
-            id: rec.metadata.id,
-            slug: rec.metadata.slug,
-            title: rec.seo_content.page_title,
-            content: rec.trading_strategy.technical_analysis,
-            date: rec.metadata.date,
-            isLocked: rec.metadata.is_locked,
-            tier: rec.metadata.tier,
+          const dashPosts = (data.recommendations || []).map((rec: any) => ({
+            id: rec.metadata?.id || 'N/A',
+            slug: rec.metadata?.slug || 'error',
+            title: rec.seo_content?.page_title || rec.stock_info?.real_name || '분석 리포트',
+            content: rec.analysis_report?.summary || rec.trading_strategy?.technical_analysis || 'AI 정밀 분석 결과입니다.',
+            date: rec.metadata?.date || '',
+            isLocked: rec.metadata?.is_locked || false,
+            tier: rec.metadata?.tier || 'Standard',
             type: 'recommendation'
           }));
           allDynamic = [...allDynamic, ...dashPosts];
@@ -36,15 +36,15 @@ const Insights = () => {
 
         if (insightRes && insightRes.ok) {
           const insights = await insightRes.json();
-          const insightPosts = insights.map((i: any) => ({
-            id: i.article_info.id,
-            slug: i.article_info.slug,
-            title: i.article_info.title,
-            content: i.content_body.introduction.text,
-            date: i.article_info.date,
+          const insightPosts = (insights || []).map((i: any) => ({
+            id: i.article_info?.id || 'N/A',
+            slug: i.article_info?.slug || 'error',
+            title: i.article_info?.title || '투자 인사이트',
+            content: i.content_body?.introduction?.text || '시장 분석 인사이트 결과입니다.',
+            date: i.article_info?.date || '',
             type: 'article',
             isDynamic: true,
-            raw: i // Keep raw data for detail rendering if needed
+            raw: i 
           }));
           allDynamic = [...allDynamic, ...insightPosts];
         }
@@ -130,7 +130,7 @@ const Insights = () => {
                     {post.title}
                   </h2>
                   <p className={`text-slate-500 text-sm font-medium leading-relaxed line-clamp-3 ${post.isLocked ? 'blur-[3px] select-none' : ''}`}>
-                    {post.type === 'article' ? (post as any).content_body.introduction.text : (post as any).content}
+                    {post.type === 'article' ? (post.content_body?.introduction?.text || post.content) : (post.content)}
                   </p>
                 </div>
 
