@@ -109,12 +109,12 @@ const PostDetail = () => {
 
   const isLocked = post.type === 'recommendation' && post.metadata.tier === 'Premium' && !isAuthenticated;
   const seo = post.type === 'recommendation' ? {
-    page_title: post.seo_content.page_title,
-    meta_description: post.seo_content.meta_description,
-    keywords: post.seo_content.keywords
+    page_title: post.seo_content?.page_title || `${post.stock_info.real_name} 분석 리포트`,
+    meta_description: post.seo_content?.meta_description || "이음스탁 AI 정밀 종목 분석 결과",
+    keywords: post.seo_content?.keywords || ["이음스탁", "주식분석"]
   } : {
-    page_title: post.seo_metadata.meta_title,
-    meta_description: post.seo_metadata.meta_description,
+    page_title: post.seo_metadata?.meta_title || post.article_info.title,
+    meta_description: post.seo_metadata?.meta_description || "",
     keywords: post.article_info.tags || ["이음스탁", "주식분석", "투자전략"]
   };
 
@@ -286,42 +286,103 @@ const PostDetail = () => {
               )}
             </div>
 
-            <div className="bg-slate-50 p-8 rounded-[2.5rem] space-y-8">
-              <h3 className="text-lg font-black flex items-center gap-2">
-                <AlertCircle className="w-5 h-5 text-primary-600" />
-                정밀 분석 점수
-              </h3>
-              
-              <div className="space-y-6">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-black text-slate-500">종합 분석 점수</span>
-                  <span className="text-3xl font-black text-primary-600">{post.score_card.total_score} <span className="text-xs text-slate-300">/ 100</span></span>
-                </div>
-                
-                <div className="space-y-4">
-                  {[
-                    { label: '돌파 에너지 (Breakout)', value: post.score_card.breakout, max: 40 },
-                    { label: '매집 강도 (Accumulation)', value: post.score_card.accumulation, max: 30 },
-                    { label: '변동성 응축 (Volatility Tight)', value: post.score_card.volatility_tight, max: 20 },
-                    { label: '기관/외인 수급 (Institutional)', value: post.score_card.institutional_buy, max: 10 }
-                  ].map((item) => (
-                    <div key={item.label} className="space-y-2">
-                      <div className="flex justify-between text-[10px] font-black uppercase tracking-widest text-slate-400">
-                        <span>{item.label}</span>
-                        <span>{item.value} / {item.max}</span>
+            <div className="space-y-8">
+              <div className="bg-slate-50 p-8 rounded-[2.5rem] space-y-8">
+                <h3 className="text-lg font-black flex items-center gap-2">
+                  <AlertCircle className="w-5 h-5 text-primary-600" />
+                  정밀 분석 점수
+                </h3>
+                {/* Scoring Logic - Keep original */}
+                <div className="space-y-6">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-black text-slate-500">종합 분석 점수</span>
+                    <span className="text-3xl font-black text-primary-600">{post.score_card.total_score} <span className="text-xs text-slate-300">/ 100</span></span>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    {[
+                      { label: '돌파 에너지 (Breakout)', value: post.score_card.breakout, max: 40 },
+                      { label: '매집 강도 (Accumulation)', value: post.score_card.accumulation, max: 30 },
+                      { label: '변동성 응축 (Volatility Tight)', value: post.score_card.volatility_tight, max: 20 },
+                      { label: '기관/외인 수급 (Institutional)', value: post.score_card.institutional_buy, max: 10 }
+                    ].map((item) => (
+                      <div key={item.label} className="space-y-2">
+                        <div className="flex justify-between text-[10px] font-black uppercase tracking-widest text-slate-400">
+                          <span>{item.label}</span>
+                          <span>{item.value} / {item.max}</span>
+                        </div>
+                        <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
+                          <div 
+                            className="h-full bg-primary-600 rounded-full transition-all duration-1000"
+                            style={{ width: `${(item.value / item.max) * 100}%` }}
+                          ></div>
+                        </div>
                       </div>
-                      <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
-                        <div 
-                          className="h-full bg-primary-600 rounded-full transition-all duration-1000"
-                          style={{ width: `${(item.value / item.max) * 100}%` }}
-                        ></div>
-                      </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               </div>
+
+              {/* Financial Data Section */}
+              {post.financial_data && (
+                <div className="bg-white border border-slate-100 p-8 rounded-[2.5rem] shadow-sm space-y-6">
+                  <h3 className="text-lg font-black flex items-center gap-2">
+                    <Info className="w-5 h-5 text-primary-600" />
+                    재무 분석 요약
+                  </h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    {[
+                      { label: 'PER (주가수익비율)', value: post.financial_data.per },
+                      { label: 'PBR (주가순자산비율)', value: post.financial_data.pbr },
+                      { label: 'EPS (주당순이익)', value: post.financial_data.eps + '원' },
+                      { label: '배당수익률', value: post.financial_data.dividend }
+                    ].map((f) => (
+                      <div key={f.label} className="p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">{f.label}</p>
+                        <p className="text-lg font-black text-slate-900">{f.value}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
+
+          {/* Detailed Analysis Report Section */}
+          {post.analysis_report && (
+            <div className="space-y-12">
+              <div className="h-px bg-slate-100"></div>
+              <section className="space-y-8">
+                <div className="flex items-center gap-4">
+                  <MessageSquareQuote className="w-10 h-10 text-primary-600" />
+                  <h3 className="text-[11px] font-black text-slate-400 uppercase tracking-[0.4em]">AI 정밀 추천 사유 (DETAILED REPORT)</h3>
+                </div>
+                
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                  <div className="lg:col-span-2 space-y-8">
+                    <div className="p-10 md:p-14 bg-gradient-to-br from-slate-800 to-slate-900 rounded-[3rem] text-white shadow-2xl relative overflow-hidden group">
+                      <div className="absolute top-0 right-0 w-32 h-32 bg-primary-600/10 blur-3xl rounded-full group-hover:scale-150 transition-transform duration-1000"></div>
+                      <p className="text-2xl md:text-3xl font-bold leading-relaxed whitespace-pre-line relative z-10">
+                        "{post.analysis_report.summary}"
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-6">
+                    <h4 className="text-base font-black text-slate-900 uppercase tracking-tight">핵심 체크포인트</h4>
+                    <div className="space-y-4">
+                      {post.analysis_report.why_recommended.map((reason: string, idx: number) => (
+                        <div key={idx} className="flex gap-4 items-start p-5 bg-primary-50 rounded-3xl border border-primary-100 transition-all hover:bg-white hover:shadow-xl group">
+                          <CheckCircle2 className="w-6 h-6 text-primary-600 flex-shrink-0" />
+                          <p className="text-sm font-bold text-slate-700 leading-snug group-hover:text-primary-900">{reason}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          )}
         </div>
       ) : (
         // Premium Article View
