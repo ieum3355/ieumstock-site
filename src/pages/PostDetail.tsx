@@ -449,13 +449,16 @@ const PostDetail = () => {
               {post.system_link && post.system_link.related_ticker.length > 0 && (
                 <div className="pt-8 border-t border-white/10 flex flex-wrap items-center gap-6">
                   <span className="text-xs font-black text-slate-500 uppercase tracking-widest">관련 종목</span>
-                  <div className="flex flex-wrap gap-3">
-                    {post.system_link.related_ticker.map((ticker: string) => (
-                      <span key={ticker} className="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-xl text-sm font-black transition-colors border border-white/5">
-                        ${ticker}
-                      </span>
-                    ))}
-                  </div>
+                  <div className="flex flex-wrap gap-2">
+                  {post.system_link.related_ticker.map((ticker: string) => (
+                    <span 
+                      key={ticker} 
+                      className="px-3 py-1.5 bg-slate-50 text-slate-600 text-[11px] font-bold rounded-xl border border-slate-100 hover:border-primary-200 hover:text-primary-600 transition-all cursor-default"
+                    >
+                      ${ticker}
+                    </span>
+                  ))}
+                </div>
                 </div>
               )}
             </section>
