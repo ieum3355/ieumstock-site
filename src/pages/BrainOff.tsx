@@ -424,7 +424,6 @@ const BrainOff = () => {
                 </thead>
                 <tbody className="divide-y divide-slate-50">
                   {history.map((h: any) => {
-                    const isMasked = h.tier === 'Premium' && !isAuthenticated;
                     return (
                       <tr key={h.id || h.slug} className="hover:bg-slate-50/50 transition-colors">
                         <td className="px-8 py-6">
@@ -432,12 +431,8 @@ const BrainOff = () => {
                           <p className="text-[9px] font-bold text-slate-400">{h.id}</p>
                         </td>
                         <td className="px-8 py-6">
-                          <p className="text-base font-black text-slate-900">
-                            {isMasked ? h.name[0] + '*'.repeat(h.name.length - 2) + h.name.slice(-1) : h.name}
-                          </p>
-                          <p className="text-[10px] font-bold text-slate-400">
-                            {isMasked ? '*******' : h.ticker}
-                          </p>
+                          <p className="text-base font-black text-slate-900">{h.name}</p>
+                          <p className="text-[10px] font-bold text-slate-400">{h.ticker}</p>
                         </td>
                         <td className="px-8 py-6">
                           <span className={`px-2 py-0.5 rounded text-[9px] font-black uppercase ${
@@ -447,10 +442,10 @@ const BrainOff = () => {
                           </span>
                         </td>
                         <td className="px-8 py-6 text-sm font-bold text-slate-600">
-                          {isMasked ? '***,***원' : `${h.entry_price.toLocaleString()}원`}
+                          {h.entry_price.toLocaleString()}원
                         </td>
                         <td className="px-8 py-6 text-sm font-bold text-slate-900">
-                          {isMasked ? '***,***원' : `${h.current_price.toLocaleString()}원`}
+                          {h.current_price.toLocaleString()}원
                         </td>
                         <td className="px-8 py-6">
                           <div className="flex items-center gap-3">

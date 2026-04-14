@@ -124,7 +124,7 @@ const PostDetail = () => {
         <title>{seo.page_title} | IEUMSTOCK PRO</title>
         <meta name="description" content={seo.meta_description} />
         <meta name="keywords" content={seo.keywords.join(', ')} />
-        {post.type === 'article' && post.seo_metadata.og_image && (
+        {post.type === 'article' && post.seo_metadata?.og_image && (
           <meta property="og:image" content={post.seo_metadata.og_image} />
         )}
       </Helmet>
@@ -159,7 +159,7 @@ const PostDetail = () => {
               <span className={`px-3 py-1 text-[10px] font-black uppercase tracking-[0.2em] rounded-md ${
                 post.metadata?.tier === 'Premium' ? 'bg-amber-100 text-amber-700' : 'bg-primary-50 text-primary-600'
               }`}>
-                {post.metadata?.tier} 추천 리포트
+                {post.metadata?.tier || post.article_info?.category || 'Premium'} 추천 리포트
               </span>
               <div className="h-px flex-grow bg-slate-100"></div>
             </div>
