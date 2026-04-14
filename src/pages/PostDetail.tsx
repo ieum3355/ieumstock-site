@@ -515,25 +515,25 @@ const PostDetail = () => {
               </h3>
               
               <div className="grid grid-cols-1 gap-12">
-                {post.content_body.core_analysis.map((analysis: any, idx: number) => (
+                {post?.content_body?.core_analysis?.map((analysis: any, idx: number) => (
                   <div key={idx} className="group space-y-6">
                     <div className="flex items-start gap-6">
                       <div className="p-4 bg-white border border-slate-100 rounded-3xl shadow-sm group-hover:shadow-xl group-hover:border-primary-100 transition-all group-hover:-translate-y-1">
-                        <AnalysisIcon type={analysis.icon_type} />
+                        <AnalysisIcon type={analysis?.icon_type} />
                       </div>
                       <div className="space-y-5 flex-grow">
                         <h4 className="text-2xl font-black text-slate-900 group-hover:text-primary-600 transition-colors tracking-tight">
-                          {analysis.sub_heading}
+                          {analysis?.sub_heading}
                         </h4>
                         <p className="text-lg text-slate-600 leading-relaxed font-medium whitespace-pre-line">
-                          {analysis.text}
+                          {analysis?.text}
                         </p>
-                        {analysis.insight_tip && (
+                        {analysis?.insight_tip && (
                           <div className="bg-primary-50/50 p-6 rounded-[2rem] border border-primary-100 flex gap-4 relative overflow-hidden">
                             <div className="absolute top-0 right-0 w-16 h-16 bg-primary-100/30 rounded-full -mr-8 -mt-8"></div>
                             <Lightbulb className="w-7 h-7 text-primary-500 flex-shrink-0" />
                             <p className="text-base font-bold text-primary-900 italic leading-relaxed">
-                              "{analysis.insight_tip}"
+                              "{analysis?.insight_tip}"
                             </p>
                           </div>
                         )}
@@ -565,16 +565,16 @@ const PostDetail = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {post.content_body.practical_guide.items.map((item: any, idx: number) => (
+                {post?.content_body?.practical_guide?.items?.map((item: any, idx: number) => (
                   <div key={idx} className="p-8 bg-white/5 border border-white/10 rounded-[2.5rem] hover:bg-white/10 transition-all group">
                     <div className="flex items-center gap-4 mb-4">
                       <div className="w-10 h-10 bg-primary-600/30 text-primary-400 rounded-full flex items-center justify-center font-black text-lg border border-primary-600/50 group-hover:bg-primary-600 group-hover:text-white transition-all">
                         {idx + 1}
                       </div>
-                      <h5 className="font-black text-xl">{item.title}</h5>
+                      <h5 className="font-black text-xl">{item?.title}</h5>
                     </div>
                     <p className="text-slate-400 text-base font-medium leading-relaxed">
-                      {item.description}
+                      {item?.description}
                     </p>
                   </div>
                 ))}
@@ -605,12 +605,12 @@ const PostDetail = () => {
               </div>
               <div className="space-y-8">
                 <p className="text-2xl text-slate-600 font-bold leading-relaxed whitespace-pre-line">
-                  {post.content_body.conclusion.text}
+                  {post?.content_body?.conclusion?.text || '풍부한 인사이트 결과가 곧 제공될 예정입니다.'}
                 </p>
                 <div className="p-10 md:p-14 bg-gradient-to-br from-slate-800 to-slate-900 rounded-[3rem] text-white shadow-2xl relative overflow-hidden group">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-primary-600/10 blur-3xl rounded-full group-hover:scale-150 transition-transform duration-1000"></div>
                   <p className="text-3xl md:text-4xl font-black italic tracking-tight leading-snug">
-                    "{post.content_body.conclusion.closing_statement}"
+                    "{post?.content_body?.conclusion?.closing_statement || '이음스탁이 함께합니다.'}"
                   </p>
                 </div>
               </div>
