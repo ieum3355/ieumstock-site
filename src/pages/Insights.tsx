@@ -24,7 +24,7 @@ const Insights = () => {
           const dashPosts = (data.recommendations || []).map((rec: any) => ({
             id: rec.metadata?.id || 'N/A',
             slug: rec.metadata?.slug || 'error',
-            title: rec.seo_content?.page_title || rec.stock_info?.real_name || '분석 리포트',
+            title: rec.seo_content?.page_title || rec.stock_info?.name || '분석 리포트',
             content: rec.analysis_report?.summary || rec.trading_strategy?.technical_analysis || 'AI 정밀 분석 결과입니다.',
             date: rec.metadata?.date || '',
             isLocked: rec.metadata?.is_locked || false,

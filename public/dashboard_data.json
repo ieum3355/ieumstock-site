@@ -36,17 +36,17 @@
         "page_title": "뉴프렉스 (085670) 주가 전망 및 AI 정밀 분석 리포트",
         "meta_description": "뉴프렉스 종목의 실시간 맥점 돌파 및 수급 패턴 분석 결과입니다. 목표가 7,000원, 손절가 5,700원 전략 수립.",
         "keywords": [
-          "뉴프렉스",
-          "085670",
+          "엠케이전자",
+          "033160",
           "주식전망",
           "AI추천",
           "이음스탁"
         ]
       },
       "stock_info": {
-        "name": "뉴**스",
-        "real_name": "뉴프렉스",
-        "ticker": "085670",
+        "name": "엠***자",
+        "real_name": "엠케이전자",
+        "ticker": "033160",
         "sector": "실시간 거래량 폭증 및 기술적 돌파",
         "market": "KOSPI/KOSDAQ"
       },
@@ -88,7 +88,7 @@
     {
       "metadata": {
         "id": "BO-260414-P-1",
-        "slug": "bg-260414",
+        "slug": "ea-260414",
         "tier": "Premium",
         "is_locked": true,
         "date": "2026-04-14",
@@ -99,20 +99,20 @@
         ]
       },
       "seo_content": {
-        "page_title": "세림B&G (340440) 주가 전망 및 AI 정밀 분석 리포트",
-        "meta_description": "세림B&G 종목의 실시간 맥점 돌파 및 수급 패턴 분석 결과입니다. 목표가 3,000원, 손절가 2,400원 전략 수립.",
+        "page_title": "삼성E&A (028050) 주가 전망 및 AI 정밀 분석 리포트",
+        "meta_description": "삼성E&A 종목의 실시간 맥점 돌파 및 수급 패턴 분석 결과입니다. 목표가 59,500원, 손절가 48,100원 전략 수립.",
         "keywords": [
-          "세림B&G",
-          "340440",
+          "삼성E&A",
+          "028050",
           "주식전망",
           "AI추천",
           "이음스탁"
         ]
       },
       "stock_info": {
-        "name": "세***G",
-        "real_name": "세림B&G",
-        "ticker": "340440",
+        "name": "삼***A",
+        "real_name": "삼성E&A",
+        "ticker": "028050",
         "sector": "실시간 거래량 폭증 및 기술적 돌파",
         "market": "KOSPI/KOSDAQ"
       },

@@ -83,7 +83,7 @@ def get_verified_data():
             if market_cap < 50000000000: continue # 500억 이하 제외
             if any(k in name for k in ["(관)", "(환)", "(전)", "스팩", "우", "ETF", "ETN", "KODEX", "TIGER"]): continue
             
-            # [Step 2] 정밀 차트 분석
+            # [Step 2] 정밀 차트 분석 (A·B·C·D·!E 조건 검증)
             hist = fetch_historical_data(code)
             if not hist or len(hist) < 30: continue # 최소 30영업일 데이터 필요 (데이터 가용성 확대)
             
@@ -95,22 +95,22 @@ def get_verified_data():
             ma60 = sum(closes[:60]) / 60
             ma120 = sum(closes[:120]) / 120 if len(closes) >= 120 else ma60
             
-            cond_A = (nv >= max(highs[1:21])) # 20일 고가 돌파
-            cond_B = (nv >= max(closes[1:21])) # 20일 종가 신고가
-            cond_C = any(volumes[i] >= volumes[i+1] * 1.5 for i in range(10)) # 최근 10일내 거래량 유의미한 증가 (기준 완화: 2.5 -> 1.5)
-            cond_D = True # 이미 거래량 상위 300위임
-            not_E = not (ma120 > ma60 > ma20) # 역배열 하강 추세 제외
+            # [기본 원칙] 무주공산 맥점 돌파 전략
+            cond_A = (nv >= max(highs[1:21]))  # A: 20일 고가 돌파 (신고 영역 진입)
+            cond_B = (nv >= max(closes[1:21])) # B: 20일 종가 돌파 (강력한 종가 관리)
+            cond_C = any(volumes[i] >= volumes[i+1] * 1.5 for i in range(10)) # C: 19일 이내 거래량 유의미한 증가 (매집)
+            cond_D = True # D: 시장 거래량 상위 300위 (유동성 필터 상시 가동)
+            not_E = not (ma120 > ma60 > ma20) # !E: 하락 추세(역배열) 종목은 철저히 배제
             
-            # [Step 3] 필터링 결정 (기준 대폭 완화: 돌파 신호만 있으면 일단 포착)
-            # 기존: (cond_A or cond_B) and cond_C and cond_D and not_E
-            # 변경: 돌파(A or B)가 있고 너무 급격한 하락세(not_E)가 아니면 추천 후보 등록
+            # [Step 3] 필터링 결정
+            # 돌파(A or B) 신호가 명확하고, 하락 추세(!E)가 아닐 때 최종 후보로 선정
             if (cond_A or cond_B) and not_E:
-                final_score = 75 # 기본 점수
+                final_score = 75 # 기본 엔진 통과 점수
                 if cond_A: final_score += 10
-                if cond_C: final_score += 15 # 거래량 폭증은 가점 처리
+                if cond_C: final_score += 15 # 거래량 폭증은 강력한 가점 요인
                 
                 parsed_stocks.append({
-                    "ticker": code, "name": mask_name(name), "real_name": name,
+                    "ticker": code, "name": name, "real_name": name,
                     "price": nv, "rate": cr, "score": min(98, final_score),
                     "conditions": {"A": cond_A, "B": cond_B, "C": cond_C, "D": True}
                 })

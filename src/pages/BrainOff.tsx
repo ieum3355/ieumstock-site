@@ -401,12 +401,12 @@ const BrainOff = () => {
               <h3 className="text-2xl font-black text-slate-900">AI 추천 성과 기록</h3>
               <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">투명한 운용 퍼포먼스 (최근 30개)</p>
             </div>
-            {!isAuthenticated && (
-              <div className="px-5 py-2 bg-amber-50 rounded-full border border-amber-100 flex items-center gap-2">
-                <Info className="w-4 h-4 text-amber-600" />
-                <span className="text-[10px] font-black text-amber-700 uppercase tracking-widest">프리미엄 종목은 마스킹 처리됨</span>
+            <div className="flex items-center gap-4">
+              <div className="px-5 py-2 bg-emerald-50 rounded-full border border-emerald-100 flex items-center gap-2">
+                <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                <span className="text-[10px] font-black text-emerald-700 uppercase tracking-widest">검증된 성과 투명 공개</span>
               </div>
-            )}
+            </div>
           </div>
 
           <div className="bg-white border border-slate-100 rounded-[2.5rem] overflow-hidden shadow-sm">
