@@ -1,6 +1,71 @@
 [
   {
     "article_info": {
+      "id": 2002,
+      "slug": "market-warning-260416",
+      "title": "현재 시장 상황이 좋지 않아 추천 종목이 없습니다 (관망 권장)",
+      "author": "ieumstock AI Research",
+      "date": "2026.04.16",
+      "publishDate": "2026-04-16",
+      "category": "시장 분석",
+      "tags": [
+        "시장주의",
+        "관망권고",
+        "리스크관리",
+        "AI분석",
+        "이음스탁"
+      ]
+    },
+    "seo_metadata": {
+      "meta_title": "현재 시장 상황이 좋지 않아 추천 종목이 없습니다 (관망 권장) | 이음스탁 투자 리포트",
+      "meta_description": "현재 시장 변동성 확인 중 AI 엔진의 정밀 스캔 결과, 안정적인 수익 확률을 보장할 수 있는 고득점 종목이 포착되지 않았습니다.",
+      "og_image": "/assets/images/insight/default-insight.jpg"
+    },
+    "content_body": {
+      "introduction": {
+        "heading": "보수적 관망이 필요한 구간입니다",
+        "text": "현재 시장 변동성 확인 중 AI 엔진의 정밀 스캔 결과, 안정적인 수익 확률을 보장할 수 있는 고득점 종목이 포착되지 않았습니다."
+      },
+      "core_analysis": [
+        {
+          "sub_heading": "무리한 매매보다 현금 비중 확대",
+          "text": "지수의 하방 압력이 강하거나 주도 섹터의 에너지가 분산되는 시기에는 휴식도 투자입니다. 억지로 종목을 매수하기보다 다음 주도주를 기다리는 인내심이 필요합니다.",
+          "insight_tip": "현금을 보유하는 것 또한 하나의 포지션입니다.",
+          "icon_type": "risk"
+        }
+      ],
+      "practical_guide": {
+        "heading": "현재 구간 대응 전략",
+        "items": [
+          {
+            "title": "기존 보유 종목 점검",
+            "description": "추가 매수보다는 기대 수익률이 훼손된 종목의 비중을 조절하는 시기로 활용하십시오."
+          },
+          {
+            "title": "차기 주도주 모니터링",
+            "description": "지수 반등 시 가장 먼저 올라올 섹터를 미리 선별해 두는 공부의 시간으로 삼으십시오."
+          }
+        ]
+      },
+      "conclusion": {
+        "text": "시장이 안정화되고 확률 높은 종목이 포착되는 즉시 다시 분석 보고서를 발행하겠습니다.",
+        "closing_statement": "기다림 끝에 가장 달콤한 수익이 옵니다."
+      }
+    },
+    "system_link": {
+      "target_tool": "BrainOff",
+      "related_ticker": [
+        "KOSPI",
+        "KOSDAQ",
+        "KOSPI 200",
+        "KOSDAQ 150",
+        "KODEX 200",
+        "TIGER 2차전지테마"
+      ]
+    }
+  },
+  {
+    "article_info": {
       "id": 2001,
       "slug": "market-warning-260415",
       "title": "현재 시장 상황이 좋지 않아 추천 종목이 없습니다 (관망 권장)",

@@ -1,22 +1,287 @@
 ﻿{
   "generation_info": {
     "engine": "Swing Engine 3.0 (Full Scan)",
-    "timestamp": "2026-04-15 03:57:51",
-    "date": "2026-04-15",
+    "timestamp": "2026-04-16 04:12:57",
+    "date": "2026-04-16",
     "market_condition": "Monitoring Active Markets",
-    "status_msg": "금일 기준치를 충족하는 돌파 종목이 없습니다. 관망 권장."
+    "status_msg": "전체 시장 300대 종목 정밀 분석 완료. 4개 유망 종목 포착."
   },
   "market_summary": [
     {
       "name": "코스피 (KOSPI)",
-      "value": "6,150.28",
-      "rate": "+3.06%"
+      "value": "6,195.32",
+      "rate": "+1.71%"
     },
     {
       "name": "코스닥 (KOSDAQ)",
-      "value": "1,152.11",
-      "rate": "+2.69%"
+      "value": "1,166.05",
+      "rate": "+1.18%"
     }
   ],
-  "recommendations": []
+  "recommendations": [
+    {
+      "metadata": {
+        "id": "BO-260416-P-0",
+        "slug": "stock-260416",
+        "tier": "Premium",
+        "is_locked": true,
+        "date": "2026-04-16",
+        "met_criteria": [
+          "돌파(A/B)",
+          "매집(C)",
+          "수급(D)"
+        ]
+      },
+      "seo_content": {
+        "page_title": "국일제지 (078130) 주가 전망 및 AI 정밀 분석 리포트",
+        "meta_description": "국일제지 종목의 실시간 맥점 돌파 및 수급 패턴 분석 결과입니다. 목표가 400원, 손절가 300원 전략 수립.",
+        "keywords": [
+          "국일제지",
+          "078130",
+          "주식전망",
+          "AI추천",
+          "이음스탁"
+        ]
+      },
+      "stock_info": {
+        "name": "국**지",
+        "real_name": "국일제지",
+        "ticker": "078130",
+        "sector": "실시간 거래량 폭증 및 기술적 돌파",
+        "market": "KOSPI/KOSDAQ"
+      },
+      "financial_data": {
+        "per": "15.4",
+        "pbr": "1.2",
+        "eps": "1,250",
+        "dividend": "2.1%"
+      },
+      "score_card": {
+        "total_score": 98,
+        "breakout": 35,
+        "accumulation": 30,
+        "volatility_tight": 20,
+        "institutional_buy": 14
+      },
+      "analysis_report": {
+        "summary": "현재 국일제지 종목은 427원 기술적 맥점을 상향 돌파하며 강력한 매수 에너지가 유입되고 있습니다. 최근 10일 이내에 평소 거래량의 1.5배가 넘는 매집봉이 포착되었으며, 이는 세력의 진입 가능성을 강력히 시사합니다. 단기적으로는 전고점 448원 구간의 저항이 예상되나, 돌파 시 400원까지 추가 상승 여력이 충분한 구간입니다.",
+        "why_recommended": [
+          "20일 신고가 경신 및 기술적 맥점 상향 돌파",
+          "바닥권 대비 거래량 유의미한 급증 포착",
+          "하락 추세를 마무리하고 정배열 초입 구간 진입"
+        ]
+      },
+      "trading_strategy": {
+        "logic_summary": "전체 시장 거래량 상위 스캔 및 기술적 정밀 필터 통과",
+        "technical_analysis": "1. [돌파] 427원 구간 전고점 돌파 확인. 2. [수급] 최근 거래량 급증 매집봉(C) 포착. 3. [추세] 상방 수렴 후 발산 초입 구간.",
+        "entry_price": 427,
+        "target_price": 400,
+        "stop_loss": 300,
+        "expected_period": "3~7일"
+      },
+      "live_status": {
+        "current_price": 427,
+        "profit_pct": "+26.71%",
+        "status": "HOLD"
+      }
+    },
+    {
+      "metadata": {
+        "id": "BO-260416-P-1",
+        "slug": "stock-260416",
+        "tier": "Premium",
+        "is_locked": true,
+        "date": "2026-04-16",
+        "met_criteria": [
+          "돌파(A/B)",
+          "매집(C)",
+          "수급(D)"
+        ]
+      },
+      "seo_content": {
+        "page_title": "샌즈랩 (411080) 주가 전망 및 AI 정밀 분석 리포트",
+        "meta_description": "샌즈랩 종목의 실시간 맥점 돌파 및 수급 패턴 분석 결과입니다. 목표가 10,600원, 손절가 8,600원 전략 수립.",
+        "keywords": [
+          "샌즈랩",
+          "411080",
+          "주식전망",
+          "AI추천",
+          "이음스탁"
+        ]
+      },
+      "stock_info": {
+        "name": "샌*랩",
+        "real_name": "샌즈랩",
+        "ticker": "411080",
+        "sector": "실시간 거래량 폭증 및 기술적 돌파",
+        "market": "KOSPI/KOSDAQ"
+      },
+      "financial_data": {
+        "per": "15.4",
+        "pbr": "1.2",
+        "eps": "1,250",
+        "dividend": "2.1%"
+      },
+      "score_card": {
+        "total_score": 98,
+        "breakout": 35,
+        "accumulation": 30,
+        "volatility_tight": 20,
+        "institutional_buy": 14
+      },
+      "analysis_report": {
+        "summary": "현재 샌즈랩 종목은 9,250원 기술적 맥점을 상향 돌파하며 강력한 매수 에너지가 유입되고 있습니다. 최근 10일 이내에 평소 거래량의 1.5배가 넘는 매집봉이 포착되었으며, 이는 세력의 진입 가능성을 강력히 시사합니다. 단기적으로는 전고점 9,712원 구간의 저항이 예상되나, 돌파 시 10,600원까지 추가 상승 여력이 충분한 구간입니다.",
+        "why_recommended": [
+          "20일 신고가 경신 및 기술적 맥점 상향 돌파",
+          "바닥권 대비 거래량 유의미한 급증 포착",
+          "하락 추세를 마무리하고 정배열 초입 구간 진입"
+        ]
+      },
+      "trading_strategy": {
+        "logic_summary": "전체 시장 거래량 상위 스캔 및 기술적 정밀 필터 통과",
+        "technical_analysis": "1. [돌파] 9,250원 구간 전고점 돌파 확인. 2. [수급] 최근 거래량 급증 매집봉(C) 포착. 3. [추세] 상방 수렴 후 발산 초입 구간.",
+        "entry_price": 9250,
+        "target_price": 10600,
+        "stop_loss": 8600,
+        "expected_period": "3~7일"
+      },
+      "live_status": {
+        "current_price": 9250,
+        "profit_pct": "+13.50%",
+        "status": "HOLD"
+      }
+    },
+    {
+      "metadata": {
+        "id": "BO-260416-S-2",
+        "slug": "stock-260416",
+        "tier": "Standard",
+        "is_locked": false,
+        "date": "2026-04-16",
+        "met_criteria": [
+          "돌파(A/B)",
+          "매집(C)",
+          "수급(D)"
+        ]
+      },
+      "seo_content": {
+        "page_title": "수젠텍 (253840) 주가 전망 및 AI 정밀 분석 리포트",
+        "meta_description": "수젠텍 종목의 실시간 맥점 돌파 및 수급 패턴 분석 결과입니다. 목표가 5,800원, 손절가 4,700원 전략 수립.",
+        "keywords": [
+          "수젠텍",
+          "253840",
+          "주식전망",
+          "AI추천",
+          "이음스탁"
+        ]
+      },
+      "stock_info": {
+        "name": "수젠텍",
+        "real_name": "수젠텍",
+        "ticker": "253840",
+        "sector": "실시간 거래량 폭증 및 기술적 돌파",
+        "market": "KOSPI/KOSDAQ"
+      },
+      "financial_data": {
+        "per": "15.4",
+        "pbr": "1.2",
+        "eps": "1,250",
+        "dividend": "2.1%"
+      },
+      "score_card": {
+        "total_score": 98,
+        "breakout": 35,
+        "accumulation": 30,
+        "volatility_tight": 20,
+        "institutional_buy": 14
+      },
+      "analysis_report": {
+        "summary": "현재 수젠텍 종목은 5,130원 기술적 맥점을 상향 돌파하며 강력한 매수 에너지가 유입되고 있습니다. 최근 10일 이내에 평소 거래량의 1.5배가 넘는 매집봉이 포착되었으며, 이는 세력의 진입 가능성을 강력히 시사합니다. 단기적으로는 전고점 5,386원 구간의 저항이 예상되나, 돌파 시 5,800원까지 추가 상승 여력이 충분한 구간입니다.",
+        "why_recommended": [
+          "20일 신고가 경신 및 기술적 맥점 상향 돌파",
+          "바닥권 대비 거래량 유의미한 급증 포착",
+          "하락 추세를 마무리하고 정배열 초입 구간 진입"
+        ]
+      },
+      "trading_strategy": {
+        "logic_summary": "전체 시장 거래량 상위 스캔 및 기술적 정밀 필터 통과",
+        "technical_analysis": "1. [돌파] 5,130원 구간 전고점 돌파 확인. 2. [수급] 최근 거래량 급증 매집봉(C) 포착. 3. [추세] 상방 수렴 후 발산 초입 구간.",
+        "entry_price": 5130,
+        "target_price": 5800,
+        "stop_loss": 4700,
+        "expected_period": "3~7일"
+      },
+      "live_status": {
+        "current_price": 5130,
+        "profit_pct": "+8.57%",
+        "status": "HOLD"
+      }
+    },
+    {
+      "metadata": {
+        "id": "BO-260416-S-3",
+        "slug": "stock-260416",
+        "tier": "Standard",
+        "is_locked": false,
+        "date": "2026-04-16",
+        "met_criteria": [
+          "돌파(A/B)",
+          "매집(C)",
+          "수급(D)"
+        ]
+      },
+      "seo_content": {
+        "page_title": "라온시큐어 (042510) 주가 전망 및 AI 정밀 분석 리포트",
+        "meta_description": "라온시큐어 종목의 실시간 맥점 돌파 및 수급 패턴 분석 결과입니다. 목표가 17,700원, 손절가 14,300원 전략 수립.",
+        "keywords": [
+          "라온시큐어",
+          "042510",
+          "주식전망",
+          "AI추천",
+          "이음스탁"
+        ]
+      },
+      "stock_info": {
+        "name": "라온시큐어",
+        "real_name": "라온시큐어",
+        "ticker": "042510",
+        "sector": "실시간 거래량 폭증 및 기술적 돌파",
+        "market": "KOSPI/KOSDAQ"
+      },
+      "financial_data": {
+        "per": "15.4",
+        "pbr": "1.2",
+        "eps": "1,250",
+        "dividend": "2.1%"
+      },
+      "score_card": {
+        "total_score": 98,
+        "breakout": 35,
+        "accumulation": 30,
+        "volatility_tight": 20,
+        "institutional_buy": 14
+      },
+      "analysis_report": {
+        "summary": "현재 라온시큐어 종목은 15,410원 기술적 맥점을 상향 돌파하며 강력한 매수 에너지가 유입되고 있습니다. 최근 10일 이내에 평소 거래량의 1.5배가 넘는 매집봉이 포착되었으며, 이는 세력의 진입 가능성을 강력히 시사합니다. 단기적으로는 전고점 16,180원 구간의 저항이 예상되나, 돌파 시 17,700원까지 추가 상승 여력이 충분한 구간입니다.",
+        "why_recommended": [
+          "20일 신고가 경신 및 기술적 맥점 상향 돌파",
+          "바닥권 대비 거래량 유의미한 급증 포착",
+          "하락 추세를 마무리하고 정배열 초입 구간 진입"
+        ]
+      },
+      "trading_strategy": {
+        "logic_summary": "전체 시장 거래량 상위 스캔 및 기술적 정밀 필터 통과",
+        "technical_analysis": "1. [돌파] 15,410원 구간 전고점 돌파 확인. 2. [수급] 최근 거래량 급증 매집봉(C) 포착. 3. [추세] 상방 수렴 후 발산 초입 구간.",
+        "entry_price": 15410,
+        "target_price": 17700,
+        "stop_loss": 14300,
+        "expected_period": "3~7일"
+      },
+      "live_status": {
+        "current_price": 15410,
+        "profit_pct": "+29.93%",
+        "status": "HOLD"
+      }
+    }
+  ]
 }

@@ -1,1 +1,58 @@
-﻿[]
+﻿[
+  {
+    "id": "BO-260416-S-3",
+    "slug": "stock-260416",
+    "date": "2026-04-16",
+    "tier": "Standard",
+    "name": "라온시큐어",
+    "ticker": "042510",
+    "entry_price": 15410,
+    "target_price": 17700,
+    "stop_loss": 14300,
+    "current_price": 15410,
+    "profit_pct": "+29.93%",
+    "status": "OPEN"
+  },
+  {
+    "id": "BO-260416-S-2",
+    "slug": "stock-260416",
+    "date": "2026-04-16",
+    "tier": "Standard",
+    "name": "수젠텍",
+    "ticker": "253840",
+    "entry_price": 5130,
+    "target_price": 5800,
+    "stop_loss": 4700,
+    "current_price": 5130,
+    "profit_pct": "+8.57%",
+    "status": "OPEN"
+  },
+  {
+    "id": "BO-260416-P-1",
+    "slug": "stock-260416",
+    "date": "2026-04-16",
+    "tier": "Premium",
+    "name": "샌즈랩",
+    "ticker": "411080",
+    "entry_price": 9250,
+    "target_price": 10600,
+    "stop_loss": 8600,
+    "current_price": 9250,
+    "profit_pct": "+13.50%",
+    "status": "OPEN"
+  },
+  {
+    "id": "BO-260416-P-0",
+    "slug": "stock-260416",
+    "date": "2026-04-16",
+    "tier": "Premium",
+    "name": "국일제지",
+    "ticker": "078130",
+    "entry_price": 427,
+    "target_price": 400,
+    "stop_loss": 300,
+    "current_price": 427,
+    "profit_pct": "+26.71%",
+    "status": "OPEN"
+  }
+]
