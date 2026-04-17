@@ -165,7 +165,7 @@ def get_verified_data():
                 "stock_info": {
                     "name": mask_name(s['name']) if is_premium else s['name'],
                     "real_name": s['name'], "ticker": s['ticker'],
-                    "sector": "YMG 포착 섹터", "market": "KRW"
+                    "sector": "영매공파 포착 섹터", "market": "KRW"
                 },
                 "score_card": {
                     "total_score": s['score'],

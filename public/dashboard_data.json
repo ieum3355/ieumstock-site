@@ -1,7 +1,7 @@
 ﻿{
   "generation_info": {
     "engine": "Brain-Off Engine 1.0",
-    "timestamp": "2026-04-17 15:58:08",
+    "timestamp": "2026-04-17 16:11:08",
     "date": "2026-04-17",
     "market_condition": "Checking Brain-Off Breakout Signals",
     "status_msg": "브레인 오프 엔진 작동 중. 5개 타점 포착 완료."
@@ -32,7 +32,7 @@
         "name": "흥아해운",
         "real_name": "흥아해운",
         "ticker": "003280",
-        "sector": "YMG 포착 섹터",
+        "sector": "영매공파 포착 섹터",
         "market": "KRW"
       },
       "score_card": {
@@ -83,7 +83,7 @@
         "name": "대영포장",
         "real_name": "대영포장",
         "ticker": "014160",
-        "sector": "YMG 포착 섹터",
+        "sector": "영매공파 포착 섹터",
         "market": "KRW"
       },
       "score_card": {
@@ -134,7 +134,7 @@
         "name": "드림시큐리티",
         "real_name": "드림시큐리티",
         "ticker": "203650",
-        "sector": "YMG 포착 섹터",
+        "sector": "영매공파 포착 섹터",
         "market": "KRW"
       },
       "score_card": {
@@ -185,7 +185,7 @@
         "name": "백금T&A",
         "real_name": "백금T&A",
         "ticker": "046310",
-        "sector": "YMG 포착 섹터",
+        "sector": "영매공파 포착 섹터",
         "market": "KRW"
       },
       "score_card": {
@@ -236,7 +236,7 @@
         "name": "시그네틱스",
         "real_name": "시그네틱스",
         "ticker": "033170",
-        "sector": "YMG 포착 섹터",
+        "sector": "영매공파 포착 섹터",
         "market": "KRW"
       },
       "score_card": {

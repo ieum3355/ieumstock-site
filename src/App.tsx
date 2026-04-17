@@ -21,7 +21,7 @@ function App() {
   ];
 
   return (
-    <Router>
+    <Router basename="/ieumstock-site">
       <div className="min-h-screen bg-slate-50 flex flex-col font-sans selection:bg-primary-100 selection:text-primary-900">
         {/* Navigation */}
         <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-100 shadow-sm">
@@ -51,7 +51,7 @@ function App() {
                 <div className="h-4 w-px bg-slate-200 mx-2"></div>
                 <Link to="/brain-off" className="px-6 py-3 bg-slate-900 text-white rounded-2xl font-black text-sm tracking-widest hover:bg-primary-600 shadow-xl shadow-slate-200 hover:shadow-primary-200 transition-all flex items-center gap-2 uppercase">
                   <BrainCircuit className="w-4 h-4" />
-                  YMG 레이더
+                  브레인 오프
                 </Link>
               </div>
 
@@ -87,7 +87,7 @@ function App() {
                 className="flex items-center gap-4 text-xl font-black text-primary-600 p-4 bg-primary-50 rounded-2xl transition-colors"
               >
                 <BrainCircuit className="w-6 h-6" />
-                YMG 레이더
+                브레인 오프
               </Link>
             </div>
           )}

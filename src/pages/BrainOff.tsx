@@ -323,7 +323,7 @@ const BrainOff = () => {
                 프리미엄 중장기 가치주
                 <Crown className="w-8 h-8 text-amber-500 fill-amber-500/20" />
               </h3>
-              <p className="text-xs text-slate-500 font-bold uppercase tracking-widest">YMG 타점 + 퀀트/어라운드 분석 리포트 결합</p>
+              <p className="text-xs text-slate-500 font-bold uppercase tracking-widest">영매공파 타점 + 퀀트/어라운드 분석 리포트 결합</p>
             </div>
             {isAuthenticated ? (
                <button onClick={handleLogout} className="px-6 py-2 bg-white/5 border border-white/10 rounded-full text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-rose-400 transition-colors">멤버십 로그아웃</button>
@@ -342,7 +342,7 @@ const BrainOff = () => {
                       <div className="space-y-2">
                         <p className="text-lg font-black text-white tracking-tight">Premium 분석 리포트 잠금</p>
                         <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] leading-relaxed">
-                          YMG 타점은 기본, 실시간 업황 분석까지<br />결합된 최상위 0.1% 정보를 확인하세요.
+                          영매공파 타점은 기본, 실시간 업황 분석까지<br />결합된 최상위 0.1% 정보를 확인하세요.
                         </p>
                       </div>
                       <button 

@@ -13,8 +13,8 @@ const Insights = () => {
       try {
         const v = new Date().getTime();
         const [dashRes, insightRes] = await Promise.all([
-          fetch(`dashboard_data.json?v=${v}`),
-          fetch(`daily_insights.json?v=${v}`).catch(() => null)
+          fetch(`/ieumstock-site/dashboard_data.json?v=${v}`),
+          fetch(`/ieumstock-site/daily_insights.json?v=${v}`).catch(() => null)
         ]);
 
         let allDynamic: any[] = [];
