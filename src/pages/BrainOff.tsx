@@ -115,7 +115,7 @@ const BrainOff = () => {
           </div>
           <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-[1.05] text-white">
             바닥에서 잡는<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">브레인 오프</span> 레이더
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">브레인 오프</span> 시스템
           </h1>
           <p className="text-slate-400 text-lg md:text-xl font-medium leading-relaxed max-w-2xl">
             장기 이평선 역배열을 뚫고 올라오는 '상승 초입' 종목을 정밀 스캔합니다. 

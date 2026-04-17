@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import Dictionary from './pages/Dictionary';
 import BrainOff from './pages/BrainOff';
@@ -21,7 +21,7 @@ function App() {
   ];
 
   return (
-    <Router basename="/ieumstock-site">
+    <Router>
       <div className="min-h-screen bg-slate-50 flex flex-col font-sans selection:bg-primary-100 selection:text-primary-900">
         {/* Navigation */}
         <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-100 shadow-sm">
