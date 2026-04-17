@@ -203,7 +203,7 @@ const Home = () => {
         {[
           { name: '용어 사전', desc: '필수 투자 상식', path: '/dictionary', color: 'bg-indigo-50 text-indigo-600' },
           { name: '투자 도구', desc: '수익률/복리 계산', path: '/tools', color: 'bg-amber-50 text-amber-600' },
-          { name: 'Brain-Off', desc: 'AI 종목 후보군', path: '/brain-off', color: 'bg-emerald-50 text-emerald-600' },
+          { name: 'YMG 레이더', desc: 'AI 급등주 탐지', path: '/brain-off', color: 'bg-emerald-50 text-emerald-600' },
           { name: '비밀 노트', desc: '고수의 투자 전략', path: '/insights', color: 'bg-rose-50 text-rose-600' }
         ].map((item, idx) => (
           <Link key={idx} to={item.path} className="group p-8 rounded-[2rem] bg-white border border-slate-100 hover:border-primary-100 shadow-xl shadow-slate-100/50 hover:shadow-2xl hover:shadow-primary-100/20 transition-all text-center space-y-4">

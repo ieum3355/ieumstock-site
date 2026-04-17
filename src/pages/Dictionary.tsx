@@ -108,7 +108,7 @@ const Dictionary = () => {
                     </h4>
                     <p className="text-slate-600 leading-relaxed font-medium">
                       "{selectedTerm.keyword} 지표는 단순히 수치만 보기보다 기업의 업종 평균(Peer Group) 및 과거 추세와 비교하는 것이 필수적입니다. 
-                      이음스탁 Pro의 BRAIN-OFF 대시보드에서는 해당 지표가 반영된 실시간 종목 분석을 제공하고 있습니다."
+                      이음스탁 Pro의 YMG 레이더 대시보드에서는 해당 지표가 반영된 실시간 종목 분석을 제공하고 있습니다."
                     </p>
                   </div>
                 </div>

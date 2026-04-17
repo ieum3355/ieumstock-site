@@ -1,41 +1,39 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { 
   Lock, Crown, Zap, ShieldCheck, Info, ChevronRight, BarChart3, 
-  Target, KeyRound, AlertTriangle, TrendingUp, Sparkles, Activity
+  Target, KeyRound, AlertTriangle, TrendingUp, Sparkles, Activity,
+  Search, Bell, ArrowRight, MousePointer2, Percent, CheckCircle2,
+  Calendar, Layers, LineChart, Shield
 } from 'lucide-react';
 
 const BrainOff = () => {
   const navigate = useNavigate();
   const [data, setData] = useState<any>(null);
-  const [password, setPassword] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
-
-  const [history, setHistory] = useState<any[]>([]);
+  const [showToast, setShowToast] = useState(false);
+  const [alertStock, setAlertStock] = useState<any>(null);
 
   useEffect(() => {
     const loadData = async () => {
       setLoading(true);
-      
-      // Check persistence
       const savedAuth = localStorage.getItem('ieumstock_auth');
       if (savedAuth === 'true') setIsAuthenticated(true);
 
       try {
         const v = new Date().getTime();
-        const [dashRes, histRes] = await Promise.all([
-          fetch(`/dashboard_data.json?v=${v}`),
-          fetch(`/history_data.json?v=${v}`).catch(() => null)
-        ]);
-
-        const dashResult = await dashRes.json();
-        if (dashResult.generation_info) setData(dashResult);
-
-        if (histRes && histRes.ok) {
-          const histResult = await histRes.json();
-          setHistory(histResult);
+        const res = await fetch(`/dashboard_data.json?v=${v}`);
+        const result = await res.json();
+        if (result.generation_info) {
+          setData(result);
+          // Check for action required items
+          const actionable = result.recommendations?.find((r: any) => r.metadata.action_required);
+          if (actionable) {
+            setAlertStock(actionable);
+            setShowToast(true);
+            setTimeout(() => setShowToast(false), 8000);
+          }
         }
       } catch (e) {
         console.error("Data load failed");
@@ -45,431 +43,379 @@ const BrainOff = () => {
     loadData();
   }, []);
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (password === '0000') {
-      setIsAuthenticated(true);
-      localStorage.setItem('ieumstock_auth', 'true');
-      setError('');
-    } else {
-      setError('비밀번호가 일치하지 않습니다.');
-    }
-  };
-
   const handleLogout = () => {
     setIsAuthenticated(false);
     localStorage.removeItem('ieumstock_auth');
-    setPassword('');
   };
 
+  const handleUnlock = (slug: string) => {
+    const pass = prompt('Premium 멤버십 비밀번호를 입력하세요 (MVP: 0000):');
+    if (pass === '0000') {
+      setIsAuthenticated(true);
+      localStorage.setItem('ieumstock_auth', 'true');
+      setTimeout(() => navigate(`/insights/${slug}`), 100);
+    } else if (pass) {
+      alert('비밀번호가 올바르지 않습니다.');
+    }
+  };
+
+  const YMGStep = ({ icon: Icon, title, desc, isActive }: any) => (
+    <div className={`p-6 rounded-[2rem] border transition-all duration-500 ${
+      isActive 
+        ? 'bg-emerald-500/10 border-emerald-500/30' 
+        : 'bg-white/5 border-white/10 grayscale opacity-50'
+    }`}>
+      <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-4 ${
+        isActive ? 'bg-emerald-500 text-white shadow-[0_0_20px_rgba(16,185,129,0.4)]' : 'bg-white/10 text-white/40'
+      }`}>
+        <Icon className="w-6 h-6" />
+      </div>
+      <h4 className="text-white font-black text-sm mb-1">{title}</h4>
+      <p className="text-slate-400 text-[11px] leading-relaxed">{desc}</p>
+    </div>
+  );
+
   return (
-    <div className="space-y-10 animate-in fade-in duration-700">
-      {/* Hero Section */}
-      <div className="relative overflow-hidden bg-slate-900 rounded-[3rem] p-8 md:p-20 text-white text-center">
-        <div className="absolute top-0 right-0 p-8">
-          <Crown className="w-16 h-16 text-primary-500 opacity-20 animate-pulse" />
-        </div>
-        <div className="relative z-20 max-w-3xl mx-auto space-y-8">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-600/20 text-primary-400 rounded-full text-[10px] font-black tracking-[0.2em] uppercase border border-primary-600/30">
-            <Sparkles className="w-4 h-4" />
-            스윙 엔진 3.0 (전체 스캔)
-          </div>
-          <h1 className="text-4xl md:text-6xl font-black tracking-tight leading-[1.1]">
-            감정은 빼고, <span className="text-primary-500">데이터</span>로 승부하세요
-          </h1>
-          <p className="text-slate-400 text-lg md:text-xl font-medium leading-relaxed max-w-2xl mx-auto">
-            상위 0.1% 알고리즘이 실시간 수급과 차트 패턴을 분석하여<br className="hidden md:block" /> 
-            가장 승률 높은 타점만을 정밀하게 추출합니다.
-          </p>
-          
-          {data?.generation_info && (
-            <div className="inline-flex items-center gap-6 px-8 py-4 bg-white/5 rounded-3xl border border-white/10 backdrop-blur-md">
-              <div className="text-left">
-                <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">엔진 상태</p>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-emerald-500 rounded-full animate-ping"></div>
-                  <span className="text-sm font-black text-emerald-500 uppercase">가동 중 (정상)</span>
-                </div>
-              </div>
-              <div className="w-px h-8 bg-white/10"></div>
-              <div className="text-left">
-                <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">시장 상황</p>
-                <p className="text-sm font-black text-white">{data.generation_info.market_condition}</p>
-              </div>
+    <div className="min-h-screen bg-slate-950 text-slate-200 pb-20 space-y-12 animate-in fade-in duration-1000">
+      
+      {/* Action Point Toast */}
+      {showToast && alertStock && (
+        <div className="fixed top-8 left-1/2 -translate-x-1/2 z-[100] w-[90%] max-w-md animate-in slide-in-from-top-12 duration-500">
+          <div className="bg-emerald-500 text-white p-6 rounded-[2.5rem] shadow-[0_20px_50px_rgba(16,185,129,0.3)] border border-emerald-400/30 flex items-center gap-5">
+            <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center shrink-0">
+              <Bell className="w-6 h-6 animate-bounce" />
             </div>
-          )}
-        </div>
-        
-        {/* Background Decorative Elements */}
-        <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-primary-600/20 blur-[120px] rounded-full"></div>
-        <div className="absolute -top-20 -right-20 w-96 h-96 bg-primary-500/10 blur-[120px] rounded-full"></div>
-      </div>
-
-      {/* Market Summary Tiles & Stats */}
-      <div className="space-y-6">
-        {data?.market_summary && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {data.market_summary.map((m: any) => (
-              <div key={m.name} className="bg-white border border-slate-100 p-8 rounded-[2.5rem] shadow-sm flex items-center justify-between">
-                <div className="space-y-1">
-                  <h4 className="text-xs font-black text-slate-400 uppercase tracking-widest">{m.name} 지수</h4>
-                  <p className="text-2xl font-black text-slate-900">{m.value}</p>
-                </div>
-                <div className={`px-4 py-2 rounded-2xl font-black text-sm ${m.rate.startsWith('+') ? 'bg-emerald-50 text-emerald-600' : 'bg-rose-50 text-rose-600'}`}>
-                  {m.rate}
-                </div>
-              </div>
-            ))}
-            
-            {/* AI Performance Quick Stats */}
-            {data?.performance_stats && (
-              <>
-                <div className="bg-slate-900 p-8 rounded-[2.5rem] shadow-xl border border-white/5 flex items-center justify-between group overflow-hidden relative">
-                  <div className="absolute -right-4 -bottom-4 opacity-10 group-hover:scale-125 transition-transform duration-700">
-                    <TrendingUp className="w-24 h-24 text-primary-500" />
-                  </div>
-                  <div className="space-y-1 relative z-10">
-                    <h4 className="text-xs font-black text-primary-400 uppercase tracking-widest">AI 스윙 승률</h4>
-                    <p className="text-3xl font-black text-white">{data.performance_stats.win_rate}</p>
-                  </div>
-                </div>
-                <div className="bg-white border border-slate-100 p-8 rounded-[2.5rem] shadow-sm flex items-center justify-between">
-                  <div className="space-y-1">
-                    <h4 className="text-xs font-black text-slate-400 uppercase tracking-widest">누적 분석 종목</h4>
-                    <p className="text-2xl font-black text-slate-900">{data.performance_stats.total_recs}개</p>
-                  </div>
-                  <div className="p-3 bg-slate-50 rounded-2xl text-slate-400">
-                    <Activity className="w-5 h-5" />
-                  </div>
-                </div>
-              </>
-            )}
-          </div>
-        )}
-      </div>
-
-      {/* Main Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Screening Logic Visuals */}
-        <div className="lg:col-span-1 space-y-6">
-          <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.25em] flex items-center gap-2">
-            <Activity className="w-4 h-4 text-primary-600" />
-            핵심 분석 엔진
-          </h3>
-          <div className="space-y-4">
-            {[
-              { icon: <Zap />, title: 'Real-time Breakout', desc: '직전 고점 돌파 및 매물대 소화 과정을 실시간 추적합니다.', status: 'SCANNING' },
-              { icon: <Target />, title: 'Institutional Flow', desc: '기관과 외국인의 집중 매집 구간을 정밀 분석합니다.', status: 'TRACKING' },
-              { icon: <BarChart3 />, title: 'Volatility Filter', desc: '시장의 노이즈를 제거하고 순수 에너지를 측정합니다.', status: 'VERIFIED' },
-            ].map((item, idx) => (
-              <div key={idx} className="p-6 rounded-[2rem] bg-white border border-slate-100 flex gap-5 group hover:border-primary-200 transition-all duration-300">
-                <div className="text-primary-600 bg-primary-50 p-4 rounded-2xl h-fit group-hover:scale-110 transition-transform">
-                  {React.cloneElement(item.icon as any, { size: 22 })}
-                </div>
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <h4 className="font-black text-slate-900 text-sm">{idx === 0 ? '실시간 돌파 감지' : idx === 1 ? '메이저 수급 추적' : '변동성 필터링'}</h4>
-                    <span className="text-[9px] font-black text-emerald-500 px-2 py-0.5 bg-emerald-50 rounded uppercase tracking-widest">{idx === 0 ? '스캔 중' : idx === 1 ? '추적 중' : '검증됨'}</span>
-                  </div>
-                  <p className="text-xs text-slate-500 font-medium leading-relaxed">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* 오늘의 맥점 돌파주 (Swing Engine Results) */}
-        {data?.swing_candidates && data.swing_candidates.length > 0 && (
-          <div className="lg:col-span-3 space-y-6">
-            <div className="flex items-center justify-between px-2">
-              <div className="space-y-1">
-                <h3 className="text-2xl font-black text-slate-900 flex items-center gap-2">
-                  <Zap className="w-6 h-6 text-primary-600 fill-primary-600" />
-                  오늘의 맥점 돌파주
-                </h3>
-                <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">스윙 돌파 후보 종목 (A·B·D·!E)</p>
-              </div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              {data.swing_candidates.map((swing: any) => (
-                <div key={swing.ticker} className="bg-slate-900 p-6 rounded-[2.5rem] border border-white/5 relative overflow-hidden group hover:scale-[1.02] transition-transform shadow-xl">
-                  <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-30 transition-opacity">
-                    <Target className="w-12 h-12 text-white" />
-                  </div>
-                  <div className="space-y-4 relative z-10">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <h4 className="text-white text-xl font-black tracking-tight">{swing.name}</h4>
-                        <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">{swing.ticker}</p>
-                      </div>
-                      <span className="text-emerald-400 font-black text-sm">{swing.rate}</span>
-                    </div>
-                    <div className="space-y-2">
-                      <div className="flex justify-between text-[10px] font-bold">
-                        <span className="text-slate-500 uppercase">돌파 기준가</span>
-                        <span className="text-primary-400 font-black">{swing.breakout_level.toLocaleString()}원</span>
-                      </div>
-                      <div className="flex justify-between text-[10px] font-bold">
-                        <span className="text-slate-500 uppercase">현재가</span>
-                        <span className="text-white font-black">{swing.price.toLocaleString()}원</span>
-                      </div>
-                    </div>
-                    <div className="pt-2">
-                      <div className="px-3 py-1 bg-white/5 border border-white/10 rounded-full inline-block">
-                        <span className="text-[9px] font-black text-primary-400 uppercase tracking-widest">{swing.logic}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        <div className="lg:col-span-2 space-y-8">
-          <div className="flex items-center justify-between px-2">
-            <div className="space-y-1">
-              <h3 className="text-2xl font-black text-slate-900">AI 선별 종목</h3>
-              <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">실시간 선별 리포트</p>
-            </div>
-            <div className="flex items-center gap-4">
-              <div className="text-[10px] font-black text-primary-600 bg-primary-50 px-4 py-2 rounded-full uppercase tracking-widest border border-primary-100 animate-pulse">
-                실시간 피드 분석 중
-              </div>
-              {isAuthenticated ? (
-                <button 
-                  onClick={handleLogout}
-                  className="text-[10px] font-black text-slate-400 hover:text-rose-500 transition-colors uppercase tracking-widest flex items-center gap-1"
-                >
-                  <Lock className="w-3 h-3" />
-                  로그아웃
-                </button>
-              ) : (
-                <button 
-                  onClick={() => {
-                    const pass = prompt('Enter 4-digit Admin Code:');
-                    if (pass === '0000') {
-                      setIsAuthenticated(true);
-                      localStorage.setItem('ieumstock_auth', 'true');
-                    } else if (pass) {
-                      alert('Invalid password');
-                    }
-                  }}
-                  className="text-[10px] font-black text-primary-600 hover:text-primary-700 transition-colors uppercase tracking-widest flex items-center gap-1"
-                >
-                  <KeyRound className="w-3 h-3" />
-                  관리자 로그인
-                </button>
-              )}
-            </div>
-          </div>
-
-          {loading ? (
-            <div className="p-12 text-center">
-              <div className="w-12 h-12 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin mx-auto"></div>
-            </div>
-          ) : !data || !data.recommendations || data.recommendations.length === 0 ? (
-            <div className="bg-slate-900 rounded-[3rem] p-12 md:p-20 text-center space-y-8 relative overflow-hidden shadow-2xl">
-              <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-rose-600/20 to-transparent"></div>
-              <div className="relative z-10 space-y-6 max-w-lg mx-auto">
-                <div className="inline-flex p-6 bg-white/5 rounded-[2.5rem] border border-white/10 mb-2">
-                  <AlertTriangle className="w-12 h-12 text-rose-400" />
-                </div>
-                <div className="space-y-3">
-                  <h4 className="text-3xl font-black text-white tracking-tight">시장 관망 권고</h4>
-                  <p className="text-slate-400 font-medium leading-relaxed">
-                    {data?.generation_info?.status_msg || "현재 알고리즘 기준을 충족하는 고득점 종목이 포착되지 않았습니다."}
-                    <br />무리한 매매보다 현금 비중 확대를 권장합니다.
-                  </p>
-                </div>
-                <div className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em]">
-                  AI 엔진이 실시간으로 타점을 분석하고 있습니다...
-                </div>
-              </div>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-in slide-in-from-bottom-6 duration-700">
-              {data.recommendations.map((rec: any) => {
-                const isCardLocked = rec.metadata.tier === 'Premium' && !isAuthenticated;
-                return (
-                  <Link 
-                    key={rec.metadata.id} 
-                    to={isCardLocked ? '#' : `/insights/${rec.metadata.slug}`}
-                    onClick={(e) => {
-                      if (isCardLocked) {
-                        e.preventDefault();
-                        const pass = prompt('Premium access password required:');
-                        if (pass === '0000') {
-                          setIsAuthenticated(true);
-                          localStorage.setItem('ieumstock_auth', 'true');
-                          // Navigate immediately after successful auth
-                          setTimeout(() => {
-                            navigate(`/insights/${rec.metadata.slug}`);
-                          }, 100);
-                        }
-                      }
-                    }}
-                    className="group bg-white border border-slate-100 hover:border-primary-200 p-8 rounded-[2.5rem] shadow-sm hover:shadow-2xl hover:shadow-primary-100/30 transition-all duration-500 relative overflow-hidden"
-                  >
-                    {isCardLocked && (
-                      <div className="absolute inset-0 bg-white/40 backdrop-blur-md z-10 flex flex-col items-center justify-center p-6 text-center space-y-4">
-                        <div className="w-12 h-12 bg-slate-900 text-amber-400 rounded-2xl flex items-center justify-center shadow-xl">
-                          <Lock className="w-6 h-6" />
-                        </div>
-                        <div className="space-y-1">
-                          <p className="text-sm font-black text-slate-900">Premium 분석 잠금</p>
-                          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">클릭하여 잠금 해제</p>
-                        </div>
-                      </div>
-                    )}
-                    
-                    {rec.metadata.tier === 'Premium' && (
-                      <div className="absolute top-0 right-0 p-4">
-                        <Crown className="w-5 h-5 text-amber-400 opacity-30 group-hover:opacity-100 transition-opacity" />
-                      </div>
-                    )}
-                    
-                    <div className="space-y-6">
-                      <div className="flex items-center gap-3">
-                        <span className={`px-2 py-0.5 rounded-md text-[9px] font-black uppercase tracking-widest ${
-                          rec.metadata.tier === 'Premium' ? 'bg-amber-100 text-amber-700' : 'bg-primary-50 text-primary-600'
-                        }`}>
-                          {rec.metadata.tier}
-                        </span>
-                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{rec.stock_info.sector}</span>
-                        <span className="text-[10px] font-black text-primary-500/60 uppercase tracking-widest ml-auto">
-                          분석일: {rec.metadata.date?.split('-').slice(1).join('/')}
-                        </span>
-                      </div>
-
-                      <div className="space-y-2">
-                        <h4 className="text-3xl font-black text-slate-900 group-hover:text-primary-600 transition-colors tracking-tight">
-                          {isAuthenticated || rec.metadata.tier === 'Standard' ? rec.stock_info.real_name : rec.stock_info.name}
-                        </h4>
-                        <p className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em]">
-                          {isAuthenticated || rec.metadata.tier === 'Standard' ? rec.stock_info.ticker : '*******'} / {rec.stock_info.market}
-                        </p>
-                      </div>
-
-                      <div className="grid grid-cols-2 gap-4">
-                        <div className="p-4 bg-slate-50 rounded-2xl space-y-1">
-                          <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">진입 목표가</p>
-                          <p className="text-sm font-black text-slate-900">
-                            {isCardLocked ? '***,***원' : `${rec.trading_strategy.entry_price.toLocaleString()}원`}
-                          </p>
-                        </div>
-                        <div className="p-4 bg-primary-50 rounded-2xl space-y-1">
-                          <p className="text-[9px] font-black text-primary-600 uppercase tracking-widest">AI 스코어</p>
-                          <p className="text-sm font-black text-slate-900">{rec.score_card.total_score}</p>
-                        </div>
-                      </div>
-
-                      {/* Criteria Badges */}
-                      <div className="flex flex-wrap gap-2">
-                        {rec.metadata.met_criteria?.map((c: string) => (
-                          <span key={c} className="px-2 py-1 bg-slate-900 text-white text-[8px] font-black rounded-lg border border-white/10 shadow-lg">
-                            조건 {c}
-                          </span>
-                        ))}
-                      </div>
-
-                      <div className="pt-6 border-t border-slate-50 flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <div className={`w-2 h-2 rounded-full ${rec.live_status.profit_pct.startsWith('+') ? 'bg-emerald-500' : 'bg-rose-500'}`}></div>
-                          <span className={`text-sm font-black ${rec.live_status.profit_pct.startsWith('+') ? 'text-emerald-500' : 'text-rose-500'}`}>
-                            {rec.live_status.profit_pct}
-                          </span>
-                        </div>
-                        <span className="text-primary-600 font-black text-[11px] flex items-center gap-1 group-hover:translate-x-1 transition-transform uppercase tracking-widest">
-                          분석 리포트 보기 <ChevronRight className="w-4 h-4" />
-                        </span>
-                      </div>
-                    </div>
-                  </Link>
-                );
-              })}
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* History Section (Now Public for Trust) */}
-      {history.length > 0 && (
-        <div className="space-y-8 pt-10 border-t border-slate-100">
-          <div className="flex items-center justify-between">
-            <div className="space-y-1">
-              <h3 className="text-2xl font-black text-slate-900">AI 추천 성과 기록</h3>
-              <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">투명한 운용 퍼포먼스 (최근 30개)</p>
-            </div>
-            <div className="flex items-center gap-4">
-              <div className="px-5 py-2 bg-emerald-50 rounded-full border border-emerald-100 flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                <span className="text-[10px] font-black text-emerald-700 uppercase tracking-widest">검증된 성과 투명 공개</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white border border-slate-100 rounded-[2.5rem] overflow-hidden shadow-sm">
-            <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse">
-                <thead>
-                  <tr className="bg-slate-50 border-b border-slate-100">
-                    <th className="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest">날짜 / ID</th>
-                    <th className="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest">종목명</th>
-                    <th className="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest">등급</th>
-                    <th className="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest">진입가</th>
-                    <th className="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest">현재가</th>
-                    <th className="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest">상태 / 수익률</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-50">
-                  {history.map((h: any) => {
-                    return (
-                      <tr key={h.id || h.slug} className="hover:bg-slate-50/50 transition-colors">
-                        <td className="px-8 py-6">
-                          <p className="text-xs font-black text-slate-900">{h.date}</p>
-                          <p className="text-[9px] font-bold text-slate-400">{h.id}</p>
-                        </td>
-                        <td className="px-8 py-6">
-                          <p className="text-base font-black text-slate-900">{h.name}</p>
-                          <p className="text-[10px] font-bold text-slate-400">{h.ticker}</p>
-                        </td>
-                        <td className="px-8 py-6">
-                          <span className={`px-2 py-0.5 rounded text-[9px] font-black uppercase ${
-                            h.tier === 'Premium' ? 'bg-amber-100 text-amber-700' : 'bg-primary-50 text-primary-600'
-                          }`}>
-                            {h.tier}
-                          </span>
-                        </td>
-                        <td className="px-8 py-6 text-sm font-bold text-slate-600">
-                          {h.entry_price.toLocaleString()}원
-                        </td>
-                        <td className="px-8 py-6 text-sm font-bold text-slate-900">
-                          {h.current_price.toLocaleString()}원
-                        </td>
-                        <td className="px-8 py-6">
-                          <div className="flex items-center gap-3">
-                            <span className={`px-3 py-1 rounded-full text-[10px] font-black ${
-                              h.status === 'SUCCESS' ? 'bg-emerald-100 text-emerald-700' : 
-                              h.status === 'FAILED' ? 'bg-rose-100 text-rose-700' : 
-                              h.status === 'WATCH' ? 'bg-amber-100 text-amber-700' : 'bg-slate-100 text-slate-600'
-                            }`}>
-                              {h.status === 'SUCCESS' ? '성공(익절)' : h.status === 'FAILED' ? '실패(손절)' : h.status}
-                            </span>
-                            <span className={`text-sm font-black ${h.profit_pct.startsWith('+') ? 'text-emerald-500' : 'text-rose-500'}`}>
-                              {h.profit_pct}
-                            </span>
-                          </div>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
+            <div className="flex-1">
+              <p className="text-[10px] font-black uppercase tracking-widest opacity-80">수익 실현 타이밍!</p>
+              <p className="text-sm font-black leading-tight">
+                [{alertStock.stock_info.real_name}] 종목이 1차 목표가에 도달했습니다. 50% 분할 익절을 권고합니다.
+              </p>
             </div>
           </div>
         </div>
       )}
+
+      {/* Hero Section - Radar Concept */}
+      <div className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 rounded-[3.5rem] p-8 md:p-24 border border-white/5">
+        <div className="absolute top-0 right-0 p-12 opacity-10">
+          <Activity className="w-32 h-32 text-emerald-500 animate-pulse" />
+        </div>
+        
+        {/* Radar Animation Background */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-10 pointer-events-none">
+          <div className="absolute inset-0 border border-emerald-500/20 rounded-full animate-ping duration-3000"></div>
+          <div className="absolute inset-0 border border-emerald-500/10 rounded-full animate-pulse"></div>
+          <div className="absolute top-1/2 left-1/2 w-full h-px bg-gradient-to-r from-transparent via-emerald-500 to-transparent -translate-y-1/2 rotate-45"></div>
+        </div>
+
+        <div className="relative z-10 max-w-3xl space-y-8">
+          <div className="inline-flex items-center gap-3 px-4 py-2 bg-emerald-500/10 text-emerald-400 rounded-full text-[10px] font-black tracking-[0.2em] uppercase border border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.1)]">
+            <Sparkles className="w-4 h-4" />
+            YMG RADAR MVP 1.0 (Live)
+          </div>
+          <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-[1.05] text-white">
+            바닥에서 잡는<br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">영매공파</span> 레이더
+          </h1>
+          <p className="text-slate-400 text-lg md:text-xl font-medium leading-relaxed max-w-2xl">
+            장기 이평선 역배열을 뚫고 올라오는 '상승 초입' 종목을 정밀 스캔합니다. 
+            감정에 휘둘리지 않는 기계적인 익절 시스템을 경험하세요.
+          </p>
+          
+          {data?.generation_info && (
+            <div className="flex flex-wrap gap-6 p-8 bg-white/5 rounded-[2.5rem] border border-white/10 backdrop-blur-3xl">
+              <div className="space-y-1">
+                <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">엔진 상태</p>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_10px_#10b981]"></div>
+                  <span className="text-sm font-black text-emerald-400 uppercase tracking-tighter">레이더 스캔 중</span>
+                </div>
+              </div>
+              <div className="w-px h-8 bg-white/10 hidden md:block"></div>
+              <div className="space-y-1">
+                <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">분석 로직</p>
+                <p className="text-sm font-black text-white">영매공파 (Y-M-G-P) 알고리즘</p>
+              </div>
+              <div className="w-px h-8 bg-white/10 hidden md:block"></div>
+              <div className="space-y-1">
+                <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">최종 갱신</p>
+                <p className="text-sm font-black text-white">{data.generation_info.timestamp}</p>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* YMG Logic Visualization */}
+      <div className="space-y-8">
+        <h3 className="text-xs font-black text-emerald-500 uppercase tracking-[0.3em] flex items-center gap-3">
+          <div className="w-6 h-px bg-emerald-500/30"></div>
+          Core Scanning Logic
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <YMGStep 
+            icon={Layers} 
+            title="역배열 (Reverse)" 
+            desc="448 > 224 > 112일선 순서의 저평가 구간 포착"
+            isActive={true}
+          />
+          <YMGStep 
+            icon={Zap} 
+            title="매집봉 (Gathering)" 
+            desc="세력 수급을 상징하는 대량 거래량 흔적 확인"
+            isActive={true}
+          />
+          <YMGStep 
+            icon={Shield} 
+            title="공구리 (Concrete)" 
+            desc="하방 경직성을 확보한 튼튼한 바닥 지지 라인"
+            isActive={true}
+          />
+          <YMGStep 
+            icon={Percent} 
+            title="파란점선 (Signal)" 
+            desc="에너지 응축 후 112일선 돌파의 결정적 타이밍"
+            isActive={true}
+          />
+        </div>
+      </div>
+
+      {/* Main Content Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        
+        {/* Today's Free Swing YMG */}
+        <div className="lg:col-span-8 space-y-8">
+          <div className="flex items-center justify-between">
+            <div className="space-y-1">
+              <h3 className="text-3xl font-black text-white flex items-center gap-3">
+                오늘의 무료 스윙 타점
+                <span className="text-sm font-black text-emerald-500 px-3 py-1 bg-emerald-500/10 rounded-full border border-emerald-500/20 uppercase tracking-widest">Free</span>
+              </h3>
+              <p className="text-xs text-slate-500 font-bold uppercase tracking-widest">단기 기술적 파동 및 수급 분석 완료</p>
+            </div>
+          </div>
+
+          {!loading && data?.recommendations?.some((r: any) => r.metadata.tier === 'Standard') ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {data.recommendations.filter((r: any) => r.metadata.tier === 'Standard').map((rec: any) => (
+                <div key={rec.metadata.slug} className="group bg-slate-900 border border-white/5 p-8 rounded-[3rem] hover:border-emerald-500/30 transition-all duration-500 relative overflow-hidden">
+                  {rec.metadata.action_required && (
+                    <div className="absolute top-6 right-6">
+                      <span className="flex h-3 w-3 relative">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-3 w-3 bg-rose-500 shadow-[0_0_10px_#f43f5e]"></span>
+                      </span>
+                    </div>
+                  )}
+                  
+                  <div className="space-y-6 relative z-10">
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <h4 className="text-2xl font-black text-white group-hover:text-emerald-400 transition-colors uppercase tracking-tight">{rec.stock_info.name}</h4>
+                        <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest font-mono mt-1">{rec.stock_info.ticker}</p>
+                      </div>
+                      <div className="text-right">
+                        <p className={`text-xl font-black ${rec.live_status.profit_pct.startsWith('+') ? 'text-emerald-400' : 'text-rose-400'}`}>
+                          {rec.live_status.profit_pct}
+                        </p>
+                        <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">오늘의 등락</p>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="p-5 bg-white/5 rounded-3xl border border-white/5 space-y-1">
+                        <p className="text-[9px] font-black text-slate-500 uppercase tracking-widest">진입가/목표가</p>
+                        <p className="text-xs font-black text-white">
+                          <span className="text-slate-400">{rec.trading_strategy.entry_price.toLocaleString()}</span>
+                          <ArrowRight className="inline w-3 h-3 mx-2 text-emerald-500" />
+                          <span className="text-emerald-400">{rec.trading_strategy.target_price.toLocaleString()}</span>
+                        </p>
+                      </div>
+                      <div className="p-5 bg-white/5 rounded-3xl border border-white/5 space-y-1">
+                        <p className="text-[9px] font-black text-slate-500 uppercase tracking-widest">손절라인</p>
+                        <p className="text-xs font-black text-rose-400">{rec.trading_strategy.stop_loss.toLocaleString()}원</p>
+                      </div>
+                    </div>
+
+                    <p className="text-xs text-slate-400 font-medium leading-relaxed line-clamp-2 italic">
+                      " {rec.analysis_report.summary} "
+                    </p>
+
+                    <button 
+                      onClick={() => navigate(`/insights/${rec.metadata.slug}`)}
+                      className="w-full py-4 bg-white/5 border border-emerald-500/20 hover:bg-emerald-500/10 hover:border-emerald-500/40 rounded-2xl text-[11px] font-black text-emerald-400 uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-2"
+                    >
+                      전략 시나리오 상세 보기 <ChevronRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="p-12 bg-white/5 rounded-[3rem] border border-dashed border-white/10 text-center">
+              <p className="text-slate-500 font-black uppercase tracking-widest">스윙 조건 부합 종목 탐색 중...</p>
+            </div>
+          )}
+        </div>
+
+        {/* Profit Management Guide Sidebar */}
+        <div className="lg:col-span-4 space-y-8">
+          <div className="p-10 bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 border border-emerald-500/20 rounded-[3rem] space-y-8 relative overflow-hidden group">
+            <div className="absolute -top-10 -right-10 opacity-5 group-hover:scale-110 transition-transform duration-1000">
+              <ShieldCheck className="w-40 h-40 text-emerald-400" />
+            </div>
+            <div className="space-y-2 relative z-10">
+              <h4 className="text-2xl font-black text-emerald-400 tracking-tight">익절 자동화 가이드</h4>
+              <p className="text-xs text-emerald-400/60 font-bold uppercase tracking-widest font-mono">Profit Management Protocol</p>
+            </div>
+            
+            <div className="space-y-6 relative z-10">
+              <div className="flex gap-4">
+                <div className="w-10 h-10 bg-emerald-500 text-slate-950 rounded-xl flex items-center justify-center font-black shrink-0">1차</div>
+                <div className="space-y-1">
+                  <p className="font-black text-white text-sm">224/448일 기계적 익절</p>
+                  <p className="text-[11px] text-slate-400 leading-relaxed italic">
+                    강력한 저항대인 장기 이평선 도달 시 <span className="text-white font-bold underline">물량의 50%를 무조건 수익실현</span>합니다.
+                  </p>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <div className="w-10 h-10 bg-cyan-500 text-slate-950 rounded-xl flex items-center justify-center font-black shrink-0">2차</div>
+                <div className="space-y-1">
+                  <p className="font-black text-white text-sm">반익반본 (Trailing Stop)</p>
+                  <p className="text-[11px] text-slate-400 leading-relaxed italic">
+                    절반 수익 확보 후, 주가가 꺾여 <span className="text-white font-bold underline">본절가 위협 시 남은 물량 전량 정리</span>로 수익 보존.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-6 border-t border-white/10 relative z-10">
+              <div className="flex items-center gap-3 text-emerald-400/80 font-black text-[10px] uppercase tracking-widest">
+                <Info className="w-3 h-3" />
+                감정을 버려야 계좌가 불어납니다
+              </div>
+            </div>
+          </div>
+
+          {/* AI Status Card */}
+          <div className="bg-slate-900 border border-white/5 p-8 rounded-[3rem] space-y-4">
+             <div className="flex items-center gap-3">
+               <div className="p-3 bg-emerald-500/10 rounded-2xl">
+                 <LineChart className="w-6 h-6 text-emerald-400" />
+               </div>
+               <div>
+                 <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">YMG Win-Rate</p>
+                 <p className="text-xl font-black text-white tracking-tighter">84.2% <span className="text-[10px] text-emerald-400 ml-1">▲2.1%</span></p>
+               </div>
+             </div>
+             <p className="text-[10px] text-slate-500 font-medium leading-relaxed">
+               과거 시뮬레이션 데이터 기준, 영매공파 타점 진입 시 한 달 내 수익 달성 확률입니다.
+             </p>
+          </div>
+        </div>
+
+        {/* Premium Mid-long term - Dual Track Lower Section */}
+        <div className="lg:col-span-12 space-y-8 pt-10 border-t border-white/5">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="space-y-1">
+              <h3 className="text-3xl font-black text-white flex items-center gap-3">
+                프리미엄 중장기 가치주
+                <Crown className="w-8 h-8 text-amber-500 fill-amber-500/20" />
+              </h3>
+              <p className="text-xs text-slate-500 font-bold uppercase tracking-widest">YMG 타점 + 퀀트/어라운드 분석 리포트 결합</p>
+            </div>
+            {isAuthenticated ? (
+               <button onClick={handleLogout} className="px-6 py-2 bg-white/5 border border-white/10 rounded-full text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-rose-400 transition-colors">멤버십 로그아웃</button>
+            ) : null}
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {!loading && data?.recommendations?.some((r: any) => r.metadata.tier === 'Premium') ? (
+              data.recommendations.filter((r: any) => r.metadata.tier === 'Premium').map((rec: any) => (
+                <div key={rec.metadata.slug} className="group relative">
+                  {!isAuthenticated && (
+                    <div className="absolute inset-x-2 inset-y-2 bg-slate-950/60 backdrop-blur-xl z-20 rounded-[2.5rem] border border-white/5 flex flex-col items-center justify-center p-8 text-center space-y-6">
+                      <div className="w-16 h-16 bg-white/5 text-amber-500 rounded-3xl flex items-center justify-center shadow-2xl border border-amber-500/20">
+                        <Lock className="w-8 h-8" />
+                      </div>
+                      <div className="space-y-2">
+                        <p className="text-lg font-black text-white tracking-tight">Premium 분석 리포트 잠금</p>
+                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] leading-relaxed">
+                          YMG 타점은 기본, 실시간 업황 분석까지<br />결합된 최상위 0.1% 정보를 확인하세요.
+                        </p>
+                      </div>
+                      <button 
+                        onClick={() => handleUnlock(rec.metadata.slug)}
+                        className="px-8 py-3 bg-amber-500 text-slate-950 rounded-full text-xs font-black uppercase tracking-widest hover:scale-105 active:scale-95 transition-all shadow-[0_10px_30px_rgba(245,158,11,0.3)]"
+                      >
+                        Unlock Now
+                      </button>
+                    </div>
+                  )}
+                  
+                  <div className={`bg-slate-900/50 border border-white/5 p-10 rounded-[3rem] hover:border-amber-500/30 transition-all duration-700 space-y-8 ${!isAuthenticated ? 'blur-sm select-none grayscale' : ''}`}>
+                    <div className="flex justify-between items-start">
+                      <div className="space-y-1">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 bg-amber-500/10 text-amber-500 rounded-full text-[8px] font-black uppercase tracking-widest border border-amber-500/20">
+                          AI Turnaround Point
+                        </div>
+                        <h4 className="text-3xl font-black text-white">{rec.stock_info.name}</h4>
+                        <p className="text-xs font-black text-slate-500 font-mono italic">{rec.stock_info.ticker}</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-2xl font-black text-amber-500">{rec.analysis_report.fundamental_score}점</p>
+                        <p className="text-[9px] font-bold text-slate-500 uppercase">Fundamental Score</p>
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <div className="p-6 bg-slate-950/50 rounded-3xl border border-white/5 space-y-3">
+                         <div className="flex items-center justify-between">
+                            <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">AI 시세 전망</p>
+                            <Sparkles className="w-3 h-3 text-amber-500" />
+                         </div>
+                         <p className="text-xs text-slate-300 font-medium leading-relaxed">
+                           {rec.analysis_report.ai_insight}
+                         </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center justify-between pt-4 border-t border-white/5">
+                       <div className="space-y-1">
+                          <p className="text-[9px] font-black text-slate-500 uppercase tracking-widest">목표 수익률</p>
+                          <p className="text-xl font-black text-emerald-400">+50.0% ~ +100.0%</p>
+                       </div>
+                       <button className="p-4 bg-white/5 rounded-2xl text-slate-400 group-hover:text-amber-500 transition-colors">
+                          <MousePointer2 className="w-5 h-5" />
+                       </button>
+                    </div>
+                  </div>
+                </div>
+              ))
+            ) : (
+              [1, 2, 3].map(i => (
+                <div key={i} className="bg-white/5 h-80 rounded-[3rem] animate-pulse"></div>
+              ))
+            )}
+          </div>
+        </div>
+
+      </div>
+
+      {/* Admin Quick Login Footnote */}
+      {!isAuthenticated && (
+        <div className="flex justify-center pt-10">
+          <button 
+            onClick={() => handleUnlock('admin')}
+            className="text-[10px] font-black text-slate-700 hover:text-emerald-500 transition-colors uppercase tracking-[0.3em] flex items-center gap-2"
+          >
+            <KeyRound className="w-3 h-3" />
+            Premium Access Portal
+          </button>
+        </div>
+      )}
+
     </div>
   );
 };

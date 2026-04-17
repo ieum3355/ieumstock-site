@@ -51,7 +51,7 @@ function App() {
                 <div className="h-4 w-px bg-slate-200 mx-2"></div>
                 <Link to="/brain-off" className="px-6 py-3 bg-slate-900 text-white rounded-2xl font-black text-sm tracking-widest hover:bg-primary-600 shadow-xl shadow-slate-200 hover:shadow-primary-200 transition-all flex items-center gap-2 uppercase">
                   <BrainCircuit className="w-4 h-4" />
-                  Brain-Off
+                  YMG 레이더
                 </Link>
               </div>
 
@@ -87,7 +87,7 @@ function App() {
                 className="flex items-center gap-4 text-xl font-black text-primary-600 p-4 bg-primary-50 rounded-2xl transition-colors"
               >
                 <BrainCircuit className="w-6 h-6" />
-                BRAIN-OFF
+                YMG 레이더
               </Link>
             </div>
           )}
