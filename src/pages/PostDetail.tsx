@@ -52,7 +52,8 @@ const PostDetail = () => {
             const data = await dashRes.json();
             const dynamicRec = (data.recommendations || []).find((p: any) => 
               p.metadata?.id?.toString() === id || 
-              p.metadata?.slug === id
+              p.metadata?.slug === id ||
+              p.stock_info?.ticker === id
             );
             if (dynamicRec) {
               setPost({ ...dynamicRec, type: 'recommendation' });
@@ -67,7 +68,7 @@ const PostDetail = () => {
         if (insightRes && insightRes.ok) {
           try {
             const insights = await insightRes.json();
-            const dynamicInsight = (insights || []).find((p: any) => 
+            const dynamicInsight = (Array.isArray(insights) ? insights : []).find((p: any) => 
               p.article_info?.id?.toString() === id || 
               p.article_info?.slug === id
             );
@@ -77,7 +78,7 @@ const PostDetail = () => {
               return;
             }
           } catch (err) {
-            console.error("Insight JSON parse failed", err);
+            console.error("Insights JSON parse failed", err);
           }
         }
         // 3. Fallback to static articles from CONTENT_DB
@@ -595,7 +596,7 @@ const PostDetail = () => {
               
               <div className="space-y-2 text-center md:text-left">
                 <h3 className="text-3xl md:text-4xl font-black">
-                  {post.content_body.practical_guide.heading}
+                  {post?.content_body?.practical_guide?.heading || '실전 대응 가이드'}
                 </h3>
                 <p className="text-primary-400 font-black uppercase tracking-[0.3em] text-[10px]">실전 매매 가이드라인 (EXECUTION)</p>
               </div>

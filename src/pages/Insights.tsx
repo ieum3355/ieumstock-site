@@ -36,17 +36,19 @@ const Insights = () => {
 
         if (insightRes && insightRes.ok) {
           const insights = await insightRes.json();
-          const insightPosts = (insights || []).map((i: any) => ({
-            id: i.article_info?.id || 'N/A',
-            slug: i.article_info?.slug || 'error',
-            title: i.article_info?.title || '투자 인사이트',
-            content: i.content_body?.introduction?.text || '시장 분석 인사이트 결과입니다.',
-            date: i.article_info?.date || '',
-            type: 'article',
-            isDynamic: true,
-            raw: i 
-          }));
-          allDynamic = [...allDynamic, ...insightPosts];
+          if (Array.isArray(insights)) {
+            const insightPosts = insights.map((i: any) => ({
+              id: i.article_info?.id || 'N/A',
+              slug: i.article_info?.slug || 'error',
+              title: i.article_info?.title || '투자 인사이트',
+              content: i.content_body?.introduction?.text || '시장 분석 인사이트 결과입니다.',
+              date: i.article_info?.date || '',
+              type: 'article',
+              isDynamic: true,
+              raw: i 
+            }));
+            allDynamic = [...allDynamic, ...insightPosts];
+          }
         }
 
         setDynamicPosts(allDynamic);
@@ -58,14 +60,17 @@ const Insights = () => {
     fetchDynamic();
   }, []);
 
-  const allPosts = [...dynamicPosts, ...CONTENT_DB.blog_posts.map(p => ({ 
-    ...p, 
-    id: p.article_info.id,
-    slug: p.article_info.slug,
-    title: p.article_info.title,
-    date: p.article_info.date,
-    type: 'article' 
-  }))];
+  const allPosts = [
+    ...dynamicPosts, 
+    ...(CONTENT_DB?.blog_posts || []).map(p => ({ 
+      ...p, 
+      id: p.article_info?.id,
+      slug: p.article_info?.slug,
+      title: p.article_info?.title,
+      date: p.article_info?.date,
+      type: 'article' 
+    }))
+  ];
 
   return (
     <div className="space-y-12 animate-in fade-in duration-700">

@@ -200,7 +200,7 @@ def get_verified_data():
         # JSON 저장
         output_path = "public/dashboard_data.json"
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
-        with open(output_path, "w", encoding="utf-8-sig") as f:
+        with open(output_path, "w", encoding="utf-8") as f:
             json.dump(final_json, f, ensure_ascii=False, indent=2)
             
         print(f"Success: {len(final_recs)} stocks captured.")
