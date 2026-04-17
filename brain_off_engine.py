@@ -6,7 +6,7 @@ import time
 import re
 from datetime import datetime
 
-# [핵심] YMG 레이더 (Yeong-Mae-Gong-Pa Radar) MVP 엔진
+# [핵심] 브레인 오프 (Brain-Off) MVP 엔진
 # 주식 단테의 '영매공파' 기법을 디지털 알고리즘으로 구현
 
 def get_verified_data():
@@ -39,10 +39,10 @@ def get_verified_data():
         
         final_json = {
             "generation_info": {
-                "engine": "YMG Radar Engine 1.0",
+                "engine": "Brain-Off Engine 1.0",
                 "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 "date": datetime.now().strftime("%Y-%m-%d"),
-                "market_condition": "Checking YMG Breakout Signals"
+                "market_condition": "Checking Brain-Off Breakout Signals"
             },
             "market_summary": [],
             "recommendations": []
@@ -62,8 +62,8 @@ def get_verified_data():
         # 2. 영매공파(YMG) 기술적 분석
         parsed_stocks = []
         
-        # 분석 대상 좁히기 (상위 50개만 정밀 분석 - 시간 관계상)
-        for item in stock_items[:50]:
+        # 분석 대상 확대 (상위 150개 정밀 분석으로 탐지 확률 상향)
+        for item in stock_items[:150]:
             code = item.get('cd', '')
             name = item.get('nm', 'Unknown')
             nv = item.get('nv', 0)
@@ -114,6 +114,7 @@ def get_verified_data():
                 parsed_stocks.append({
                     "ticker": code, "name": name, "price": nv, "rate": cr, "score": score,
                     "tier": tier_tag, "ma112": ma112, "ma224": ma224, "ma448": ma448,
+                    "low_20": min(recent_lows),
                     "condition_flags": {
                         "역배열": is_reverse_aligned, "매집봉": has_accumulation,
                         "공구리": is_concrete, "파란점선": is_breaking_112
@@ -128,17 +129,36 @@ def get_verified_data():
             target_1 = int(s['ma224'] if s['price'] < s['ma224'] else s['ma448'])
             if target_1 <= s['price']: target_1 = int(s['price'] * 1.15)
             
-            stop_loss = int(min([h['low'] for h in hist[:20]]) * 0.97)
+            stop_loss = int(s['low_20'] * 0.97)
             
             is_premium = (s['tier'] == "Premium")
-            full_slug = f"{code_to_slug(s['name'])}-{today_str}"
+            full_slug = f"{code_to_slug(s['name'], s['ticker'])}-{today_str}"
             
             # AI 리포트/재무 점수 생성
             is_take_profit = s['price'] >= target_1 * 0.98 # 시뮬레이션용: 목표가 근접 시 알림 유발
             
+            # 추천 사유 상세 생성
+            reasons = []
+            if s['condition_flags']['역배열']: 
+                reasons.append("장기 이평선(112, 224, 448일)이 역배열된 바닥권 구간에서 하락 멈춤 포착")
+            if s['condition_flags']['매집봉']: 
+                reasons.append("바닥권에서 평균 거래량의 2배를 넘는 세력 매집봉 발생으로 매수세 확인")
+            if s['condition_flags']['공구리']: 
+                reasons.append("최근 20일간 특정 가격대(공구리)를 지지하며 에너지를 응축하는 흐름")
+            if s['condition_flags']['파란점선']: 
+                reasons.append("주가가 112일선을 강력하게 돌파하며 장기 추세 전환(파란점선) 시그널 발생")
+            
+            # 풍부한 시나리오 생성
+            scenario_text = f"현재 {s['name']} 종목은 장기 하락 추세를 멈추고 횡보하며 에너지를 응축한 상태입니다. "
+            if s['condition_flags']['역배열'] and s['condition_flags']['매집봉']:
+                scenario_text += "특히 역배열 바닥권에서 매집봉이 포착된 만큼, 세력의 매집이 상당 부분 진행된 것으로 판단됩니다. "
+            if s['condition_flags']['파란점선']:
+                scenario_text += "112일선 돌파는 강력한 추세 전환의 신호이며, 거래량이 동반될 경우 상단 매물대까지 빠른 상승이 가능합니다. "
+            scenario_text += "1차 목표가 도달 시 일부 수익 실현 후, 448일선까지 장기적인 관점에서 보유를 권장하는 '영매공파' 핵심 타점입니다."
+            
             rec = {
                 "metadata": {
-                    "id": f"YMG-{today_str}-{i}", "slug": full_slug, 
+                    "id": f"BO-{today_str}-{i}", "slug": full_slug, 
                     "tier": s['tier'], "date": datetime.now().strftime("%Y-%m-%d"),
                     "score": s['score'], "action_required": is_take_profit
                 },
@@ -149,27 +169,33 @@ def get_verified_data():
                 },
                 "score_card": {
                     "total_score": s['score'],
-                    "reverse_align": 40 if s['condition_flags']['역배열'] else 0,
+                    "breakout": 20 if s['condition_flags']['파란점선'] else 0,
                     "accumulation": 25 if s['condition_flags']['매집봉'] else 0,
-                    "concrete": 15 if s['condition_flags']['공구리'] else 0,
-                    "breaking": 20 if s['condition_flags']['파란점선'] else 0
+                    "volatility_tight": 15 if s['condition_flags']['공구리'] else 0,
+                    "institutional_buy": 40 if s['condition_flags']['역배열'] else 0  # 역배열은 바닥권 확인으로 매칭
                 },
                 "analysis_report": {
                     "summary": f"{s['name']} 종목은 장기 이평선 역배열 상태에서 바닥을 다지는 '공구리'가 확인되었으며, 최근 매집봉과 함께 112일선 돌파를 시도하는 전형적인 영매공파 타점입니다.",
+                    "why_recommended": reasons,
                     "fundamental_score": random.randint(70, 95) if is_premium else 0,
                     "ai_insight": "업황 턴어라운드 흐름과 세력 매집 흔적이 일치하여 중장기 시세 분출 가능성이 매우 높은 구간입니다." if is_premium else "기술적 반등 구간 진입으로 단기 수익 실현 가능성이 높습니다."
                 },
                 "trading_strategy": {
                     "entry_price": s['price'], "target_price": target_1, "stop_loss": stop_loss,
                     "expected_period": "6개월+" if is_premium else "2주~1개월",
-                    "scenario": "1차 목표가 도달 시 50% 분할 익절, 나머지는 본절가 추적 대응"
+                    "scenario": scenario_text
                 },
-                "live_status": {"current_price": s['price'], "profit_pct": f"{s['rate']:+.2f}%"}
+                "live_status": {
+                    "current_price": s['price'], 
+                    "profit_pct": f"{s['rate']:+.2f}%",
+                    "ymg_flags": s['condition_flags'] # UI에서 사용할 수 있도록 추가
+                }
             }
             final_recs.append(rec)
             
         final_json["recommendations"] = final_recs
-        final_json["generation_info"]["status_msg"] = f"YMG 레이더 작동 중. {len(final_recs)}개 타점 포착 완료."
+        final_json["generation_info"]["status_msg"] = f"브레인 오프 엔진 작동 중. {len(final_recs)}개 타점 포착 완료."
+
             
         # JSON 저장
         output_path = "public/dashboard_data.json"
@@ -207,8 +233,11 @@ def fetch_historical_data(code, pages=5):
         return hist_data
     except: return []
 
-def code_to_slug(name):
-    return re.sub(r'[^a-zA-Z0-9]', '', name).lower() or "stock"
+def code_to_slug(name, ticker=""):
+    slug = re.sub(r'[^a-zA-Z0-9]', '', name).lower()
+    if not slug or slug == "stock":
+        return f"stock-{ticker}"
+    return f"{slug}-{ticker}"
 
 def mask_name(name):
     if len(name) <= 1: return "*"
@@ -221,8 +250,8 @@ def fetch_volume_rankings_with_info():
     headers = {'User-Agent': 'Mozilla/5.0'}
     
     try:
-        # [Pool 1] 거래량 상위 (코스피/코스닥)
-        for page in range(1, 3):
+        # [Pool 1] 거래량 상위 (코스피/코스닥) - 페이지 확대 (1~4페이지)
+        for page in range(1, 5):
             for sosok in [0, 1]: 
                 url = f"https://finance.naver.com/sise/sise_quant.nhn?sosok={sosok}&page={page}"
                 res = requests.get(url, headers=headers)

@@ -1,6 +1,83 @@
 [
   {
     "article_info": {
+      "id": 2003,
+      "slug": "analysis-stock-003280-260417",
+      "title": "오늘의 Standard 브레인 오프 타점: 흥아해운 정밀 분석",
+      "author": "ieumstock AI Research",
+      "date": "2026.04.17",
+      "publishDate": "2026-04-17",
+      "category": "종목 분석",
+      "tags": [
+        "흥아해운",
+        "YMG 포착 섹터",
+        "브레인오프",
+        "기술적분석",
+        "영매공파"
+      ]
+    },
+    "seo_metadata": {
+      "meta_title": "오늘의 Standard 브레인 오프 타점: 흥아해운 정밀 분석 | 이음스탁 투자 리포트",
+      "meta_description": "현재 시장 수급 및 기술적 지표 분석 결과, 흥아해운 종목에서 강력한 에너지 응축이 포착되었습니다. 브레인 오프 엔진의 '영매공파' 필터를 통과한 Standard 등급 추천주입니다.",
+      "og_image": "/assets/images/insight/default-insight.jpg"
+    },
+    "content_body": {
+      "introduction": {
+        "heading": "흥아해운, 왜 지금인가?",
+        "text": "현재 시장 수급 및 기술적 지표 분석 결과, 흥아해운 종목에서 강력한 에너지 응축이 포착되었습니다. 브레인 오프 엔진의 '영매공파' 필터를 통과한 Standard 등급 추천주입니다."
+      },
+      "core_analysis": [
+        {
+          "sub_heading": "실시간 돌파 감지 (SCANNING)",
+          "text": "직전 고점 돌파 및 매물대 소화 과정을 실시간 추적하고 있습니다.",
+          "insight_tip": "주요 저항 구역인 26,735원 돌파 여부가 핵심입니다.",
+          "icon_type": "analysis"
+        },
+        {
+          "sub_heading": "메이저 수급 추적 (TRACKING)",
+          "text": "메이저 수급의 집중 매집 구간을 정밀 분석 중입니다.",
+          "insight_tip": "외국인/기관의 동반 순매수가 이어지는지 수급 창구를 확인하십시오.",
+          "icon_type": "volume"
+        },
+        {
+          "sub_heading": "변동성 필터링 (VERIFIED)",
+          "text": "시장 노이즈를 제거하고 순수 에너지를 측정하여 변동성 응축을 확인했습니다.",
+          "insight_tip": "변동성 지표가 안정적인 {pick['metadata']['tier']} 등급 표준 수치 내에 머물러 있습니다.",
+          "icon_type": "risk"
+        }
+      ],
+      "practical_guide": {
+        "heading": "대응 가이드라인",
+        "items": [
+          {
+            "title": "진입 구간 설정",
+            "description": "3,070원 부근에서의 분할 매수 접근이 유리합니다."
+          },
+          {
+            "title": "리스크 관리",
+            "description": "손절가 2,764원 이탈 시 비중 축소 또는 청산 대응을 권장합니다."
+          }
+        ]
+      },
+      "conclusion": {
+        "text": "흥아해운은 단기 스윙 관점에서 충분한 기대 수익률을 가진 종목입니다.",
+        "closing_statement": "이음스탁의 AI 분석이 귀하의 성공 투자를 돕겠습니다."
+      }
+    },
+    "system_link": {
+      "target_tool": "BrainOff",
+      "related_ticker": [
+        "KOSPI",
+        "KOSDAQ",
+        "영매공파",
+        "바닥탈출",
+        "급등주",
+        "이음스탁"
+      ]
+    }
+  },
+  {
+    "article_info": {
       "id": 2002,
       "slug": "market-warning-260416",
       "title": "현재 시장 상황이 좋지 않아 추천 종목이 없습니다 (관망 권장)",

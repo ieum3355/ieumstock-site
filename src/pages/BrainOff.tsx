@@ -111,11 +111,11 @@ const BrainOff = () => {
         <div className="relative z-10 max-w-3xl space-y-8">
           <div className="inline-flex items-center gap-3 px-4 py-2 bg-emerald-500/10 text-emerald-400 rounded-full text-[10px] font-black tracking-[0.2em] uppercase border border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.1)]">
             <Sparkles className="w-4 h-4" />
-            YMG RADAR MVP 1.0 (Live)
+            BRAIN-OFF RADAR 1.0 (Live)
           </div>
           <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-[1.05] text-white">
             바닥에서 잡는<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">영매공파</span> 레이더
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">브레인 오프</span> 레이더
           </h1>
           <p className="text-slate-400 text-lg md:text-xl font-medium leading-relaxed max-w-2xl">
             장기 이평선 역배열을 뚫고 올라오는 '상승 초입' 종목을 정밀 스캔합니다. 
@@ -128,7 +128,7 @@ const BrainOff = () => {
                 <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">엔진 상태</p>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_10px_#10b981]"></div>
-                  <span className="text-sm font-black text-emerald-400 uppercase tracking-tighter">레이더 스캔 중</span>
+                  <span className="text-sm font-black text-emerald-400 uppercase tracking-tighter">브레인 오프 스캔 중</span>
                 </div>
               </div>
               <div className="w-px h-8 bg-white/10 hidden md:block"></div>
@@ -305,12 +305,12 @@ const BrainOff = () => {
                  <LineChart className="w-6 h-6 text-emerald-400" />
                </div>
                <div>
-                 <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">YMG Win-Rate</p>
+                 <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Brain-Off Win-Rate</p>
                  <p className="text-xl font-black text-white tracking-tighter">84.2% <span className="text-[10px] text-emerald-400 ml-1">▲2.1%</span></p>
                </div>
              </div>
              <p className="text-[10px] text-slate-500 font-medium leading-relaxed">
-               과거 시뮬레이션 데이터 기준, 영매공파 타점 진입 시 한 달 내 수익 달성 확률입니다.
+               과거 시뮬레이션 데이터 기준, 브레인 오프 타점 진입 시 한 달 내 수익 달성 확률입니다.
              </p>
           </div>
         </div>

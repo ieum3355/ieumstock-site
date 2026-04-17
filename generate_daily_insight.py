@@ -107,20 +107,32 @@ def generate_insight():
     today = datetime.now().strftime("%Y.%m.%d")
     today_iso = datetime.now().strftime("%Y-%m-%d")
     
-    # Check if we already have a post for today
-    if any(i.get('article_info', {}).get('date') == today or i.get('date') == today for i in insights):
-        print(f"Insight for {today} already exists.")
+    # Check if we already have a non-warning post for today
+    today_has_real_insight = any(
+        (i.get('article_info', {}).get('date') == today or i.get('date') == today) and "market-warning" not in i.get('article_info', {}).get('slug', '')
+        for i in insights
+    )
+    
+    if today_has_real_insight:
+        print(f"Real Insight for {today} already exists. Skipping.")
         return
 
-    # 1. Load Recommendation Data
+    # 1. Load Recommendation Data (Brain-Off Dashboard)
     dashboard_data = {}
     try:
-        with open('public/dashboard_data.json', 'r', encoding='utf-8') as f:
+        # dashboard_data.json is saved as utf-8-sig in engine
+        with open('public/dashboard_data.json', 'r', encoding='utf-8-sig') as f:
             dashboard_data = json.load(f)
-    except:
+    except Exception as e:
+        print(f"Warning: Could not read dashboard_data.json: {e}")
         pass
 
     recs = dashboard_data.get('recommendations', [])
+
+    # If we have a warning but now have recs, we should replace or add the real insight
+    # For MVP simplicity, we'll just remove today's warning if we're about to add a real insight
+    if recs:
+        insights = [i for i in insights if not (i.get('article_info', {}).get('date') == today and "market-warning" in i.get('article_info', {}).get('slug', ''))]
     today_str = datetime.now().strftime("%y%m%d")
 
     # 2. Case Selection: Stock Analysis vs Market Warning
@@ -129,8 +141,8 @@ def generate_insight():
         pick = recs[0]
         segments = pick['trading_strategy'].get('analysis_segments', {})
         
-        title = f"오늘의 {pick['metadata']['tier']} 관점: {pick['stock_info']['real_name']} 정밀 분석"
-        intro_text = f"현재 시장 수급 분석 결과, {pick['stock_info']['real_name']} 종목에서 유의미한 에너지 응축이 포착되었습니다. {pick['metadata']['tier']} 등급의 선정 기준인 {pick['score_card']['total_score']}점을 획득하며 기술적 필터를 통과했습니다."
+        title = f"오늘의 {pick['metadata']['tier']} 브레인 오프 타점: {pick['stock_info']['real_name']} 정밀 분석"
+        intro_text = f"현재 시장 수급 및 기술적 지표 분석 결과, {pick['stock_info']['real_name']} 종목에서 강력한 에너지 응축이 포착되었습니다. 브레인 오프 엔진의 '영매공파' 필터를 통과한 {pick['metadata']['tier']} 등급 추천주입니다."
         
         content_body = {
             "introduction": {
@@ -176,7 +188,7 @@ def generate_insight():
             }
         }
         slug = f"analysis-{pick['metadata']['slug']}"
-        tags = [pick['stock_info']['real_name'], pick['stock_info']['sector'], "AI추천", "기술적분석"]
+        tags = [pick['stock_info']['real_name'], pick['stock_info']['sector'], "브레인오프", "기술적분석", "영매공파"]
     else:
         # Market Warning Case
         status_msg = dashboard_data.get('generation_info', {}).get('status_msg', "시장 변동성 확인 중")
@@ -234,7 +246,7 @@ def generate_insight():
         "content_body": content_body,
         "system_link": {
             "target_tool": "BrainOff",
-            "related_ticker": ["KOSPI", "KOSDAQ", "KOSPI 200", "KOSDAQ 150", "KODEX 200", "TIGER 2차전지테마"]
+            "related_ticker": ["KOSPI", "KOSDAQ", "영매공파", "바닥탈출", "급등주", "이음스탁"]
         }
     }
 

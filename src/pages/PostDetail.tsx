@@ -219,18 +219,43 @@ const PostDetail = () => {
               <div className={`space-y-6 transition-all duration-700 ${isLocked ? 'blur-md select-none pointer-events-none' : ''}`}>
                 <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100">
                   <p className="text-xs font-black text-slate-400 uppercase mb-2">기술적 분석 (TECHNICAL)</p>
-                  <p className="text-slate-600 font-medium leading-relaxed">{post.trading_strategy.technical_analysis}</p>
+                  <p className="text-slate-600 font-medium leading-relaxed">
+                    {post.trading_strategy?.scenario || post.trading_strategy?.technical_analysis || '분석 데이터를 불러오는 중입니다.'}
+                  </p>
                 </div>
+
+                {/* YMG Specific Conditions Indicators */}
+                {post.live_status?.ymg_flags && (
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-6 bg-slate-50 rounded-[2rem] border border-slate-100">
+                    {Object.entries(post.live_status.ymg_flags).map(([key, value]) => (
+                      <div key={key} className="flex flex-col items-center gap-2 group/flag">
+                        <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-500 ${
+                          value ? 'bg-emerald-500 text-white shadow-lg shadow-emerald-200/50 scale-110' : 'bg-slate-200 text-slate-400 opacity-40 grayscale'
+                        }`}>
+                          {value ? <Zap className="w-6 h-6 animate-pulse" /> : <AlertCircle className="w-6 h-6" />}
+                        </div>
+                        <div className="text-center">
+                          <span className={`text-[10px] font-black uppercase tracking-tight block ${value ? 'text-emerald-600' : 'text-slate-400'}`}>
+                            {key}
+                          </span>
+                          <span className="text-[8px] font-bold text-slate-300 uppercase">{value ? 'Detected' : 'Wait'}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
                 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="p-6 bg-primary-50 rounded-3xl border border-primary-100 group hover:bg-primary-600 transition-all duration-500">
                     <p className="text-[10px] font-black text-primary-600 group-hover:text-primary-200 uppercase mb-1">목표가 (Target)</p>
-                    <p className="text-xl font-black text-slate-900 group-hover:text-white">{post.trading_strategy.target_price.toLocaleString()}원</p>
+                    <p className="text-xl font-black text-slate-900 group-hover:text-white">
+                      {post.trading_strategy?.target_price?.toLocaleString() || '0'}원
+                    </p>
                   </div>
                   <div className="p-6 bg-rose-50 rounded-3xl border border-rose-100 group hover:bg-rose-600 transition-all duration-500">
                     <p className="text-[10px] font-black text-rose-600 group-hover:text-rose-200 uppercase mb-1">맥점(손절선)</p>
                     <p className="text-xl font-black text-slate-900 group-hover:text-white">
-                      {(post.live_status.breakout_level || post.trading_strategy.stop_loss || 0).toLocaleString()}원
+                      {(post.live_status?.breakout_level || post.trading_strategy?.stop_loss || 0).toLocaleString()}원
                     </p>
                   </div>
                 </div>
@@ -391,14 +416,25 @@ const PostDetail = () => {
                   </div>
                   
                   <div className="space-y-6">
-                    <h4 className="text-base font-black text-slate-900 uppercase tracking-tight">핵심 체크포인트</h4>
+                    <h4 className="text-base font-black text-slate-900 uppercase tracking-tight flex items-center gap-2">
+                      <ShieldCheck className="w-5 h-5 text-emerald-500" />
+                      브레인 오프 핵심 타점 근거
+                    </h4>
                     <div className="space-y-4">
-                      {post.analysis_report.why_recommended.map((reason: string, idx: number) => (
-                        <div key={idx} className="flex gap-4 items-start p-5 bg-primary-50 rounded-3xl border border-primary-100 transition-all hover:bg-white hover:shadow-xl group">
-                          <CheckCircle2 className="w-6 h-6 text-primary-600 flex-shrink-0" />
-                          <p className="text-sm font-bold text-slate-700 leading-snug group-hover:text-primary-900">{reason}</p>
+                      {post.analysis_report.why_recommended && post.analysis_report.why_recommended.length > 0 ? (
+                        post.analysis_report.why_recommended.map((reason: string, idx: number) => (
+                          <div key={idx} className="flex gap-4 items-start p-6 bg-emerald-50/50 rounded-[2rem] border border-emerald-100 transition-all hover:bg-white hover:shadow-xl group">
+                            <div className="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xs font-black flex-shrink-0">
+                              {idx + 1}
+                            </div>
+                            <p className="text-sm font-bold text-slate-700 leading-snug group-hover:text-emerald-900">{reason}</p>
+                          </div>
+                        ))
+                      ) : (
+                        <div className="p-5 bg-slate-50 rounded-3xl border border-dotted border-slate-200 text-center">
+                          <p className="text-xs font-bold text-slate-400 uppercase italic">상세 텍스트 분석 대기 중...</p>
                         </div>
-                      ))}
+                      )}
                     </div>
                   </div>
                 </div>
