@@ -1,37 +1,37 @@
 ﻿{
   "generation_info": {
     "engine": "YMG Radar Engine 1.0",
-    "timestamp": "2026-04-17 11:46:54",
+    "timestamp": "2026-04-17 04:10:06",
     "date": "2026-04-17",
     "market_condition": "Checking YMG Breakout Signals",
-    "status_msg": "YMG 레이더 작동 중. 2개 타점 포착 완료."
+    "status_msg": "YMG 레이더 작동 중. 1개 타점 포착 완료."
   },
   "market_summary": [
     {
       "name": "코스피 (KOSPI)",
-      "value": "6,193.17",
-      "rate": "-0.53%"
+      "value": "6,185.97",
+      "rate": "-0.64%"
     },
     {
       "name": "코스닥 (KOSDAQ)",
-      "value": "1,165.25",
-      "rate": "+0.20%"
+      "value": "1,169.03",
+      "rate": "+0.52%"
     }
   ],
   "recommendations": [
     {
       "metadata": {
         "id": "YMG-260417-0",
-        "slug": "stock-260417",
+        "slug": "ta-260417",
         "tier": "Standard",
         "date": "2026-04-17",
         "score": 80,
         "action_required": false
       },
       "stock_info": {
-        "name": "흥아해운",
-        "real_name": "흥아해운",
-        "ticker": "003280",
+        "name": "백금T&A",
+        "real_name": "백금T&A",
+        "ticker": "046310",
         "sector": "YMG 포착 섹터",
         "market": "KRW"
       },
@@ -43,60 +43,20 @@
         "breaking": 0
       },
       "analysis_report": {
-        "summary": "흥아해운 종목은 장기 이평선 역배열 상태에서 바닥을 다지는 '공구리'가 확인되었으며, 최근 매집봉과 함께 112일선 돌파를 시도하는 전형적인 영매공파 타점입니다.",
+        "summary": "백금T&A 종목은 장기 이평선 역배열 상태에서 바닥을 다지는 '공구리'가 확인되었으며, 최근 매집봉과 함께 112일선 돌파를 시도하는 전형적인 영매공파 타점입니다.",
         "fundamental_score": 0,
         "ai_insight": "기술적 반등 구간 진입으로 단기 수익 실현 가능성이 높습니다."
       },
       "trading_strategy": {
-        "entry_price": 3060,
-        "target_price": 26735,
-        "stop_loss": 3472,
+        "entry_price": 3455,
+        "target_price": 10001,
+        "stop_loss": 2764,
         "expected_period": "2주~1개월",
         "scenario": "1차 목표가 도달 시 50% 분할 익절, 나머지는 본절가 추적 대응"
       },
       "live_status": {
-        "current_price": 3060,
-        "profit_pct": "+4.52%"
-      }
-    },
-    {
-      "metadata": {
-        "id": "YMG-260417-1",
-        "slug": "stock-260417",
-        "tier": "Standard",
-        "date": "2026-04-17",
-        "score": 80,
-        "action_required": false
-      },
-      "stock_info": {
-        "name": "서남",
-        "real_name": "서남",
-        "ticker": "294630",
-        "sector": "YMG 포착 섹터",
-        "market": "KRW"
-      },
-      "score_card": {
-        "total_score": 80,
-        "reverse_align": 40,
-        "accumulation": 25,
-        "concrete": 15,
-        "breaking": 0
-      },
-      "analysis_report": {
-        "summary": "서남 종목은 장기 이평선 역배열 상태에서 바닥을 다지는 '공구리'가 확인되었으며, 최근 매집봉과 함께 112일선 돌파를 시도하는 전형적인 영매공파 타점입니다.",
-        "fundamental_score": 0,
-        "ai_insight": "기술적 반등 구간 진입으로 단기 수익 실현 가능성이 높습니다."
-      },
-      "trading_strategy": {
-        "entry_price": 5220,
-        "target_price": 56116,
-        "stop_loss": 3472,
-        "expected_period": "2주~1개월",
-        "scenario": "1차 목표가 도달 시 50% 분할 익절, 나머지는 본절가 추적 대응"
-      },
-      "live_status": {
-        "current_price": 5220,
-        "profit_pct": "+7.94%"
+        "current_price": 3455,
+        "profit_pct": "+8.99%"
       }
     }
   ]
