@@ -617,19 +617,38 @@ const PostDetail = () => {
                 ))}
               </div>
 
-              {post.system_link && post.system_link.related_ticker.length > 0 && (
-                <div className="pt-8 border-t border-white/10 flex flex-wrap items-center gap-6">
-                  <span className="text-xs font-black text-slate-500 uppercase tracking-widest">관련 종목</span>
-                  <div className="flex flex-wrap gap-2">
-                  {post.system_link.related_ticker.map((ticker: string) => (
-                    <span 
-                      key={ticker} 
-                      className="px-3 py-1.5 bg-slate-50 text-slate-600 text-[11px] font-bold rounded-xl border border-slate-100 hover:border-primary-200 hover:text-primary-600 transition-all cursor-default"
-                    >
-                      ${ticker}
-                    </span>
-                  ))}
-                </div>
+              {post.system_link && (
+                <div className="pt-8 border-t border-white/10 space-y-8">
+                  {post.system_link.cta_text && (
+                    <div className="flex justify-center">
+                      <Link 
+                        to="/brain-off"
+                        className="group relative px-10 py-6 bg-primary-600 text-white rounded-[2rem] font-black text-lg shadow-2xl shadow-primary-500/30 hover:bg-primary-500 hover:scale-105 transition-all duration-300 overflow-hidden"
+                      >
+                        <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                        <span className="relative flex items-center gap-3">
+                          {post.system_link.cta_text}
+                          <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                        </span>
+                      </Link>
+                    </div>
+                  )}
+                  
+                  {post.system_link.related_ticker && post.system_link.related_ticker.length > 0 && (
+                    <div className="flex flex-wrap items-center gap-6 justify-center md:justify-start">
+                      <span className="text-xs font-black text-slate-500 uppercase tracking-widest">관련 종목</span>
+                      <div className="flex flex-wrap gap-2">
+                        {post.system_link.related_ticker.map((ticker: string) => (
+                          <span 
+                            key={ticker} 
+                            className="px-3 py-1.5 bg-slate-50 text-slate-600 text-[11px] font-bold rounded-xl border border-slate-100 hover:border-primary-200 hover:text-primary-600 transition-all cursor-default"
+                          >
+                            ${ticker}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
             </section>

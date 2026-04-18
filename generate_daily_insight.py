@@ -151,26 +151,26 @@ def generate_insight():
             },
             "core_analysis": [
                 {
-                    "sub_heading": "실시간 돌파 감지 (SCANNING)",
+                    "sub_heading": "1. 실시간 돌파 감지 (SCANNING)",
                     "text": segments.get('breakout', "직전 고점 돌파 및 매물대 소화 과정을 실시간 추적하고 있습니다."),
                     "insight_tip": f"주요 저항 구역인 {pick['trading_strategy']['target_price']:,}원 돌파 여부가 핵심입니다.",
                     "icon_type": "analysis"
                 },
                 {
-                    "sub_heading": "메이저 수급 추적 (TRACKING)",
+                    "sub_heading": "2. 메이저 수급 추적 (TRACKING)",
                     "text": segments.get('flow', "메이저 수급의 집중 매집 구간을 정밀 분석 중입니다."),
                     "insight_tip": "외국인/기관의 동반 순매수가 이어지는지 수급 창구를 확인하십시오.",
                     "icon_type": "volume"
                 },
                 {
-                    "sub_heading": "변동성 필터링 (VERIFIED)",
+                    "sub_heading": "3. 변동성 필터링 (VERIFIED)",
                     "text": segments.get('volatility', "시장 노이즈를 제거하고 순수 에너지를 측정하여 변동성 응축을 확인했습니다."),
-                    "insight_tip": "변동성 지표가 안정적인 {pick['metadata']['tier']} 등급 표준 수치 내에 머물러 있습니다.",
+                    "insight_tip": f"변동성 지표가 안정적인 {pick['metadata']['tier']} 등급 표준 수치 내에 머물러 있습니다.",
                     "icon_type": "risk"
                 }
             ],
             "practical_guide": {
-                "heading": "대응 가이드라인",
+                "heading": "진짜 주도주를 선별하는 '상따' 체크리스트",
                 "items": [
                     {
                         "title": "진입 구간 설정",
@@ -200,7 +200,7 @@ def generate_insight():
             },
             "core_analysis": [
                 {
-                    "sub_heading": "무리한 매매보다 현금 비중 확대",
+                    "sub_heading": "1. 무리한 매매보다 현금 비중 확대",
                     "text": "지수의 하방 압력이 강하거나 주도 섹터의 에너지가 분산되는 시기에는 휴식도 투자입니다. 억지로 종목을 매수하기보다 다음 주도주를 기다리는 인내심이 필요합니다.",
                     "insight_tip": "현금을 보유하는 것 또한 하나의 포지션입니다.",
                     "icon_type": "risk"
@@ -245,8 +245,9 @@ def generate_insight():
         },
         "content_body": content_body,
         "system_link": {
-            "target_tool": "BrainOff",
-            "related_ticker": ["KOSPI", "KOSDAQ", "영매공파", "바닥탈출", "급등주", "이음스탁"]
+            "target_tool": "Brain-Off Hybrid 2.1",
+            "cta_text": "실시간 MVP 2.1 수급 분석으로 진짜 주도주 확인하기" if recs else "실시간 시장 지표 확인하기",
+            "related_ticker": [p['stock_info']['ticker'] for p in recs] if recs else ["KOSPI", "KOSDAQ"]
         }
     }
 

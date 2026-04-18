@@ -38,14 +38,14 @@ const Insights = () => {
           const insights = await insightRes.json();
           if (Array.isArray(insights)) {
             const insightPosts = insights.map((i: any) => ({
+              ...i,
               id: i.article_info?.id || 'N/A',
               slug: i.article_info?.slug || 'error',
               title: i.article_info?.title || '투자 인사이트',
               content: i.content_body?.introduction?.text || '시장 분석 인사이트 결과입니다.',
               date: i.article_info?.date || '',
               type: 'article',
-              isDynamic: true,
-              raw: i 
+              isDynamic: true
             }));
             allDynamic = [...allDynamic, ...insightPosts];
           }
