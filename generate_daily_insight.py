@@ -5,69 +5,91 @@ from datetime import datetime, timedelta
 # Path to the dynamic insights file
 INSIGHTS_FILE = 'public/daily_insights.json'
 
-# Expanded Research-grade topics for fallback/educational content
+# High-quality, long-form topics for fallback/educational content
 TOPICS = [
     {
-        "title": "금리 동결과 시장의 반응: 기회인가 함정인가?",
-        "slug": "interest-rate-impact-analysis",
-        "category": "시장 분석",
+        "category": "Investment Insight",
+        "title": "상한가 따라잡기(상따), 세력의 설거지를 피하는 3가지 필승 전략",
+        "slug": "truth-of-upper-limit-price-trading",
+        "author": "ieumstock AI Lab",
+        "tags": ["상한가매매", "상따전략", "세력패턴", "기술적분석", "리스크관리"],
         "introduction": {
-            "heading": "변곡점에 선 금리 신호, 시장은 무엇을 읽고 있는가?",
-            "text": "중앙은행의 금리 동결 결정이 내려졌습니다. 시장은 이를 호재로 받아들이는 듯하지만, 기저에 깔린 인플레이션 우려와 고금리 유지 기간(Higher for Longer)에 대한 불확실성은 여전합니다."
+            "heading": "탐욕과 공포가 교차하는 상한가, 당신은 준비되었습니까?",
+            "text": "주식 시장에서 상한가는 모든 투자자의 시선을 사로잡는 화려한 불꽃과 같습니다. '내일도 상승할 것'이라는 탐욕과 '나만 소외될지 모른다'는 공포가 개미 투자자들을 상한가 잔량 속으로 끌어들입니다. 하지만 준비되지 않은 상한가 매매(상따)는 세력의 차익 실현을 돕는 '설거지'의 희생양이 되기 십상입니다."
         },
         "core_analysis": [
             {
-                "sub_heading": "1. 부채 부담과 기술주의 밸류에이션 재정렬",
-                "text": "금리 동결은 단기적으로 기업의 이자 비용 부담을 덜어주지만, 고금리 상태의 지속은 장기적으로 성장주의 멀티플을 압박하는 요인입니다.",
-                "insight_tip": "현금 비중을 30% 이상 유지하며 지지선을 확인하는 인내심이 필요합니다.",
-                "icon_type": "risk"
+                "sub_heading": "1. 세력은 왜 상한가를 '설계'하는가?",
+                "text": "세력에게 상한가는 단순한 상승 이상의 의미를 가집니다. 대량의 물량을 개인에게 넘기기 위해 시장의 관심을 극대화하는 '꽃길'을 까는 작업입니다. 특히 거래량이 실리지 않은 채 장 막판에 억지로 문을 닫는 상한가는 익일 갭하락 가능성이 매우 높은 위험 신호입니다.",
+                "insight_tip": "상한가는 개미를 가두기 위한 가장 화려한 감옥이 될 수 있음을 명심하십시오."
+            },
+            {
+                "sub_heading": "2. 기회비용의 증발: 보이지 않는 손실",
+                "text": "잘못된 상따로 계좌가 묶이는 순간, 진짜 주도주가 터질 때 진입할 수 있는 '자금의 유동성'이 사라집니다. 글로벌 경제의 불확실성이 커지는 시기에 개별 테마주에 자금이 묶이는 것은 단순 손실을 넘어 투자 기회 자체를 박탈당하는 결과를 초래합니다.",
+                "insight_tip": "수급의 질을 파악하는 것이 우선입니다."
             }
         ],
         "practical_guide": {
-            "heading": "투자자 행동 강령: 하이브리드 대응",
+            "heading": "진짜 주도주를 선별하는 '상따' 체크리스트",
             "items": [
                 {
-                    "title": "분할 매수의 원칙",
-                    "description": "한 번에 전량을 매수하기보다, 지지선 확인 시마다 10%씩 물량을 늘려가는 보수적 접근이 유리합니다."
+                    "title": "시간의 법칙",
+                    "description": "오전 10시 이전에 강력하게 문을 닫은 종목일수록 익일 상승 확률이 비약적으로 높습니다."
+                },
+                {
+                    "title": "테마의 응집력",
+                    "description": "단독 종목의 호재보다 해당 업종 전체가 함께 움직이는 주도 테마의 대장주여야 합니다."
+                },
+                {
+                    "title": "거래량 잠금 상태",
+                    "description": "상한가 안착 후 잔량이 줄어들지 않고 거래량이 소멸된 상태로 유지되어야 진정한 '잠금'입니다."
                 }
             ]
         },
         "conclusion": {
-            "text": "시장은 예측의 영역이 아니라 대응의 영역입니다. 금리 신호를 맹신하기보다 차트에 찍히는 거래량과 수급의 실체를 믿으십시오.",
-            "closing_statement": "이음스탁이 당신의 흔들리지 않는 투자 기준이 되겠습니다."
-        },
-        "tags": ["금리동결", "시장분석", "투자전략", "거시경제", "수급분석"]
+            "text": "상한가는 부의 지름길이 될 수도 있지만, 누군가에겐 파산의 덫입니다. 공급망과 인플레이션이 요동치는 거친 시장에서 내 돈을 지키는 유일한 방법은 냉정한 판단력뿐입니다. 세력이 파놓은 구덩이에 스스로 걸어 들어가지 마십시오.",
+            "closing_statement": "투자는 원칙의 산물입니다. 이음스탁이 당신의 흔들리지 않는 원칙이 되겠습니다."
+        }
     },
     {
-        "title": "세력의 매집봉 패턴 분석: 매수 타점 잡는 법",
-        "slug": "major-buying-pattern-analysis",
-        "category": "매매 기법",
+        "category": "Technical Analysis",
+        "title": "공구리 패턴: 바닥권 매수 타점의 정석과 세력의 매집 원리",
+        "slug": "concrete-pattern-mastery",
+        "author": "ieumstock AI Lab",
+        "tags": ["공구리패턴", "바닥탈출", "세력매집", "영매공파", "가치투자"],
         "introduction": {
-            "heading": "차트 속 숨은 고수들의 흔적, 매집봉을 찾으십시오.",
-            "text": "주가가 바닥권에서 대량 거래를 동반하며 윗꼬리를 다는 캔들은 흔히 '매집봉'이라 불립니다. 이는 세력이 물량을 테스트하고 매집을 진행 중이라는 강력한 신호입니다."
+            "heading": "무너지지 않는 바닥, '공구리'를 이해하면 수익이 보입니다.",
+            "text": "주가가 장기 하락을 멈추고 특정 가격대를 지지하며 횡보하는 현상을 '공구리를 친다'고 표현합니다. 이는 하락 에너지가 소멸되고 새로운 매수 주체가 바닥을 다지고 있다는 신호입니다."
         },
         "core_analysis": [
             {
-                "sub_heading": "1. 윗꼬리 캔들의 의미 해석",
-                "text": "단순한 하락이 아니라 상단 매물을 소화하는 과정입니다. 이후 거래량이 줄어들며 캔들 몸통 하단을 지지해 준다면 완벽한 타점이 됩니다.",
-                "insight_tip": "매집봉 출현 후 눌림목 구간이 최고의 진입 기회입니다.",
-                "icon_type": "volume"
+                "sub_heading": "1. 장기 이평선 역배열의 수렴",
+                "text": "112일선, 224일선 등 장기 이동평균선이 주가와 맞닿으며 수렴하는 구간이 공구리의 핵심입니다. 이 구간에서 주가가 이평선 위로 올라타는 순간이 바로 '영매공파'의 핵심 타점입니다.",
+                "insight_tip": "이평선이 꼬여있는 구간에서 거래량이 터지는 캔들을 찾으십시오."
+            },
+            {
+                "sub_heading": "2. 바닥권 매집봉의 출현",
+                "text": "공구리 구간 내에서 윗꼬리가 긴 매집봉이 자주 출현한다면 이는 세력이 물량을 테스트하고 있다는 명백한 증거입니다.",
+                "insight_tip": "매집봉의 저점을 깨지 않는 흐름이 유지되어야 합니다."
             }
         ],
         "practical_guide": {
-            "heading": "매집봉 대응 매뉴얼",
+            "heading": "공구리 타점 실전 공략법",
             "items": [
                 {
-                    "title": "거래량 잠금 확인",
-                    "description": "매집봉 이후 거래량이 전일 대비 20% 이하로 급감하면서 주가가 밀리지 않아야 합니다."
+                    "title": "박스권 하단 매수",
+                    "description": "공구리 구간의 저점을 손절가로 잡고, 박스권 하단에서 분할 매수로 접근하는 것이 가장 안전합니다."
+                },
+                {
+                    "title": "256 기법과의 조화",
+                    "description": "5일선이 20일선을 돌파하는 골든크로스와 공구리 돌파가 동시에 일어나는 지점이 승률 90% 이상의 급등 타점입니다."
                 }
             ]
         },
         "conclusion": {
-            "text": "세력의 발자취를 따라가는 것만으로도 주식 시장의 상위 5%에 들 수 있습니다.",
-            "closing_statement": "이음스탁이 당신의 기술적 안목을 키워드립니다."
-        },
-        "tags": ["매집봉", "영매공파", "기술적분석", "세력패턴", "차트분석"]
+            "text": "급등주를 쫓아가는 것보다 바닥을 확인하고 기다리는 투자가 훨씬 수익률이 높습니다.",
+            "closing_statement": "안전한 투자의 시작, 이음스탁이 바닥을 찾아드립니다."
+        }
     }
 ]
 
@@ -167,7 +189,6 @@ def generate_insight():
         tags = [pick['stock_info']['real_name'], pick['stock_info']['sector'], "브레인오프", "기술적분석", "영매공파"]
     else:
         # Educational/Strategy Content Case (No recommended stocks)
-        # Cycle through TOPICS based on the day of the year
         day_of_year = datetime.now().timetuple().tm_yday
         topic = TOPICS[day_of_year % len(TOPICS)]
         
