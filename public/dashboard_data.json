@@ -1,8 +1,8 @@
 {
   "generation_info": {
     "engine": "Brain-Off Engine 1.0",
-    "timestamp": "2026-04-18 03:46:11",
-    "date": "2026-04-18",
+    "timestamp": "2026-04-19 04:12:39",
+    "date": "2026-04-19",
     "market_condition": "Checking Brain-Off Breakout Signals",
     "status_msg": "브레인 오프 엔진 작동 중. 5개 타점 포착 완료."
   },
@@ -21,10 +21,10 @@
   "recommendations": [
     {
       "metadata": {
-        "id": "BO-260418-0",
-        "slug": "stock-003280-260418",
+        "id": "BO-260419-0",
+        "slug": "stock-003280-260419",
         "tier": "Standard",
-        "date": "2026-04-18",
+        "date": "2026-04-19",
         "score": 80,
         "action_required": false
       },
@@ -72,10 +72,10 @@
     },
     {
       "metadata": {
-        "id": "BO-260418-1",
-        "slug": "stock-014160-260418",
+        "id": "BO-260419-1",
+        "slug": "stock-014160-260419",
         "tier": "Standard",
-        "date": "2026-04-18",
+        "date": "2026-04-19",
         "score": 80,
         "action_required": false
       },
@@ -123,10 +123,10 @@
     },
     {
       "metadata": {
-        "id": "BO-260418-2",
-        "slug": "stock-203650-260418",
+        "id": "BO-260419-2",
+        "slug": "stock-203650-260419",
         "tier": "Standard",
-        "date": "2026-04-18",
+        "date": "2026-04-19",
         "score": 80,
         "action_required": false
       },
@@ -174,10 +174,10 @@
     },
     {
       "metadata": {
-        "id": "BO-260418-3",
-        "slug": "ta-046310-260418",
+        "id": "BO-260419-3",
+        "slug": "ta-046310-260419",
         "tier": "Standard",
-        "date": "2026-04-18",
+        "date": "2026-04-19",
         "score": 80,
         "action_required": false
       },
@@ -225,10 +225,10 @@
     },
     {
       "metadata": {
-        "id": "BO-260418-4",
-        "slug": "stock-033170-260418",
+        "id": "BO-260419-4",
+        "slug": "stock-033170-260419",
         "tier": "Standard",
-        "date": "2026-04-18",
+        "date": "2026-04-19",
         "score": 80,
         "action_required": false
       },
