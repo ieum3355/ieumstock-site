@@ -354,8 +354,13 @@ def generate_insight():
     
     recs = dashboard_data.get('recommendations', [])
     
-    # IMPROVED: Prevent repeat stock analysis
-    recent_tickers = [i.get('system_link', {}).get('related_ticker', [None])[0] for i in insights[:5]]
+    # IMPROVED: Prevent repeat stock analysis with defensive check
+    recent_tickers = []
+    for i in insights[:10]:
+        related = i.get('system_link', {}).get('related_ticker', [])
+        if related and len(related) > 0:
+            recent_tickers.append(related[0])
+    
     available_recs = [r for r in recs if r['stock_info']['ticker'] not in recent_tickers]
     if not available_recs: available_recs = recs
 

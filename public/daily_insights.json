@@ -1,6 +1,96 @@
 [
   {
     "article_info": {
+      "id": 2084,
+      "slug": "analysis-stock-014160-260420",
+      "title": "[정밀 리포트] 대영포장, 80점의 압도적 타점 포착",
+      "author": "ieumstock AI Research",
+      "date": "2026.04.20",
+      "publishDate": "2026-04-20",
+      "category": "종목 분석",
+      "tags": [
+        "대영포장",
+        "영매공파",
+        "정밀분석",
+        "Premium"
+      ]
+    },
+    "seo_metadata": {
+      "meta_title": "대영포장 리서치 리포트 - 이음스탁",
+      "meta_description": "대영포장 종목의 기술적 지표와 수급 흐름을 정밀 분석한 전문 리포트입니다."
+    },
+    "content_body": {
+      "introduction": {
+        "heading": "대영포장 리서치: 왜 이 종목에 주목해야 하는가?",
+        "text": "현재 시장의 변동성 속에서도 대영포장은(는) 독자적인 수급망을 형성하며 시세 분출을 준비하고 있습니다."
+      },
+      "core_analysis": [
+        {
+          "sub_heading": "1. 실시간 돌파 및 거래량 분석",
+          "text": "현재 대영포장은(는) 거래량 가중 평균 가격(VWAP) 상단에 위치하며 시장의 주도권을 쥐고 있습니다. 특히 1,260원 부근에서의 손바뀜 현상이 매우 긍정적입니다.",
+          "insight_tip": "진입가 1,260원 부근 분할 매수 유효합니다.",
+          "icon_type": "analysis"
+        },
+        {
+          "sub_heading": "2. 메이저 수급 및 세력 매집 추적",
+          "text": "수급 흐름상 하방 경직성이 확보된 상태로, 현재 구간은 매도세보다 매수세의 힘이 압도적으로 강한 골든 타점입니다.",
+          "insight_tip": "외국인 창구의 매도 전환 여부를 실시간 체크하십시오.",
+          "icon_type": "volume"
+        },
+        {
+          "sub_heading": "3. 기술적 타점 및 이평선 분석",
+          "text": "볼린저 밴드 상단을 강하게 치고 나가는 '밴드 워킹' 구간에 진입했습니다. 변동성이 커지는 시점이나 중심선 지지가 확인되어 안정적입니다.",
+          "insight_tip": "최종 지지선 1,008원 이탈 시 즉시 축소 전략입니다.",
+          "icon_type": "trend"
+        }
+      ],
+      "practical_guide": {
+        "heading": "핵심 매매 전략",
+        "items": [
+          {
+            "title": "진입 가이드",
+            "description": "1,260원 기준 +/- 2% 구간"
+          },
+          {
+            "title": "목표 설정",
+            "description": "1차 1,637원 도달 시 비중 조절"
+          },
+          {
+            "title": "리스크 관리",
+            "description": "손절가 1,008원 이탈 시 추세 훼손 간주"
+          }
+        ]
+      },
+      "conclusion": {
+        "text": "대영포장은(는) 데이터 기반 정밀 검증을 통과한 종목입니다. 무분별한 추격 매수보다는 전략적 접근이 필요합니다.",
+        "closing_statement": "이음스탁 리서치 팀은 실시간 수급을 끝까지 추적합니다."
+      }
+    },
+    "visual_assets": {
+      "chart_url": "https://finance.naver.com/item/fchart.nhn?code=014160",
+      "heatmap_tag": "High-Demand Area",
+      "support_levels": [
+        1008,
+        1260
+      ],
+      "target_levels": [
+        1637
+      ]
+    },
+    "context_link": {
+      "title": "바닥권 공구리 패턴과 매집의 원리 (영매공파 심화)",
+      "slug": "deep-dive-into-concrete-pattern"
+    },
+    "system_link": {
+      "target_tool": "Brain-Off Hybrid 2.1",
+      "cta_text": "실시간 수급 지도 보기",
+      "related_ticker": [
+        "014160"
+      ]
+    }
+  },
+  {
+    "article_info": {
       "id": 2079,
       "slug": "major-supply-demand-analysis-2026-04-20",
       "title": "외인/기관의 '쌍끌이' 매수 포착: 메이저 수급과 주가 부양의 함수관계",
