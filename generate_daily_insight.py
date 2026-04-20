@@ -381,14 +381,34 @@ def generate_insight():
         pass
 
     recs = dashboard_data.get('recommendations', [])
+    
+    # --- IMPROVED: Selection Logic to avoid duplicates ---
+    # Get tickers of stocks used in the last 5 insights
+    recent_tickers = []
+    for insight in insights[:5]:
+        tickers = insight.get('system_link', {}).get('related_ticker', [])
+        if tickers:
+            recent_tickers.append(tickers[0]) # The main ticker is usually the first one
+
+    # Filter recommendations to find ones not recently used
+    available_recs = [r for r in recs if r['stock_info']['ticker'] not in recent_tickers]
+    
+    # If all top recs are used, just use the top available ones
+    if not available_recs:
+        available_recs = recs
+
+    # Pick a random one from the top 3 available to ensure variety
+    import random
+    recommendation = None
+    if available_recs:
+        pick_pool = available_recs[:3]
+        recommendation = random.choice(pick_pool)
+
     today_str = datetime.now().strftime("%y%m%d")
 
     # 2. Case Selection: Stock Analysis vs Educational Content
-    if recs:
-        # Pick the top recommended stock
-        pick = recs[0]
-        segments = pick['trading_strategy'].get('analysis_segments', {})
-        
+    if recommendation:
+        pick = recommendation
         title = f"오늘의 {pick['metadata']['tier']} 브레인 오프 타점: {pick['stock_info']['real_name']} 정밀 분석"
         
         # Hyper-Deep Analysis Construction
