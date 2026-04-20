@@ -540,7 +540,7 @@ const PostDetail = () => {
               <h2 className="text-3xl md:text-4xl font-black text-slate-900 leading-tight">
                 {post?.content_body?.introduction?.heading || post?.article_info?.title}
               </h2>
-              <p className="text-xl text-slate-600 leading-relaxed font-medium whitespace-pre-line">
+              <p className="text-xl text-slate-600 leading-[1.8] tracking-[-0.02em] font-medium whitespace-pre-line">
                 {post?.content_body?.introduction?.text || post?.content}
               </p>
             </section>
@@ -562,7 +562,7 @@ const PostDetail = () => {
                         <h4 className="text-2xl font-black text-slate-900 group-hover:text-primary-600 transition-colors tracking-tight">
                           {analysis?.sub_heading}
                         </h4>
-                        <p className="text-lg text-slate-600 leading-relaxed font-medium whitespace-pre-line">
+                        <p className="text-lg text-slate-600 leading-[1.8] tracking-[-0.02em] font-medium whitespace-pre-line">
                           {analysis?.text}
                         </p>
                         {analysis?.insight_tip && (
@@ -639,12 +639,16 @@ const PostDetail = () => {
                       <span className="text-xs font-black text-slate-500 uppercase tracking-widest">관련 종목</span>
                       <div className="flex flex-wrap gap-2">
                         {post.system_link.related_ticker.map((ticker: string) => (
-                          <span 
+                          <a 
                             key={ticker} 
-                            className="px-3 py-1.5 bg-slate-50 text-slate-600 text-[11px] font-bold rounded-xl border border-slate-100 hover:border-primary-200 hover:text-primary-600 transition-all cursor-default"
+                            href={`https://finance.naver.com/item/main.nhn?code=${ticker.replace(/[^0-9]/g, '')}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-3 py-1.5 bg-slate-50 text-slate-600 text-[11px] font-bold rounded-xl border border-slate-100 hover:border-primary-600 hover:text-primary-600 hover:bg-primary-50 transition-all flex items-center gap-1.5 group/ticker"
                           >
+                            <TrendingUp className="w-3 h-3 text-slate-300 group-hover/ticker:text-primary-500" />
                             ${ticker}
-                          </span>
+                          </a>
                         ))}
                       </div>
                     </div>
