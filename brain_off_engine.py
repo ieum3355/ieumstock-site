@@ -62,8 +62,8 @@ def get_verified_data():
         # 2. 영매공파(YMG) 기술적 분석
         parsed_stocks = []
         
-        # 분석 대상 확대 (상위 150개 정밀 분석으로 탐지 확률 상향)
-        for item in stock_items[:150]:
+        # 분석 대상 확대 (상위 300개 정밀 분석으로 탐지 확률 극대화)
+        for item in stock_items[:300]:
             code = item.get('cd', '')
             name = item.get('nm', 'Unknown')
             nv = item.get('nv', 0)
@@ -121,6 +121,7 @@ def get_verified_data():
                     "ticker": code, "name": name, "price": nv, "rate": cr, "score": score,
                     "tier": tier_tag, "ma112": ma112, "ma224": ma224, "ma448": ma448,
                     "low_20": min(recent_lows),
+                    "high_112": max(highs[:112]),
                     "condition_flags": {
                         "역배열": is_reverse_aligned, "매집봉": has_accumulation,
                         "공구리": is_concrete, "파란점선": is_breaking_112
@@ -132,8 +133,23 @@ def get_verified_data():
         
         final_recs = []
         for i, s in enumerate(parsed_stocks[:6]): # 최대 6개 추천
-            target_1 = int(s['ma224'] if s['price'] < s['ma224'] else s['ma448'])
-            if target_1 <= s['price']: target_1 = int(s['price'] * 1.15)
+            # --- 정교화된 목표가 산출 기준 (Tiered Resistance Strategy) ---
+            # 1. 일차적으로 장기 저항선(112, 224, 448일선) 중 현재가보다 높은 가장 가까운 선을 타겟팅
+            potential_targets = [m for m in [s['ma112'], s['ma224'], s['ma448']] if m > s['price']]
+            
+            if potential_targets:
+                target_1 = int(min(potential_targets))
+            else:
+                # 2. 모든 이평선보다 위에 있을 경우(정배열), 해당 종목의 최근 112일 최고가를 목표가로 설정
+                if s['high_112'] > s['price']:
+                    target_1 = int(s['high_112'])
+                else:
+                    # 3. 신고가 영역일 경우, 기술적 스윙 표준 수익률인 20%를 기준선으로 설정
+                    target_1 = int(s['price'] * 1.20)
+
+            # 데이터 오류(스크래핑 이상)로 인한 비현실적 목표가 방어 (최대 2.5배 제한)
+            if target_1 > s['price'] * 2.5:
+                target_1 = int(s['price'] * 1.3) 
             
             stop_loss = int(s['low_20'] * 0.97)
             
@@ -259,22 +275,49 @@ def fetch_historical_data(code, pages=5):
         for page in range(1, pages + 1):
             res = requests.get(url + str(page), headers=headers)
             res.encoding = 'euc-kr'
-            dates = re.findall(r'(\d{4}\.\d{2}\.\d{2})', res.text)
-            prices = re.findall(r'<span class="tah p11">([\d,]+)</span>', res.text)
-            if not dates: break
-            for i in range(len(dates)):
-                try:
-                    p_idx = i * 5
-                    hist_data.append({
-                        "date": dates[i], "close": int(prices[p_idx].replace(',', '')),
-                        "high": int(prices[p_idx+2].replace(',', '')), "low": int(prices[p_idx+3].replace(',', '')),
-                        "volume": int(prices[p_idx+4].replace(',', ''))
-                    })
-                except: continue
+            
+            # Split by table rows to be row-aware
+            rows = re.findall(r'<tr.*?>.*?</tr>', res.text, re.DOTALL)
+            if not rows: break
+            
+            valid_rows_found = False
+            for row in rows:
+                date_match = re.search(r'(\d{4}\.\d{2}\.\d{2})', row)
+                if not date_match: continue
+                
+                # Find all numeric values in this specific row
+                # The numeric values are wrapped in <span class="tah p11 ..."> or just in <td>
+                # We look for numbers with commas
+                nums = re.findall(r'[\d,]+', row)
+                # Filter out the date parts (nums will contain parts of date if we are not careful)
+                # But re.findall(r'[\d,]+', row) will find "2024", "04", "19" then "4,605" etc.
+                # Let's use the span tag specifically within the row
+                prices = re.findall(r'<span class="tah p11.*?">([\d,]+)</span>', row)
+                
+                if len(prices) >= 5:
+                    valid_rows_found = True
+                    # Naver sise_day columns: 종가, 전일비, 시가, 고가, 저가, 거래량
+                    # Some rows might have 5 if '전일비' is missing a span or 6 if it's there.
+                    # Usually, the LAST one is Volume.
+                    # The FIRST one is Close.
+                    # The 3rd from last is High, 2nd from last is Low.
+                    try:
+                        hist_data.append({
+                            "date": date_match.group(1),
+                            "close": int(prices[0].replace(',', '')),
+                            "high": int(prices[-3].replace(',', '')),
+                            "low": int(prices[-2].replace(',', '')),
+                            "volume": int(prices[-1].replace(',', ''))
+                        })
+                    except: continue
+            
+            if not valid_rows_found: break
             if len(hist_data) >= 500: break
             time.sleep(0.01)
         return hist_data
-    except: return []
+    except Exception as e:
+        print(f"Scraping Error: {e}")
+        return []
 
 def code_to_slug(name, ticker=""):
     slug = re.sub(r'[^a-zA-Z0-9]', '', name).lower()
@@ -323,3 +366,9 @@ def fetch_volume_rankings_with_info():
 
 if __name__ == "__main__":
     get_verified_data()
+    # 브레인 오프 실행 후 인사이트 엔진 자동 트리거
+    try:
+        from generate_daily_insight import generate_insight
+        generate_insight()
+    except Exception as e:
+        print(f"Insight Generation Trigger Error: {e}")

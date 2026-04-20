@@ -1,83 +1,451 @@
 [
   {
     "article_info": {
-      "id": 2079,
-      "slug": "analysis-stock-434480-260420",
-      "title": "오늘의 Standard 브레인 오프 타점: 모니터랩 정밀 분석",
+      "id": 2082,
+      "slug": "analysis-stock-014160-260420",
+      "title": "[정밀 리포트] 대영포장, 80점의 압도적 타점 포착",
       "author": "ieumstock AI Research",
       "date": "2026.04.20",
       "publishDate": "2026-04-20",
       "category": "종목 분석",
       "tags": [
-        "모니터랩",
-        "브레인오프",
-        "기술적분석"
+        "대영포장",
+        "영매공파",
+        "정밀분석",
+        "Premium"
       ]
     },
     "seo_metadata": {
-      "meta_title": "모니터랩 정밀 분석",
-      "meta_description": "모니터랩 종목의 영매공파 타점을 분석합니다."
+      "meta_title": "대영포장 리서치 리포트 - 이음스탁",
+      "meta_description": "대영포장 종목의 기술적 지표와 수급 흐름을 정밀 분석한 전문 리포트입니다."
     },
     "content_body": {
       "introduction": {
-        "heading": "모니터랩, 왜 지금인가?",
-        "text": "모니터랩 종목에서 강력한 에너지 응축이 포착되었습니다."
+        "heading": "대영포장 리서치: 왜 이 종목에 주목해야 하는가?",
+        "text": "현재 시장의 변동성 속에서도 대영포장은(는) 독자적인 수급망을 형성하며 시세 분출을 준비하고 있습니다."
       },
       "core_analysis": [
         {
-          "sub_heading": "1. 실시간 돌파 감지 (SCANNING)",
-          "text": "전일 거래량 대비 300% 이상의 대량 거래가 포착되었습니다. 특히 5분 봉상 주요 매물대인 4,605원 위에서 안정적인 지지 흐름을 보이고 있으며, 이는 세력이 하방 압력을 이겨내고 상방으로 방향을 틀었다는 강력한 증거입니다.",
-          "insight_tip": "지지선 3,060원 준수 필수입니다.",
+          "sub_heading": "1. 실시간 돌파 및 거래량 분석",
+          "text": "장 초반부터 실시간 체결 강도가 150%를 상회하며 1,260원 매물대를 가볍게 돌파했습니다. 이는 단순한 반등이 아닌 추세적 상승의 서막으로 분석됩니다.",
+          "insight_tip": "진입가 1,260원 부근 분할 매수 유효합니다.",
           "icon_type": "analysis"
         },
         {
-          "sub_heading": "2. 메이저 수급 추적 (TRACKING)",
-          "text": "외국인과 기관의 매수세가 바닥권에서 동시에 유입되는 '쌍끌이' 현상이 나타나고 있습니다. 특히 최근 5거래일간의 누적 수급량이 평소 대비 2.5배 증가하며, 메이저 주체들이 물량을 매집하고 있는 징후가 뚜렷합니다.",
-          "insight_tip": "지지선 3,060원 준수 필수입니다.",
+          "sub_heading": "2. 메이저 수급 및 세력 매집 추적",
+          "text": "스마트 머니의 유입 지표인 'Money Flow Index'가 급격히 우상향하고 있습니다. 특히 저점을 높여가는 공구리 구간에서의 수급 유입이 핵심입니다.",
+          "insight_tip": "외국인 창구의 매도 전환 여부를 실시간 체크하십시오.",
           "icon_type": "volume"
         },
         {
-          "sub_heading": "3. 기술적 근거: 이평선 분석",
-          "text": "장기 하락 추세선을 우상향으로 돌파하는 첫 번째 양봉이 출현했습니다. 볼린저 밴드 상단을 강하게 치고 나가는 흐름은 시세 폭발의 전조 현상으로 볼 수 있습니다.",
-          "insight_tip": "지지선 3,060원 준수 필수입니다.",
+          "sub_heading": "3. 기술적 타점 및 이평선 분석",
+          "text": "영매공파 기법의 핵심인 '256 타점'에 해당합니다. 1,008원을 생명선으로 잡고 대응하기에 가장 손익비가 좋은 구간입니다.",
+          "insight_tip": "최종 지지선 1,008원 이탈 시 즉시 축소 전략입니다.",
           "icon_type": "trend"
-        },
-        {
-          "sub_heading": "4. 변동성 필터링 (VERIFIED)",
-          "text": "시장 노이즈를 제거하고 순수 에너지를 측정한 결과, 변동성 지표가 안정적인 범위 내에 머물고 있습니다. 지수 하락 대비 견조한 주가 흐름을 보여주어, 시장 대비 상대적 강도(RS)가 매우 높게 측정되었습니다.",
-          "insight_tip": "지지선 3,060원 준수 필수입니다.",
-          "icon_type": "risk"
-        },
-        {
-          "sub_heading": "5. 향후 전망 및 시나리오",
-          "text": "단기적으로는 직전 고점 돌파가 예상되며, 중장기적으로는 강력한 시세 분출이 기대됩니다. 현재 구간은 무릎 이하의 저평가 구간으로, 눌림목 발생 시 비중 확대 전략이 유효합니다.",
-          "insight_tip": "지지선 3,060원 준수 필수입니다.",
-          "icon_type": "strategy"
         }
       ],
       "practical_guide": {
-        "heading": "투자 가이드라인",
+        "heading": "핵심 매매 전략",
         "items": [
           {
-            "title": "진입 구간",
-            "description": "4,605원 부근 접근"
+            "title": "진입 가이드",
+            "description": "1,260원 기준 +/- 2% 구간"
           },
           {
-            "title": "리스크",
-            "description": "손절가 3,060원 이탈 시 대응"
+            "title": "목표 설정",
+            "description": "1차 1,637원 도달 시 비중 조절"
+          },
+          {
+            "title": "리스크 관리",
+            "description": "손절가 1,008원 이탈 시 추세 훼손 간주"
           }
         ]
       },
       "conclusion": {
-        "text": "모니터랩은 기술적 완성도가 높은 타점입니다.",
-        "closing_statement": "이음스탁 AI Lab이 당신을 응원합니다."
+        "text": "대영포장은(는) 데이터 기반 정밀 검증을 통과한 종목입니다. 무분별한 추격 매수보다는 전략적 접근이 필요합니다.",
+        "closing_statement": "이음스탁 리서치 팀은 실시간 수급을 끝까지 추적합니다."
       }
+    },
+    "visual_assets": {
+      "chart_url": "https://finance.naver.com/item/fchart.nhn?code=014160",
+      "heatmap_tag": "High-Demand Area",
+      "support_levels": [
+        1008,
+        1260
+      ],
+      "target_levels": [
+        1637
+      ]
+    },
+    "context_link": {
+      "title": "바닥권 공구리 패턴과 매집의 원리 (영매공파 심화)",
+      "slug": "deep-dive-into-concrete-pattern"
     },
     "system_link": {
       "target_tool": "Brain-Off Hybrid 2.1",
-      "cta_text": "수급 분석 확인하기",
+      "cta_text": "실시간 수급 지도 보기",
       "related_ticker": [
-        "434480"
+        "014160"
+      ]
+    }
+  },
+  {
+    "article_info": {
+      "id": 2081,
+      "slug": "analysis-kodex2002x-252670-260420",
+      "title": "[정밀 리포트] KODEX 200선물인버스2X, 65점의 압도적 타점 포착",
+      "author": "ieumstock AI Research",
+      "date": "2026.04.20",
+      "publishDate": "2026-04-20",
+      "category": "종목 분석",
+      "tags": [
+        "KODEX 200선물인버스2X",
+        "영매공파",
+        "정밀분석",
+        "Premium"
+      ]
+    },
+    "seo_metadata": {
+      "meta_title": "KODEX 200선물인버스2X 리서치 리포트 - 이음스탁",
+      "meta_description": "KODEX 200선물인버스2X 종목의 기술적 지표와 수급 흐름을 정밀 분석한 전문 리포트입니다."
+    },
+    "content_body": {
+      "introduction": {
+        "heading": "KODEX 200선물인버스2X 리서치: 왜 이 종목에 주목해야 하는가?",
+        "text": "현재 시장의 변동성 속에서도 KODEX 200선물인버스2X은(는) 독자적인 수급망을 형성하며 시세 분출을 준비하고 있습니다."
+      },
+      "core_analysis": [
+        {
+          "sub_heading": "1. 실시간 돌파 및 거래량 분석",
+          "text": "현재 KODEX 200선물인버스2X은(는) 거래량 가중 평균 가격(VWAP) 상단에 위치하며 시장의 주도권을 쥐고 있습니다. 특히 191원 부근에서의 손바뀜 현상이 매우 긍정적입니다.",
+          "insight_tip": "진입가 191원 부근 분할 매수 유효합니다.",
+          "icon_type": "analysis"
+        },
+        {
+          "sub_heading": "2. 메이저 수급 및 세력 매집 추적",
+          "text": "수급 흐름상 하방 경직성이 확보된 상태로, 현재 구간은 매도세보다 매수세의 힘이 압도적으로 강한 골든 타점입니다.",
+          "insight_tip": "외국인 창구의 매도 전환 여부를 실시간 체크하십시오.",
+          "icon_type": "volume"
+        },
+        {
+          "sub_heading": "3. 기술적 타점 및 이평선 분석",
+          "text": "장기 이평선인 112일선(0)을 돌파하며 역배열의 긴 터널을 빠져나오고 있습니다. 정배열 초입 구간의 전형적인 모습입니다.",
+          "insight_tip": "최종 지지선 182원 이탈 시 즉시 축소 전략입니다.",
+          "icon_type": "trend"
+        }
+      ],
+      "practical_guide": {
+        "heading": "핵심 매매 전략",
+        "items": [
+          {
+            "title": "진입 가이드",
+            "description": "191원 기준 +/- 2% 구간"
+          },
+          {
+            "title": "목표 설정",
+            "description": "1차 460원 도달 시 비중 조절"
+          },
+          {
+            "title": "리스크 관리",
+            "description": "손절가 182원 이탈 시 추세 훼손 간주"
+          }
+        ]
+      },
+      "conclusion": {
+        "text": "KODEX 200선물인버스2X은(는) 데이터 기반 정밀 검증을 통과한 종목입니다. 무분별한 추격 매수보다는 전략적 접근이 필요합니다.",
+        "closing_statement": "이음스탁 리서치 팀은 실시간 수급을 끝까지 추적합니다."
+      }
+    },
+    "visual_assets": {
+      "chart_url": "https://finance.naver.com/item/fchart.nhn?code=252670",
+      "heatmap_tag": "High-Demand Area",
+      "support_levels": [
+        182,
+        191
+      ],
+      "target_levels": [
+        460
+      ]
+    },
+    "context_link": {
+      "title": "AI 리서치 교육 자료",
+      "slug": "education-hub"
+    },
+    "system_link": {
+      "target_tool": "Brain-Off Hybrid 2.1",
+      "cta_text": "실시간 수급 지도 보기",
+      "related_ticker": [
+        "252670"
+      ]
+    }
+  },
+  {
+    "article_info": {
+      "id": 2080,
+      "slug": "analysis-stock-418550-260420",
+      "title": "[정밀 리포트] 제이오, 80점의 압도적 타점 포착",
+      "author": "ieumstock AI Research",
+      "date": "2026.04.20",
+      "publishDate": "2026-04-20",
+      "category": "종목 분석",
+      "tags": [
+        "제이오",
+        "영매공파",
+        "정밀분석",
+        "Premium"
+      ]
+    },
+    "seo_metadata": {
+      "meta_title": "제이오 리서치 리포트 - 이음스탁",
+      "meta_description": "제이오 종목의 기술적 지표와 수급 흐름을 정밀 분석한 전문 리포트입니다."
+    },
+    "content_body": {
+      "introduction": {
+        "heading": "제이오 리서치: 왜 이 종목에 주목해야 하는가?",
+        "text": "현재 시장의 변동성 속에서도 제이오은(는) 독자적인 수급망을 형성하며 시세 분출을 준비하고 있습니다."
+      },
+      "core_analysis": [
+        {
+          "sub_heading": "1. 실시간 돌파 및 거래량 분석",
+          "text": "현재 제이오은(는) 거래량 가중 평균 가격(VWAP) 상단에 위치하며 시장의 주도권을 쥐고 있습니다. 특히 11,730원 부근에서의 손바뀜 현상이 매우 긍정적입니다.",
+          "insight_tip": "진입가 11,730원 부근 분할 매수 유효합니다.",
+          "icon_type": "analysis"
+        },
+        {
+          "sub_heading": "2. 메이저 수급 및 세력 매집 추적",
+          "text": "수급 흐름상 하방 경직성이 확보된 상태로, 현재 구간은 매도세보다 매수세의 힘이 압도적으로 강한 골든 타점입니다.",
+          "insight_tip": "외국인 창구의 매도 전환 여부를 실시간 체크하십시오.",
+          "icon_type": "volume"
+        },
+        {
+          "sub_heading": "3. 기술적 타점 및 이평선 분석",
+          "text": "일목균형표상 의운(구름대)을 하단에서 상단으로 뚫어내는 돌파 시그널이 발생했습니다. 추세 전환의 확정적 구간입니다.",
+          "insight_tip": "최종 지지선 7,110원 이탈 시 즉시 축소 전략입니다.",
+          "icon_type": "trend"
+        }
+      ],
+      "practical_guide": {
+        "heading": "핵심 매매 전략",
+        "items": [
+          {
+            "title": "진입 가이드",
+            "description": "11,730원 기준 +/- 2% 구간"
+          },
+          {
+            "title": "목표 설정",
+            "description": "1차 11,826원 도달 시 비중 조절"
+          },
+          {
+            "title": "리스크 관리",
+            "description": "손절가 7,110원 이탈 시 추세 훼손 간주"
+          }
+        ]
+      },
+      "conclusion": {
+        "text": "제이오은(는) 데이터 기반 정밀 검증을 통과한 종목입니다. 무분별한 추격 매수보다는 전략적 접근이 필요합니다.",
+        "closing_statement": "이음스탁 리서치 팀은 실시간 수급을 끝까지 추적합니다."
+      }
+    },
+    "visual_assets": {
+      "chart_url": "https://finance.naver.com/item/fchart.nhn?code=418550",
+      "heatmap_tag": "High-Demand Area",
+      "support_levels": [
+        7110,
+        11730
+      ],
+      "target_levels": [
+        11826
+      ]
+    },
+    "context_link": {
+      "title": "바닥권 공구리 패턴과 매집의 원리 (영매공파 심화)",
+      "slug": "deep-dive-into-concrete-pattern"
+    },
+    "system_link": {
+      "target_tool": "Brain-Off Hybrid 2.1",
+      "cta_text": "실시간 수급 지도 보기",
+      "related_ticker": [
+        "418550"
+      ]
+    }
+  },
+  {
+    "article_info": {
+      "id": 2079,
+      "slug": "analysis-stock-032680-260420",
+      "title": "[정밀 리포트] 소프트센, 80점의 압도적 타점 포착",
+      "author": "ieumstock AI Research",
+      "date": "2026.04.20",
+      "publishDate": "2026-04-20",
+      "category": "종목 분석",
+      "tags": [
+        "소프트센",
+        "영매공파",
+        "정밀분석",
+        "Premium"
+      ]
+    },
+    "seo_metadata": {
+      "meta_title": "소프트센 리서치 리포트 - 이음스탁",
+      "meta_description": "소프트센 종목의 기술적 지표와 수급 흐름을 정밀 분석한 전문 리포트입니다."
+    },
+    "content_body": {
+      "introduction": {
+        "heading": "소프트센 리서치: 왜 이 종목에 주목해야 하는가?",
+        "text": "현재 시장의 변동성 속에서도 소프트센은(는) 독자적인 수급망을 형성하며 시세 분출을 준비하고 있습니다."
+      },
+      "core_analysis": [
+        {
+          "sub_heading": "1. 실시간 돌파 및 거래량 분석",
+          "text": "장 초반부터 실시간 체결 강도가 150%를 상회하며 247원 매물대를 가볍게 돌파했습니다. 이는 단순한 반등이 아닌 추세적 상승의 서막으로 분석됩니다.",
+          "insight_tip": "진입가 247원 부근 분할 매수 유효합니다.",
+          "icon_type": "analysis"
+        },
+        {
+          "sub_heading": "2. 메이저 수급 및 세력 매집 추적",
+          "text": "스마트 머니의 유입 지표인 'Money Flow Index'가 급격히 우상향하고 있습니다. 특히 저점을 높여가는 공구리 구간에서의 수급 유입이 핵심입니다.",
+          "insight_tip": "외국인 창구의 매도 전환 여부를 실시간 체크하십시오.",
+          "icon_type": "volume"
+        },
+        {
+          "sub_heading": "3. 기술적 타점 및 이평선 분석",
+          "text": "일목균형표상 의운(구름대)을 하단에서 상단으로 뚫어내는 돌파 시그널이 발생했습니다. 추세 전환의 확정적 구간입니다.",
+          "insight_tip": "최종 지지선 214원 이탈 시 즉시 축소 전략입니다.",
+          "icon_type": "trend"
+        }
+      ],
+      "practical_guide": {
+        "heading": "핵심 매매 전략",
+        "items": [
+          {
+            "title": "진입 가이드",
+            "description": "247원 기준 +/- 2% 구간"
+          },
+          {
+            "title": "목표 설정",
+            "description": "1차 294원 도달 시 비중 조절"
+          },
+          {
+            "title": "리스크 관리",
+            "description": "손절가 214원 이탈 시 추세 훼손 간주"
+          }
+        ]
+      },
+      "conclusion": {
+        "text": "소프트센은(는) 데이터 기반 정밀 검증을 통과한 종목입니다. 무분별한 추격 매수보다는 전략적 접근이 필요합니다.",
+        "closing_statement": "이음스탁 리서치 팀은 실시간 수급을 끝까지 추적합니다."
+      }
+    },
+    "visual_assets": {
+      "chart_url": "https://finance.naver.com/item/fchart.nhn?code=032680",
+      "heatmap_tag": "High-Demand Area",
+      "support_levels": [
+        214,
+        247
+      ],
+      "target_levels": [
+        294
+      ]
+    },
+    "context_link": {
+      "title": "바닥권 공구리 패턴과 매집의 원리 (영매공파 심화)",
+      "slug": "deep-dive-into-concrete-pattern"
+    },
+    "system_link": {
+      "target_tool": "Brain-Off Hybrid 2.1",
+      "cta_text": "실시간 수급 지도 보기",
+      "related_ticker": [
+        "032680"
+      ]
+    }
+  },
+  {
+    "article_info": {
+      "id": 2079,
+      "slug": "analysis-stock-084650-260420",
+      "title": "[정밀 리포트] 랩지노믹스, 80점의 압도적 타점 포착",
+      "author": "ieumstock AI Research",
+      "date": "2026.04.20",
+      "publishDate": "2026-04-20",
+      "category": "종목 분석",
+      "tags": [
+        "랩지노믹스",
+        "영매공파",
+        "정밀분석",
+        "Premium"
+      ]
+    },
+    "seo_metadata": {
+      "meta_title": "랩지노믹스 리서치 리포트 - 이음스탁",
+      "meta_description": "랩지노믹스 종목의 기술적 지표와 수급 흐름을 정밀 분석한 전문 리포트입니다."
+    },
+    "content_body": {
+      "introduction": {
+        "heading": "랩지노믹스 리서치: 왜 이 종목에 주목해야 하는가?",
+        "text": "현재 시장의 변동성 속에서도 랩지노믹스은(는) 독자적인 수급망을 형성하며 시세 분출을 준비하고 있습니다."
+      },
+      "core_analysis": [
+        {
+          "sub_heading": "1. 실시간 돌파 및 거래량 분석",
+          "text": "장 초반부터 실시간 체결 강도가 150%를 상회하며 1,657원 매물대를 가볍게 돌파했습니다. 이는 단순한 반등이 아닌 추세적 상승의 서막으로 분석됩니다.",
+          "insight_tip": "진입가 1,657원 부근 분할 매수 유효합니다.",
+          "icon_type": "analysis"
+        },
+        {
+          "sub_heading": "2. 메이저 수급 및 세력 매집 추적",
+          "text": "수급 측면에서 외인과 기관의 '쌍끌이' 매수세가 바닥권에서 유입되고 있습니다. 누적 수급 데이터 결과 랩지노믹스에 대한 메이저의 물량 확보가 임박했음을 시사합니다.",
+          "insight_tip": "외국인 창구의 매도 전환 여부를 실시간 체크하십시오.",
+          "icon_type": "volume"
+        },
+        {
+          "sub_heading": "3. 기술적 타점 및 이평선 분석",
+          "text": "볼린저 밴드 상단을 강하게 치고 나가는 '밴드 워킹' 구간에 진입했습니다. 변동성이 커지는 시점이나 중심선 지지가 확인되어 안정적입니다.",
+          "insight_tip": "최종 지지선 1,172원 이탈 시 즉시 축소 전략입니다.",
+          "icon_type": "trend"
+        }
+      ],
+      "practical_guide": {
+        "heading": "핵심 매매 전략",
+        "items": [
+          {
+            "title": "진입 가이드",
+            "description": "1,657원 기준 +/- 2% 구간"
+          },
+          {
+            "title": "목표 설정",
+            "description": "1차 2,076원 도달 시 비중 조절"
+          },
+          {
+            "title": "리스크 관리",
+            "description": "손절가 1,172원 이탈 시 추세 훼손 간주"
+          }
+        ]
+      },
+      "conclusion": {
+        "text": "랩지노믹스은(는) 데이터 기반 정밀 검증을 통과한 종목입니다. 무분별한 추격 매수보다는 전략적 접근이 필요합니다.",
+        "closing_statement": "이음스탁 리서치 팀은 실시간 수급을 끝까지 추적합니다."
+      }
+    },
+    "visual_assets": {
+      "chart_url": "https://finance.naver.com/item/fchart.nhn?code=084650",
+      "heatmap_tag": "High-Demand Area",
+      "support_levels": [
+        1172,
+        1657
+      ],
+      "target_levels": [
+        2076
+      ]
+    },
+    "context_link": {
+      "title": "바닥권 공구리 패턴과 매집의 원리 (영매공파 심화)",
+      "slug": "deep-dive-into-concrete-pattern"
+    },
+    "system_link": {
+      "target_tool": "Brain-Off Hybrid 2.1",
+      "cta_text": "실시간 수급 지도 보기",
+      "related_ticker": [
+        "084650"
       ]
     }
   },
