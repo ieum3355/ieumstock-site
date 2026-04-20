@@ -101,18 +101,63 @@ TOPICS = [
     },
     {
         "category": "Expert Insight",
-        "title": "신용 잔고와 반대 매매의 상관관계: 바닥 확인의 마지막 퍼즐",
-        "slug": "margin-call-bottom-analysis",
+        "title": "외인/기관의 '쌍끌이' 매수 포착: 메이저 수급과 주가 부양의 함수관계",
+        "slug": "major-supply-demand-analysis",
         "author": "ieumstock AI Lab",
-        "tags": ["신용잔고", "반대매매", "바닥확인", "수급분석"],
-        "introduction": {"heading": "개미들의 투매가 멈추는 곳이 진정한 바닥입니다.", "text": "주가 하락기 신용 융자 잔고의 급감과 반대 매매 속도는 바닥을 알리는 가장 고통스럽지만 확실한 신호입니다."},
+        "tags": ["수급분석", "외인매수", "기관매집", "주도주"],
+        "introduction": {"heading": "돈의 주인이 누구인지 파악하는 것이 투자의 시작입니다.", "text": "개인 투자자가 시장을 이길 수 없는 이유는 정보력이 아니라 자금력입니다. 메이저 수급이 집중되는 종목의 특징을 분석합니다."},
         "core_analysis": [
-            {"sub_heading": "1. 신용 융자 잔고의 임계치 분석", "text": "지수 대비 신용 잔고가 과도하게 쌓여있을 때 시장은 충격에 취약해집니다. 잔고가 털리는 과정이 필수적입니다.", "insight_tip": "고객 예탁금 대비 신용 잔고 비율을 체크하십시오.", "icon_type": "analysis"},
-            {"sub_heading": "2. 반대 매매 물량 출회 시간대", "text": "장 초반 9시 시초가 갭하락과 오전 10시 전후의 투매 물량 출회 패턴을 분석하여 바닥을 확인하십시오.", "insight_tip": "장 초반 대량 거래를 동반한 아래꼬리 캔들에 주목하십시오.", "icon_type": "trend"},
-            {"sub_heading": "3. 수급 전환의 시그널", "text": "개인이 털린 물량을 기관과 외국인이 받아내는 시점이 진정한 추세 전환의 시작입니다.", "insight_tip": "외국인/기관의 장중 수급 유입 속도를 확인하십시오.", "icon_type": "volume"}
+            {"sub_heading": "1. 양매수(쌍끌이)의 신뢰도", "text": "외국인과 기관이 동시에 매수 우위를 보일 때 주가는 가장 강력한 탄력을 받습니다.", "insight_tip": "연기금의 연속 매수세를 필히 확인하십시오.", "icon_type": "analysis"},
+            {"sub_heading": "2. 창구 분석을 통한 허수 파악", "text": "특정 창구를 통한 집중 매수는 단순 차익 실현이 아닌 경영권이나 중장기 매집일 가능성이 높습니다.", "insight_tip": "검은 머리 외국인의 가짜 수급을 조심하십시오.", "icon_type": "volume"},
+            {"sub_heading": "3. 수급과 이평선의 조화", "text": "수급이 들어오며 정배열로 전환되는 시점이 가장 확률 높은 타점입니다.", "insight_tip": "수급 유입 시 거래량 변화를 실시간으로 체크하십시오.", "icon_type": "trend"}
         ],
-        "practical_guide": {"heading": "바닥 공략 수칙", "items": [{"title": "분할 매수 타이밍", "description": "신용 잔고가 충분히 감소한 후 횡보 구간에서 진입하십시오."}]},
-        "conclusion": {"text": "시장의 비관론이 극에 달할 때 기회가 옵니다.", "closing_statement": "이음스탁이 고통의 끝을 함께 찾아드립니다."}
+        "practical_guide": {"heading": "수급 매매 전략", "items": [{"title": "누적 수급 확인", "description": "1개월 누적 순매수량이 1위를 기록하는 섹터를 공략하십시오."}]},
+        "conclusion": {"text": "수급은 주가의 선행 지표입니다.", "closing_statement": "이음스탁이 메이저의 발자취를 추적합니다."}
+    },
+    {
+        "category": "Technical Analysis",
+        "title": "볼린저 밴드 상단 돌파와 시세 분출: 변동성을 수익으로 바꾸는 법",
+        "slug": "bollinger-band-breakout-strategy",
+        "author": "ieumstock AI Lab",
+        "tags": ["볼린저밴드", "변동성", "기술적분석", "돌파매매"],
+        "introduction": {"heading": "밴드가 수렴할 때 폭발을 준비하십시오.", "text": "변동성이 극도로 축소된 후 밴드 상단을 뚫고 나가는 흐름은 강력한 추세 형성의 전조입니다."},
+        "core_analysis": [
+            {"sub_heading": "1. 밴드 수렴(Squeeze)의 강도", "text": "밴드의 폭이 좁아질수록 이후 발생하는 시세의 에너지는 더욱 강력해집니다.", "insight_tip": "밴드 폭 지표(Bandwidth)를 활용하십시오.", "icon_type": "analysis"},
+            {"sub_heading": "2. 상단 돌파 시의 거래량 실린 양봉", "text": "거래량 없이 밴드 상단을 터치하는 것은 가짜 돌파인 경우가 많습니다.", "insight_tip": "돌파 시 전일 대비 200% 이상 거래량을 확인하십시오.", "icon_type": "volume"},
+            {"sub_heading": "3. 중심선 지지와 추세 지속", "text": "돌파 후 밴드 중심선(20일선)을 이탈하지 않는다면 추세는 지속됩니다.", "insight_tip": "중심선을 이탈할 때가 최종 매도 타이밍입니다.", "icon_type": "trend"}
+        ],
+        "practical_guide": {"heading": "밴드 활용 수칙", "items": [{"title": "추세 추종", "description": "밴드 상단을 타고 올라가는 '밴드 워킹' 구간을 즐기십시오."}]},
+        "conclusion": {"text": "변동성은 두려움이 아닌 기회입니다.", "closing_statement": "이음스탁이 변동성의 맥점을 짚어드립니다."}
+    },
+    {
+        "category": "Market Strategy",
+        "title": "공매도 쇼트커버링(Short Covering) 포착: 급등주의 숨은 동력",
+        "slug": "short-covering-spike-analysis",
+        "author": "ieumstock AI Lab",
+        "tags": ["공매도", "쇼트커버링", "수급분석", "급등주"],
+        "introduction": {"heading": "하락에 베팅한 세력이 항복할 때 주가는 폭등합니다.", "text": "공매도 잔고가 많은 종목이 호재와 함께 상승하기 시작하면, 손실을 막으려는 쇼트커버링 물량이 겹치며 폭발적인 시세를 냅니다."},
+        "core_analysis": [
+            {"sub_heading": "1. 공매도 잔고 상위 종목 분석", "text": "주가 하락 압력이 극에 달했을 때, 반전의 트리거를 기다려야 합니다.", "insight_tip": "공매도 비중이 10% 이상인 종목 중 바닥을 다지는 종목을 찾으십시오.", "icon_type": "analysis"},
+            {"sub_heading": "2. 숏 스퀴즈(Short Squeeze) 발생 시그널", "text": "장중 갑작스러운 대량 매수세 유입과 함께 주가가 5% 이상 급등하면 쇼트커버링의 시작일 수 있습니다.", "insight_tip": "외국인 창구의 매수 전환 여부를 체크하십시오.", "icon_type": "volume"},
+            {"sub_heading": "3. 저항선 돌파와 공포의 매수", "text": "공매도 세력이 설정한 손절 라인을 돌파할 때 시세는 오버슈팅으로 이어집니다.", "insight_tip": "직전 고점 돌파 시 수급의 집중도를 확인하십시오.", "icon_type": "trend"}
+        ],
+        "practical_guide": {"heading": "숏 스퀴즈 대응", "items": [{"title": "공매도 잔고 확인", "description": "KRX 공매도 종합 포털 데이터를 주기적으로 체크하십시오."}]},
+        "conclusion": {"text": "남의 불행이 기회가 되는 냉혹한 시장의 원리입니다.", "closing_statement": "이음스탁이 숨겨진 급등 동력을 찾아드립니다."}
+    },
+    {
+        "category": "Mindset",
+        "title": "분산 투자의 함정: 20개 종목을 가진 당신이 수익이 안 나는 이유",
+        "slug": "diversification-trap-analysis",
+        "author": "ieumstock AI Lab",
+        "tags": ["분산투자", "집중투자", "포트폴리오", "투자마인드"],
+        "introduction": {"heading": "관리할 수 없는 분산은 방치와 같습니다.", "text": "계좌에 종목이 너무 많으면 시장이 올라도 내 계좌는 그대로인 현상이 발생합니다. 효율적인 포트폴리오 압축 전략을 알아봅니다."},
+        "core_analysis": [
+            {"sub_heading": "1. 종목 수와 수익률의 상관관계", "text": "종목이 많을수록 지수 수익률을 넘어서기 어렵습니다. 선택과 집중이 필요한 이유입니다.", "insight_tip": "자신이 완벽히 이해하는 종목 3~5개에 집중하십시오.", "icon_type": "analysis"},
+            {"sub_heading": "2. 옥석 가리기를 통한 슬림화", "text": "수익이 안 나는 종목을 붙들고 있기보다, 주도주 섹터로 자금을 옮겨야 합니다.", "insight_tip": "실적이 뒷받침되지 않는 테마주는 과감히 정리하십시오.", "icon_type": "strategy"},
+            {"sub_heading": "3. 비중 조절의 예술", "text": "확신이 있는 종목에 비중을 싣는 용기가 큰 수익을 만듭니다.", "insight_tip": "포트폴리오의 50% 이상을 주도 섹터 대장주에 배분하십시오.", "icon_type": "psychology"}
+        ],
+        "practical_guide": {"heading": "포트폴리오 정비", "items": [{"title": "잡주 정리", "description": "내일 당장 상장폐지 되어도 이상하지 않은 종목부터 도려내십시오."}]},
+        "conclusion": {"text": "진정한 계좌 성장은 압축에서 시작됩니다.", "closing_statement": "당신의 계좌를 다이어트 시켜드리는 이음스탁."}
     }
 ]
 
@@ -209,8 +254,8 @@ def generate_insight():
         }
     else:
         # Educational Topic Case
-        day_of_year = datetime.now().timetuple().tm_yday
-        pick = TOPICS[day_of_year % len(TOPICS)]
+        # Improved: Random selection to prevent cyclical repetition
+        pick = random.choice(TOPICS)
         new_insight = {
             "article_info": {
                 "id": 2000 + len(insights), "slug": f"{pick['slug']}-{today_iso}",
