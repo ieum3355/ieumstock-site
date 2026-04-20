@@ -15,6 +15,37 @@ def get_verified_data():
         volume_top_stocks = fetch_volume_rankings_with_info() 
         tickers = [s[0] for s in volume_top_stocks]
         
+        # --- 추가: 기존 추천 종목 유지 로직 ---
+        # 기존 대시보드에 있던 종목들이 거래량 순위에서 밀려도 계속 추적하기 위함
+        existing_tickers = []
+        if os.path.exists("public/dashboard_data.json"):
+            try:
+                with open("public/dashboard_data.json", "r", encoding="utf-8") as f:
+                    old_data = json.load(f)
+                    existing_tickers = [r['stock_info']['ticker'] for r in old_data.get('recommendations', [])]
+            except: pass
+        
+        # 중복 제거하며 기존 티커 추가
+        for et in existing_tickers:
+            if et not in tickers:
+                tickers.append(et)
+        
+        # --- 추가 2: 최근 인사이트 리포트 종목 강제 포함 ---
+        insight_tickers = []
+        if os.path.exists("public/daily_insights.json"):
+            try:
+                with open("public/daily_insights.json", "r", encoding="utf-8") as f:
+                    insights = json.load(f)
+                    # 최근 10개 리포트의 종목 티커 수집
+                    for i in insights[:10]:
+                        rel = i.get('system_link', {}).get('related_ticker', [])
+                        if rel: insight_tickers.extend(rel)
+            except: pass
+        
+        for it in insight_tickers:
+            if it not in tickers:
+                tickers.append(it)
+        
         ts = int(datetime.now().timestamp() * 1000)
         market_res = requests.get(f"https://polling.finance.naver.com/api/realtime?query=SERVICE_INDEX:KOSPI,KOSDAQ&_={ts}")
         market_res.encoding = 'utf-8'
@@ -132,7 +163,7 @@ def get_verified_data():
         parsed_stocks.sort(key=lambda x: x['score'], reverse=True)
         
         final_recs = []
-        for i, s in enumerate(parsed_stocks[:6]): # 최대 6개 추천
+        for i, s in enumerate(parsed_stocks[:15]): # 최대 15개 추천
             # --- 정교화된 목표가 산출 기준 (Tiered Resistance Strategy) ---
             # 1. 일차적으로 장기 저항선(112, 224, 448일선) 중 현재가보다 높은 가장 가까운 선을 타겟팅
             potential_targets = [m for m in [s['ma112'], s['ma224'], s['ma448']] if m > s['price']]
