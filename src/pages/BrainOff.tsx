@@ -14,6 +14,8 @@ const BrainOff = () => {
   const [loading, setLoading] = useState(true);
   const [showToast, setShowToast] = useState(false);
   const [alertStock, setAlertStock] = useState<any>(null);
+  const [history, setHistory] = useState<any[]>([]);
+  const [activeTab, setActiveTab] = useState<'live' | 'history'>('live');
 
   useEffect(() => {
     const loadData = async () => {
@@ -34,6 +36,13 @@ const BrainOff = () => {
             setShowToast(true);
             setTimeout(() => setShowToast(false), 8000);
           }
+        }
+
+        // Load History
+        const hRes = await fetch(`/recommendation_history.json?v=${v}`);
+        const hResult = await hRes.json();
+        if (Array.isArray(hResult)) {
+          setHistory(hResult);
         }
       } catch (e) {
         console.error("Data load failed");
@@ -398,6 +407,92 @@ const BrainOff = () => {
                 <div key={i} className="bg-white/5 h-80 rounded-[3rem] animate-pulse"></div>
               ))
             )}
+          </div>
+        </div>
+
+        {/* --- NEW: Performance History Section --- */}
+        <div className="lg:col-span-12 space-y-8 pt-10 border-t border-white/5">
+          <div className="flex items-center justify-between">
+            <div className="space-y-1">
+              <h3 className="text-3xl font-black text-white flex items-center gap-3">
+                과거 추천 성과 아카이브
+                <BarChart3 className="w-8 h-8 text-cyan-500" />
+              </h3>
+              <p className="text-xs text-slate-500 font-bold uppercase tracking-widest">날짜별 브레인 오프 엔진 포착 내역 (최근 100건)</p>
+            </div>
+          </div>
+
+          <div className="bg-slate-900/30 border border-white/5 rounded-[3rem] overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="border-b border-white/5 bg-white/5">
+                    <th className="px-8 py-6 text-[10px] font-black text-slate-500 uppercase tracking-widest">추천일</th>
+                    <th className="px-8 py-6 text-[10px] font-black text-slate-500 uppercase tracking-widest">종목명</th>
+                    <th className="px-8 py-6 text-[10px] font-black text-slate-500 uppercase tracking-widest">등급</th>
+                    <th className="px-8 py-6 text-[10px] font-black text-slate-500 uppercase tracking-widest">포착가</th>
+                    <th className="px-8 py-6 text-[10px] font-black text-slate-500 uppercase tracking-widest">목표가</th>
+                    <th className="px-8 py-6 text-[10px] font-black text-slate-500 uppercase tracking-widest">상태</th>
+                    <th className="px-8 py-6"></th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-white/5">
+                  {history.length > 0 ? history.map((item: any) => (
+                    <tr key={item.metadata.slug} className="hover:bg-white/5 transition-colors group">
+                      <td className="px-8 py-6">
+                        <div className="flex items-center gap-3">
+                          <Calendar className="w-4 h-4 text-slate-600" />
+                          <span className="text-xs font-bold text-slate-400">{item.metadata.date}</span>
+                        </div>
+                      </td>
+                      <td className="px-8 py-6">
+                        <div className="space-y-0.5">
+                          <p className="text-sm font-black text-white">{item.stock_info.real_name}</p>
+                          <p className="text-[10px] font-bold text-slate-500 font-mono">{item.stock_info.ticker}</p>
+                        </div>
+                      </td>
+                      <td className="px-8 py-6">
+                        <span className={`px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest border ${
+                          item.metadata.tier === 'Premium' 
+                            ? 'bg-amber-500/10 text-amber-500 border-amber-500/20' 
+                            : 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
+                        }`}>
+                          {item.metadata.tier}
+                        </span>
+                      </td>
+                      <td className="px-8 py-6">
+                        <span className="text-sm font-black text-slate-300">{item.trading_strategy.entry_price.toLocaleString()}원</span>
+                      </td>
+                      <td className="px-8 py-6">
+                        <span className="text-sm font-black text-emerald-400">{item.trading_strategy.target_price.toLocaleString()}원</span>
+                      </td>
+                      <td className="px-8 py-6">
+                        <div className="flex items-center gap-2">
+                          <div className={`w-1.5 h-1.5 rounded-full ${item.metadata.action_required ? 'bg-rose-500 animate-pulse' : 'bg-emerald-500'}`}></div>
+                          <span className="text-[10px] font-black text-slate-400 uppercase tracking-tighter">
+                            {item.metadata.action_required ? '수익실현 권고' : '추세 유지'}
+                          </span>
+                        </div>
+                      </td>
+                      <td className="px-8 py-6 text-right">
+                        <button 
+                          onClick={() => navigate(`/insights/${item.metadata.slug}`)}
+                          className="p-3 bg-white/5 rounded-xl text-slate-500 group-hover:text-emerald-400 transition-colors"
+                        >
+                          <ArrowRight className="w-4 h-4" />
+                        </button>
+                      </td>
+                    </tr>
+                  )) : (
+                    <tr>
+                      <td colSpan={7} className="px-8 py-20 text-center text-slate-500 font-black uppercase tracking-widest">
+                        히스토리 데이터를 불러오는 중이거나 데이터가 없습니다.
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
 

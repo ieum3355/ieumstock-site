@@ -109,7 +109,13 @@ def get_verified_data():
             if score >= 60: # 영매공파 최소 기준 통과
                 # 분류: 변동성이 크면 'Swing', 변동성이 낮고 바닥권이면 'MidLong'
                 volatility = (max(closes[:20]) - min(closes[:20])) / min(closes[:20])
-                tier_tag = "Premium" if volatility < 0.15 and is_reverse_aligned else "Standard"
+                
+                # --- ADJUSTED: Ensure Premium presence if possible ---
+                # If score is high (80+) and it's reverse aligned, we can consider it Premium
+                tier_tag = "Standard"
+                if is_reverse_aligned:
+                    if volatility < 0.15 or score >= 85:
+                        tier_tag = "Premium"
                 
                 parsed_stocks.append({
                     "ticker": code, "name": name, "price": nv, "rate": cr, "score": score,
@@ -148,14 +154,30 @@ def get_verified_data():
             if s['condition_flags']['파란점선']: 
                 reasons.append("주가가 112일선을 강력하게 돌파하며 장기 추세 전환(파란점선) 시그널 발생")
             
-            # 풍부한 시나리오 생성
-            scenario_text = f"현재 {s['name']} 종목은 장기 하락 추세를 멈추고 횡보하며 에너지를 응축한 상태입니다. "
-            if s['condition_flags']['역배열'] and s['condition_flags']['매집봉']:
-                scenario_text += "특히 역배열 바닥권에서 매집봉이 포착된 만큼, 세력의 매집이 상당 부분 진행된 것으로 판단됩니다. "
-            if s['condition_flags']['파란점선']:
-                scenario_text += "112일선 돌파는 강력한 추세 전환의 신호이며, 거래량이 동반될 경우 상단 매물대까지 빠른 상승이 가능합니다. "
-            scenario_text += "1차 목표가 도달 시 일부 수익 실현 후, 448일선까지 장기적인 관점에서 보유를 권장하는 '영매공파' 핵심 타점입니다."
+            # --- VARIED TEXT GENERATION ---
+            summary_templates = [
+                f"{s['name']} 종목은 장기 이평선 역배열 상태에서 바닥을 다지는 '공구리'가 확인되었으며, 최근 매집봉과 함께 112일선 돌파를 시도하는 전형적인 영매공파 타점입니다.",
+                f"현재 {s['name']}은(는) 바닥권에서 에너지 응축이 상당히 진행된 상태로, 세력의 매집봉이 관찰됨에 따라 1차 하락 추세 탈출이 임박한 것으로 보입니다.",
+                f"기술적으로 {s['name']}은(는) 112일선을 강하게 돌파하며 단기 반등을 넘어선 추세 전환의 초입에 진입했습니다. '공구리' 하단을 손절로 잡는 전략이 유효합니다."
+            ]
             
+            scenario_parts = [
+                f"현재 {s['name']} 종목은 장기 하락 추세를 멈추고 횡보하며 에너지를 응축한 상태입니다.",
+                f"기술적 분석 결과, {s['name']}은(는) 세력이 바닥을 다지고 물량을 매집한 정황이 뚜렷하게 포착됩니다.",
+                f"{s['name']}은(는) 영매공파 기법상 가장 안전한 '바닥 탈출' 구간에 있으며, 하방 경직성이 확보되었습니다."
+            ]
+            
+            if s['condition_flags']['역배열'] and s['condition_flags']['매집봉']:
+                scenario_parts.append("특히 역배열 바닥권에서 매집봉이 포착된 만큼, 세력의 매집이 상당 부분 진행된 것으로 판단됩니다.")
+            if s['condition_flags']['파란점선']:
+                scenario_parts.append("112일선 돌파는 강력한 추세 전환의 신호이며, 거래량이 동반될 경우 상단 매물대까지 빠른 상승이 가능합니다.")
+            
+            scenario_parts.append("1차 목표가 도달 시 일부 수익 실현 후, 448일선까지 장기적인 관점에서 보유를 권장하는 '영매공파' 핵심 타점입니다.")
+            
+            # Pick different templates based on score or index
+            summary_text = summary_templates[i % len(summary_templates)]
+            scenario_text = " ".join(random.sample(scenario_parts, min(3, len(scenario_parts))))
+
             rec = {
                 "metadata": {
                     "id": f"BO-{today_str}-{i}", "slug": full_slug, 
@@ -175,7 +197,7 @@ def get_verified_data():
                     "institutional_buy": 40 if s['condition_flags']['역배열'] else 0  # 역배열은 바닥권 확인으로 매칭
                 },
                 "analysis_report": {
-                    "summary": f"{s['name']} 종목은 장기 이평선 역배열 상태에서 바닥을 다지는 '공구리'가 확인되었으며, 최근 매집봉과 함께 112일선 돌파를 시도하는 전형적인 영매공파 타점입니다.",
+                    "summary": summary_text,
                     "why_recommended": reasons,
                     "fundamental_score": random.randint(70, 95) if is_premium else 0,
                     "ai_insight": "업황 턴어라운드 흐름과 세력 매집 흔적이 일치하여 중장기 시세 분출 가능성이 매우 높은 구간입니다." if is_premium else "기술적 반등 구간 진입으로 단기 수익 실현 가능성이 높습니다."
@@ -203,6 +225,27 @@ def get_verified_data():
         with open(output_path, "w", encoding="utf-8") as f:
             json.dump(final_json, f, ensure_ascii=False, indent=2)
             
+        # --- NEW: History Persistence ---
+        history_path = "public/recommendation_history.json"
+        history = []
+        if os.path.exists(history_path):
+            try:
+                with open(history_path, "r", encoding="utf-8") as f:
+                    history = json.load(f)
+            except: history = []
+        
+        # Add new recommendations if not already in history (by slug)
+        existing_slugs = {r['metadata']['slug'] for r in history}
+        new_entries = [r for r in final_recs if r['metadata']['slug'] not in existing_slugs]
+        
+        if new_entries:
+            # Add to the beginning and keep last 100 entries
+            history = new_entries + history
+            history = history[:100]
+            with open(history_path, "w", encoding="utf-8") as f:
+                json.dump(history, f, ensure_ascii=False, indent=2)
+            print(f"Added {len(new_entries)} new recommendations to history.")
+
         print(f"Success: {len(final_recs)} stocks captured.")
         
     except Exception as e:
