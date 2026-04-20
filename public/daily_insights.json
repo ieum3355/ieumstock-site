@@ -2,6 +2,71 @@
   {
     "article_info": {
       "id": 2079,
+      "slug": "major-supply-demand-analysis-2026-04-20",
+      "title": "외인/기관의 '쌍끌이' 매수 포착: 메이저 수급과 주가 부양의 함수관계",
+      "author": "ieumstock AI Lab",
+      "date": "2026.04.20",
+      "publishDate": "2026-04-20",
+      "category": "Expert Insight",
+      "tags": [
+        "수급분석",
+        "외인매수",
+        "기관매집",
+        "주도주"
+      ]
+    },
+    "seo_metadata": {
+      "meta_title": "외인/기관의 '쌍끌이' 매수 포착: 메이저 수급과 주가 부양의 함수관계",
+      "meta_description": "개인 투자자가 시장을 이길 수 없는 이유는 정보력이 아니라 자금력입니다. 메이저 수급이 집중되는 종목의 특징을 분석합니다."
+    },
+    "content_body": {
+      "introduction": {
+        "heading": "돈의 주인이 누구인지 파악하는 것이 투자의 시작입니다.",
+        "text": "개인 투자자가 시장을 이길 수 없는 이유는 정보력이 아니라 자금력입니다. 메이저 수급이 집중되는 종목의 특징을 분석합니다."
+      },
+      "core_analysis": [
+        {
+          "sub_heading": "1. 양매수(쌍끌이)의 신뢰도",
+          "text": "외국인과 기관이 동시에 매수 우위를 보일 때 주가는 가장 강력한 탄력을 받습니다.",
+          "insight_tip": "연기금의 연속 매수세를 필히 확인하십시오.",
+          "icon_type": "analysis"
+        },
+        {
+          "sub_heading": "2. 창구 분석을 통한 허수 파악",
+          "text": "특정 창구를 통한 집중 매수는 단순 차익 실현이 아닌 경영권이나 중장기 매집일 가능성이 높습니다.",
+          "insight_tip": "검은 머리 외국인의 가짜 수급을 조심하십시오.",
+          "icon_type": "volume"
+        },
+        {
+          "sub_heading": "3. 수급과 이평선의 조화",
+          "text": "수급이 들어오며 정배열로 전환되는 시점이 가장 확률 높은 타점입니다.",
+          "insight_tip": "수급 유입 시 거래량 변화를 실시간으로 체크하십시오.",
+          "icon_type": "trend"
+        }
+      ],
+      "practical_guide": {
+        "heading": "수급 매매 전략",
+        "items": [
+          {
+            "title": "누적 수급 확인",
+            "description": "1개월 누적 순매수량이 1위를 기록하는 섹터를 공략하십시오."
+          }
+        ]
+      },
+      "conclusion": {
+        "text": "수급은 주가의 선행 지표입니다.",
+        "closing_statement": "이음스탁이 메이저의 발자취를 추적합니다."
+      }
+    },
+    "system_link": {
+      "target_tool": "Brain-Off Hybrid 2.1",
+      "cta_text": "AI 리서치 엔진 더보기",
+      "related_ticker": []
+    }
+  },
+  {
+    "article_info": {
+      "id": 2079,
       "slug": "analysis-stock-434480-260420",
       "title": "오늘의 Standard 브레인 오프 타점: 모니터랩 정밀 분석",
       "author": "ieumstock AI Research",
