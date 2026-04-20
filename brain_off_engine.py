@@ -90,11 +90,20 @@ def get_verified_data():
                 "name": name, "value": f"{val:,.2f}", "rate": f"{rate:+.2f}%"
             })
             
+        # --- 캐시 로딩 (Naver 블락 방지) ---
+        cache_path = "public/ma_cache.json"
+        ma_cache = {}
+        if os.path.exists(cache_path):
+            try:
+                with open(cache_path, "r", encoding="utf-8") as f:
+                    ma_cache = json.load(f)
+            except: pass
+
         # 2. 영매공파(YMG) 기술적 분석
         parsed_stocks = []
         
-        # 분석 대상 확대 (상위 300개 정밀 분석으로 탐지 확률 극대화)
-        for item in stock_items[:300]:
+        # 분석 대상 전수 조사 (tickers 풀에 포함된 모든 종목 정밀 분석)
+        for item in stock_items:
             code = item.get('cd', '')
             name = item.get('nm', 'Unknown')
             nv = item.get('nv', 0)
@@ -103,18 +112,40 @@ def get_verified_data():
             # 상장폐지/경고 종목 필터
             if any(k in name for k in ["(관)", "(환)", "(전)", "스팩", "우", "ETF", "ETN"]): continue
             
-            # 과거 데이터 수집 (500일치 필요)
-            hist = fetch_historical_data(code, pages=45) 
-            if not hist or len(hist) < 448: continue
+            # 캐시 활용
+            cached_data = ma_cache.get(code)
+            today_str = datetime.now().strftime("%Y-%m-%d")
             
-            closes = [h['close'] for h in hist]
-            highs = [h['high'] for h in hist]
-            volumes = [h['volume'] for h in hist]
-            
-            # 이평선 계산
-            ma112 = sum(closes[:112]) / 112
-            ma224 = sum(closes[:224]) / 224
-            ma448 = sum(closes[:448]) / 448
+            if cached_data and cached_data.get('date') == today_str:
+                ma112, ma224, ma448 = cached_data['ma112'], cached_data['ma224'], cached_data['ma448']
+                volumes = cached_data['volumes']
+                high_112 = cached_data.get('high_112', ma112 * 1.2)
+                
+                # 실시간 분석을 위해 최소한의 데이터만 가져옴 (공구리 체크를 위해 40일치 필요)
+                hist = fetch_historical_data(code, pages=4) 
+                if not hist or len(hist) < 40: continue
+                closes = [h['close'] for h in hist]
+            else:
+                # 과거 데이터 수집 (500일치 필요)
+                hist = fetch_historical_data(code, pages=45) 
+                if not hist or len(hist) < 448: continue
+                
+                closes = [h['close'] for h in hist]
+                highs = [h['high'] for h in hist]
+                volumes = [h['volume'] for h in hist]
+                
+                ma112 = sum(closes[:112]) / 112
+                ma224 = sum(closes[:224]) / 224
+                ma448 = sum(closes[:448]) / 448
+                high_112 = max(highs[:112])
+                
+                ma_cache[code] = {
+                    "date": today_str, "ma112": ma112, "ma224": ma224, "ma448": ma448,
+                    "recent_lows": [h['low'] for h in hist[:20]], "volumes": volumes[:100], 
+                    "high_112": high_112
+                }
+                with open(cache_path, "w", encoding="utf-8") as f:
+                    json.dump(ma_cache, f, ensure_ascii=False)
             
             # [Step 1] 역배열 확인 (448 > 224 > 112)
             is_reverse_aligned = ma448 > ma224 > ma112
@@ -137,7 +168,7 @@ def get_verified_data():
             if is_concrete: score += 15
             if is_breaking_112: score += 20
             
-            if score >= 60: # 영매공파 최소 기준 통과
+            if score >= 55: # 영매공파 최소 기준 통과
                 # 분류: 변동성이 크면 'Swing', 변동성이 낮고 바닥권이면 'MidLong'
                 volatility = (max(closes[:20]) - min(closes[:20])) / min(closes[:20])
                 
@@ -152,7 +183,7 @@ def get_verified_data():
                     "ticker": code, "name": name, "price": nv, "rate": cr, "score": score,
                     "tier": tier_tag, "ma112": ma112, "ma224": ma224, "ma448": ma448,
                     "low_20": min(recent_lows),
-                    "high_112": max(highs[:112]),
+                    "high_112": high_112,
                     "condition_flags": {
                         "역배열": is_reverse_aligned, "매집봉": has_accumulation,
                         "공구리": is_concrete, "파란점선": is_breaking_112
