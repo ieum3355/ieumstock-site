@@ -1,7 +1,10 @@
 import json
 import os
 import random
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
+
+# KST 시간대 설정 (UTC+9)
+KST = timezone(timedelta(hours=9))
 
 # Path to the dynamic insights file
 INSIGHTS_FILE = 'public/daily_insights.json'
@@ -339,8 +342,9 @@ def generate_insight():
                 insights = json.load(f)
         except: insights = []
 
-    today = datetime.now().strftime("%Y.%m.%d")
-    today_iso = datetime.now().strftime("%Y-%m-%d")
+    now_kst = datetime.now(KST)
+    today = now_kst.strftime("%Y.%m.%d")
+    today_iso = now_kst.strftime("%Y-%m-%d")
     
     # 1. Load Recommendation Data
     dashboard_data = {}

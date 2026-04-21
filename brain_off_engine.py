@@ -4,7 +4,10 @@ import requests
 import random
 import time
 import re
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
+
+# KST 시간대 설정 (UTC+9)
+KST = timezone(timedelta(hours=9))
 
 # [핵심] 브레인 오프 (Brain-Off) MVP 엔진
 # 주식 단테의 '영매공파' 기법을 디지털 알고리즘으로 구현
@@ -46,7 +49,8 @@ def get_verified_data():
             if it not in tickers:
                 tickers.append(it)
         
-        ts = int(datetime.now().timestamp() * 1000)
+        now_kst = datetime.now(KST)
+        ts = int(now_kst.timestamp() * 1000)
         market_res = requests.get(f"https://polling.finance.naver.com/api/realtime?query=SERVICE_INDEX:KOSPI,KOSDAQ&_={ts}")
         market_res.encoding = 'utf-8'
         market_data = market_res.json()['result']['areas'][0]['datas']
@@ -71,8 +75,8 @@ def get_verified_data():
         final_json = {
             "generation_info": {
                 "engine": "Brain-Off Engine 1.0",
-                "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                "date": datetime.now().strftime("%Y-%m-%d"),
+                "timestamp": now_kst.strftime("%Y-%m-%d %H:%M:%S"),
+                "date": now_kst.strftime("%Y-%m-%d"),
                 "market_condition": "Checking Brain-Off Breakout Signals"
             },
             "market_summary": [],
@@ -114,7 +118,7 @@ def get_verified_data():
             
             # 캐시 활용
             cached_data = ma_cache.get(code)
-            today_str = datetime.now().strftime("%Y-%m-%d")
+            today_str = now_kst.strftime("%Y-%m-%d")
             
             if cached_data and cached_data.get('date') == today_str:
                 ma112, ma224, ma448 = cached_data['ma112'], cached_data['ma224'], cached_data['ma448']
@@ -259,7 +263,7 @@ def get_verified_data():
             rec = {
                 "metadata": {
                     "id": f"BO-{today_str}-{i}", "slug": full_slug, 
-                    "tier": s['tier'], "date": datetime.now().strftime("%Y-%m-%d"),
+                    "tier": s['tier'], "date": now_kst.strftime("%Y-%m-%d"),
                     "score": s['score'], "action_required": is_take_profit
                 },
                 "stock_info": {
