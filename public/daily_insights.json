@@ -1,6 +1,135 @@
 [
   {
     "article_info": {
+      "id": 2094,
+      "slug": "nasdaq-kospi-coupling-analysis-2026-04-21",
+      "title": "나스닥 지수와 국내 기술주 커플링 분석 (디커플링 대응법)",
+      "author": "ieumstock AI Lab",
+      "date": "2026.04.21",
+      "publishDate": "2026-04-21",
+      "category": "Market Analysis",
+      "tags": [
+        "나스닥",
+        "국내증시",
+        "커플링"
+      ]
+    },
+    "seo_metadata": {
+      "meta_title": "나스닥 지수와 국내 기술주 커플링 분석 (디커플링 대응법)",
+      "meta_description": "글로벌 증시의 풍향계인 나스닥의 움직임은 국내 핵심 기술주 섹터에 즉각적인 영향을 미칩니다."
+    },
+    "content_body": {
+      "introduction": {
+        "heading": "미국이 기침하면 한국은 독감에 걸리는 시대",
+        "text": "글로벌 증시의 풍향계인 나스닥의 움직임은 국내 핵심 기술주 섹터에 즉각적인 영향을 미칩니다."
+      },
+      "core_analysis": [
+        {
+          "sub_heading": "1. 반도체 섹터의 동조화",
+          "text": "엔비디아, 필라델피아 반도체 지수의 급등락은 국내 시가총액 상위주에 영향을 줍니다.",
+          "insight_tip": "밤사이 글로벌 지수 추이를 반드시 확인하십시오.",
+          "icon_type": "trend"
+        },
+        {
+          "sub_heading": "2. 금리 환경과 성장주 탄력",
+          "text": "나스닥 상승 시 국내 플랫폼주와 바이오 섹터의 반응 속도를 체크하십시오.",
+          "insight_tip": "한미 금리차와 환율 변동성을 변수로 추가하십시오.",
+          "icon_type": "analysis"
+        },
+        {
+          "sub_heading": "3. 디커플링 발생 시 주도 섹터",
+          "text": "나스닥 하락에도 국내 증시가 견조하다면 강력한 개별 모멘텀이 작동 중인 것입니다.",
+          "insight_tip": "상대적 강도 지표(RS)가 개선되는 종목을 찾으십시오.",
+          "icon_type": "psychology"
+        }
+      ],
+      "practical_guide": {
+        "heading": "글로벌 매매 가이드",
+        "items": [
+          {
+            "title": "글로벌 섹터 맵핑",
+            "description": "나스닥 시총 상위주와 연동되는 국내 리스트를 구축하십시오."
+          }
+        ]
+      },
+      "conclusion": {
+        "text": "세계 경제는 하나로 연결되어 있습니다.",
+        "closing_statement": "글로벌 인사이트를 제공하는 이음스탁."
+      }
+    },
+    "system_link": {
+      "target_tool": "Brain-Off Hybrid 2.1",
+      "cta_text": "AI 리서치 엔진 더보기",
+      "related_ticker": []
+    }
+  },
+  {
+    "article_info": {
+      "id": 2093,
+      "slug": "bollinger-band-breakout-strategy-2026-04-21",
+      "title": "볼린저 밴드 상단 돌파와 시세 분출: 변동성을 수익으로 바꾸는 법",
+      "author": "ieumstock AI Lab",
+      "date": "2026.04.21",
+      "publishDate": "2026-04-21",
+      "category": "Technical Analysis",
+      "tags": [
+        "볼린저밴드",
+        "변동성",
+        "기술적분석",
+        "돌파매매"
+      ]
+    },
+    "seo_metadata": {
+      "meta_title": "볼린저 밴드 상단 돌파와 시세 분출: 변동성을 수익으로 바꾸는 법",
+      "meta_description": "변동성이 극도로 축소된 후 밴드 상단을 뚫고 나가는 흐름은 강력한 추세 형성의 전조입니다."
+    },
+    "content_body": {
+      "introduction": {
+        "heading": "밴드가 수렴할 때 폭발을 준비하십시오.",
+        "text": "변동성이 극도로 축소된 후 밴드 상단을 뚫고 나가는 흐름은 강력한 추세 형성의 전조입니다."
+      },
+      "core_analysis": [
+        {
+          "sub_heading": "1. 밴드 수렴(Squeeze)의 강도",
+          "text": "밴드의 폭이 좁아질수록 이후 발생하는 시세의 에너지는 더욱 강력해집니다.",
+          "insight_tip": "밴드 폭 지표(Bandwidth)를 활용하십시오.",
+          "icon_type": "analysis"
+        },
+        {
+          "sub_heading": "2. 상단 돌파 시의 거래량 실린 양봉",
+          "text": "거래량 없이 밴드 상단을 터치하는 것은 가짜 돌파인 경우가 많습니다.",
+          "insight_tip": "돌파 시 전일 대비 200% 이상 거래량을 확인하십시오.",
+          "icon_type": "volume"
+        },
+        {
+          "sub_heading": "3. 중심선 지지와 추세 지속",
+          "text": "돌파 후 밴드 중심선(20일선)을 이탈하지 않는다면 추세는 지속됩니다.",
+          "insight_tip": "중심선을 이탈할 때가 최종 매도 타이밍입니다.",
+          "icon_type": "trend"
+        }
+      ],
+      "practical_guide": {
+        "heading": "밴드 활용 수칙",
+        "items": [
+          {
+            "title": "추세 추종",
+            "description": "밴드 상단을 타고 올라가는 '밴드 워킹' 구간을 즐기십시오."
+          }
+        ]
+      },
+      "conclusion": {
+        "text": "변동성은 두려움이 아닌 기회입니다.",
+        "closing_statement": "이음스탁이 변동성의 맥점을 짚어드립니다."
+      }
+    },
+    "system_link": {
+      "target_tool": "Brain-Off Hybrid 2.1",
+      "cta_text": "AI 리서치 엔진 더보기",
+      "related_ticker": []
+    }
+  },
+  {
+    "article_info": {
       "id": 2092,
       "slug": "analysis-stock-443670-2026-04-21",
       "title": "[정밀 리포트] 에스피소프트, 65점의 압도적 타점 포착",
