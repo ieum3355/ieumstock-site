@@ -113,8 +113,11 @@ def get_verified_data():
             nv = item.get('nv', 0)
             cr = float(item.get('cr', 0.0))
             
-            # 상장폐지/경고 종목 필터
-            if any(k in name for k in ["(관)", "(환)", "(전)", "스팩", "우", "ETF", "ETN"]): continue
+            # 상장폐지/경고/ETF 종목 필터 강화
+            if any(k in name for k in ["(관)", "(환)", "(전)", "스팩", "우", "ETF", "ETN", "KODEX", "TIGER", "KBSTAR", "ACE", "SOL"]): continue
+            
+            # 과열 종목 필터 (상한가 근접 또는 이미 너무 오른 종목 제외)
+            if cr >= 20.0: continue
             
             # 캐시 활용
             cached_data = ma_cache.get(code)
@@ -176,12 +179,14 @@ def get_verified_data():
                 # 분류: 변동성이 크면 'Swing', 변동성이 낮고 바닥권이면 'MidLong'
                 volatility = (max(closes[:20]) - min(closes[:20])) / min(closes[:20])
                 
-                # --- ADJUSTED: Ensure Premium presence if possible ---
-                # If score is high (80+) and it's reverse aligned, we can consider it Premium
+                # --- PREMIUM CRITERIA STRENGTHENED ---
+                # Score 85+ and MUST have 112ma breakout (Blue Dotted Line) signal
                 tier_tag = "Standard"
-                if is_reverse_aligned:
-                    if volatility < 0.15 or score >= 85:
-                        tier_tag = "Premium"
+                if score >= 85 and is_breaking_112:
+                    tier_tag = "Premium"
+                elif is_reverse_aligned and volatility < 0.15 and score >= 75:
+                    # Alternative premium: extremely stable bottoming out
+                    tier_tag = "Premium"
                 
                 parsed_stocks.append({
                     "ticker": code, "name": name, "price": nv, "rate": cr, "score": score,
@@ -213,6 +218,19 @@ def get_verified_data():
                     # 3. 신고가 영역일 경우, 기술적 스윙 표준 수익률인 20%를 기준선으로 설정
                     target_1 = int(s['price'] * 1.20)
 
+            # --- MINIMUM PROFIT MARGIN PROTECTION (Min 5%) ---
+            profit_margin = (target_1 - s['price']) / s['price']
+            if profit_margin < 0.05:
+                # Try higher resistance (224 or 448)
+                potential_higher = [m for m in [s['ma224'], s['ma448']] if m > target_1]
+                if potential_higher:
+                    target_1 = int(min(potential_higher))
+                    profit_margin = (target_1 - s['price']) / s['price']
+                
+                # Still too low? Skip this stock to maintain high signal quality
+                if profit_margin < 0.05:
+                    continue
+
             # 데이터 오류(스크래핑 이상)로 인한 비현실적 목표가 방어 (최대 2.5배 제한)
             if target_1 > s['price'] * 2.5:
                 target_1 = int(s['price'] * 1.3) 
@@ -222,8 +240,16 @@ def get_verified_data():
             is_premium = (s['tier'] == "Premium")
             full_slug = f"{code_to_slug(s['name'], s['ticker'])}-{today_str}"
             
-            # AI 리포트/재무 점수 생성
-            is_take_profit = s['price'] >= target_1 * 0.98 # 시뮬레이션용: 목표가 근접 시 알림 유발
+            # --- DYNAMIC STATUS LABELING ---
+            status_label = "추세 유지"
+            if s['price'] >= target_1:
+                status_label = "수익 달성"
+            elif s['price'] >= target_1 * 0.97:
+                status_label = "수익실현 권고"
+            elif s['price'] > s['price'] * 1.03: # Entry price logic is simplified here for MVP
+                status_label = "수익권 진입"
+            
+            is_take_profit = (status_label in ["수익 달성", "수익실현 권고"])
             
             # 추천 사유 상세 생성
             reasons = []
@@ -264,7 +290,8 @@ def get_verified_data():
                 "metadata": {
                     "id": f"BO-{today_str}-{i}", "slug": full_slug, 
                     "tier": s['tier'], "date": now_kst.strftime("%Y-%m-%d"),
-                    "score": s['score'], "action_required": is_take_profit
+                    "score": s['score'], "action_required": is_take_profit,
+                    "status_label": status_label
                 },
                 "stock_info": {
                     "name": mask_name(s['name']) if is_premium else s['name'],

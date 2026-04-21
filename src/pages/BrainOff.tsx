@@ -231,6 +231,20 @@ const BrainOff = () => {
                       </div>
                     </div>
 
+                    {/* Status Badge */}
+                    <div className="flex items-center gap-2">
+                      <div className={`w-1.5 h-1.5 rounded-full ${
+                        rec.metadata.status_label === '수익 달성' ? 'bg-emerald-500 shadow-[0_0_8px_#10b981]' :
+                        rec.metadata.action_required ? 'bg-rose-500 animate-pulse' : 'bg-slate-500'
+                      }`}></div>
+                      <span className={`text-[10px] font-black uppercase tracking-widest ${
+                        rec.metadata.status_label === '수익 달성' ? 'text-emerald-400' :
+                        rec.metadata.action_required ? 'text-rose-400' : 'text-slate-400'
+                      }`}>
+                        {rec.metadata.status_label || (rec.metadata.action_required ? '수익실현 권고' : '추세 유지')}
+                      </span>
+                    </div>
+
                     <div className="grid grid-cols-2 gap-4">
                       <div className="p-5 bg-white/5 rounded-3xl border border-white/5 space-y-1">
                         <p className="text-[9px] font-black text-slate-500 uppercase tracking-widest">진입가/목표가</p>
@@ -468,9 +482,15 @@ const BrainOff = () => {
                       </td>
                       <td className="px-8 py-6">
                         <div className="flex items-center gap-2">
-                          <div className={`w-1.5 h-1.5 rounded-full ${item.metadata.action_required ? 'bg-rose-500 animate-pulse' : 'bg-emerald-500'}`}></div>
-                          <span className="text-[10px] font-black text-slate-400 uppercase tracking-tighter">
-                            {item.metadata.action_required ? '수익실현 권고' : '추세 유지'}
+                          <div className={`w-1.5 h-1.5 rounded-full ${
+                            item.metadata.status_label === '수익 달성' ? 'bg-emerald-500' :
+                            item.metadata.action_required ? 'bg-rose-500 animate-pulse' : 'bg-slate-600'
+                          }`}></div>
+                          <span className={`text-[10px] font-black uppercase tracking-tighter ${
+                            item.metadata.status_label === '수익 달성' ? 'text-emerald-400' :
+                            item.metadata.action_required ? 'text-rose-400' : 'text-slate-400'
+                          }`}>
+                            {item.metadata.status_label || (item.metadata.action_required ? '수익실현 권고' : '추세 유지')}
                           </span>
                         </div>
                       </td>
