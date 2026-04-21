@@ -1,7 +1,7 @@
 [
   {
     "article_info": {
-      "id": 2094,
+      "id": 2096,
       "slug": "nasdaq-kospi-coupling-analysis-2026-04-21",
       "title": "나스닥 지수와 국내 기술주 커플링 분석 (디커플링 대응법)",
       "author": "ieumstock AI Lab",
@@ -55,6 +55,71 @@
       "conclusion": {
         "text": "세계 경제는 하나로 연결되어 있습니다.",
         "closing_statement": "글로벌 인사이트를 제공하는 이음스탁."
+      }
+    },
+    "system_link": {
+      "target_tool": "Brain-Off Hybrid 2.1",
+      "cta_text": "AI 리서치 엔진 더보기",
+      "related_ticker": []
+    }
+  },
+  {
+    "article_info": {
+      "id": 2095,
+      "slug": "market-korea-value-up-analysis-2026-04-21",
+      "title": "코스피 '밸류업' 프로그램과 저PBR주의 재평가",
+      "author": "ieumstock AI Lab",
+      "date": "2026.04.21",
+      "publishDate": "2026-04-21",
+      "category": "Market Strategy",
+      "tags": [
+        "밸류업",
+        "저PBR",
+        "주주환원",
+        "국내증시"
+      ]
+    },
+    "seo_metadata": {
+      "meta_title": "코스피 '밸류업' 프로그램과 저PBR주의 재평가",
+      "meta_description": "정부 주도의 기업 가치 제고 프로그램은 만년 저평가 상태였던 국내 기업들의 체질 개선을 요구하고 있습니다."
+    },
+    "content_body": {
+      "introduction": {
+        "heading": "코리아 디스카운트 해소의 서막",
+        "text": "정부 주도의 기업 가치 제고 프로그램은 만년 저평가 상태였던 국내 기업들의 체질 개선을 요구하고 있습니다."
+      },
+      "core_analysis": [
+        {
+          "sub_heading": "1. PBR 1배 미만의 의미",
+          "text": "자산 가치보다 시가 총액이 낮은 기업들이 주주 환원을 강화할 때 강력한 리레이팅이 발생합니다.",
+          "insight_tip": "현금 보유량이 많고 자사주 소각 의지가 있는 기업을 찾으십시오.",
+          "icon_type": "analysis"
+        },
+        {
+          "sub_heading": "2. 배당 성향과 자사주 정책",
+          "text": "단순 배당 수익률보다 배당 성향의 지속적인 확대 여부가 장기 투자 가치를 결정합니다.",
+          "insight_tip": "최근 3년간 배당금이 우상향한 종목을 필터링하십시오.",
+          "icon_type": "trend"
+        },
+        {
+          "sub_heading": "3. 지배 구조 개선의 촉매제",
+          "text": "지배 구조 투명화는 외국인 투자자들의 수급을 유인하는 가장 강력한 유인책입니다.",
+          "insight_tip": "지주사들의 거버넌스 업데이트 소식을 모니터링하십시오.",
+          "icon_type": "volume"
+        }
+      ],
+      "practical_guide": {
+        "heading": "밸류업 투자법",
+        "items": [
+          {
+            "title": "ROE 분석",
+            "description": "저PBR이면서 ROE(자기자본이익률)가 개선되는 종목이 베스트입니다."
+          }
+        ]
+      },
+      "conclusion": {
+        "text": "제 가치를 찾아가는 과정에 기회가 있습니다.",
+        "closing_statement": "이음스탁이 숨겨진 진주를 찾아드립니다."
       }
     },
     "system_link": {
