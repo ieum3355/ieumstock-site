@@ -1,6 +1,135 @@
 [
   {
     "article_info": {
+      "id": 2101,
+      "slug": "sector-rotation-tracking-strategy-2026-04-23",
+      "title": "주도 섹터 순환매 추적법: 돈의 흐름을 먼저 선점하십시오",
+      "author": "ieumstock AI Lab",
+      "date": "2026.04.23",
+      "publishDate": "2026-04-23",
+      "category": "Sector Rotation",
+      "tags": [
+        "순환매",
+        "섹터분석",
+        "주도주"
+      ]
+    },
+    "seo_metadata": {
+      "meta_title": "주도 섹터 순환매 추적법: 돈의 흐름을 먼저 선점하십시오",
+      "meta_description": "시장의 자금은 한곳에 머물지 않고 수익을 극대화할 수 있는 곳으로 끊임없이 이동합니다."
+    },
+    "content_body": {
+      "introduction": {
+        "heading": "돈의 흐름은 멈추지 않습니다. 다음 목적지를 찾으십시오.",
+        "text": "시장의 자금은 한곳에 머물지 않고 수익을 극대화할 수 있는 곳으로 끊임없이 이동합니다."
+      },
+      "core_analysis": [
+        {
+          "sub_heading": "1. 자금 이동 경로: 낙폭 과대 섹터",
+          "text": "주도 섹터가 고점에서 쉴 때 자금은 소외되었던 낙폭 과대 섹터로 흘러갑니다.",
+          "insight_tip": "업종별 등락률 히트맵을 매일 체크하십시오.",
+          "icon_type": "trend"
+        },
+        {
+          "sub_heading": "2. 대장주 이동과 확산 현상",
+          "text": "섹터 내 대장주가 먼저 치고 나간 뒤 후속주들로 온기가 확산됩니다.",
+          "insight_tip": "대장주와 부대장주의 이격도를 분석하십시오.",
+          "icon_type": "volume"
+        },
+        {
+          "sub_heading": "3. 주도주 선별: 실적 턴어라운드",
+          "text": "순환매 끝에서 다음 주도주가 될 곳은 실적 개선 기대감이 가장 큰 곳입니다.",
+          "insight_tip": "기관 투자자의 바스켓 매수 종목군을 확인하십시오.",
+          "icon_type": "strategy"
+        }
+      ],
+      "practical_guide": {
+        "heading": "순환매 선점 가이드",
+        "items": [
+          {
+            "title": "섹터 바스켓 구성",
+            "description": "주요 섹터별 핵심 종목을 묶어 실시간 관찰하십시오."
+          }
+        ]
+      },
+      "conclusion": {
+        "text": "적절한 타이밍과 과감한 결정이 수익을 결정합니다.",
+        "closing_statement": "돈의 길목을 지키는 이음스탁."
+      }
+    },
+    "system_link": {
+      "target_tool": "Brain-Off Hybrid 2.1",
+      "cta_text": "AI 리서치 엔진 더보기",
+      "related_ticker": []
+    }
+  },
+  {
+    "article_info": {
+      "id": 2100,
+      "slug": "sector-bio-clinical-phase3-risk-2026-04-23",
+      "title": "바이오 섹터 임상 3상의 문턱: 투자 리스크와 기회",
+      "author": "ieumstock AI Lab",
+      "date": "2026.04.23",
+      "publishDate": "2026-04-23",
+      "category": "Sector Deep Dive",
+      "tags": [
+        "바이오",
+        "임상3상",
+        "신약개발",
+        "리스크관리"
+      ]
+    },
+    "seo_metadata": {
+      "meta_title": "바이오 섹터 임상 3상의 문턱: 투자 리스크와 기회",
+      "meta_description": "임상 3상은 신약 개발의 마지막 관문이자 가장 거대한 자금이 투입되는 단계입니다."
+    },
+    "content_body": {
+      "introduction": {
+        "heading": "하이 리스크 하이 리턴의 정점",
+        "text": "임상 3상은 신약 개발의 마지막 관문이자 가장 거대한 자금이 투입되는 단계입니다."
+      },
+      "core_analysis": [
+        {
+          "sub_heading": "1. 통계적 유의성 확보의 난제",
+          "text": "임상 2상에서의 결과가 3상에서 재현되지 않는 경우가 많습니다. p-value의 함정을 조심하십시오.",
+          "insight_tip": "임상 설계의 정교함을 분석하는 것이 필수입니다.",
+          "icon_type": "analysis"
+        },
+        {
+          "sub_heading": "2. 기술 수출(L/O)의 시점",
+          "text": "자체 개발보다 임상 중기 단계에서의 글로벌 빅파마 대상 기술 수출이 수익성 면에서 유리할 수 있습니다.",
+          "insight_tip": "계약금(Upfront) 규모보다 마일스톤의 현실성을 체크하십시오.",
+          "icon_type": "trend"
+        },
+        {
+          "sub_heading": "3. 학회 발표와 모멘텀",
+          "text": "ASCO, AACR 등 글로벌 암학회에서의 데이터 발표는 주가 부양의 강력한 트리거가 됩니다.",
+          "insight_tip": "학회 일정 2~3개월 전부터 선취매 전략이 유효합니다.",
+          "icon_type": "volume"
+        }
+      ],
+      "practical_guide": {
+        "heading": "바이오 투자 수칙",
+        "items": [
+          {
+            "title": "현금 흐름 체크",
+            "description": "임상 완료 시까지 버틸 수 있는 현금 보유량을 반드시 확인하십시오."
+          }
+        ]
+      },
+      "conclusion": {
+        "text": "과학적 근거 없는 기대감은 도박과 같습니다.",
+        "closing_statement": "이음스탁이 바이오 기업의 기술력을 검증합니다."
+      }
+    },
+    "system_link": {
+      "target_tool": "Brain-Off Hybrid 2.1",
+      "cta_text": "AI 리서치 엔진 더보기",
+      "related_ticker": []
+    }
+  },
+  {
+    "article_info": {
       "id": 2100,
       "slug": "analysis-stock-016600-2026-04-22",
       "title": "[정밀 리포트] 큐캐피탈, 55점의 압도적 타점 포착",
