@@ -175,7 +175,7 @@ def get_verified_data():
             if is_concrete: score += 15
             if is_breaking_112: score += 20
             
-            if score >= 55: # 영매공파 최소 기준 통과
+            if score >= 70: # 영매공파 최소 기준 통과 (사용자 요청으로 55 -> 70 상향)
                 # 분류: 변동성이 크면 'Swing', 변동성이 낮고 바닥권이면 'MidLong'
                 volatility = (max(closes[:20]) - min(closes[:20])) / min(closes[:20])
                 
@@ -324,13 +324,28 @@ def get_verified_data():
             }
             final_recs.append(rec)
             
-        final_json["recommendations"] = final_recs
-        final_json["generation_info"]["status_msg"] = f"브레인 오프 엔진 작동 중. {len(final_recs)}개 타점 포착 완료."
-
-            
-        # JSON 저장
+        # --- MERGE with existing dashboard data to prevent "missing" stocks ---
         output_path = "public/dashboard_data.json"
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
+        
+        if os.path.exists(output_path):
+            try:
+                with open(output_path, "r", encoding="utf-8") as f:
+                    old_dash = json.load(f)
+                    old_recs = old_dash.get('recommendations', [])
+                    # 중복 제거 및 신규 병합 (티커 기준)
+                    seen_tickers = {r['stock_info']['ticker'] for r in final_recs}
+                    for orc in old_recs:
+                        if orc['stock_info']['ticker'] not in seen_tickers:
+                            final_recs.append(orc)
+                            seen_tickers.add(orc['stock_info']['ticker'])
+            except: pass
+        
+        # 최신 날짜 및 고득점 순으로 정렬 후 최대 20개 유지
+        final_recs.sort(key=lambda x: (x['metadata']['date'], x['metadata']['score']), reverse=True)
+        final_json["recommendations"] = final_recs[:20]
+        final_json["generation_info"]["status_msg"] = f"브레인 오프 엔진 작동 중. 현재 {len(final_json['recommendations'])}개 타점 유효."
+
         with open(output_path, "w", encoding="utf-8") as f:
             json.dump(final_json, f, ensure_ascii=False, indent=2)
             

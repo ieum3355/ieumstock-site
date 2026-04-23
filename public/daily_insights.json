@@ -1,6 +1,96 @@
 [
   {
     "article_info": {
+      "id": 2092,
+      "slug": "analysis-stock-043910-2026-04-23",
+      "title": "[정밀 리포트] 자연과환경, 80점의 압도적 타점 포착",
+      "author": "ieumstock AI Research",
+      "date": "2026.04.23",
+      "publishDate": "2026-04-23",
+      "category": "종목 분석",
+      "tags": [
+        "자연과환경",
+        "영매공파",
+        "정밀분석",
+        "Premium"
+      ]
+    },
+    "seo_metadata": {
+      "meta_title": "자연과환경 리서치 리포트 - 이음스탁",
+      "meta_description": "자연과환경 종목의 기술적 지표와 수급 흐름을 정밀 분석한 전문 리포트입니다."
+    },
+    "content_body": {
+      "introduction": {
+        "heading": "자연과환경 리서치: 왜 이 종목에 주목해야 하는가?",
+        "text": "현재 시장의 변동성 속에서도 자연과환경은(는) 독자적인 수급망을 형성하며 시세 분출을 준비하고 있습니다."
+      },
+      "core_analysis": [
+        {
+          "sub_heading": "1. 실시간 돌파 및 거래량 분석",
+          "text": "현재 자연과환경은(는) 거래량 가중 평균 가격(VWAP) 상단에 위치하며 시장의 주도권을 쥐고 있습니다. 특히 501원 부근에서의 손바뀜 현상이 매우 긍정적입니다.",
+          "insight_tip": "진입가 501원 부근 분할 매수 유효합니다.",
+          "icon_type": "analysis"
+        },
+        {
+          "sub_heading": "2. 메이저 수급 및 세력 매집 추적",
+          "text": "특정 창구를 통한 집중적인 매집 패턴이 501원 부근에서 지속적으로 관찰됩니다. 이는 유통 물량을 잠그는 과정으로 풀이됩니다.",
+          "insight_tip": "외국인 창구의 매도 전환 여부를 실시간 체크하십시오.",
+          "icon_type": "volume"
+        },
+        {
+          "sub_heading": "3. 기술적 타점 및 이평선 분석",
+          "text": "영매공파 기법의 핵심인 '256 타점'에 해당합니다. 454원을 생명선으로 잡고 대응하기에 가장 손익비가 좋은 구간입니다.",
+          "insight_tip": "최종 지지선 454원 이탈 시 즉시 축소 전략입니다.",
+          "icon_type": "trend"
+        }
+      ],
+      "practical_guide": {
+        "heading": "핵심 매매 전략",
+        "items": [
+          {
+            "title": "진입 가이드",
+            "description": "501원 기준 +/- 2% 구간"
+          },
+          {
+            "title": "목표 설정",
+            "description": "1차 571원 도달 시 비중 조절"
+          },
+          {
+            "title": "리스크 관리",
+            "description": "손절가 454원 이탈 시 추세 훼손 간주"
+          }
+        ]
+      },
+      "conclusion": {
+        "text": "자연과환경은(는) 데이터 기반 정밀 검증을 통과한 종목입니다. 무분별한 추격 매수보다는 전략적 접근이 필요합니다.",
+        "closing_statement": "이음스탁 리서치 팀은 실시간 수급을 끝까지 추적합니다."
+      }
+    },
+    "visual_assets": {
+      "chart_url": "https://finance.naver.com/item/fchart.nhn?code=043910",
+      "heatmap_tag": "High-Demand Area",
+      "support_levels": [
+        454,
+        501
+      ],
+      "target_levels": [
+        571
+      ]
+    },
+    "context_link": {
+      "title": "바닥권 공구리 패턴과 매집의 원리 (영매공파 심화)",
+      "slug": "deep-dive-into-concrete-pattern"
+    },
+    "system_link": {
+      "target_tool": "Brain-Off Hybrid 2.1",
+      "cta_text": "실시간 수급 지도 보기",
+      "related_ticker": [
+        "043910"
+      ]
+    }
+  },
+  {
+    "article_info": {
       "id": 2090,
       "slug": "analysis-stock-026940-2026-04-21",
       "title": "[정밀 리포트] 부국철강, 80점의 압도적 타점 포착",
