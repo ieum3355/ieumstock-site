@@ -2,101 +2,11 @@
   {
     "article_info": {
       "id": 2093,
-      "slug": "analysis-stock-064800-2026-04-24",
-      "title": "[정밀 리포트] 포니링크, 100점의 압도적 타점 포착",
-      "author": "ieumstock AI Research",
-      "date": "2026.04.26",
-      "publishDate": "2026-04-26",
-      "category": "종목 분석",
-      "tags": [
-        "포니링크",
-        "영매공파",
-        "정밀분석",
-        "Premium"
-      ]
-    },
-    "seo_metadata": {
-      "meta_title": "포니링크 리서치 리포트 - 이음스탁",
-      "meta_description": "포니링크 종목의 기술적 지표와 수급 흐름을 정밀 분석한 전문 리포트입니다."
-    },
-    "content_body": {
-      "introduction": {
-        "heading": "포니링크 리서치: 왜 이 종목에 주목해야 하는가?",
-        "text": "현재 시장의 변동성 속에서도 포니링크은(는) 독자적인 수급망을 형성하며 시세 분출을 준비하고 있습니다."
-      },
-      "core_analysis": [
-        {
-          "sub_heading": "1. 실시간 돌파 및 거래량 분석",
-          "text": "전일 거래량 대비 압도적인 흐름이 포착되었습니다. 특히 803원 라인은 과거 강력한 저항선이었으나, 현재는 이를 지지선으로 확보하며 상방 에너지를 응축 중입니다.",
-          "insight_tip": "진입가 803원 부근 분할 매수 유효합니다.",
-          "icon_type": "analysis"
-        },
-        {
-          "sub_heading": "2. 메이저 수급 및 세력 매집 추적",
-          "text": "수급 흐름상 하방 경직성이 확보된 상태로, 현재 구간은 매도세보다 매수세의 힘이 압도적으로 강한 골든 타점입니다.",
-          "insight_tip": "외국인 창구의 매도 전환 여부를 실시간 체크하십시오.",
-          "icon_type": "volume"
-        },
-        {
-          "sub_heading": "3. 기술적 타점 및 이평선 분석",
-          "text": "장기 이평선인 112일선(0)을 돌파하며 역배열의 긴 터널을 빠져나오고 있습니다. 정배열 초입 구간의 전형적인 모습입니다.",
-          "insight_tip": "최종 지지선 579원 이탈 시 즉시 축소 전략입니다.",
-          "icon_type": "trend"
-        }
-      ],
-      "practical_guide": {
-        "heading": "핵심 매매 전략",
-        "items": [
-          {
-            "title": "진입 가이드",
-            "description": "803원 기준 +/- 2% 구간"
-          },
-          {
-            "title": "목표 설정",
-            "description": "1차 904원 도달 시 비중 조절"
-          },
-          {
-            "title": "리스크 관리",
-            "description": "손절가 579원 이탈 시 추세 훼손 간주"
-          }
-        ]
-      },
-      "conclusion": {
-        "text": "포니링크은(는) 데이터 기반 정밀 검증을 통과한 종목입니다. 무분별한 추격 매수보다는 전략적 접근이 필요합니다.",
-        "closing_statement": "이음스탁 리서치 팀은 실시간 수급을 끝까지 추적합니다."
-      }
-    },
-    "visual_assets": {
-      "chart_url": "https://finance.naver.com/item/fchart.nhn?code=064800",
-      "heatmap_tag": "High-Demand Area",
-      "support_levels": [
-        579,
-        803
-      ],
-      "target_levels": [
-        904
-      ]
-    },
-    "context_link": {
-      "title": "바닥권 공구리 패턴과 매집의 원리 (영매공파 심화)",
-      "slug": "deep-dive-into-concrete-pattern"
-    },
-    "system_link": {
-      "target_tool": "Brain-Off Hybrid 2.1",
-      "cta_text": "실시간 수급 지도 보기",
-      "related_ticker": [
-        "064800"
-      ]
-    }
-  },
-  {
-    "article_info": {
-      "id": 2093,
       "slug": "analysis-stock-043910-2026-04-23",
       "title": "[정밀 리포트] 자연과환경, 80점의 압도적 타점 포착",
       "author": "ieumstock AI Research",
-      "date": "2026.04.25",
-      "publishDate": "2026-04-25",
+      "date": "2026.04.26",
+      "publishDate": "2026-04-26",
       "category": "종목 분석",
       "tags": [
         "자연과환경",
@@ -117,19 +27,19 @@
       "core_analysis": [
         {
           "sub_heading": "1. 실시간 돌파 및 거래량 분석",
-          "text": "장 초반부터 실시간 체결 강도가 150%를 상회하며 501원 매물대를 가볍게 돌파했습니다. 이는 단순한 반등이 아닌 추세적 상승의 서막으로 분석됩니다.",
+          "text": "기술적으로 501원 구간의 돌파는 세력의 진입 없이는 불가능한 영역입니다. 대량 거래를 동반한 장대 양봉이 이를 입증하고 있습니다.",
           "insight_tip": "진입가 501원 부근 분할 매수 유효합니다.",
           "icon_type": "analysis"
         },
         {
           "sub_heading": "2. 메이저 수급 및 세력 매집 추적",
-          "text": "수급 흐름상 하방 경직성이 확보된 상태로, 현재 구간은 매도세보다 매수세의 힘이 압도적으로 강한 골든 타점입니다.",
+          "text": "수급 측면에서 외인과 기관의 '쌍끌이' 매수세가 바닥권에서 유입되고 있습니다. 누적 수급 데이터 결과 자연과환경에 대한 메이저의 물량 확보가 임박했음을 시사합니다.",
           "insight_tip": "외국인 창구의 매도 전환 여부를 실시간 체크하십시오.",
           "icon_type": "volume"
         },
         {
           "sub_heading": "3. 기술적 타점 및 이평선 분석",
-          "text": "일목균형표상 의운(구름대)을 하단에서 상단으로 뚫어내는 돌파 시그널이 발생했습니다. 추세 전환의 확정적 구간입니다.",
+          "text": "영매공파 기법의 핵심인 '256 타점'에 해당합니다. 454원을 생명선으로 잡고 대응하기에 가장 손익비가 좋은 구간입니다.",
           "insight_tip": "최종 지지선 454원 이탈 시 즉시 축소 전략입니다.",
           "icon_type": "trend"
         }
@@ -176,6 +86,96 @@
       "cta_text": "실시간 수급 지도 보기",
       "related_ticker": [
         "043910"
+      ]
+    }
+  },
+  {
+    "article_info": {
+      "id": 2093,
+      "slug": "analysis-stock-064800-2026-04-24",
+      "title": "[정밀 리포트] 포니링크, 100점의 압도적 타점 포착",
+      "author": "ieumstock AI Research",
+      "date": "2026.04.26",
+      "publishDate": "2026-04-26",
+      "category": "종목 분석",
+      "tags": [
+        "포니링크",
+        "영매공파",
+        "정밀분석",
+        "Premium"
+      ]
+    },
+    "seo_metadata": {
+      "meta_title": "포니링크 리서치 리포트 - 이음스탁",
+      "meta_description": "포니링크 종목의 기술적 지표와 수급 흐름을 정밀 분석한 전문 리포트입니다."
+    },
+    "content_body": {
+      "introduction": {
+        "heading": "포니링크 리서치: 왜 이 종목에 주목해야 하는가?",
+        "text": "현재 시장의 변동성 속에서도 포니링크은(는) 독자적인 수급망을 형성하며 시세 분출을 준비하고 있습니다."
+      },
+      "core_analysis": [
+        {
+          "sub_heading": "1. 실시간 돌파 및 거래량 분석",
+          "text": "현재 포니링크은(는) 거래량 가중 평균 가격(VWAP) 상단에 위치하며 시장의 주도권을 쥐고 있습니다. 특히 803원 부근에서의 손바뀜 현상이 매우 긍정적입니다.",
+          "insight_tip": "진입가 803원 부근 분할 매수 유효합니다.",
+          "icon_type": "analysis"
+        },
+        {
+          "sub_heading": "2. 메이저 수급 및 세력 매집 추적",
+          "text": "수급 측면에서 외인과 기관의 '쌍끌이' 매수세가 바닥권에서 유입되고 있습니다. 누적 수급 데이터 결과 포니링크에 대한 메이저의 물량 확보가 임박했음을 시사합니다.",
+          "insight_tip": "외국인 창구의 매도 전환 여부를 실시간 체크하십시오.",
+          "icon_type": "volume"
+        },
+        {
+          "sub_heading": "3. 기술적 타점 및 이평선 분석",
+          "text": "영매공파 기법의 핵심인 '256 타점'에 해당합니다. 579원을 생명선으로 잡고 대응하기에 가장 손익비가 좋은 구간입니다.",
+          "insight_tip": "최종 지지선 579원 이탈 시 즉시 축소 전략입니다.",
+          "icon_type": "trend"
+        }
+      ],
+      "practical_guide": {
+        "heading": "핵심 매매 전략",
+        "items": [
+          {
+            "title": "진입 가이드",
+            "description": "803원 기준 +/- 2% 구간"
+          },
+          {
+            "title": "목표 설정",
+            "description": "1차 904원 도달 시 비중 조절"
+          },
+          {
+            "title": "리스크 관리",
+            "description": "손절가 579원 이탈 시 추세 훼손 간주"
+          }
+        ]
+      },
+      "conclusion": {
+        "text": "포니링크은(는) 데이터 기반 정밀 검증을 통과한 종목입니다. 무분별한 추격 매수보다는 전략적 접근이 필요합니다.",
+        "closing_statement": "이음스탁 리서치 팀은 실시간 수급을 끝까지 추적합니다."
+      }
+    },
+    "visual_assets": {
+      "chart_url": "https://finance.naver.com/item/fchart.nhn?code=064800",
+      "heatmap_tag": "High-Demand Area",
+      "support_levels": [
+        579,
+        803
+      ],
+      "target_levels": [
+        904
+      ]
+    },
+    "context_link": {
+      "title": "바닥권 공구리 패턴과 매집의 원리 (영매공파 심화)",
+      "slug": "deep-dive-into-concrete-pattern"
+    },
+    "system_link": {
+      "target_tool": "Brain-Off Hybrid 2.1",
+      "cta_text": "실시간 수급 지도 보기",
+      "related_ticker": [
+        "064800"
       ]
     }
   },
