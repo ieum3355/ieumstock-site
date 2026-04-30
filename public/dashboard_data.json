@@ -1,24 +1,76 @@
 {
   "generation_info": {
     "engine": "Brain-Off Engine 1.0",
-    "timestamp": "2026-04-29 21:18:54",
-    "date": "2026-04-29",
+    "timestamp": "2026-04-30 11:26:24",
+    "date": "2026-04-30",
     "market_condition": "Checking Brain-Off Breakout Signals",
-    "status_msg": "브레인 오프 엔진 작동 중. 현재 6개 타점 유효."
+    "status_msg": "브레인 오프 엔진 작동 중. 현재 7개 타점 유효."
   },
   "market_summary": [
     {
       "name": "코스피 (KOSPI)",
-      "value": "6,690.90",
-      "rate": "+0.75%"
+      "value": "6,705.48",
+      "rate": "+0.22%"
     },
     {
       "name": "코스닥 (KOSDAQ)",
-      "value": "1,220.26",
-      "rate": "+0.39%"
+      "value": "1,209.67",
+      "rate": "-0.87%"
     }
   ],
   "recommendations": [
+    {
+      "metadata": {
+        "id": "BO-2026-04-30-0",
+        "slug": "stock-004430-2026-04-30",
+        "tier": "Standard",
+        "date": "2026-04-30",
+        "score": 80,
+        "action_required": false,
+        "status_label": "추세 유지"
+      },
+      "stock_info": {
+        "name": "송원산업",
+        "real_name": "송원산업",
+        "ticker": "004430",
+        "sector": "영매공파 포착 섹터",
+        "market": "KRW"
+      },
+      "score_card": {
+        "total_score": 80,
+        "breakout": 0,
+        "accumulation": 25,
+        "volatility_tight": 15,
+        "institutional_buy": 40
+      },
+      "analysis_report": {
+        "summary": "송원산업 종목은 장기 이평선 역배열 상태에서 바닥을 다지는 '공구리'가 확인되었으며, 최근 매집봉과 함께 112일선 돌파를 시도하는 전형적인 영매공파 타점입니다.",
+        "why_recommended": [
+          "장기 이평선(112, 224, 448일)이 역배열된 바닥권 구간에서 하락 멈춤 포착",
+          "바닥권에서 평균 거래량의 2배를 넘는 세력 매집봉 발생으로 매수세 확인",
+          "최근 20일간 특정 가격대(공구리)를 지지하며 에너지를 응축하는 흐름"
+        ],
+        "fundamental_score": 0,
+        "ai_insight": "기술적 반등 구간 진입으로 단기 수익 실현 가능성이 높습니다."
+      },
+      "trading_strategy": {
+        "entry_price": 15900,
+        "target_price": 16730,
+        "stop_loss": 8506,
+        "expected_period": "2주~1개월",
+        "scenario": "송원산업은(는) 영매공파 기법상 가장 안전한 '바닥 탈출' 구간에 있으며, 하방 경직성이 확보되었습니다. 특히 역배열 바닥권에서 매집봉이 포착된 만큼, 세력의 매집이 상당 부분 진행된 것으로 판단됩니다. 현재 송원산업 종목은 장기 하락 추세를 멈추고 횡보하며 에너지를 응축한 상태입니다."
+      },
+      "live_status": {
+        "current_price": 15900,
+        "profit_pct": "+7.43%",
+        "ymg_flags": {
+          "역배열": true,
+          "매집봉": true,
+          "공구리": true,
+          "파란점선": false
+        }
+      }
+    },
     {
       "metadata": {
         "id": "BO-2026-04-29-0",
