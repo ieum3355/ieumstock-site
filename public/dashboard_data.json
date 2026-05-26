@@ -1,30 +1,30 @@
 {
   "generation_info": {
     "engine": "Brain-Off Engine 1.0",
-    "timestamp": "2026-05-25 23:11:23",
-    "date": "2026-05-25",
+    "timestamp": "2026-05-26 11:37:37",
+    "date": "2026-05-26",
     "market_condition": "Checking Brain-Off Breakout Signals",
     "status_msg": "브레인 오프 엔진 작동 중. 현재 18개 타점 유효."
   },
   "market_summary": [
     {
       "name": "코스피 (KOSPI)",
-      "value": "7,847.71",
-      "rate": "+0.41%"
+      "value": "8,097.22",
+      "rate": "+3.18%"
     },
     {
       "name": "코스닥 (KOSDAQ)",
-      "value": "1,161.13",
-      "rate": "+4.99%"
+      "value": "1,179.35",
+      "rate": "+1.57%"
     }
   ],
   "recommendations": [
     {
       "metadata": {
-        "id": "BO-2026-05-22-0",
-        "slug": "stock-304840-2026-05-22",
+        "id": "BO-2026-05-26-0",
+        "slug": "stock-304840-2026-05-26",
         "tier": "Standard",
-        "date": "2026-05-22",
+        "date": "2026-05-26",
         "score": 80,
         "action_required": false,
         "status_label": "추세 유지"
@@ -54,15 +54,15 @@
         "ai_insight": "기술적 반등 구간 진입으로 단기 수익 실현 가능성이 높습니다."
       },
       "trading_strategy": {
-        "entry_price": 1298,
-        "target_price": 1531,
+        "entry_price": 1227,
+        "target_price": 1526,
         "stop_loss": 1037,
         "expected_period": "2주~1개월",
-        "scenario": "피플바이오은(는) 영매공파 기법상 가장 안전한 '바닥 탈출' 구간에 있으며, 하방 경직성이 확보되었습니다. 특히 역배열 바닥권에서 매집봉이 포착된 만큼, 세력의 매집이 상당 부분 진행된 것으로 판단됩니다. 1차 목표가 도달 시 일부 수익 실현 후, 448일선까지 장기적인 관점에서 보유를 권장하는 '영매공파' 핵심 타점입니다."
+        "scenario": "피플바이오은(는) 영매공파 기법상 가장 안전한 '바닥 탈출' 구간에 있으며, 하방 경직성이 확보되었습니다. 기술적 분석 결과, 피플바이오은(는) 세력이 바닥을 다지고 물량을 매집한 정황이 뚜렷하게 포착됩니다. 특히 역배열 바닥권에서 매집봉이 포착된 만큼, 세력의 매집이 상당 부분 진행된 것으로 판단됩니다."
       },
       "live_status": {
-        "current_price": 1298,
-        "profit_pct": "+8.46%",
+        "current_price": 1227,
+        "profit_pct": "+2.62%",
         "ymg_flags": {
           "역배열": true,
           "매집봉": true,
