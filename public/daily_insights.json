@@ -1,6 +1,186 @@
 [
   {
     "article_info": {
+      "id": 2129,
+      "slug": "analysis-stock-142280-2026-05-27",
+      "title": "[정밀 리포트] 녹십자엠에스, 80점의 압도적 타점 포착",
+      "author": "ieumstock AI Research",
+      "date": "2026.07.06",
+      "publishDate": "2026-07-06",
+      "category": "종목 분석",
+      "tags": [
+        "녹십자엠에스",
+        "영매공파",
+        "정밀분석",
+        "Premium"
+      ]
+    },
+    "seo_metadata": {
+      "meta_title": "녹십자엠에스 리서치 리포트 - 이음스탁",
+      "meta_description": "녹십자엠에스 종목의 기술적 지표와 수급 흐름을 정밀 분석한 전문 리포트입니다."
+    },
+    "content_body": {
+      "introduction": {
+        "heading": "녹십자엠에스 리서치: 왜 이 종목에 주목해야 하는가?",
+        "text": "현재 시장의 변동성 속에서도 녹십자엠에스은(는) 독자적인 수급망을 형성하며 시세 분출을 준비하고 있습니다."
+      },
+      "core_analysis": [
+        {
+          "sub_heading": "1. 실시간 돌파 및 거래량 분석",
+          "text": "기술적으로 5,310원 구간의 돌파는 세력의 진입 없이는 불가능한 영역입니다. 대량 거래를 동반한 장대 양봉이 이를 입증하고 있습니다.",
+          "insight_tip": "진입가 5,310원 부근 분할 매수 유효합니다.",
+          "icon_type": "analysis"
+        },
+        {
+          "sub_heading": "2. 메이저 수급 및 세력 매집 추적",
+          "text": "특정 창구를 통한 집중적인 매집 패턴이 5,310원 부근에서 지속적으로 관찰됩니다. 이는 유통 물량을 잠그는 과정으로 풀이됩니다.",
+          "insight_tip": "외국인 창구의 매도 전환 여부를 실시간 체크하십시오.",
+          "icon_type": "volume"
+        },
+        {
+          "sub_heading": "3. 기술적 타점 및 이평선 분석",
+          "text": "영매공파 기법의 핵심인 '256 타점'에 해당합니다. 3,637원을 생명선으로 잡고 대응하기에 가장 손익비가 좋은 구간입니다.",
+          "insight_tip": "최종 지지선 3,637원 이탈 시 즉시 축소 전략입니다.",
+          "icon_type": "trend"
+        }
+      ],
+      "practical_guide": {
+        "heading": "핵심 매매 전략",
+        "items": [
+          {
+            "title": "진입 가이드",
+            "description": "5,310원 기준 +/- 2% 구간"
+          },
+          {
+            "title": "목표 설정",
+            "description": "1차 6,660원 도달 시 비중 조절"
+          },
+          {
+            "title": "리스크 관리",
+            "description": "손절가 3,637원 이탈 시 추세 훼손 간주"
+          }
+        ]
+      },
+      "conclusion": {
+        "text": "녹십자엠에스은(는) 데이터 기반 정밀 검증을 통과한 종목입니다. 무분별한 추격 매수보다는 전략적 접근이 필요합니다.",
+        "closing_statement": "이음스탁 리서치 팀은 실시간 수급을 끝까지 추적합니다."
+      }
+    },
+    "visual_assets": {
+      "chart_url": "https://finance.naver.com/item/fchart.nhn?code=142280",
+      "heatmap_tag": "High-Demand Area",
+      "support_levels": [
+        3637,
+        5310
+      ],
+      "target_levels": [
+        6660
+      ]
+    },
+    "context_link": {
+      "title": "바닥권 공구리 패턴과 매집의 원리 (영매공파 심화)",
+      "slug": "deep-dive-into-concrete-pattern"
+    },
+    "system_link": {
+      "target_tool": "Brain-Off Hybrid 2.1",
+      "cta_text": "실시간 수급 지도 보기",
+      "related_ticker": [
+        "142280"
+      ]
+    }
+  },
+  {
+    "article_info": {
+      "id": 2129,
+      "slug": "analysis-stock-950130-2026-06-05",
+      "title": "[정밀 리포트] 엑세스바이오, 80점의 압도적 타점 포착",
+      "author": "ieumstock AI Research",
+      "date": "2026.07.06",
+      "publishDate": "2026-07-06",
+      "category": "종목 분석",
+      "tags": [
+        "엑세스바이오",
+        "영매공파",
+        "정밀분석",
+        "Premium"
+      ]
+    },
+    "seo_metadata": {
+      "meta_title": "엑세스바이오 리서치 리포트 - 이음스탁",
+      "meta_description": "엑세스바이오 종목의 기술적 지표와 수급 흐름을 정밀 분석한 전문 리포트입니다."
+    },
+    "content_body": {
+      "introduction": {
+        "heading": "엑세스바이오 리서치: 왜 이 종목에 주목해야 하는가?",
+        "text": "현재 시장의 변동성 속에서도 엑세스바이오은(는) 독자적인 수급망을 형성하며 시세 분출을 준비하고 있습니다."
+      },
+      "core_analysis": [
+        {
+          "sub_heading": "1. 실시간 돌파 및 거래량 분석",
+          "text": "현재 엑세스바이오은(는) 거래량 가중 평균 가격(VWAP) 상단에 위치하며 시장의 주도권을 쥐고 있습니다. 특히 2,725원 부근에서의 손바뀜 현상이 매우 긍정적입니다.",
+          "insight_tip": "진입가 2,725원 부근 분할 매수 유효합니다.",
+          "icon_type": "analysis"
+        },
+        {
+          "sub_heading": "2. 메이저 수급 및 세력 매집 추적",
+          "text": "수급 흐름상 하방 경직성이 확보된 상태로, 현재 구간은 매도세보다 매수세의 힘이 압도적으로 강한 골든 타점입니다.",
+          "insight_tip": "외국인 창구의 매도 전환 여부를 실시간 체크하십시오.",
+          "icon_type": "volume"
+        },
+        {
+          "sub_heading": "3. 기술적 타점 및 이평선 분석",
+          "text": "일목균형표상 의운(구름대)을 하단에서 상단으로 뚫어내는 돌파 시그널이 발생했습니다. 추세 전환의 확정적 구간입니다.",
+          "insight_tip": "최종 지지선 2,565원 이탈 시 즉시 축소 전략입니다.",
+          "icon_type": "trend"
+        }
+      ],
+      "practical_guide": {
+        "heading": "핵심 매매 전략",
+        "items": [
+          {
+            "title": "진입 가이드",
+            "description": "2,725원 기준 +/- 2% 구간"
+          },
+          {
+            "title": "목표 설정",
+            "description": "1차 3,415원 도달 시 비중 조절"
+          },
+          {
+            "title": "리스크 관리",
+            "description": "손절가 2,565원 이탈 시 추세 훼손 간주"
+          }
+        ]
+      },
+      "conclusion": {
+        "text": "엑세스바이오은(는) 데이터 기반 정밀 검증을 통과한 종목입니다. 무분별한 추격 매수보다는 전략적 접근이 필요합니다.",
+        "closing_statement": "이음스탁 리서치 팀은 실시간 수급을 끝까지 추적합니다."
+      }
+    },
+    "visual_assets": {
+      "chart_url": "https://finance.naver.com/item/fchart.nhn?code=950130",
+      "heatmap_tag": "High-Demand Area",
+      "support_levels": [
+        2565,
+        2725
+      ],
+      "target_levels": [
+        3415
+      ]
+    },
+    "context_link": {
+      "title": "바닥권 공구리 패턴과 매집의 원리 (영매공파 심화)",
+      "slug": "deep-dive-into-concrete-pattern"
+    },
+    "system_link": {
+      "target_tool": "Brain-Off Hybrid 2.1",
+      "cta_text": "실시간 수급 지도 보기",
+      "related_ticker": [
+        "950130"
+      ]
+    }
+  },
+  {
+    "article_info": {
       "id": 2128,
       "slug": "analysis-stock-009620-2026-07-06",
       "title": "[정밀 리포트] 삼보산업, 80점의 압도적 타점 포착",
@@ -902,96 +1082,6 @@
   {
     "article_info": {
       "id": 2128,
-      "slug": "analysis-stock-950130-2026-06-05",
-      "title": "[정밀 리포트] 엑세스바이오, 80점의 압도적 타점 포착",
-      "author": "ieumstock AI Research",
-      "date": "2026.07.05",
-      "publishDate": "2026-07-05",
-      "category": "종목 분석",
-      "tags": [
-        "엑세스바이오",
-        "영매공파",
-        "정밀분석",
-        "Premium"
-      ]
-    },
-    "seo_metadata": {
-      "meta_title": "엑세스바이오 리서치 리포트 - 이음스탁",
-      "meta_description": "엑세스바이오 종목의 기술적 지표와 수급 흐름을 정밀 분석한 전문 리포트입니다."
-    },
-    "content_body": {
-      "introduction": {
-        "heading": "엑세스바이오 리서치: 왜 이 종목에 주목해야 하는가?",
-        "text": "현재 시장의 변동성 속에서도 엑세스바이오은(는) 독자적인 수급망을 형성하며 시세 분출을 준비하고 있습니다."
-      },
-      "core_analysis": [
-        {
-          "sub_heading": "1. 실시간 돌파 및 거래량 분석",
-          "text": "현재 엑세스바이오은(는) 거래량 가중 평균 가격(VWAP) 상단에 위치하며 시장의 주도권을 쥐고 있습니다. 특히 2,725원 부근에서의 손바뀜 현상이 매우 긍정적입니다.",
-          "insight_tip": "진입가 2,725원 부근 분할 매수 유효합니다.",
-          "icon_type": "analysis"
-        },
-        {
-          "sub_heading": "2. 메이저 수급 및 세력 매집 추적",
-          "text": "스마트 머니의 유입 지표인 'Money Flow Index'가 급격히 우상향하고 있습니다. 특히 저점을 높여가는 공구리 구간에서의 수급 유입이 핵심입니다.",
-          "insight_tip": "외국인 창구의 매도 전환 여부를 실시간 체크하십시오.",
-          "icon_type": "volume"
-        },
-        {
-          "sub_heading": "3. 기술적 타점 및 이평선 분석",
-          "text": "영매공파 기법의 핵심인 '256 타점'에 해당합니다. 2,565원을 생명선으로 잡고 대응하기에 가장 손익비가 좋은 구간입니다.",
-          "insight_tip": "최종 지지선 2,565원 이탈 시 즉시 축소 전략입니다.",
-          "icon_type": "trend"
-        }
-      ],
-      "practical_guide": {
-        "heading": "핵심 매매 전략",
-        "items": [
-          {
-            "title": "진입 가이드",
-            "description": "2,725원 기준 +/- 2% 구간"
-          },
-          {
-            "title": "목표 설정",
-            "description": "1차 3,415원 도달 시 비중 조절"
-          },
-          {
-            "title": "리스크 관리",
-            "description": "손절가 2,565원 이탈 시 추세 훼손 간주"
-          }
-        ]
-      },
-      "conclusion": {
-        "text": "엑세스바이오은(는) 데이터 기반 정밀 검증을 통과한 종목입니다. 무분별한 추격 매수보다는 전략적 접근이 필요합니다.",
-        "closing_statement": "이음스탁 리서치 팀은 실시간 수급을 끝까지 추적합니다."
-      }
-    },
-    "visual_assets": {
-      "chart_url": "https://finance.naver.com/item/fchart.nhn?code=950130",
-      "heatmap_tag": "High-Demand Area",
-      "support_levels": [
-        2565,
-        2725
-      ],
-      "target_levels": [
-        3415
-      ]
-    },
-    "context_link": {
-      "title": "바닥권 공구리 패턴과 매집의 원리 (영매공파 심화)",
-      "slug": "deep-dive-into-concrete-pattern"
-    },
-    "system_link": {
-      "target_tool": "Brain-Off Hybrid 2.1",
-      "cta_text": "실시간 수급 지도 보기",
-      "related_ticker": [
-        "950130"
-      ]
-    }
-  },
-  {
-    "article_info": {
-      "id": 2128,
       "slug": "analysis-stock-900250-2026-05-28",
       "title": "[정밀 리포트] 크리스탈신소재, 80점의 압도적 타점 포착",
       "author": "ieumstock AI Research",
@@ -1076,96 +1166,6 @@
       "cta_text": "실시간 수급 지도 보기",
       "related_ticker": [
         "900250"
-      ]
-    }
-  },
-  {
-    "article_info": {
-      "id": 2128,
-      "slug": "analysis-stock-142280-2026-05-27",
-      "title": "[정밀 리포트] 녹십자엠에스, 80점의 압도적 타점 포착",
-      "author": "ieumstock AI Research",
-      "date": "2026.07.05",
-      "publishDate": "2026-07-05",
-      "category": "종목 분석",
-      "tags": [
-        "녹십자엠에스",
-        "영매공파",
-        "정밀분석",
-        "Premium"
-      ]
-    },
-    "seo_metadata": {
-      "meta_title": "녹십자엠에스 리서치 리포트 - 이음스탁",
-      "meta_description": "녹십자엠에스 종목의 기술적 지표와 수급 흐름을 정밀 분석한 전문 리포트입니다."
-    },
-    "content_body": {
-      "introduction": {
-        "heading": "녹십자엠에스 리서치: 왜 이 종목에 주목해야 하는가?",
-        "text": "현재 시장의 변동성 속에서도 녹십자엠에스은(는) 독자적인 수급망을 형성하며 시세 분출을 준비하고 있습니다."
-      },
-      "core_analysis": [
-        {
-          "sub_heading": "1. 실시간 돌파 및 거래량 분석",
-          "text": "기술적으로 5,310원 구간의 돌파는 세력의 진입 없이는 불가능한 영역입니다. 대량 거래를 동반한 장대 양봉이 이를 입증하고 있습니다.",
-          "insight_tip": "진입가 5,310원 부근 분할 매수 유효합니다.",
-          "icon_type": "analysis"
-        },
-        {
-          "sub_heading": "2. 메이저 수급 및 세력 매집 추적",
-          "text": "수급 측면에서 외인과 기관의 '쌍끌이' 매수세가 바닥권에서 유입되고 있습니다. 누적 수급 데이터 결과 녹십자엠에스에 대한 메이저의 물량 확보가 임박했음을 시사합니다.",
-          "insight_tip": "외국인 창구의 매도 전환 여부를 실시간 체크하십시오.",
-          "icon_type": "volume"
-        },
-        {
-          "sub_heading": "3. 기술적 타점 및 이평선 분석",
-          "text": "일목균형표상 의운(구름대)을 하단에서 상단으로 뚫어내는 돌파 시그널이 발생했습니다. 추세 전환의 확정적 구간입니다.",
-          "insight_tip": "최종 지지선 3,637원 이탈 시 즉시 축소 전략입니다.",
-          "icon_type": "trend"
-        }
-      ],
-      "practical_guide": {
-        "heading": "핵심 매매 전략",
-        "items": [
-          {
-            "title": "진입 가이드",
-            "description": "5,310원 기준 +/- 2% 구간"
-          },
-          {
-            "title": "목표 설정",
-            "description": "1차 6,660원 도달 시 비중 조절"
-          },
-          {
-            "title": "리스크 관리",
-            "description": "손절가 3,637원 이탈 시 추세 훼손 간주"
-          }
-        ]
-      },
-      "conclusion": {
-        "text": "녹십자엠에스은(는) 데이터 기반 정밀 검증을 통과한 종목입니다. 무분별한 추격 매수보다는 전략적 접근이 필요합니다.",
-        "closing_statement": "이음스탁 리서치 팀은 실시간 수급을 끝까지 추적합니다."
-      }
-    },
-    "visual_assets": {
-      "chart_url": "https://finance.naver.com/item/fchart.nhn?code=142280",
-      "heatmap_tag": "High-Demand Area",
-      "support_levels": [
-        3637,
-        5310
-      ],
-      "target_levels": [
-        6660
-      ]
-    },
-    "context_link": {
-      "title": "바닥권 공구리 패턴과 매집의 원리 (영매공파 심화)",
-      "slug": "deep-dive-into-concrete-pattern"
-    },
-    "system_link": {
-      "target_tool": "Brain-Off Hybrid 2.1",
-      "cta_text": "실시간 수급 지도 보기",
-      "related_ticker": [
-        "142280"
       ]
     }
   },
