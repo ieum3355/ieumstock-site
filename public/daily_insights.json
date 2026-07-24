@@ -2,6 +2,186 @@
   {
     "article_info": {
       "id": 2135,
+      "slug": "analysis-stock-009190-2026-06-01",
+      "title": "[정밀 리포트] 대양금속, 80점의 압도적 타점 포착",
+      "author": "ieumstock AI Research",
+      "date": "2026.07.24",
+      "publishDate": "2026-07-24",
+      "category": "종목 분석",
+      "tags": [
+        "대양금속",
+        "영매공파",
+        "정밀분석",
+        "Premium"
+      ]
+    },
+    "seo_metadata": {
+      "meta_title": "대양금속 리서치 리포트 - 이음스탁",
+      "meta_description": "대양금속 종목의 기술적 지표와 수급 흐름을 정밀 분석한 전문 리포트입니다."
+    },
+    "content_body": {
+      "introduction": {
+        "heading": "대양금속 리서치: 왜 이 종목에 주목해야 하는가?",
+        "text": "현재 시장의 변동성 속에서도 대양금속은(는) 독자적인 수급망을 형성하며 시세 분출을 준비하고 있습니다."
+      },
+      "core_analysis": [
+        {
+          "sub_heading": "1. 실시간 돌파 및 거래량 분석",
+          "text": "기술적으로 2,020원 구간의 돌파는 세력의 진입 없이는 불가능한 영역입니다. 대량 거래를 동반한 장대 양봉이 이를 입증하고 있습니다.",
+          "insight_tip": "진입가 2,020원 부근 분할 매수 유효합니다.",
+          "icon_type": "analysis"
+        },
+        {
+          "sub_heading": "2. 메이저 수급 및 세력 매집 추적",
+          "text": "특정 창구를 통한 집중적인 매집 패턴이 2,020원 부근에서 지속적으로 관찰됩니다. 이는 유통 물량을 잠그는 과정으로 풀이됩니다.",
+          "insight_tip": "외국인 창구의 매도 전환 여부를 실시간 체크하십시오.",
+          "icon_type": "volume"
+        },
+        {
+          "sub_heading": "3. 기술적 타점 및 이평선 분석",
+          "text": "장기 이평선인 112일선(0)을 돌파하며 역배열의 긴 터널을 빠져나오고 있습니다. 정배열 초입 구간의 전형적인 모습입니다.",
+          "insight_tip": "최종 지지선 1,223원 이탈 시 즉시 축소 전략입니다.",
+          "icon_type": "trend"
+        }
+      ],
+      "practical_guide": {
+        "heading": "핵심 매매 전략",
+        "items": [
+          {
+            "title": "진입 가이드",
+            "description": "2,020원 기준 +/- 2% 구간"
+          },
+          {
+            "title": "목표 설정",
+            "description": "1차 2,545원 도달 시 비중 조절"
+          },
+          {
+            "title": "리스크 관리",
+            "description": "손절가 1,223원 이탈 시 추세 훼손 간주"
+          }
+        ]
+      },
+      "conclusion": {
+        "text": "대양금속은(는) 데이터 기반 정밀 검증을 통과한 종목입니다. 무분별한 추격 매수보다는 전략적 접근이 필요합니다.",
+        "closing_statement": "이음스탁 리서치 팀은 실시간 수급을 끝까지 추적합니다."
+      }
+    },
+    "visual_assets": {
+      "chart_url": "https://finance.naver.com/item/fchart.nhn?code=009190",
+      "heatmap_tag": "High-Demand Area",
+      "support_levels": [
+        1223,
+        2020
+      ],
+      "target_levels": [
+        2545
+      ]
+    },
+    "context_link": {
+      "title": "바닥권 공구리 패턴과 매집의 원리 (영매공파 심화)",
+      "slug": "deep-dive-into-concrete-pattern"
+    },
+    "system_link": {
+      "target_tool": "Brain-Off Hybrid 2.1",
+      "cta_text": "실시간 수급 지도 보기",
+      "related_ticker": [
+        "009190"
+      ]
+    }
+  },
+  {
+    "article_info": {
+      "id": 2135,
+      "slug": "analysis-stock-900250-2026-05-28",
+      "title": "[정밀 리포트] 크리스탈신소재, 80점의 압도적 타점 포착",
+      "author": "ieumstock AI Research",
+      "date": "2026.07.24",
+      "publishDate": "2026-07-24",
+      "category": "종목 분석",
+      "tags": [
+        "크리스탈신소재",
+        "영매공파",
+        "정밀분석",
+        "Premium"
+      ]
+    },
+    "seo_metadata": {
+      "meta_title": "크리스탈신소재 리서치 리포트 - 이음스탁",
+      "meta_description": "크리스탈신소재 종목의 기술적 지표와 수급 흐름을 정밀 분석한 전문 리포트입니다."
+    },
+    "content_body": {
+      "introduction": {
+        "heading": "크리스탈신소재 리서치: 왜 이 종목에 주목해야 하는가?",
+        "text": "현재 시장의 변동성 속에서도 크리스탈신소재은(는) 독자적인 수급망을 형성하며 시세 분출을 준비하고 있습니다."
+      },
+      "core_analysis": [
+        {
+          "sub_heading": "1. 실시간 돌파 및 거래량 분석",
+          "text": "기술적으로 580원 구간의 돌파는 세력의 진입 없이는 불가능한 영역입니다. 대량 거래를 동반한 장대 양봉이 이를 입증하고 있습니다.",
+          "insight_tip": "진입가 580원 부근 분할 매수 유효합니다.",
+          "icon_type": "analysis"
+        },
+        {
+          "sub_heading": "2. 메이저 수급 및 세력 매집 추적",
+          "text": "수급 측면에서 외인과 기관의 '쌍끌이' 매수세가 바닥권에서 유입되고 있습니다. 누적 수급 데이터 결과 크리스탈신소재에 대한 메이저의 물량 확보가 임박했음을 시사합니다.",
+          "insight_tip": "외국인 창구의 매도 전환 여부를 실시간 체크하십시오.",
+          "icon_type": "volume"
+        },
+        {
+          "sub_heading": "3. 기술적 타점 및 이평선 분석",
+          "text": "일목균형표상 의운(구름대)을 하단에서 상단으로 뚫어내는 돌파 시그널이 발생했습니다. 추세 전환의 확정적 구간입니다.",
+          "insight_tip": "최종 지지선 469원 이탈 시 즉시 축소 전략입니다.",
+          "icon_type": "trend"
+        }
+      ],
+      "practical_guide": {
+        "heading": "핵심 매매 전략",
+        "items": [
+          {
+            "title": "진입 가이드",
+            "description": "580원 기준 +/- 2% 구간"
+          },
+          {
+            "title": "목표 설정",
+            "description": "1차 628원 도달 시 비중 조절"
+          },
+          {
+            "title": "리스크 관리",
+            "description": "손절가 469원 이탈 시 추세 훼손 간주"
+          }
+        ]
+      },
+      "conclusion": {
+        "text": "크리스탈신소재은(는) 데이터 기반 정밀 검증을 통과한 종목입니다. 무분별한 추격 매수보다는 전략적 접근이 필요합니다.",
+        "closing_statement": "이음스탁 리서치 팀은 실시간 수급을 끝까지 추적합니다."
+      }
+    },
+    "visual_assets": {
+      "chart_url": "https://finance.naver.com/item/fchart.nhn?code=900250",
+      "heatmap_tag": "High-Demand Area",
+      "support_levels": [
+        469,
+        580
+      ],
+      "target_levels": [
+        628
+      ]
+    },
+    "context_link": {
+      "title": "바닥권 공구리 패턴과 매집의 원리 (영매공파 심화)",
+      "slug": "deep-dive-into-concrete-pattern"
+    },
+    "system_link": {
+      "target_tool": "Brain-Off Hybrid 2.1",
+      "cta_text": "실시간 수급 지도 보기",
+      "related_ticker": [
+        "900250"
+      ]
+    }
+  },
+  {
+    "article_info": {
+      "id": 2135,
       "slug": "analysis-stock-950130-2026-06-05",
       "title": "[정밀 리포트] 엑세스바이오, 80점의 압도적 타점 포착",
       "author": "ieumstock AI Research",
@@ -902,96 +1082,6 @@
   {
     "article_info": {
       "id": 2133,
-      "slug": "analysis-stock-009190-2026-06-01",
-      "title": "[정밀 리포트] 대양금속, 80점의 압도적 타점 포착",
-      "author": "ieumstock AI Research",
-      "date": "2026.07.23",
-      "publishDate": "2026-07-23",
-      "category": "종목 분석",
-      "tags": [
-        "대양금속",
-        "영매공파",
-        "정밀분석",
-        "Premium"
-      ]
-    },
-    "seo_metadata": {
-      "meta_title": "대양금속 리서치 리포트 - 이음스탁",
-      "meta_description": "대양금속 종목의 기술적 지표와 수급 흐름을 정밀 분석한 전문 리포트입니다."
-    },
-    "content_body": {
-      "introduction": {
-        "heading": "대양금속 리서치: 왜 이 종목에 주목해야 하는가?",
-        "text": "현재 시장의 변동성 속에서도 대양금속은(는) 독자적인 수급망을 형성하며 시세 분출을 준비하고 있습니다."
-      },
-      "core_analysis": [
-        {
-          "sub_heading": "1. 실시간 돌파 및 거래량 분석",
-          "text": "기술적으로 2,020원 구간의 돌파는 세력의 진입 없이는 불가능한 영역입니다. 대량 거래를 동반한 장대 양봉이 이를 입증하고 있습니다.",
-          "insight_tip": "진입가 2,020원 부근 분할 매수 유효합니다.",
-          "icon_type": "analysis"
-        },
-        {
-          "sub_heading": "2. 메이저 수급 및 세력 매집 추적",
-          "text": "특정 창구를 통한 집중적인 매집 패턴이 2,020원 부근에서 지속적으로 관찰됩니다. 이는 유통 물량을 잠그는 과정으로 풀이됩니다.",
-          "insight_tip": "외국인 창구의 매도 전환 여부를 실시간 체크하십시오.",
-          "icon_type": "volume"
-        },
-        {
-          "sub_heading": "3. 기술적 타점 및 이평선 분석",
-          "text": "일목균형표상 의운(구름대)을 하단에서 상단으로 뚫어내는 돌파 시그널이 발생했습니다. 추세 전환의 확정적 구간입니다.",
-          "insight_tip": "최종 지지선 1,223원 이탈 시 즉시 축소 전략입니다.",
-          "icon_type": "trend"
-        }
-      ],
-      "practical_guide": {
-        "heading": "핵심 매매 전략",
-        "items": [
-          {
-            "title": "진입 가이드",
-            "description": "2,020원 기준 +/- 2% 구간"
-          },
-          {
-            "title": "목표 설정",
-            "description": "1차 2,545원 도달 시 비중 조절"
-          },
-          {
-            "title": "리스크 관리",
-            "description": "손절가 1,223원 이탈 시 추세 훼손 간주"
-          }
-        ]
-      },
-      "conclusion": {
-        "text": "대양금속은(는) 데이터 기반 정밀 검증을 통과한 종목입니다. 무분별한 추격 매수보다는 전략적 접근이 필요합니다.",
-        "closing_statement": "이음스탁 리서치 팀은 실시간 수급을 끝까지 추적합니다."
-      }
-    },
-    "visual_assets": {
-      "chart_url": "https://finance.naver.com/item/fchart.nhn?code=009190",
-      "heatmap_tag": "High-Demand Area",
-      "support_levels": [
-        1223,
-        2020
-      ],
-      "target_levels": [
-        2545
-      ]
-    },
-    "context_link": {
-      "title": "바닥권 공구리 패턴과 매집의 원리 (영매공파 심화)",
-      "slug": "deep-dive-into-concrete-pattern"
-    },
-    "system_link": {
-      "target_tool": "Brain-Off Hybrid 2.1",
-      "cta_text": "실시간 수급 지도 보기",
-      "related_ticker": [
-        "009190"
-      ]
-    }
-  },
-  {
-    "article_info": {
-      "id": 2133,
       "slug": "analysis-stock-145170-2026-05-28",
       "title": "[정밀 리포트] 노브랜드, 80점의 압도적 타점 포착",
       "author": "ieumstock AI Research",
@@ -1076,96 +1166,6 @@
       "cta_text": "실시간 수급 지도 보기",
       "related_ticker": [
         "145170"
-      ]
-    }
-  },
-  {
-    "article_info": {
-      "id": 2133,
-      "slug": "analysis-stock-900250-2026-05-28",
-      "title": "[정밀 리포트] 크리스탈신소재, 80점의 압도적 타점 포착",
-      "author": "ieumstock AI Research",
-      "date": "2026.07.22",
-      "publishDate": "2026-07-22",
-      "category": "종목 분석",
-      "tags": [
-        "크리스탈신소재",
-        "영매공파",
-        "정밀분석",
-        "Premium"
-      ]
-    },
-    "seo_metadata": {
-      "meta_title": "크리스탈신소재 리서치 리포트 - 이음스탁",
-      "meta_description": "크리스탈신소재 종목의 기술적 지표와 수급 흐름을 정밀 분석한 전문 리포트입니다."
-    },
-    "content_body": {
-      "introduction": {
-        "heading": "크리스탈신소재 리서치: 왜 이 종목에 주목해야 하는가?",
-        "text": "현재 시장의 변동성 속에서도 크리스탈신소재은(는) 독자적인 수급망을 형성하며 시세 분출을 준비하고 있습니다."
-      },
-      "core_analysis": [
-        {
-          "sub_heading": "1. 실시간 돌파 및 거래량 분석",
-          "text": "기술적으로 580원 구간의 돌파는 세력의 진입 없이는 불가능한 영역입니다. 대량 거래를 동반한 장대 양봉이 이를 입증하고 있습니다.",
-          "insight_tip": "진입가 580원 부근 분할 매수 유효합니다.",
-          "icon_type": "analysis"
-        },
-        {
-          "sub_heading": "2. 메이저 수급 및 세력 매집 추적",
-          "text": "수급 측면에서 외인과 기관의 '쌍끌이' 매수세가 바닥권에서 유입되고 있습니다. 누적 수급 데이터 결과 크리스탈신소재에 대한 메이저의 물량 확보가 임박했음을 시사합니다.",
-          "insight_tip": "외국인 창구의 매도 전환 여부를 실시간 체크하십시오.",
-          "icon_type": "volume"
-        },
-        {
-          "sub_heading": "3. 기술적 타점 및 이평선 분석",
-          "text": "일목균형표상 의운(구름대)을 하단에서 상단으로 뚫어내는 돌파 시그널이 발생했습니다. 추세 전환의 확정적 구간입니다.",
-          "insight_tip": "최종 지지선 469원 이탈 시 즉시 축소 전략입니다.",
-          "icon_type": "trend"
-        }
-      ],
-      "practical_guide": {
-        "heading": "핵심 매매 전략",
-        "items": [
-          {
-            "title": "진입 가이드",
-            "description": "580원 기준 +/- 2% 구간"
-          },
-          {
-            "title": "목표 설정",
-            "description": "1차 628원 도달 시 비중 조절"
-          },
-          {
-            "title": "리스크 관리",
-            "description": "손절가 469원 이탈 시 추세 훼손 간주"
-          }
-        ]
-      },
-      "conclusion": {
-        "text": "크리스탈신소재은(는) 데이터 기반 정밀 검증을 통과한 종목입니다. 무분별한 추격 매수보다는 전략적 접근이 필요합니다.",
-        "closing_statement": "이음스탁 리서치 팀은 실시간 수급을 끝까지 추적합니다."
-      }
-    },
-    "visual_assets": {
-      "chart_url": "https://finance.naver.com/item/fchart.nhn?code=900250",
-      "heatmap_tag": "High-Demand Area",
-      "support_levels": [
-        469,
-        580
-      ],
-      "target_levels": [
-        628
-      ]
-    },
-    "context_link": {
-      "title": "바닥권 공구리 패턴과 매집의 원리 (영매공파 심화)",
-      "slug": "deep-dive-into-concrete-pattern"
-    },
-    "system_link": {
-      "target_tool": "Brain-Off Hybrid 2.1",
-      "cta_text": "실시간 수급 지도 보기",
-      "related_ticker": [
-        "900250"
       ]
     }
   },
