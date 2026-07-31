@@ -1,21 +1,21 @@
 {
   "generation_info": {
     "engine": "Brain-Off Engine 1.0",
-    "timestamp": "2026-07-30 21:46:49",
-    "date": "2026-07-30",
+    "timestamp": "2026-07-31 11:08:01",
+    "date": "2026-07-31",
     "market_condition": "Checking Brain-Off Breakout Signals",
     "status_msg": "브레인 오프 엔진 작동 중. 현재 20개 타점 유효."
   },
   "market_summary": [
     {
       "name": "코스피 (KOSPI)",
-      "value": "5,593.56",
-      "rate": "-1.23%"
+      "value": "6,343.30",
+      "rate": "+13.40%"
     },
     {
       "name": "코스닥 (KOSDAQ)",
-      "value": "644.78",
-      "rate": "-2.70%"
+      "value": "700.70",
+      "rate": "+8.67%"
     }
   ],
   "recommendations": [
