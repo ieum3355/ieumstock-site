@@ -1,8 +1,8 @@
 {
   "generation_info": {
     "engine": "Brain-Off Engine 1.0",
-    "timestamp": "2026-08-01 21:03:38",
-    "date": "2026-08-01",
+    "timestamp": "2026-08-02 11:06:29",
+    "date": "2026-08-02",
     "market_condition": "Checking Brain-Off Breakout Signals",
     "status_msg": "브레인 오프 엔진 작동 중. 현재 20개 타점 유효."
   },
@@ -21,10 +21,10 @@
   "recommendations": [
     {
       "metadata": {
-        "id": "BO-2026-08-01-0",
-        "slug": "stock-044340-2026-08-01",
+        "id": "BO-2026-08-02-0",
+        "slug": "stock-044340-2026-08-02",
         "tier": "Premium",
-        "date": "2026-08-01",
+        "date": "2026-08-02",
         "score": 100,
         "action_required": false,
         "status_label": "추세 유지"
@@ -51,7 +51,7 @@
           "최근 20일간 특정 가격대(공구리)를 지지하며 에너지를 응축하는 흐름",
           "주가가 112일선을 강력하게 돌파하며 장기 추세 전환(파란점선) 시그널 발생"
         ],
-        "fundamental_score": 84,
+        "fundamental_score": 81,
         "ai_insight": "업황 턴어라운드 흐름과 세력 매집 흔적이 일치하여 중장기 시세 분출 가능성이 매우 높은 구간입니다."
       },
       "trading_strategy": {
