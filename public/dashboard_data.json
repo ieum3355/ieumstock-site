@@ -1,24 +1,76 @@
 {
   "generation_info": {
     "engine": "Brain-Off Engine 1.0",
-    "timestamp": "2026-08-02 21:04:30",
-    "date": "2026-08-02",
+    "timestamp": "2026-08-03 11:08:32",
+    "date": "2026-08-03",
     "market_condition": "Checking Brain-Off Breakout Signals",
     "status_msg": "브레인 오프 엔진 작동 중. 현재 20개 타점 유효."
   },
   "market_summary": [
     {
       "name": "코스피 (KOSPI)",
-      "value": "6,595.45",
-      "rate": "+17.91%"
+      "value": "6,365.22",
+      "rate": "-3.49%"
     },
     {
       "name": "코스닥 (KOSDAQ)",
-      "value": "719.76",
-      "rate": "+11.63%"
+      "value": "753.04",
+      "rate": "+4.62%"
     }
   ],
   "recommendations": [
+    {
+      "metadata": {
+        "id": "BO-2026-08-03-0",
+        "slug": "kiwoom2002x-253230-2026-08-03",
+        "tier": "Standard",
+        "date": "2026-08-03",
+        "score": 80,
+        "action_required": false,
+        "status_label": "추세 유지"
+      },
+      "stock_info": {
+        "name": "KIWOOM 200선물인버스2X",
+        "real_name": "KIWOOM 200선물인버스2X",
+        "ticker": "253230",
+        "sector": "영매공파 포착 섹터",
+        "market": "KRW"
+      },
+      "score_card": {
+        "total_score": 80,
+        "breakout": 0,
+        "accumulation": 25,
+        "volatility_tight": 15,
+        "institutional_buy": 40
+      },
+      "analysis_report": {
+        "summary": "KIWOOM 200선물인버스2X 종목은 장기 이평선 역배열 상태에서 바닥을 다지는 '공구리'가 확인되었으며, 최근 매집봉과 함께 112일선 돌파를 시도하는 전형적인 영매공파 타점입니다.",
+        "why_recommended": [
+          "장기 이평선(112, 224, 448일)이 역배열된 바닥권 구간에서 하락 멈춤 포착",
+          "바닥권에서 평균 거래량의 2배를 넘는 세력 매집봉 발생으로 매수세 확인",
+          "최근 20일간 특정 가격대(공구리)를 지지하며 에너지를 응축하는 흐름"
+        ],
+        "fundamental_score": 0,
+        "ai_insight": "기술적 반등 구간 진입으로 단기 수익 실현 가능성이 높습니다."
+      },
+      "trading_strategy": {
+        "entry_price": 93,
+        "target_price": 162,
+        "stop_loss": 64,
+        "expected_period": "2주~1개월",
+        "scenario": "기술적 분석 결과, KIWOOM 200선물인버스2X은(는) 세력이 바닥을 다지고 물량을 매집한 정황이 뚜렷하게 포착됩니다. 1차 목표가 도달 시 일부 수익 실현 후, 448일선까지 장기적인 관점에서 보유를 권장하는 '영매공파' 핵심 타점입니다. KIWOOM 200선물인버스2X은(는) 영매공파 기법상 가장 안전한 '바닥 탈출' 구간에 있으며, 하방 경직성이 확보되었습니다."
+      },
+      "live_status": {
+        "current_price": 93,
+        "profit_pct": "+8.14%",
+        "ymg_flags": {
+          "역배열": true,
+          "매집봉": true,
+          "공구리": true,
+          "파란점선": false
+        }
+      }
+    },
     {
       "metadata": {
         "id": "BO-2026-08-02-0",
@@ -1006,58 +1058,6 @@
           "매집봉": true,
           "공구리": true,
           "파란점선": true
-        }
-      }
-    },
-    {
-      "metadata": {
-        "id": "BO-2026-05-13-0",
-        "slug": "stock-321260-2026-05-13",
-        "tier": "Standard",
-        "date": "2026-05-13",
-        "score": 80,
-        "action_required": false,
-        "status_label": "추세 유지"
-      },
-      "stock_info": {
-        "name": "프로이천",
-        "real_name": "프로이천",
-        "ticker": "321260",
-        "sector": "영매공파 포착 섹터",
-        "market": "KRW"
-      },
-      "score_card": {
-        "total_score": 80,
-        "breakout": 0,
-        "accumulation": 25,
-        "volatility_tight": 15,
-        "institutional_buy": 40
-      },
-      "analysis_report": {
-        "summary": "프로이천 종목은 장기 이평선 역배열 상태에서 바닥을 다지는 '공구리'가 확인되었으며, 최근 매집봉과 함께 112일선 돌파를 시도하는 전형적인 영매공파 타점입니다.",
-        "why_recommended": [
-          "장기 이평선(112, 224, 448일)이 역배열된 바닥권 구간에서 하락 멈춤 포착",
-          "바닥권에서 평균 거래량의 2배를 넘는 세력 매집봉 발생으로 매수세 확인",
-          "최근 20일간 특정 가격대(공구리)를 지지하며 에너지를 응축하는 흐름"
-        ],
-        "fundamental_score": 0,
-        "ai_insight": "기술적 반등 구간 진입으로 단기 수익 실현 가능성이 높습니다."
-      },
-      "trading_strategy": {
-        "entry_price": 4430,
-        "target_price": 4780,
-        "stop_loss": 2342,
-        "expected_period": "2주~1개월",
-        "scenario": "기술적 분석 결과, 프로이천은(는) 세력이 바닥을 다지고 물량을 매집한 정황이 뚜렷하게 포착됩니다. 1차 목표가 도달 시 일부 수익 실현 후, 448일선까지 장기적인 관점에서 보유를 권장하는 '영매공파' 핵심 타점입니다. 프로이천은(는) 영매공파 기법상 가장 안전한 '바닥 탈출' 구간에 있으며, 하방 경직성이 확보되었습니다."
-      },
-      "live_status": {
-        "current_price": 4430,
-        "profit_pct": "+11.45%",
-        "ymg_flags": {
-          "역배열": true,
-          "매집봉": true,
-          "공구리": true,
-          "파란점선": false
         }
       }
     }
