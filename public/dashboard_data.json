@@ -1,7 +1,7 @@
 {
   "generation_info": {
     "engine": "Brain-Off Engine 1.0",
-    "timestamp": "2026-08-14 17:05:24",
+    "timestamp": "2026-08-14 20:45:35",
     "date": "2026-08-14",
     "market_condition": "Checking Brain-Off Breakout Signals",
     "status_msg": "브레인 오프 엔진 작동 중. 현재 20개 타점 유효."
@@ -107,15 +107,15 @@
         "ai_insight": "기술적 반등 구간 진입으로 단기 수익 실현 가능성이 높습니다."
       },
       "trading_strategy": {
-        "entry_price": 1513,
-        "target_price": 2380,
+        "entry_price": 1497,
+        "target_price": 2379,
         "stop_loss": 1261,
         "expected_period": "2주~1개월",
-        "scenario": "기술적 분석 결과, 신테카바이오은(는) 세력이 바닥을 다지고 물량을 매집한 정황이 뚜렷하게 포착됩니다. 1차 목표가 도달 시 일부 수익 실현 후, 448일선까지 장기적인 관점에서 보유를 권장하는 '영매공파' 핵심 타점입니다. 특히 역배열 바닥권에서 매집봉이 포착된 만큼, 세력의 매집이 상당 부분 진행된 것으로 판단됩니다."
+        "scenario": "1차 목표가 도달 시 일부 수익 실현 후, 448일선까지 장기적인 관점에서 보유를 권장하는 '영매공파' 핵심 타점입니다. 신테카바이오은(는) 영매공파 기법상 가장 안전한 '바닥 탈출' 구간에 있으며, 하방 경직성이 확보되었습니다. 특히 역배열 바닥권에서 매집봉이 포착된 만큼, 세력의 매집이 상당 부분 진행된 것으로 판단됩니다."
       },
       "live_status": {
-        "current_price": 1513,
-        "profit_pct": "+3.69%",
+        "current_price": 1497,
+        "profit_pct": "+4.71%",
         "ymg_flags": {
           "역배열": true,
           "매집봉": true,
