@@ -1,7 +1,7 @@
 {
   "generation_info": {
     "engine": "Brain-Off Engine 1.0",
-    "timestamp": "2026-08-19 12:45:03",
+    "timestamp": "2026-08-19 16:28:49",
     "date": "2026-08-19",
     "market_condition": "Checking Brain-Off Breakout Signals",
     "status_msg": "브레인 오프 엔진 작동 중. 현재 20개 타점 유효."
@@ -9,13 +9,13 @@
   "market_summary": [
     {
       "name": "코스피 (KOSPI)",
-      "value": "6,494.70",
-      "rate": "-5.46%"
+      "value": "6,471.17",
+      "rate": "-5.80%"
     },
     {
       "name": "코스닥 (KOSDAQ)",
-      "value": "834.31",
-      "rate": "+0.01%"
+      "value": "824.46",
+      "rate": "-1.17%"
     }
   ],
   "recommendations": [
@@ -54,15 +54,15 @@
         "ai_insight": "기술적 반등 구간 진입으로 단기 수익 실현 가능성이 높습니다."
       },
       "trading_strategy": {
-        "entry_price": 9050,
-        "target_price": 10514,
+        "entry_price": 8930,
+        "target_price": 10513,
         "stop_loss": 6246,
         "expected_period": "2주~1개월",
-        "scenario": "셀바스AI은(는) 영매공파 기법상 가장 안전한 '바닥 탈출' 구간에 있으며, 하방 경직성이 확보되었습니다. 1차 목표가 도달 시 일부 수익 실현 후, 448일선까지 장기적인 관점에서 보유를 권장하는 '영매공파' 핵심 타점입니다. 기술적 분석 결과, 셀바스AI은(는) 세력이 바닥을 다지고 물량을 매집한 정황이 뚜렷하게 포착됩니다."
+        "scenario": "셀바스AI은(는) 영매공파 기법상 가장 안전한 '바닥 탈출' 구간에 있으며, 하방 경직성이 확보되었습니다. 기술적 분석 결과, 셀바스AI은(는) 세력이 바닥을 다지고 물량을 매집한 정황이 뚜렷하게 포착됩니다. 특히 역배열 바닥권에서 매집봉이 포착된 만큼, 세력의 매집이 상당 부분 진행된 것으로 판단됩니다."
       },
       "live_status": {
-        "current_price": 9050,
-        "profit_pct": "+2.90%",
+        "current_price": 8930,
+        "profit_pct": "+4.18%",
         "ymg_flags": {
           "역배열": true,
           "매집봉": true,
