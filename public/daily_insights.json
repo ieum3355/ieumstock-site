@@ -2,6 +2,186 @@
   {
     "article_info": {
       "id": 2200,
+      "slug": "analysis-ai-108860-2026-09-01",
+      "title": "[정밀 리포트] 셀바스AI, 80점의 압도적 타점 포착",
+      "author": "ieumstock AI Research",
+      "date": "2026.09.03",
+      "publishDate": "2026-09-03",
+      "category": "종목 분석",
+      "tags": [
+        "셀바스AI",
+        "영매공파",
+        "정밀분석",
+        "Premium"
+      ]
+    },
+    "seo_metadata": {
+      "meta_title": "셀바스AI 리서치 리포트 - 이음스탁",
+      "meta_description": "셀바스AI 종목의 기술적 지표와 수급 흐름을 정밀 분석한 전문 리포트입니다."
+    },
+    "content_body": {
+      "introduction": {
+        "heading": "셀바스AI 리서치: 왜 이 종목에 주목해야 하는가?",
+        "text": "현재 시장의 변동성 속에서도 셀바스AI은(는) 독자적인 수급망을 형성하며 시세 분출을 준비하고 있습니다."
+      },
+      "core_analysis": [
+        {
+          "sub_heading": "1. 실시간 돌파 및 거래량 분석",
+          "text": "기술적으로 9,240원 구간의 돌파는 세력의 진입 없이는 불가능한 영역입니다. 대량 거래를 동반한 장대 양봉이 이를 입증하고 있습니다.",
+          "insight_tip": "진입가 9,240원 부근 분할 매수 유효합니다.",
+          "icon_type": "analysis"
+        },
+        {
+          "sub_heading": "2. 메이저 수급 및 세력 매집 추적",
+          "text": "스마트 머니의 유입 지표인 'Money Flow Index'가 급격히 우상향하고 있습니다. 특히 저점을 높여가는 공구리 구간에서의 수급 유입이 핵심입니다.",
+          "insight_tip": "외국인 창구의 매도 전환 여부를 실시간 체크하십시오.",
+          "icon_type": "volume"
+        },
+        {
+          "sub_heading": "3. 기술적 타점 및 이평선 분석",
+          "text": "일목균형표상 의운(구름대)을 하단에서 상단으로 뚫어내는 돌파 시그널이 발생했습니다. 추세 전환의 확정적 구간입니다.",
+          "insight_tip": "최종 지지선 8,361원 이탈 시 즉시 축소 전략입니다.",
+          "icon_type": "trend"
+        }
+      ],
+      "practical_guide": {
+        "heading": "핵심 매매 전략",
+        "items": [
+          {
+            "title": "진입 가이드",
+            "description": "9,240원 기준 +/- 2% 구간"
+          },
+          {
+            "title": "목표 설정",
+            "description": "1차 10,413원 도달 시 비중 조절"
+          },
+          {
+            "title": "리스크 관리",
+            "description": "손절가 8,361원 이탈 시 추세 훼손 간주"
+          }
+        ]
+      },
+      "conclusion": {
+        "text": "셀바스AI은(는) 데이터 기반 정밀 검증을 통과한 종목입니다. 무분별한 추격 매수보다는 전략적 접근이 필요합니다.",
+        "closing_statement": "이음스탁 리서치 팀은 실시간 수급을 끝까지 추적합니다."
+      }
+    },
+    "visual_assets": {
+      "chart_url": "https://finance.naver.com/item/fchart.nhn?code=108860",
+      "heatmap_tag": "High-Demand Area",
+      "support_levels": [
+        8361,
+        9240
+      ],
+      "target_levels": [
+        10413
+      ]
+    },
+    "context_link": {
+      "title": "바닥권 공구리 패턴과 매집의 원리 (영매공파 심화)",
+      "slug": "deep-dive-into-concrete-pattern"
+    },
+    "system_link": {
+      "target_tool": "Brain-Off Hybrid 2.1",
+      "cta_text": "실시간 수급 지도 보기",
+      "related_ticker": [
+        "108860"
+      ]
+    }
+  },
+  {
+    "article_info": {
+      "id": 2200,
+      "slug": "analysis-stock-226330-2026-08-17",
+      "title": "[정밀 리포트] 신테카바이오, 80점의 압도적 타점 포착",
+      "author": "ieumstock AI Research",
+      "date": "2026.09.03",
+      "publishDate": "2026-09-03",
+      "category": "종목 분석",
+      "tags": [
+        "신테카바이오",
+        "영매공파",
+        "정밀분석",
+        "Premium"
+      ]
+    },
+    "seo_metadata": {
+      "meta_title": "신테카바이오 리서치 리포트 - 이음스탁",
+      "meta_description": "신테카바이오 종목의 기술적 지표와 수급 흐름을 정밀 분석한 전문 리포트입니다."
+    },
+    "content_body": {
+      "introduction": {
+        "heading": "신테카바이오 리서치: 왜 이 종목에 주목해야 하는가?",
+        "text": "현재 시장의 변동성 속에서도 신테카바이오은(는) 독자적인 수급망을 형성하며 시세 분출을 준비하고 있습니다."
+      },
+      "core_analysis": [
+        {
+          "sub_heading": "1. 실시간 돌파 및 거래량 분석",
+          "text": "현재 신테카바이오은(는) 거래량 가중 평균 가격(VWAP) 상단에 위치하며 시장의 주도권을 쥐고 있습니다. 특히 1,497원 부근에서의 손바뀜 현상이 매우 긍정적입니다.",
+          "insight_tip": "진입가 1,497원 부근 분할 매수 유효합니다.",
+          "icon_type": "analysis"
+        },
+        {
+          "sub_heading": "2. 메이저 수급 및 세력 매집 추적",
+          "text": "스마트 머니의 유입 지표인 'Money Flow Index'가 급격히 우상향하고 있습니다. 특히 저점을 높여가는 공구리 구간에서의 수급 유입이 핵심입니다.",
+          "insight_tip": "외국인 창구의 매도 전환 여부를 실시간 체크하십시오.",
+          "icon_type": "volume"
+        },
+        {
+          "sub_heading": "3. 기술적 타점 및 이평선 분석",
+          "text": "볼린저 밴드 상단을 강하게 치고 나가는 '밴드 워킹' 구간에 진입했습니다. 변동성이 커지는 시점이나 중심선 지지가 확인되어 안정적입니다.",
+          "insight_tip": "최종 지지선 1,261원 이탈 시 즉시 축소 전략입니다.",
+          "icon_type": "trend"
+        }
+      ],
+      "practical_guide": {
+        "heading": "핵심 매매 전략",
+        "items": [
+          {
+            "title": "진입 가이드",
+            "description": "1,497원 기준 +/- 2% 구간"
+          },
+          {
+            "title": "목표 설정",
+            "description": "1차 2,379원 도달 시 비중 조절"
+          },
+          {
+            "title": "리스크 관리",
+            "description": "손절가 1,261원 이탈 시 추세 훼손 간주"
+          }
+        ]
+      },
+      "conclusion": {
+        "text": "신테카바이오은(는) 데이터 기반 정밀 검증을 통과한 종목입니다. 무분별한 추격 매수보다는 전략적 접근이 필요합니다.",
+        "closing_statement": "이음스탁 리서치 팀은 실시간 수급을 끝까지 추적합니다."
+      }
+    },
+    "visual_assets": {
+      "chart_url": "https://finance.naver.com/item/fchart.nhn?code=226330",
+      "heatmap_tag": "High-Demand Area",
+      "support_levels": [
+        1261,
+        1497
+      ],
+      "target_levels": [
+        2379
+      ]
+    },
+    "context_link": {
+      "title": "바닥권 공구리 패턴과 매집의 원리 (영매공파 심화)",
+      "slug": "deep-dive-into-concrete-pattern"
+    },
+    "system_link": {
+      "target_tool": "Brain-Off Hybrid 2.1",
+      "cta_text": "실시간 수급 지도 보기",
+      "related_ticker": [
+        "226330"
+      ]
+    }
+  },
+  {
+    "article_info": {
+      "id": 2200,
       "slug": "analysis-stock-009620-2026-08-17",
       "title": "[정밀 리포트] 삼보산업, 100점의 압도적 타점 포착",
       "author": "ieumstock AI Research",
@@ -986,96 +1166,6 @@
       "cta_text": "실시간 수급 지도 보기",
       "related_ticker": [
         "419050"
-      ]
-    }
-  },
-  {
-    "article_info": {
-      "id": 2195,
-      "slug": "analysis-stock-226330-2026-08-17",
-      "title": "[정밀 리포트] 신테카바이오, 80점의 압도적 타점 포착",
-      "author": "ieumstock AI Research",
-      "date": "2026.09.01",
-      "publishDate": "2026-09-01",
-      "category": "종목 분석",
-      "tags": [
-        "신테카바이오",
-        "영매공파",
-        "정밀분석",
-        "Premium"
-      ]
-    },
-    "seo_metadata": {
-      "meta_title": "신테카바이오 리서치 리포트 - 이음스탁",
-      "meta_description": "신테카바이오 종목의 기술적 지표와 수급 흐름을 정밀 분석한 전문 리포트입니다."
-    },
-    "content_body": {
-      "introduction": {
-        "heading": "신테카바이오 리서치: 왜 이 종목에 주목해야 하는가?",
-        "text": "현재 시장의 변동성 속에서도 신테카바이오은(는) 독자적인 수급망을 형성하며 시세 분출을 준비하고 있습니다."
-      },
-      "core_analysis": [
-        {
-          "sub_heading": "1. 실시간 돌파 및 거래량 분석",
-          "text": "기술적으로 1,497원 구간의 돌파는 세력의 진입 없이는 불가능한 영역입니다. 대량 거래를 동반한 장대 양봉이 이를 입증하고 있습니다.",
-          "insight_tip": "진입가 1,497원 부근 분할 매수 유효합니다.",
-          "icon_type": "analysis"
-        },
-        {
-          "sub_heading": "2. 메이저 수급 및 세력 매집 추적",
-          "text": "스마트 머니의 유입 지표인 'Money Flow Index'가 급격히 우상향하고 있습니다. 특히 저점을 높여가는 공구리 구간에서의 수급 유입이 핵심입니다.",
-          "insight_tip": "외국인 창구의 매도 전환 여부를 실시간 체크하십시오.",
-          "icon_type": "volume"
-        },
-        {
-          "sub_heading": "3. 기술적 타점 및 이평선 분석",
-          "text": "볼린저 밴드 상단을 강하게 치고 나가는 '밴드 워킹' 구간에 진입했습니다. 변동성이 커지는 시점이나 중심선 지지가 확인되어 안정적입니다.",
-          "insight_tip": "최종 지지선 1,261원 이탈 시 즉시 축소 전략입니다.",
-          "icon_type": "trend"
-        }
-      ],
-      "practical_guide": {
-        "heading": "핵심 매매 전략",
-        "items": [
-          {
-            "title": "진입 가이드",
-            "description": "1,497원 기준 +/- 2% 구간"
-          },
-          {
-            "title": "목표 설정",
-            "description": "1차 2,379원 도달 시 비중 조절"
-          },
-          {
-            "title": "리스크 관리",
-            "description": "손절가 1,261원 이탈 시 추세 훼손 간주"
-          }
-        ]
-      },
-      "conclusion": {
-        "text": "신테카바이오은(는) 데이터 기반 정밀 검증을 통과한 종목입니다. 무분별한 추격 매수보다는 전략적 접근이 필요합니다.",
-        "closing_statement": "이음스탁 리서치 팀은 실시간 수급을 끝까지 추적합니다."
-      }
-    },
-    "visual_assets": {
-      "chart_url": "https://finance.naver.com/item/fchart.nhn?code=226330",
-      "heatmap_tag": "High-Demand Area",
-      "support_levels": [
-        1261,
-        1497
-      ],
-      "target_levels": [
-        2379
-      ]
-    },
-    "context_link": {
-      "title": "바닥권 공구리 패턴과 매집의 원리 (영매공파 심화)",
-      "slug": "deep-dive-into-concrete-pattern"
-    },
-    "system_link": {
-      "target_tool": "Brain-Off Hybrid 2.1",
-      "cta_text": "실시간 수급 지도 보기",
-      "related_ticker": [
-        "226330"
       ]
     }
   },
@@ -17402,93 +17492,6 @@
       "conclusion": {
         "text": "급등주를 쫓아가는 것보다 바닥을 확인하고 기다리는 투자가 훨씬 수익률이 높습니다. 공구리는 시장의 풍파 속에서도 당신의 자산을 지켜주는 든든한 기반이 될 것입니다.",
         "closing_statement": "안전한 투자의 시작, 이음스탁이 바닥을 찾아드립니다."
-      }
-    },
-    "system_link": {
-      "target_tool": "Brain-Off Hybrid 2.1",
-      "cta_text": "실시간 MVP 2.1 수급 분석으로 진짜 주도주 확인하기",
-      "related_ticker": [
-        "KOSPI",
-        "KOSDAQ",
-        "영매공파",
-        "이음스탁"
-      ]
-    }
-  },
-  {
-    "article_info": {
-      "id": 1000,
-      "slug": "truth-of-upper-limit-price-trading-260201",
-      "title": "상한가 매매의 진실: 세력이 개인에게 물량을 떠넘기는 '설거지' 포착법 (심화 리서치)",
-      "author": "ieumstock AI Lab",
-      "date": "2026.02.01",
-      "publishDate": "2026-02-01",
-      "category": "Investment Insight",
-      "tags": [
-        "상한가매매",
-        "상따전략",
-        "세력패턴",
-        "기술적분석",
-        "리스크관리"
-      ]
-    },
-    "seo_metadata": {
-      "meta_title": "상한가 따라잡기(상따), 세력의 설거지를 피하는 3가지 필승 전략 | 이음스탁 투자 리포트",
-      "meta_description": "주식 시장에서 상한가는 모든 투자자의 시선을 사로잡는 화려한 불꽃과 같습니다. '내일도 상승할 것'이라는 탐욕과 '나만 소외될지 모른다'는 공포가 개미 투자자들을 상한가 잔량 속으로 끌어들입니다. 하지만 준비되지 않은 상한가 매매(상따)는 세력의 차익 실현을 돕는 '설",
-      "og_image": "/assets/images/insight/truth-of-upper-limit-price-trading-cover.jpg"
-    },
-    "content_body": {
-      "introduction": {
-        "heading": "탐욕과 공포가 교차하는 상한가, 당신은 준비되었습니까?",
-        "text": "세력이 개인 투자자들을 유혹하기 위해 만드는 화려한 상한가 속에는 치명적인 함정이 숨겨져 있습니다."
-      },
-      "core_analysis": [
-        {
-          "sub_heading": "1. 세력의 상한가 '설계' 의도 파악",
-          "text": "세력에게 상한가는 단순한 상승 이상의 의미를 가집니다. 대량의 물량을 개인에게 넘기기 위해 시장의 관심을 극대화하는 '꽃길'을 까는 작업입니다. 특히 거래량이 실리지 않은 채 장 막판에 억지로 문을 닫는 상한가는 익일 갭하락 가능성이 매우 높습니다.",
-          "insight_tip": "장 초반 10시 이전에 문을 닫는 '강한 상한가'를 선별하십시오."
-        },
-        {
-          "sub_heading": "2. 거래량과 잔량의 역설적 관계",
-          "text": "상한가 안착 후 거래량이 소멸되어야 진정한 '잠금' 상태입니다. 만약 상한가 부근에서 거래가 계속 터진다면, 이는 세력이 상한가 잔량을 대고 개인들에게 물량을 떠넘기는 '설거지' 중일 확률이 90% 이상입니다.",
-          "insight_tip": "상한가 잔량이 줄어드는 속도를 실시간으로 체크하십시오."
-        },
-        {
-          "sub_heading": "3. 테마의 응집력과 대장주의 조건",
-          "text": "단독 호재로 간 상한가보다 테마 전체가 움직이는 상한가가 안전합니다. 후발주들이 상한가 근처까지 따라오지 못한다면 대장주의 상한가도 풀릴 위험이 큽니다. 진정한 주도주는 테마 전체를 견인하는 에너지가 있어야 합니다.",
-          "insight_tip": "테마 내 2, 3등주의 동향을 반드시 함께 확인하십시오."
-        },
-        {
-          "sub_heading": "4. 기회비용과 자금 유동성 관리",
-          "text": "잘못된 상따로 계좌가 묶이는 순간, 진짜 주도주가 터질 때 진입할 수 있는 '자금의 유동성'이 사라집니다. 글로벌 경제의 불확실성이 커지는 시기에 개별 테마주에 자금이 묶이는 것은 투자 기회 자체를 박탈당하는 결과를 초래합니다.",
-          "insight_tip": "비중 10% 이내의 철저한 소액 매매 원칙을 고수하십시오."
-        },
-        {
-          "sub_heading": "5. 익일 대응 시나리오 및 출구 전략",
-          "text": "상따의 성공은 매수가 아니라 매도에서 결정됩니다. 익일 갭상승이 5% 미만이거나 장 초반 시가를 이탈하는 흐름이 보인다면 미련 없이 수익을 확정해야 합니다. 세력은 당신의 미련을 먹고 성장합니다.",
-          "insight_tip": "시가 이탈 시 전량 매도라는 기계적 원칙을 적용하십시오."
-        }
-      ],
-      "practical_guide": {
-        "heading": "진짜 주도주를 선별하는 '상따' 체크리스트",
-        "items": [
-          {
-            "title": "시간의 법칙",
-            "description": "오전 10시 이전에 강력하게 문을 닫은 종목일수록 익일 상승 확률이 비약적으로 높습니다. 늦은 오후의 상한가는 경계하십시오."
-          },
-          {
-            "title": "테마의 응집력",
-            "description": "단독 종목의 호재보다 해당 업종 전체가 함께 움직이는 주도 테마의 대장주여야 안전한 수익이 가능합니다."
-          },
-          {
-            "title": "거래량 잠금 상태",
-            "description": "상한가 안착 후 잔량이 줄어들지 않고 거래량이 소멸된 상태로 유지되어야 진정한 '잠금' 상태로 판단합니다."
-          }
-        ]
-      },
-      "conclusion": {
-        "text": "상한가는 부의 지름길이 될 수도 있지만, 누군가에겐 파산의 덫입니다. 공급망과 인플레이션이 요동치는 거친 시장에서 내 돈을 지키는 유일한 방법은 냉정한 판단력뿐입니다. 세력이 파놓은 구덩이에 스스로 걸어 들어가지 마십시오.",
-        "closing_statement": "투자는 원칙의 산물입니다. 이음스탁이 당신의 흔들리지 않는 원칙이 되겠습니다."
       }
     },
     "system_link": {
