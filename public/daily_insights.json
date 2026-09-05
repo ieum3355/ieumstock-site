@@ -2,6 +2,186 @@
   {
     "article_info": {
       "id": 2200,
+      "slug": "analysis-stock-008250-2026-09-04",
+      "title": "[정밀 리포트] 이건산업, 80점의 압도적 타점 포착",
+      "author": "ieumstock AI Research",
+      "date": "2026.09.05",
+      "publishDate": "2026-09-05",
+      "category": "종목 분석",
+      "tags": [
+        "이건산업",
+        "영매공파",
+        "정밀분석",
+        "Premium"
+      ]
+    },
+    "seo_metadata": {
+      "meta_title": "이건산업 리서치 리포트 - 이음스탁",
+      "meta_description": "이건산업 종목의 기술적 지표와 수급 흐름을 정밀 분석한 전문 리포트입니다."
+    },
+    "content_body": {
+      "introduction": {
+        "heading": "이건산업 리서치: 왜 이 종목에 주목해야 하는가?",
+        "text": "현재 시장의 변동성 속에서도 이건산업은(는) 독자적인 수급망을 형성하며 시세 분출을 준비하고 있습니다."
+      },
+      "core_analysis": [
+        {
+          "sub_heading": "1. 실시간 돌파 및 거래량 분석",
+          "text": "현재 이건산업은(는) 거래량 가중 평균 가격(VWAP) 상단에 위치하며 시장의 주도권을 쥐고 있습니다. 특히 3,120원 부근에서의 손바뀜 현상이 매우 긍정적입니다.",
+          "insight_tip": "진입가 3,120원 부근 분할 매수 유효합니다.",
+          "icon_type": "analysis"
+        },
+        {
+          "sub_heading": "2. 메이저 수급 및 세력 매집 추적",
+          "text": "특정 창구를 통한 집중적인 매집 패턴이 3,120원 부근에서 지속적으로 관찰됩니다. 이는 유통 물량을 잠그는 과정으로 풀이됩니다.",
+          "insight_tip": "외국인 창구의 매도 전환 여부를 실시간 체크하십시오.",
+          "icon_type": "volume"
+        },
+        {
+          "sub_heading": "3. 기술적 타점 및 이평선 분석",
+          "text": "볼린저 밴드 상단을 강하게 치고 나가는 '밴드 워킹' 구간에 진입했습니다. 변동성이 커지는 시점이나 중심선 지지가 확인되어 안정적입니다.",
+          "insight_tip": "최종 지지선 2,386원 이탈 시 즉시 축소 전략입니다.",
+          "icon_type": "trend"
+        }
+      ],
+      "practical_guide": {
+        "heading": "핵심 매매 전략",
+        "items": [
+          {
+            "title": "진입 가이드",
+            "description": "3,120원 기준 +/- 2% 구간"
+          },
+          {
+            "title": "목표 설정",
+            "description": "1차 3,835원 도달 시 비중 조절"
+          },
+          {
+            "title": "리스크 관리",
+            "description": "손절가 2,386원 이탈 시 추세 훼손 간주"
+          }
+        ]
+      },
+      "conclusion": {
+        "text": "이건산업은(는) 데이터 기반 정밀 검증을 통과한 종목입니다. 무분별한 추격 매수보다는 전략적 접근이 필요합니다.",
+        "closing_statement": "이음스탁 리서치 팀은 실시간 수급을 끝까지 추적합니다."
+      }
+    },
+    "visual_assets": {
+      "chart_url": "https://finance.naver.com/item/fchart.nhn?code=008250",
+      "heatmap_tag": "High-Demand Area",
+      "support_levels": [
+        2386,
+        3120
+      ],
+      "target_levels": [
+        3835
+      ]
+    },
+    "context_link": {
+      "title": "바닥권 공구리 패턴과 매집의 원리 (영매공파 심화)",
+      "slug": "deep-dive-into-concrete-pattern"
+    },
+    "system_link": {
+      "target_tool": "Brain-Off Hybrid 2.1",
+      "cta_text": "실시간 수급 지도 보기",
+      "related_ticker": [
+        "008250"
+      ]
+    }
+  },
+  {
+    "article_info": {
+      "id": 2200,
+      "slug": "analysis-stock-443670-2026-09-01",
+      "title": "[정밀 리포트] 에스피소프트, 80점의 압도적 타점 포착",
+      "author": "ieumstock AI Research",
+      "date": "2026.09.05",
+      "publishDate": "2026-09-05",
+      "category": "종목 분석",
+      "tags": [
+        "에스피소프트",
+        "영매공파",
+        "정밀분석",
+        "Premium"
+      ]
+    },
+    "seo_metadata": {
+      "meta_title": "에스피소프트 리서치 리포트 - 이음스탁",
+      "meta_description": "에스피소프트 종목의 기술적 지표와 수급 흐름을 정밀 분석한 전문 리포트입니다."
+    },
+    "content_body": {
+      "introduction": {
+        "heading": "에스피소프트 리서치: 왜 이 종목에 주목해야 하는가?",
+        "text": "현재 시장의 변동성 속에서도 에스피소프트은(는) 독자적인 수급망을 형성하며 시세 분출을 준비하고 있습니다."
+      },
+      "core_analysis": [
+        {
+          "sub_heading": "1. 실시간 돌파 및 거래량 분석",
+          "text": "현재 에스피소프트은(는) 거래량 가중 평균 가격(VWAP) 상단에 위치하며 시장의 주도권을 쥐고 있습니다. 특히 3,740원 부근에서의 손바뀜 현상이 매우 긍정적입니다.",
+          "insight_tip": "진입가 3,740원 부근 분할 매수 유효합니다.",
+          "icon_type": "analysis"
+        },
+        {
+          "sub_heading": "2. 메이저 수급 및 세력 매집 추적",
+          "text": "수급 흐름상 하방 경직성이 확보된 상태로, 현재 구간은 매도세보다 매수세의 힘이 압도적으로 강한 골든 타점입니다.",
+          "insight_tip": "외국인 창구의 매도 전환 여부를 실시간 체크하십시오.",
+          "icon_type": "volume"
+        },
+        {
+          "sub_heading": "3. 기술적 타점 및 이평선 분석",
+          "text": "영매공파 기법의 핵심인 '256 타점'에 해당합니다. 2,662원을 생명선으로 잡고 대응하기에 가장 손익비가 좋은 구간입니다.",
+          "insight_tip": "최종 지지선 2,662원 이탈 시 즉시 축소 전략입니다.",
+          "icon_type": "trend"
+        }
+      ],
+      "practical_guide": {
+        "heading": "핵심 매매 전략",
+        "items": [
+          {
+            "title": "진입 가이드",
+            "description": "3,740원 기준 +/- 2% 구간"
+          },
+          {
+            "title": "목표 설정",
+            "description": "1차 3,960원 도달 시 비중 조절"
+          },
+          {
+            "title": "리스크 관리",
+            "description": "손절가 2,662원 이탈 시 추세 훼손 간주"
+          }
+        ]
+      },
+      "conclusion": {
+        "text": "에스피소프트은(는) 데이터 기반 정밀 검증을 통과한 종목입니다. 무분별한 추격 매수보다는 전략적 접근이 필요합니다.",
+        "closing_statement": "이음스탁 리서치 팀은 실시간 수급을 끝까지 추적합니다."
+      }
+    },
+    "visual_assets": {
+      "chart_url": "https://finance.naver.com/item/fchart.nhn?code=443670",
+      "heatmap_tag": "High-Demand Area",
+      "support_levels": [
+        2662,
+        3740
+      ],
+      "target_levels": [
+        3960
+      ]
+    },
+    "context_link": {
+      "title": "바닥권 공구리 패턴과 매집의 원리 (영매공파 심화)",
+      "slug": "deep-dive-into-concrete-pattern"
+    },
+    "system_link": {
+      "target_tool": "Brain-Off Hybrid 2.1",
+      "cta_text": "실시간 수급 지도 보기",
+      "related_ticker": [
+        "443670"
+      ]
+    }
+  },
+  {
+    "article_info": {
+      "id": 2200,
       "slug": "analysis-stock-459550-2026-08-26",
       "title": "[정밀 리포트] 알트, 80점의 압도적 타점 포착",
       "author": "ieumstock AI Research",
@@ -986,96 +1166,6 @@
       "cta_text": "실시간 수급 지도 보기",
       "related_ticker": [
         "002800"
-      ]
-    }
-  },
-  {
-    "article_info": {
-      "id": 2200,
-      "slug": "analysis-stock-443670-2026-09-01",
-      "title": "[정밀 리포트] 에스피소프트, 80점의 압도적 타점 포착",
-      "author": "ieumstock AI Research",
-      "date": "2026.09.03",
-      "publishDate": "2026-09-03",
-      "category": "종목 분석",
-      "tags": [
-        "에스피소프트",
-        "영매공파",
-        "정밀분석",
-        "Premium"
-      ]
-    },
-    "seo_metadata": {
-      "meta_title": "에스피소프트 리서치 리포트 - 이음스탁",
-      "meta_description": "에스피소프트 종목의 기술적 지표와 수급 흐름을 정밀 분석한 전문 리포트입니다."
-    },
-    "content_body": {
-      "introduction": {
-        "heading": "에스피소프트 리서치: 왜 이 종목에 주목해야 하는가?",
-        "text": "현재 시장의 변동성 속에서도 에스피소프트은(는) 독자적인 수급망을 형성하며 시세 분출을 준비하고 있습니다."
-      },
-      "core_analysis": [
-        {
-          "sub_heading": "1. 실시간 돌파 및 거래량 분석",
-          "text": "현재 에스피소프트은(는) 거래량 가중 평균 가격(VWAP) 상단에 위치하며 시장의 주도권을 쥐고 있습니다. 특히 3,740원 부근에서의 손바뀜 현상이 매우 긍정적입니다.",
-          "insight_tip": "진입가 3,740원 부근 분할 매수 유효합니다.",
-          "icon_type": "analysis"
-        },
-        {
-          "sub_heading": "2. 메이저 수급 및 세력 매집 추적",
-          "text": "특정 창구를 통한 집중적인 매집 패턴이 3,740원 부근에서 지속적으로 관찰됩니다. 이는 유통 물량을 잠그는 과정으로 풀이됩니다.",
-          "insight_tip": "외국인 창구의 매도 전환 여부를 실시간 체크하십시오.",
-          "icon_type": "volume"
-        },
-        {
-          "sub_heading": "3. 기술적 타점 및 이평선 분석",
-          "text": "일목균형표상 의운(구름대)을 하단에서 상단으로 뚫어내는 돌파 시그널이 발생했습니다. 추세 전환의 확정적 구간입니다.",
-          "insight_tip": "최종 지지선 2,662원 이탈 시 즉시 축소 전략입니다.",
-          "icon_type": "trend"
-        }
-      ],
-      "practical_guide": {
-        "heading": "핵심 매매 전략",
-        "items": [
-          {
-            "title": "진입 가이드",
-            "description": "3,740원 기준 +/- 2% 구간"
-          },
-          {
-            "title": "목표 설정",
-            "description": "1차 3,960원 도달 시 비중 조절"
-          },
-          {
-            "title": "리스크 관리",
-            "description": "손절가 2,662원 이탈 시 추세 훼손 간주"
-          }
-        ]
-      },
-      "conclusion": {
-        "text": "에스피소프트은(는) 데이터 기반 정밀 검증을 통과한 종목입니다. 무분별한 추격 매수보다는 전략적 접근이 필요합니다.",
-        "closing_statement": "이음스탁 리서치 팀은 실시간 수급을 끝까지 추적합니다."
-      }
-    },
-    "visual_assets": {
-      "chart_url": "https://finance.naver.com/item/fchart.nhn?code=443670",
-      "heatmap_tag": "High-Demand Area",
-      "support_levels": [
-        2662,
-        3740
-      ],
-      "target_levels": [
-        3960
-      ]
-    },
-    "context_link": {
-      "title": "바닥권 공구리 패턴과 매집의 원리 (영매공파 심화)",
-      "slug": "deep-dive-into-concrete-pattern"
-    },
-    "system_link": {
-      "target_tool": "Brain-Off Hybrid 2.1",
-      "cta_text": "실시간 수급 지도 보기",
-      "related_ticker": [
-        "443670"
       ]
     }
   },
@@ -17423,89 +17513,6 @@
       "conclusion": {
         "text": "상한가는 부의 지름길이 될 수도 있지만, 누군가에겐 파산의 덫입니다. 공급망과 인플레이션이 요동치는 거친 시장에서 내 돈을 지키는 유일한 방법은 냉정한 판단력뿐입니다. 세력이 파놓은 구덩이에 스스로 걸어 들어가지 마십시오.",
         "closing_statement": "투자는 원칙의 산물입니다. 이음스탁이 당신의 흔들리지 않는 원칙이 되겠습니다."
-      }
-    },
-    "system_link": {
-      "target_tool": "Brain-Off Hybrid 2.1",
-      "cta_text": "실시간 MVP 2.1 수급 분석으로 진짜 주도주 확인하기",
-      "related_ticker": [
-        "KOSPI",
-        "KOSDAQ",
-        "영매공파",
-        "이음스탁"
-      ]
-    }
-  },
-  {
-    "article_info": {
-      "id": 1003,
-      "slug": "trading-psychology-secrets-260204",
-      "title": "확증 편향의 오류: 내가 산 종목이 오를 수밖에 없다고 믿는 착각의 늪 (심화 리서치)",
-      "author": "ieumstock AI Lab",
-      "date": "2026.02.04",
-      "publishDate": "2026-02-04",
-      "category": "Trading Psychology",
-      "tags": [
-        "투자심리",
-        "뇌동매매",
-        "마인드컨트롤",
-        "손절매",
-        "개미투자"
-      ]
-    },
-    "seo_metadata": {
-      "meta_title": "개미 투자자가 90% 확률로 실패하는 이유: 뇌동매매와 손절의 심리학 | 이음스탁 투자 리포트",
-      "meta_description": "아무리 훌륭한 기법을 알아도 심리가 흔들리면 무용지물입니다. 손실 중인 종목은 본전 생각에 못 팔고, 수익 중인 종목은 더 오를까 봐 못 파는 인간의 본능이 주식 시장에서는 치명적인 독이 됩니다.",
-      "og_image": "/assets/images/insight/trading-psychology-secrets-cover.jpg"
-    },
-    "content_body": {
-      "introduction": {
-        "heading": "주식은 기술 10%, 심리 90%의 싸움입니다.",
-        "text": "인간의 본능은 주식 시장에서 손실을 극대화하도록 설계되어 있습니다. 이를 이겨내는 시스템이 필요합니다."
-      },
-      "core_analysis": [
-        {
-          "sub_heading": "1. 확증 편향과 희망 회로의 위험성",
-          "text": "자신이 산 종목에 유리한 뉴스만 찾아보는 행위는 객관적인 판단을 가로막습니다. 주가가 하락하는 실질적인 이유를 외면하고 '언젠가 오르겠지'라는 희망 회로를 돌리는 순간 계좌는 녹아내리기 시작합니다.",
-          "insight_tip": "차트는 당신의 희망사항보다 시장의 진실을 더 잘 말해줍니다."
-        },
-        {
-          "sub_heading": "2. 기계적 매매를 가로막는 공포와 탐욕",
-          "text": "성공한 트레이더들은 감정이 없습니다. 미리 정해둔 손절가와 익절가에 도달하면 미련 없이 버튼을 누릅니다. 감정이 개입되는 순간 원칙은 깨지고, 원칙이 깨진 매매는 도박과 다를 바 없습니다.",
-          "insight_tip": "매수 전 반드시 매도 시나리오를 먼저 세우고 진입하십시오."
-        },
-        {
-          "sub_heading": "3. 손절의 고통을 이겨내는 '손절 철학'",
-          "text": "많은 투자자들이 손절을 '패배'로 인식합니다. 하지만 전문 투자자들에게 손절은 내 자산을 지키기 위한 '보험료'이자 '생존 비용'입니다. 손절을 잘하는 사람이 결국 시장에서 가장 큰 수익을 가져갑니다.",
-          "insight_tip": "손절은 틀린 것이 아니라, 다음 기회를 위한 준비임을 명심하십시오."
-        },
-        {
-          "sub_heading": "4. 뇌동매매의 원인: 포모(FOMO) 증후군",
-          "text": "나만 빼고 다 돈을 버는 것 같은 공포가 급등주 추격 매수를 부릅니다. 계획에 없던 매수는 대부분 고점 매수로 이어집니다. 시장은 내일도 열리고, 기회는 매일 옵니다. 서두를 필요가 전혀 없습니다.",
-          "insight_tip": "내가 모르는 종목, 계획하지 않은 자리는 내 자리가 아닙니다."
-        },
-        {
-          "sub_heading": "5. 심리적 안정을 위한 '자금 관리'",
-          "text": "심리가 흔들리는 가장 큰 이유는 감당할 수 없는 비중으로 매매하기 때문입니다. 잃어도 일상생활에 지장이 없는 금액으로 매매할 때 비로소 냉정한 판단이 가능해집니다.",
-          "insight_tip": "계좌의 10% 이상을 한 종목에 몰빵하지 마십시오."
-        }
-      ],
-      "practical_guide": {
-        "heading": "심리적 안정을 위한 훈련법",
-        "items": [
-          {
-            "title": "매매 일지 작성",
-            "description": "실수했을 때의 감정 상태를 기록하고 복기하십시오. 같은 실수를 반복하지 않는 것이 실력을 키우는 유일한 길입니다."
-          },
-          {
-            "title": "소액 매매로 원칙 테스트",
-            "description": "큰 금액으로 심리가 흔들리기 전, 소액으로 자신의 매매 원칙이 통계적으로 유효한지 먼저 검증하십시오."
-          }
-        ]
-      },
-      "conclusion": {
-        "text": "자신을 이기는 자가 시장을 이깁니다. 탐욕과 공포라는 거대한 파도 위에서 평정심을 유지할 수 있을 때 비로소 진정한 투자자의 길로 들어서게 됩니다.",
-        "closing_statement": "단단한 투자 멘탈, 이음스탁이 만들어 드립니다."
       }
     },
     "system_link": {
