@@ -1,8 +1,8 @@
 {
   "generation_info": {
     "engine": "Brain-Off Engine 1.0",
-    "timestamp": "2026-09-14 22:26:43",
-    "date": "2026-09-14",
+    "timestamp": "2026-09-15 01:50:01",
+    "date": "2026-09-15",
     "market_condition": "Checking Brain-Off Breakout Signals",
     "status_msg": "브레인 오프 엔진 작동 중. 현재 20개 타점 유효."
   },
@@ -21,10 +21,10 @@
   "recommendations": [
     {
       "metadata": {
-        "id": "BO-2026-09-14-0",
-        "slug": "stock-443670-2026-09-14",
+        "id": "BO-2026-09-15-0",
+        "slug": "stock-443670-2026-09-15",
         "tier": "Standard",
-        "date": "2026-09-14",
+        "date": "2026-09-15",
         "score": 80,
         "action_required": false,
         "status_label": "추세 유지"
