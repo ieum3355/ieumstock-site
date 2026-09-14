@@ -1,7 +1,7 @@
 {
   "generation_info": {
     "engine": "Brain-Off Engine 1.0",
-    "timestamp": "2026-09-14 11:49:48",
+    "timestamp": "2026-09-14 17:34:44",
     "date": "2026-09-14",
     "market_condition": "Checking Brain-Off Breakout Signals",
     "status_msg": "브레인 오프 엔진 작동 중. 현재 20개 타점 유효."
@@ -9,13 +9,13 @@
   "market_summary": [
     {
       "name": "코스피 (KOSPI)",
-      "value": "6,765.45",
-      "rate": "-2.09%"
+      "value": "6,684.37",
+      "rate": "-3.26%"
     },
     {
       "name": "코스닥 (KOSDAQ)",
-      "value": "812.70",
-      "rate": "-0.97%"
+      "value": "806.79",
+      "rate": "-1.69%"
     }
   ],
   "recommendations": [
@@ -54,15 +54,15 @@
         "ai_insight": "기술적 반등 구간 진입으로 단기 수익 실현 가능성이 높습니다."
       },
       "trading_strategy": {
-        "entry_price": 4870,
-        "target_price": 6075,
+        "entry_price": 4990,
+        "target_price": 6076,
         "stop_loss": 2662,
         "expected_period": "2주~1개월",
-        "scenario": "에스피소프트은(는) 영매공파 기법상 가장 안전한 '바닥 탈출' 구간에 있으며, 하방 경직성이 확보되었습니다. 기술적 분석 결과, 에스피소프트은(는) 세력이 바닥을 다지고 물량을 매집한 정황이 뚜렷하게 포착됩니다. 1차 목표가 도달 시 일부 수익 실현 후, 448일선까지 장기적인 관점에서 보유를 권장하는 '영매공파' 핵심 타점입니다."
+        "scenario": "기술적 분석 결과, 에스피소프트은(는) 세력이 바닥을 다지고 물량을 매집한 정황이 뚜렷하게 포착됩니다. 에스피소프트은(는) 영매공파 기법상 가장 안전한 '바닥 탈출' 구간에 있으며, 하방 경직성이 확보되었습니다. 1차 목표가 도달 시 일부 수익 실현 후, 448일선까지 장기적인 관점에서 보유를 권장하는 '영매공파' 핵심 타점입니다."
       },
       "live_status": {
-        "current_price": 4870,
-        "profit_pct": "+3.07%",
+        "current_price": 4990,
+        "profit_pct": "+5.61%",
         "ymg_flags": {
           "역배열": true,
           "매집봉": true,
